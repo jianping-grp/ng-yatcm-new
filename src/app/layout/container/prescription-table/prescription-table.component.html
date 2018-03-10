@@ -1,0 +1,96 @@
+<div>
+  <!--<div *ngIf="isLoading || isLoadingError">-->
+  <!--<mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>-->
+  <!--</div>-->
+  <mat-table #herbTable [dataSource]="dataSource"
+             matSort matSortDisableClear matSortDirection="asc">
+    <ng-container matColumnDef="chinese_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Chinese_name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.chinese_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phonetic_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Phonetic Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.pinyin_name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="english_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>English Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.english_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="main_prescription">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Main Prescription</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.main_prescription}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="prescription_herb">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Prescription Herb</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="goHerbList(row.id)">{{row.herbs.length}}</button>
+    </mat-cell>
+   </ng-container>
+
+    <ng-container matColumnDef="traditional_usage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Traditional Usage</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.yongfa}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="modern_usage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Modern Application</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.chinese_modern_application}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="modern_usage(english)">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Modern Application(english)</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.english_modern_application}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="traditional_application">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Traditional Application</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.chinese_indiction}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="traditional_application(english)">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Traditioanl Application(english)</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.english_indiction}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="traditional_explanation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Traditional Explanation</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.fangjie}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="detail">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Detail</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button  color="primary" (click)="gotoPrescriptionDetail(row.id)">view</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+      <mat-form-field class="mdl-cell mdl-cell--2-col">
+        <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
+          <mat-option *ngFor="let column of allColumns" [value]="column">
+            {{column}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
+        <h5 class="mat-header-cell">
+          <b>{{tableTitle}}</b>
+        </h5>
+      </div>
+      <div class="mdl-cell mdl-cell--5-col">
+        <mat-paginator [length]="pageMeta?.total_results"
+                       [pageSize]="pageMeta?.per_page"
+                       [pageSizeOptions]="pageSizeOptions"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

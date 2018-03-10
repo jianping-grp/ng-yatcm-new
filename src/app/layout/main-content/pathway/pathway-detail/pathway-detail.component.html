@@ -1,0 +1,47 @@
+<h5><strong>
+  Similarity mapping of YaTCM compounds to {{pathway?.name}}
+  (<a href="http://www.kegg.jp/kegg-bin/show_pathway?{{pathway?.kegg_id}}" target="_blank">{{pathway?.kegg_id}}</a>)
+</strong></h5>
+<mat-table #pathwayDetailTable [dataSource]="dataSource">
+  <ng-container matColumnDef="keggcompound">
+    <mat-header-cell *matHeaderCellDef>Compound of this Pathway</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <app-jsme [elementId]="row.kegg_compound.id + row.id"
+                [width]="'200px'"
+                [height]="'100px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                [molString]="row.kegg_compound.smiles"></app-jsme>
+      <p>{{row.kegg_compound.kegg_id}}</p>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="tcm">
+    <mat-header-cell *matHeaderCellDef>Ingredients from YaTCM</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <app-jsme [elementId]="row.tcm.id + row.id"
+                [width]="'200px'"
+                [height]="'100px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                [molString]="row.tcm.smiles"></app-jsme>
+      <button mat-button color="primary" (click)="gotoCompoundDetail(row.tcm.id)">
+        {{row.tcm.english_name}}
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="view_in_map">
+    <mat-header-cell *matHeaderCellDef>View in Map</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary">Open</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [length]="pageMeta?.total_results"
+               [pageSize]="pageMeta?.per_page"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageChange($event)"
+>
+</mat-paginator>

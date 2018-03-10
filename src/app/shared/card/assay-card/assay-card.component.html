@@ -1,0 +1,17 @@
+<table class="mdl-data-table mdl-shadow--2dp" style="width: 100%;">
+  <tr>
+    <th>ChEMBL ID</th>
+    <td>
+      <a href="https://www.ebi.ac.uk/chembl/assay/inspect/{{assay?.chemblid}}" target="_blank">
+        {{assay?.chemblid}}
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td>{{assay?.description}}</td>
+  </tr>
+</table>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

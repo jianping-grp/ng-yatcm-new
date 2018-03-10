@@ -1,0 +1,20 @@
+<table class="mdl-data-table mdl-shadow--2dp" style="width: 100%">
+  <tr>
+    <th>ChEMBL ID</th>
+    <th>
+      <a href="http://www.ebi.ac.uk/chembl/target/inspect/{{target.chembl_id}}" target="_blank">
+        {{target?.chembl_id}}
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <th>Pref Name</th>
+    <td>{{target?.pref_name}}</td>
+  </tr>
+  <tr>
+    <th></th>
+  </tr>
+</table>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

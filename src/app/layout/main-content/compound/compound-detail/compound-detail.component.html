@@ -1,0 +1,232 @@
+<h5><strong>{{compound?.english_name}} Basic Information</strong></h5>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--3-col">
+    <app-jsme [elementId]="'undefined'"
+              [width]="'300px'"
+              [height]="'320px'"
+              [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+              [molString]="compound?.smiles"
+    ></app-jsme>
+  </div>
+  <div class="mdl-cell mdl-cell--9-col">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+      <tr>
+        <th>Enlish Name</th>
+        <td>{{compound?.english_name}}</td>
+      </tr>
+      <tr>
+        <th>Chinese Name</th>
+        <td>{{compound?.chinese_name}}</td>
+      </tr>
+      <tr>
+        <th>Smiles</th>
+        <td>{{compound?.smiles}}</td>
+      </tr>
+      <tr>
+        <th>CID</th>
+        <td>
+          <a href="{{cid.url}}" target="_blank" *ngFor="let cid of compound?.cid">
+            {{cid.cid}}&nbsp;&nbsp;</a>
+        </td>
+      </tr>
+      <tr>
+        <th>CAS</th>
+        <td>
+          <a href="{{cas.url}}" target="_blank" *ngFor="let cas of compound?.cas">
+            {{cas.cas}}</a>&nbsp;&nbsp;
+        </td>
+      </tr>
+      <tr>
+        <th>First Category</th>
+        <td *ngIf="compound?.compoundfirstcatagory_set.length">
+          <p>
+            <ng-container *ngFor="let firstCategory of compound?.compoundfirstcatagory_set">
+              {{firstCategory.Chinese_first_catagory}}({{firstCategory.English_first_catagory}})&nbsp;&nbsp;
+            </ng-container>
+          </p>
+        </td>
+        <td *ngIf="!compound?.compoundfirstcatagory_set.length"></td>
+      </tr>
+      <tr>
+        <th>Second Category</th>
+        <td *ngIf="compound?.compoundsecondcatagory_set.length">
+          <p>
+            <ng-container *ngFor="let secondCategory of compound?.compoundsecondcatagory_set">
+              {{secondCategory.Chinese_second_catagory}}({{secondCategory.English_second_catagory}})&nbsp;&nbsp;
+            </ng-container>
+          </p>
+        </td>
+        <td *ngIf="!compound?.compoundsecondcatagory_set.length"></td>
+      </tr>
+      <tr>
+        <th>Compound MS</th>
+        <td>
+          <a href="{{ms.ms_link}}" *ngFor="let ms of compound?.compound_ms_set" target="_blank">
+            {{getMsId(ms.ms_link)}}&nbsp;&nbsp;</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Related Herbs</th>
+        <th>
+          <ng-container *ngIf="compound?.herb_set.length">
+          <button mat-button color="primary" (click)="gotoHerbDetail(herb.id)" *ngFor="let herb of compound?.herb_set">
+          {{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;</button>
+          </ng-container>
+          <ng-container *ngIf="!compound?.herb_set.length">
+          <a *ngFor="let tcmid of compound?.tcmid_herbs_set" href="{{tcmid.tcmid_link}}" target="_blank">
+          {{tcmid.English_name}}&nbsp;&nbsp;
+          </a>
+          </ng-container>
+        </th>
+      </tr>
+      <tr>
+        <th>SEA</th>
+        <td>
+          <a href="http://www.ebi.ac.uk/chembl/target/inspect/{{target.chembl_id}}"
+          *ngFor="let target of compound?.sea_targets" target="_blank">
+          {{target.chembl_id}}&nbsp;&nbsp;
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<h5><strong>Structure Information</strong></h5>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+  <tr>
+    <th>Molecule Formula</th>
+    <th>Mol Weight</th>
+    <th>PSA</th>
+    <th>AlogP</th>
+    <th>HBD</th>
+    <th>HBA</th>
+    <th>RTB</th>
+  </tr>
+  <tr>
+    <td>{{compound?.formula}}</td>
+    <td>{{compound?.mol_weight}}</td>
+    <td>{{compound?.psa}}</td>
+    <td>{{compound?.alogp}}</td>
+    <td>{{compound?.hbd}}</td>
+    <td>{{compound?.hba}}</td>
+    <td>{{compound?.rtb}}</td>
+  </tr>
+</table>
+<!--<h5><strong>Related Information</strong></h5>-->
+<!--<table class="mdl-data-table mdl-js-data-table mdl-shadow&#45;&#45;2dp" style="width: 100%">-->
+  <!--<tr>-->
+    <!--<th>Related Herbs</th>-->
+    <!--<td>-->
+      <!--<ng-container *ngIf="compound?.herb_set.length">-->
+        <!--<a (click)="gotoHerbDetail(herb.id)" *ngFor="let herb of compound?.herb_set">-->
+          <!--{{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;</a>-->
+      <!--</ng-container>-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<th>Related TCMID Herbs</th>-->
+    <!--<td>-->
+      <!--<ng-container *ngIf="compound?.tcmid_herbs_set.length">-->
+        <!--<a *ngFor="let tcmid of compound?.tcmid_herbs_set" href="{{tcmid.tcmid_link}}" target="_blank">-->
+          <!--{{tcmid.English_name}}&nbsp;&nbsp;-->
+        <!--</a>-->
+      <!--</ng-container>-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<th>Related ChEMBL Compounds</th>-->
+    <!--<td>-->
+      <!--<ng-container *ngIf="compound?.chembls.length">-->
+        <!--<a *ngFor="let chembl of compound?.chembls" href="{{chembl.url}}" target="_blank">-->
+          <!--{{chembl.chembl_id}}&nbsp;&nbsp;-->
+        <!--</a>-->
+      <!--</ng-container>-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<th>Related ChEMBL Targets</th>-->
+    <!--<td>-->
+      <!--<ng-container *ngIf="compound?.related_ChEMBL_targets.length">-->
+        <!--<a href="http://www.ebi.ac.uk/chembl/target/inspect/{{target.chembl_id}}"-->
+           <!--*ngFor="let target of compound?.related_ChEMBL_targets" target="_blank">-->
+          <!--{{target.chembl_id}}&nbsp;&nbsp;-->
+        <!--</a>-->
+      <!--</ng-container>-->
+    <!--</td>-->
+  <!--</tr>-->
+<!--</table>-->
+
+<!--Related Chembl Compounds-->
+<h5><strong>Related ChEMBL Compounds</strong></h5>
+<mat-table #chemblTable [dataSource]="chemblsDataSource" matSort>
+  <ng-container matColumnDef="chembl_id">
+    <mat-header-cell *matHeaderCellDef>ChEMBL ID</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <app-jsme [elementId]="row.id"
+                [width]="'100px'"
+                [height]="'150px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="row.canonical_smi"
+      ></app-jsme>
+      <button mat-button color="primary" (click)="gotoChemblDetail(row.id)">{{row.chembl_id}}</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="tanimoto">
+    <mat-header-cell *matHeaderCellDef>Tanimoto</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.tanimoto}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="same_or_similarity">
+    <mat-header-cell *matHeaderCellDef>Same or Similarity</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.same_or_similar}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="pref_name">
+    <mat-header-cell *matHeaderCellDef>Pref Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.pref_name}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="prodrug">
+    <mat-header-cell *matHeaderCellDef>Prodrug</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.prodrug}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="max_phase">
+    <mat-header-cell *matHeaderCellDef>Max Phase</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.max_phase}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="oral">
+    <mat-header-cell *matHeaderCellDef>Oral</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.oral}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="targets">
+    <mat-header-cell *matHeaderCellDef>Targets</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoChemblRelatedTargets(row.id)">
+        {{row.chemblrelatedtargets.length}}
+      </button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="chemblDisplayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: chemblDisplayedColumns;"></mat-row>
+</mat-table>
+<div class="mdl-grid mdl-grid--no-spacing">
+  <mat-form-field class="mdl-cell mdl-cell--2-col">
+    <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="chemblDisplayedColumns">
+      <mat-option *ngFor="let column of chemblAllColumns" [value]="column">
+        {{column}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
+    <h5 class="mat-header-cell">
+      <b>{{tableTitle}}</b>
+    </h5>
+  </div>
+  <div class="mdl-cell mdl-cell--5-col">
+    <mat-paginator [length]="chemblsPageMeta?.total_results"
+                   [pageSize]="chemblsPageMeta?.per_page"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="chemblsPageChange($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
+

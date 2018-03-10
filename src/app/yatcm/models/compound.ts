@@ -1,0 +1,45 @@
+import {Chembl} from './chembl';
+import {Herb} from './herb';
+import {Cid} from './cid';
+import {TcmidHerb} from './tcmid-herb';
+import {Cas} from './cas';
+import {CompoundMs} from './compound-ms';
+import {CompoundSecondCatagory} from './compound-second-catagory';
+import {CompoundFirstCatagory} from './compound-first-catagory';
+import {KeggCompound} from './kegg-compound';
+import {KeggSimilarity} from './kegg-similarity';
+import {Target} from './target';
+import {Seatarget} from "./seatarget";
+
+export interface Compound {
+  id?: number;
+  english_name?: string;
+  chinese_name?: string;
+  smiles?: string;
+  mol?: string;
+  mol_block?: string;
+  bfp?: string;
+  mol_file?: string;
+  mol_image?: string;
+  chembls?: Chembl[];
+  sea_targets?: Seatarget[];
+  related_compounds?: Compound[];
+  tcmid_idx?: string;
+  formula?: string;
+  mol_weight?: string;
+  alogp?: string;
+  hba?: string;
+  hbd?: string;
+  psa?: string;
+  rtb?: string;
+  herb_set?: Herb[];
+  cid?: Cid[];
+  tcmid_herbs_set?: TcmidHerb[];
+  cas?: Cas[];
+  compound_ms_set?: CompoundMs[];
+  compoundfirstcatagory_set?: CompoundFirstCatagory[];
+  compoundsecondcatagory_set?: CompoundSecondCatagory[];
+  keggcompound_set?: KeggCompound[];
+  keggsimilarity_set?: KeggSimilarity[];
+  target_set?: Target[];
+}

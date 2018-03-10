@@ -1,0 +1,77 @@
+<h5><strong>{{prescription?.chinese_name}}({{prescription?.pinyin_name}})</strong></h5>
+<table class="mdl-data-table mdl-shadow--2dp table">
+  <tr>
+    <th>Chinese Name</th>
+    <td>{{prescription?.chinese_name}}</td>
+  </tr>
+  <tr>
+    <th>Phonetic Name</th>
+    <td>{{prescription?.pinyin_name}}</td>
+  </tr>
+  <tr>
+    <th>English Name</th>
+    <td>{{prescription?.english_name}}</td>
+  </tr>
+  <tr>
+    <th>Main Prescription</th>
+    <th>
+     <button mat-button color="primary" *ngIf="mainPrescription">
+       {{mainPrescription?.chinese_name}}({{mainPrescription?.english_name}})
+     </button>
+    </th>
+  </tr>
+  <tr>
+    <th>Prescription Herbs</th>
+    <td>
+      <ng-container *ngIf="prescription?.herbs.length">
+        <a (click)="gotoHerbDetail(herb.id)" *ngFor="let herb of prescription?.herbs">
+          {{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;
+        </a>&nbsp;&nbsp;
+      </ng-container>
+    </td>
+  </tr>
+  <tr>
+    <th>Traditional Usage</th>
+    <td>{{prescription?.yongfa}}</td>
+  </tr>
+  <tr>
+    <th>Traditonal Application</th>
+    <td>{{prescription?.chinese_indiction}}</td>
+  </tr>
+  <tr>
+    <th>Traditional Application(english)</th>
+    <td>{{prescription?.english_indiction}}</td>
+  </tr>
+  <tr>
+    <th>Modern Application</th>
+    <td>{{prescription?.chinese_modern_application}}</td>
+  </tr>
+  <tr>
+    <th>Modern Application(enlish)</th>
+    <td>{{prescription?.english_modern_application}}</td>
+  </tr>
+  <tr>
+    <th>Traditional Explanation</th>
+    <td>{{prescription?.fangjie}}</td>
+  </tr>
+</table>
+
+<h5><strong>Ingredient</strong></h5>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+  <tr>
+    <th>Herbs</th>
+    <th>Structure</th>
+    <!--<th>Pathway</th>-->
+  </tr>
+  <tr *ngFor="let herb of herbs">
+    <td >
+      <button mat-button color="primary" appViewPageById pageId="{{herb.id}}" idType="herb">
+        {{herb.Chinese_name}}({{herb?.English_name}})
+      </button>
+    </td>
+    <td>
+    <button mat-button color="primary" (click)="goCompoundList(herb.id)">{{herb.compounds.length}}</button>records
+    </td>
+    <!--<td></td>-->
+  </tr>
+</table>
