@@ -6,6 +6,7 @@ import {Target} from '../../../../yatcm/models/target';
 import {PageMeta} from '../../../../yatcm/models/page-meta';
 import {Chembl} from "../../../../yatcm/models/chembl";
 import {MatTableDataSource} from "@angular/material";
+import {Seatarget} from '../../../../yatcm/models/seatarget';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class CompoundDetailComponent implements OnInit {
   compoundId: number | string;
   tableTitle = '';
   pageSizeOptions = [5, 10, 20, 50, 100];
-  targetPredictions: Target[] | null;
+  seaTargets: Seatarget[] | null;
+  seaTargetPageMeta: PageMeta | null;
+  seaTargetDataSource = new MatTableDataSource();
   chembls: Chembl[]; // related chembl compounds
   chemblsPageMeta: PageMeta[] | null;
   chemblsDataSource = new MatTableDataSource();
@@ -68,12 +71,15 @@ export class CompoundDetailComponent implements OnInit {
           this.compound = data['compound'];
         });
       // fetch chembl compounds
-      this._getChembls(this.compoundId, 0, 5);
+      this._getChembls(0, 5);
+
+      // fetch sea targets
+      this._getSeaTargets(0, 5);
     });
   }
 
   // get related chembl compounds
-  private _getChembls(compoundId: number | string, page?, perPage?) {
+  private _getChembls(page?, perPage?) {
     this.rest.getDataList(`chembls/?filter{compound_set}=${this.compoundId}` +
       `&include[]=chemblrelatedtargets.id&exclude[]=chemblrelatedtargets.*`, page, perPage)
       .subscribe(data => {
@@ -84,19 +90,20 @@ export class CompoundDetailComponent implements OnInit {
   }
 
   chemblsPageChange(event) {
-    this._getChembls(this.compoundId, event.pageIndex, event.pageSize);
+    this._getChembls(event.pageIndex, event.pageSize);
   }
 
   // get SEA targets
-  private _getTargetPrediction(compoundId: number | string, page?, perPage?) {
-    this.rest.getDataList(`seatargets/?filter{compounds.id}=${compoundId}`, page, perPage)
+  private _getSeaTargets(page?, perPage?) {
+    this.rest.getDataList(`seatargets/?filter{compound_set.id}=${this.compoundId}`, page, perPage)
       .subscribe(data => {
-        this.targetPredictions = data['targets'];
-        this.pageMeta = data['meta'];
+        this.seaTargets = data['sea_targets'];
+        this.seaTargetDataSource.data = this.seaTargets;
+        this.seaTargetPageMeta = data['meta'];
       });
   }
 
-  targetPredictionPageChange(event) {
-    this._getTargetPrediction(this.compoundId, event.pageIndex, event.pageSize);
+  seaTargetPageChange(event) {
+    this._getSeaTargets(event.pageIndex, event.pageSize);
   }
 }

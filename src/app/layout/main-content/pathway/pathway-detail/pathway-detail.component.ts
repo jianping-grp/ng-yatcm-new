@@ -48,8 +48,8 @@ export class PathwayDetailComponent implements OnInit {
     });
   }
 
-  private _getTcmAndKeggCompound(pathwayId: number | string, page?, perPage?) {
-    this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${pathwayId}${this.includeParams}`, page,  perPage)
+  private _getTcmAndKeggCompound(page?, perPage?) {
+    this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${this.pathwayId}${this.includeParams}`, page,  perPage)
       .subscribe(data => {
         this.dataSource.data = data['kegg_similarities'];
         this.pageMeta = data['meta'];
@@ -58,6 +58,6 @@ export class PathwayDetailComponent implements OnInit {
 
 
   pageChange(event) {
-    this._getTcmAndKeggCompound(this.pathwayId, event.pageIndex, event.pageSize);
+    this._getTcmAndKeggCompound(event.pageIndex, event.pageSize);
   }
 }

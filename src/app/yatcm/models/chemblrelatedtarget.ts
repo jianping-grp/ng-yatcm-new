@@ -9,4 +9,6 @@ export interface Chemblrelatedtarget {
   tax_id?: number;
   chembl_set?: Chembl[];
   assays_set?: Assay[];
+  target_type?: string,
+  organism?: string,
 }

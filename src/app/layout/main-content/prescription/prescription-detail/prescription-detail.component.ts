@@ -17,7 +17,7 @@ export class PrescriptionDetailComponent implements OnInit {
   herbs: Herb[];
   prescriptionId: number | string;
   prescriptionIncludeParams = '&include[]=id&include[]=chinese_name&include[]=english_name' +
-    '&exclude[]=*'
+    '&exclude[]=*';
   includeParams = '?include[]=herbs.id&include[]=herbs.Chinese_name&include[]=herbs.English_name' +
     '&exclude[]=herbs.*';
   constructor(private rest: RestService,

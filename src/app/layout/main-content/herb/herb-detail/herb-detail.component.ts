@@ -70,13 +70,13 @@ export class HerbDetailComponent implements OnInit {
             });
 
           // fetch herb include ingredients
-          this._getCompounds(this.herbId);
+          this._getCompounds();
         });
     });
   }
 
-  private _getCompounds(herbId: string | number, page?, perPage?) {
-    this.rest.getDataList(`compounds/?filter{herb_set.id}=${herbId}`, page, perPage)
+  private _getCompounds(page?, perPage?) {
+    this.rest.getDataList(`compounds/?filter{herb_set.id}=${this.herbId}`, page, perPage)
       .subscribe(data => {
         this.compounds = data['compounds'];
         this.dataSource.data = this.compounds;
@@ -85,6 +85,6 @@ export class HerbDetailComponent implements OnInit {
   }
 
   pageChange(event) {
-    this._getCompounds(this.herbId, event.pageIndex, event.pageSize);
+    this._getCompounds(event.pageIndex, event.pageSize);
   }
 }

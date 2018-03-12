@@ -112,49 +112,34 @@
     <td>{{compound?.rtb}}</td>
   </tr>
 </table>
-<!--<h5><strong>Related Information</strong></h5>-->
-<!--<table class="mdl-data-table mdl-js-data-table mdl-shadow&#45;&#45;2dp" style="width: 100%">-->
-  <!--<tr>-->
-    <!--<th>Related Herbs</th>-->
-    <!--<td>-->
-      <!--<ng-container *ngIf="compound?.herb_set.length">-->
-        <!--<a (click)="gotoHerbDetail(herb.id)" *ngFor="let herb of compound?.herb_set">-->
-          <!--{{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;</a>-->
-      <!--</ng-container>-->
-    <!--</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<th>Related TCMID Herbs</th>-->
-    <!--<td>-->
-      <!--<ng-container *ngIf="compound?.tcmid_herbs_set.length">-->
-        <!--<a *ngFor="let tcmid of compound?.tcmid_herbs_set" href="{{tcmid.tcmid_link}}" target="_blank">-->
-          <!--{{tcmid.English_name}}&nbsp;&nbsp;-->
-        <!--</a>-->
-      <!--</ng-container>-->
-    <!--</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<th>Related ChEMBL Compounds</th>-->
-    <!--<td>-->
-      <!--<ng-container *ngIf="compound?.chembls.length">-->
-        <!--<a *ngFor="let chembl of compound?.chembls" href="{{chembl.url}}" target="_blank">-->
-          <!--{{chembl.chembl_id}}&nbsp;&nbsp;-->
-        <!--</a>-->
-      <!--</ng-container>-->
-    <!--</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<th>Related ChEMBL Targets</th>-->
-    <!--<td>-->
-      <!--<ng-container *ngIf="compound?.related_ChEMBL_targets.length">-->
-        <!--<a href="http://www.ebi.ac.uk/chembl/target/inspect/{{target.chembl_id}}"-->
-           <!--*ngFor="let target of compound?.related_ChEMBL_targets" target="_blank">-->
-          <!--{{target.chembl_id}}&nbsp;&nbsp;-->
-        <!--</a>-->
-      <!--</ng-container>-->
-    <!--</td>-->
-  <!--</tr>-->
-<!--</table>-->
+<!--SEA Targets-->
+<h5><strong>Protential Protein Targets(predict by SEA)</strong></h5>
+<table class="mdl-data-table mdl-shadow--2dp" style="width: 100%">
+  <tr>
+    <th>ChEMBL ID</th>
+    <th>Target Name</th>
+    <th>Target Type</th>
+    <th>Species Group Flag</th>
+    <th>Organism</th>
+  </tr>
+  <tr *ngFor="let sea of seaTargets">
+    <td>
+      <a href="http://www.ebi.ac.uk/chembl/target/inspect/{{sea?.chembl_id}}" target="_blank">
+        {{sea?.chembl_id}}
+      </a>
+    </td>
+    <td>{{sea?.name}}</td>
+    <td>{{sea?.target_type}}</td>
+    <td>{{sea?.speccies_group_flag}}</td>
+    <td>{{sea?.organism}}</td>
+  </tr>
+</table>
+<mat-paginator [length]="seaTargetPageMeta?.total_results"
+               [pageSize]="seaTargetPageMeta?.per_page"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="seaTargetPageChange($event)"
+>
+</mat-paginator>
 
 <!--Related Chembl Compounds-->
 <h5><strong>Related ChEMBL Compounds</strong></h5>

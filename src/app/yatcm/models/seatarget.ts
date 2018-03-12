@@ -5,4 +5,9 @@ export interface Seatarget {
   id?: number;
   compound?: Compound[];
   name?: string;
+  tid?: number,
+  speccies_group_flag?: number,
+  organism?: string,
+  tax_id?: number,
+  target_type?: string
 }
