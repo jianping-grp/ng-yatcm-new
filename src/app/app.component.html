@@ -7,7 +7,7 @@
     <button mat-button (click)="goCompundList()">Compound</button>
     <button mat-button (click)="goTargetList()">Target</button>
     <button mat-button (click)="goPathwayList()">Pathway</button>
-    <button mat-button>Search</button>
+    <button mat-button routerLink="pathway/kegg-map-canvas">Search</button>
     <button mat-button>Tools</button>
 </mat-toolbar>
 
@@ -19,35 +19,11 @@ color="primary"
 class="global-progress-bar"
 ></mat-progress-bar>
 
-<div class="container">
-  <br>
+<!--<div class="container">-->
+  <!--<br>-->
   <router-outlet></router-outlet>
-</div>
+<!--</div>-->
 
 
-<!--<mat-list class="list-group">-->
-  <!--<mat-list-item > Pepper </mat-list-item>-->
-  <!--<mat-list-item class="list-group-item"> Salt </mat-list-item>-->
-  <!--<mat-list-item class="list-group-item"> Paprika </mat-list-item>-->
-<!--</mat-list>-->
 
-<!--<ul class="list-group">-->
-  <!--<li class="list-group-item">Cras justo odio</li>-->
-  <!--<li class="list-group-item">Dapibus ac facilisis in</li>-->
-  <!--<li class="list-group-item">Morbi leo risus</li>-->
-  <!--<li class="list-group-item">Porta ac consectetur ac</li>-->
-  <!--<li class="list-group-item">Vestibulum at eros</li>-->
-<!--</ul>-->
 
-<!--<mat-list>-->
-  <!--<li class="list-group-item">Cras justo odio</li>-->
-  <!--<li class="list-group-item">Dapibus ac facilisis in</li>-->
-  <!--<li class="list-group-item">Morbi leo risus</li>-->
-  <!--<li class="list-group-item">Porta ac consectetur ac</li>-->
-  <!--<li class="list-group-item">Vestibulum at eros</li>-->
-<!--</mat-list>-->
-
-<!--<ul class="list-group">-->
-  <!--<dt class="list group">herb</dt>-->
-  <!--<dd>zh lsagjsd  alsjdf</dd>-->
-<!--</ul>-->

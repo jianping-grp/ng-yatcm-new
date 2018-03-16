@@ -7,6 +7,8 @@ import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
+import {KeggPathwayCategory} from "../../../yatcm/models/kegg-pathway-category";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'app-pathway-table',
@@ -19,6 +21,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  keggPathwayCategory: KeggPathwayCategory[];
   @Input() tableTitle = '';
   @Input() includeParams = '';
   @Input() pageSize = 10;
@@ -62,6 +65,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
+          this.keggPathwayCategory = data['kegg_pathway_categories'];
           return data['kegg_pathways'];
         }),
         catchError(() => {
@@ -73,5 +77,9 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
       .subscribe(data => {
         this.dataSource.data = data;
       });
+  }
+
+  getKeggPathwayCategory(category: number | string) {
+    return this.keggPathwayCategory.find(el => el.id === category);
   }
 }

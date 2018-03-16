@@ -57,7 +57,7 @@ export class ChemblDetailComponent implements OnInit {
 
   openAssayDialog(assayId: number): void {
     this.dialog.open(AssayCardComponent, {
-      width: '600px',
+      width: '400px',
       data: {
         assayId: assayId
       }

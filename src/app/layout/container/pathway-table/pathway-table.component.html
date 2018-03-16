@@ -7,7 +7,7 @@
   </ng-container>
   <ng-container matColumnDef="category">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.category.name}}</mat-cell>
+    <mat-cell *matCellDef="let row">{{getKeggPathwayCategory(row.category)?.name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="kegg_id">
     <mat-header-cell *matHeaderCellDef mat-sort-header>View in KEGG</mat-header-cell>

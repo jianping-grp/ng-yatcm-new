@@ -19,8 +19,8 @@ export class PathwayDetailComponent implements OnInit {
   pageMeta: PageMeta | null;
   dataSource = new MatTableDataSource();
   includeParams = '&include[]=kegg_compound.*' +
-    '&include[]=tcm.id&include[]=tcm.english_name&' +
-    'include[]=tcm.smiles&include[]=tcm.mol_image&exclude[]=tcm.*';
+    '&include[]=tcm.id&include[]=tcm.english_name' +
+    '&include[]=tcm.smiles&include[]=tcm.mol_image&exclude[]=tcm.*';
   displayedColumns = ['keggcompound', 'tcm', 'view_in_map'];
   constructor(private route: ActivatedRoute,
               private rest: RestService,
@@ -36,6 +36,13 @@ export class PathwayDetailComponent implements OnInit {
     this.router.navigate(['compound', compoundId]);
   }
 
+  gotoKeggMapDetail(compoundId: number | string) {
+    this.router.navigate(['pathway/kegg-map'], {queryParams: {
+      compoundId: compoundId,
+      pathwayId: this.pathwayId
+    }});
+  }
+
   private _getPathway() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.pathwayId = +params.get('id');
@@ -44,12 +51,13 @@ export class PathwayDetailComponent implements OnInit {
           this.pathway = data['kegg_pathways'][0];
         });
      // fetch tcm and keggcompound
-      this._getTcmAndKeggCompound(this.pathwayId);
+      this._getTcmAndKeggCompound();
     });
   }
 
   private _getTcmAndKeggCompound(page?, perPage?) {
-    this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${this.pathwayId}${this.includeParams}`, page,  perPage)
+    this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${this.pathwayId}${this.includeParams}`,
+      page,  perPage)
       .subscribe(data => {
         this.dataSource.data = data['kegg_similarities'];
         this.pageMeta = data['meta'];

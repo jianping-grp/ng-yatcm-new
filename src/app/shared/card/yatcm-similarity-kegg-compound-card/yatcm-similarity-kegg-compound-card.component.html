@@ -1,0 +1,29 @@
+<h5>Pair-wise similarity of compounds from YaTCM to KEGG Pathway</h5>
+<table class="mdl-data-table mdl-shadow--2dp" style="width: 100%;">
+  <tr>
+    <th>YaTCM</th>
+    <th>KEGG</th>
+  </tr>
+  <tr>
+    <td>
+      <app-jsme [elementId]="'undefined'"
+                [width]="'200px'"
+                [height]="'100px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                [molString]="keggSimilarity?.tcm.smiles"></app-jsme>
+    </td>
+    <td>
+      <app-jsme [elementId]="keggSimilarity?.kegg_compound.id + keggSimilarity?.kegg_compound.kegg_id"
+                [width]="'200px'"
+                [height]="'100px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                [molString]="keggSimilarity?.kegg_compound.smiles"></app-jsme>
+      <p>{{keggSimilarity?.kegg_compound.kegg_id}}</p>
+    </td>
+  </tr>
+</table>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close appViewPageById idType="compound"
+          pageId="{{keggSimilarity?.tcm.id}}">Detail</button>
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

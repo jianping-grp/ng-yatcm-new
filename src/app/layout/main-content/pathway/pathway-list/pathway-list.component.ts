@@ -10,9 +10,8 @@ import {PathwayListParamsType} from '../../../../yatcm/enum/pathway-list-param-t
   styleUrls: ['./pathway-list.component.css']
 })
 export class PathwayListComponent implements OnInit {
-
   restUrl$: Observable<string>;
-  includeParams = 'include[]=category.name&exclude[]=category.*';
+  includeParams = 'include[]=category.*';
   displayedColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
   constructor(private route: ActivatedRoute) {
 
@@ -29,8 +28,20 @@ export class PathwayListComponent implements OnInit {
         switch (paramsType) {
           case PathwayListParamsType.pathway:
             return `keggpathways/?${this.includeParams}`;
+          case PathwayListParamsType.herb_id:
+            const herbId = +params.get('herbId');
+            return `keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.id}=${herbId}` +
+              `${this.includeParams}`;
+          case PathwayListParamsType.prescription_id:
+            const prescriptionId = +params.get('prescriptionId');
+            return `keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.prescription.id}=` +
+              `${prescriptionId}${this.includeParams}`;
         }
       }
     });
   }
+
+
+
 }
+

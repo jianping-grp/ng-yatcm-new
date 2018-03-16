@@ -34,4 +34,10 @@ export class RestService {
     return this.http.get(`${this.restHost}/${url}${extraParam}&page=${page}&per_page=${perPage}${sortParam}`)
       .finally(() => this.globalService.setLoading(false));
   }
+
+  public postData(url: string, body: Object): Observable<any> {
+    this.globalService.setLoading(true);
+    return this.http.post(`${this.restHost}/${url}`, body)
+      .finally(() => this.globalService.setLoading(false));
+  }
 }

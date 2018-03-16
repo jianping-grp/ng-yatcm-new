@@ -32,7 +32,7 @@
   <ng-container matColumnDef="view_in_map">
     <mat-header-cell *matHeaderCellDef>View in Map</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-button color="primary">Open</button>
+      <button mat-button color="primary" (click)="gotoKeggMapDetail(row.tcm.id)">Open</button>
     </mat-cell>
   </ng-container>
 

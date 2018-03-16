@@ -86,15 +86,15 @@
   <ng-container matColumnDef="reference">
     <mat-header-cell *matHeaderCellDef>Reference</mat-header-cell>
     <mat-cell *matCellDef="let row">
-     <ng-container *ngIf="row.doc">
-       <button mat-button color="primary" (click)="openDocDialog(row.doc.id)">
+     <!--<ng-container >-->
+       <button mat-button color="primary" (click)="openDocDialog(row.doc.id)" *ngIf="row.doc">
          {{row.doc?.journal}}
          ({{row.doc?.year}})
          [{{row.doc?.issue}}]
          {{row.doc?.first_page}} -
          {{row.doc?.last_page}}
        </button>
-     </ng-container>
+     <!--</ng-container>-->
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
