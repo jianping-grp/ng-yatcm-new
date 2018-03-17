@@ -3,9 +3,9 @@ import {GlobalService} from './services/global/global.service';
 import {HerbListParamsType} from './yatcm/enum/herb-list-param-type.enum';
 import {Observable} from 'rxjs/Observable';
 import {PrescriptionListParamsType} from './yatcm/enum/prescription-list-param-type.enum';
-import {CompoundListParamsType} from "./yatcm/enum/compound-list-param-type.enum";
-import {PathwayListParamsType} from "./yatcm/enum/pathway-list-param-type.enum";
-import {TargetListParamsType} from "./yatcm/enum/target-list-param-type.enum";
+import {CompoundListParamsType} from './yatcm/enum/compound-list-param-type.enum';
+import {PathwayListParamsType} from './yatcm/enum/pathway-list-param-type.enum';
+import {TargetListParamsType} from './yatcm/enum/target-list-param-type.enum';
 
 @Component({
   selector: 'app-root',

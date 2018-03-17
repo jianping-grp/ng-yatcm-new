@@ -87,6 +87,14 @@
       <mat-cell *matCellDef="let row">{{row.subherb_set.length}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="pathway">
+      <mat-cell *matHeaderCellDef>Pathway</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" (click)="goPathwayList(row.id)">
+          {{row.id | pathwayNumber: 'herb' | async}}
+        </button>
+      </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="detail">
       <mat-cell *matHeaderCellDef>Detail</mat-cell>
       <mat-cell *matCellDef="let row">

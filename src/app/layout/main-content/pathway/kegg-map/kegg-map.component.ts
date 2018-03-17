@@ -1,10 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../../services/rest/rest.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {MappingKeggCpds} from '../../../../yatcm/models/kegg-map/mapping-kegg-cpds';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 import {MatDialog} from '@angular/material';
 import {YatcmSimilarityKeggCompoundCardComponent} from '../../../../shared/card/yatcm-similarity-kegg-compound-card/yatcm-similarity-kegg-compound-card.component';
+import {KeggInfo} from "../../../../yatcm/models/kegg-map/kegg-info";
 
 @Component({
   selector: 'app-kegg-map',
@@ -13,18 +14,16 @@ import {YatcmSimilarityKeggCompoundCardComponent} from '../../../../shared/card/
 })
 
 export class KeggMapComponent implements OnInit {
-  x = 285;
-  y = 530;
-  @ViewChild('div') div: ElementRef;
-  mapUrl: string;
+  displayType: string;
   pathwayId: number | string;
   compoundId: number | string;
+  herbId: number | string;
+  keggInfo: KeggInfo[] | null;
   keggPathway: KeggPathway;
-  mappingKeggCpds: MappingKeggCpds;
+  mappingKeggCpds: MappingKeggCpds | null;
   constructor(private rest: RestService,
               private route: ActivatedRoute,
-              public dialog: MatDialog,
-              private el: ElementRef) {
+              public dialog: MatDialog) {
 
   }
 
@@ -36,26 +35,33 @@ export class KeggMapComponent implements OnInit {
 
   private _getData() {
     this.route.queryParamMap.subscribe((params: ParamMap) => {
-      this.compoundId = +params.get('compoundId');
       this.pathwayId = +params.get('pathwayId');
+      // this.compoundId = +params.get('compoundId');
       // fetch pathway information
       this.rest.getData(`keggpathways/${this.pathwayId}/`)
         .subscribe(data => {
           this.keggPathway = data['kegg_pathway'];
-          this.mapUrl = `http://www.kegg.jp/kegg/pathway/map/${this.keggPathway.kegg_id}.png`;
-          // this.div.nativeElement.style.backgroundImage.image = this.mapUrl;
-            // `http://www.kegg.jp/kegg/pathway/map/${this.keggPathway.kegg_id}.png`;
         });
 
-      const body = {
-        cpd_id: this.compoundId,
-        kegg_pathway_id: this.pathwayId
-      };
-      // fetch pathway map information
-      this.rest.postData(`compounds/cpd_kegg_map/`, body)
-        .subscribe(mapdata => {
-          this.mappingKeggCpds = mapdata['mapping_kegg_cpds'][0];
-        });
+      // 根据不同的参数， 获取map信息
+      if (params.has('compoundId')) {
+        this.displayType = 'compound';
+        this.compoundId = +params.get('compoundId');
+        const body = {cpd_id: this.compoundId, kegg_pathway_id: this.pathwayId};
+        // fetch pathway map information
+        this.rest.postData(`compounds/cpd_kegg_map/`, body)
+          .subscribe(mapdata => {
+            this.mappingKeggCpds = mapdata['mapping_kegg_cpds'][0];
+          });
+      } else if (params.has('herbId')) {
+        this.displayType = 'herb';
+        this.herbId = +params.get('herbId');
+        const body = {herb_id: this.herbId, kegg_pathway_id: this.pathwayId};
+        this.rest.postData(`herbs/cpd_kegg_map/`, body)
+          .subscribe(herbMapData => {
+            this.keggInfo = herbMapData['kegg_info'];
+          });
+      }
     });
   }
 

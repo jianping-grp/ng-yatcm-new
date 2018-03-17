@@ -10,7 +10,11 @@
                 [width]="'200px'"
                 [height]="'100px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
-                [molString]="keggSimilarity?.tcm.smiles"></app-jsme>
+                [molString]="keggSimilarity?.tcm.smiles"
+      ></app-jsme>
+      <button mat-button color="primary" (click)="kclose()" appViewPageById pageId="{{keggSimilarity?.tcm.id}}" idType="compound">
+        {{keggSimilarity?.tcm.id}}
+      </button>
     </td>
     <td>
       <app-jsme [elementId]="keggSimilarity?.kegg_compound.id + keggSimilarity?.kegg_compound.kegg_id"

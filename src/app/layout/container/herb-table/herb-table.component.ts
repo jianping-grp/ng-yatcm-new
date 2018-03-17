@@ -8,6 +8,8 @@ import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
+import {GlobalService} from "../../../services/global/global.service";
+import {PathwayListParamsType} from "../../../yatcm/enum/pathway-list-param-type.enum";
 
 @Component({
   selector: 'app-herb-table',
@@ -32,9 +34,10 @@ export class HerbTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = ['image', 'English_name', 'Chinese_name', 'phonetic_name', 'ingredients', 'first_category',
     'second_category', 'effect', 'latin_name', 'drug_property', 'wiki_chinese', 'wiki_english', 'indication',
-    'meridians', 'related_herb', 'subherb', 'detail'];
+    'meridians', 'related_herb', 'subherb', 'pathway', 'detail'];
   constructor(private rest: RestService,
-              private router: Router) { }
+              private router: Router,
+              private globalService: GlobalService) { }
 
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
@@ -42,6 +45,12 @@ export class HerbTableComponent implements OnInit, AfterViewInit {
 
   gotoHerbDetail(hid: number | string) {
     this.router.navigate(['herb', hid]);
+  }
+
+  goPathwayList(herbId: number | string) {
+    this.globalService.gotoPathwayList(PathwayListParamsType.herb_id, {
+      herbId: herbId
+    })
   }
 
 

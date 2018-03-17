@@ -7,8 +7,7 @@ import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
-import {KeggPathwayCategory} from "../../../yatcm/models/kegg-pathway-category";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
+import {KeggPathwayCategory} from '../../../yatcm/models/kegg-pathway-category';
 
 @Component({
   selector: 'app-pathway-table',

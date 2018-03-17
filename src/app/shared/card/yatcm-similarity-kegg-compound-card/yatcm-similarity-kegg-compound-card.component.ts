@@ -29,4 +29,8 @@ export class YatcmSimilarityKeggCompoundCardComponent implements OnInit {
         this.keggSimilarity = data['kegg_similarities'][0];
       });
   }
+
+  kclose() {
+    this.dialogRef.close();
+  }
 }
