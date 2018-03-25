@@ -1,4 +1,10 @@
 <mat-table #targetTable [dataSource]="dataSource">
+  <ng-container matColumnDef="chembl_id">
+    <mat-header-cell *matHeaderCellDef>ChEMBL ID</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <a href="{{row.chembl_url}}" target="_blank">{{row.chembl_id}}</a>
+    </mat-cell>
+  </ng-container>
   <ng-container matColumnDef="target_name">
     <mat-header-cell *matHeaderCellDef>Target Name</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.target_name}}</mat-cell>

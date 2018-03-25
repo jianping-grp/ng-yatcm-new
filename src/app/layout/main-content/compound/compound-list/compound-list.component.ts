@@ -13,7 +13,7 @@ export class CompoundListComponent implements OnInit {
   restUrl$: Observable<string>;
   includeParams = '';
 
-  displayedColumns = ['english_name', 'chinese_name', 'formula', 'mol_weight', 'category', 'alogp',
+  displayedColumns = ['english_name', 'formula', 'mol_weight', 'alogp',
     'cid', 'cas', 'psa', 'hba', 'hbd', 'rtb'];
   constructor(private route: ActivatedRoute) {
   }

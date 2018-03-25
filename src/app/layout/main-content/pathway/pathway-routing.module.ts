@@ -3,7 +3,6 @@ import {PathwayListComponent} from './pathway-list/pathway-list.component';
 import {NgModule} from '@angular/core';
 import {PathwayDetailComponent} from './pathway-detail/pathway-detail.component';
 import {KeggMapComponent} from './kegg-map/kegg-map.component';
-import {KeggMapCanvasComponent} from "./kegg-map-canvas/kegg-map-canvas.component";
 
 const routes: Routes = [
   {
@@ -15,11 +14,7 @@ const routes: Routes = [
     component: KeggMapComponent,
   },
   {
-    path: 'kegg-map-canvas',
-    component: KeggMapCanvasComponent
-  },
-  {
-    path: ':id',
+    path: 'detail',
     component: PathwayDetailComponent,
   }
 ];

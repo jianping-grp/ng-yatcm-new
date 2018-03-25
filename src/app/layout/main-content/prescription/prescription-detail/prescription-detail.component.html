@@ -75,3 +75,29 @@
     <!--<td></td>-->
   </tr>
 </table>
+<nav mat-tab-nav-bar>
+<a mat-tab-link
+   [routerLink]="'prescription-network'"
+   routerLinkActive #ran="routerLinkActive"
+   [active]="ran.isActive">Network</a>
+<a mat-tab-link [routerLink]="'prescription-herb'"
+   routerLinkActive #rap="routerLinkActive"
+   [active]="rap.isActive">Herb</a>
+<a mat-tab-link
+   [routerLink]="'prescription-compound'"
+   routerLinkActive #rac="routerLinkActive"
+   [active]="rac.isActive">Molecule</a>
+<a mat-tab-link
+   [routerLink]="'prescription-target'"
+   routerLinkActive #rat="routerLinkActive"
+   [active]="rat.isActive">Target</a>
+<a mat-tab-link
+   [routerLink]="'prescription-pathway'"
+   routerLinkActive #rapw="routerLinkActive"
+   [active]="rapw.isActive">Pathway</a>
+<a mat-tab-link
+   [routerLink]="'prescription-disease'"
+   routerLinkActive #rad="routerLinkActive"
+   [active]="rad.isActive">Disease</a>
+</nav>
+<router-outlet></router-outlet>

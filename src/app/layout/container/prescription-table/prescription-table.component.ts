@@ -9,6 +9,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {GlobalService} from "../../../services/global/global.service";
 import {HerbListParamsType} from "../../../yatcm/enum/herb-list-param-type.enum";
+import {PathwayListParamsType} from "../../../yatcm/enum/pathway-list-param-type.enum";
 
 @Component({
   selector: 'app-prescription-table',
@@ -33,7 +34,7 @@ export class PrescriptionTableComponent implements OnInit, AfterViewInit {
   allColumns = ['chinese_name', 'phonetic_name', 'english_name', 'main_prescription', 'prescription_herb',
     'traditional_usage', 'modern_usage', 'modern_usage(english)', 'traditional_application',
     'traditional_application(english)',
-    'traditional_explanation', 'detail'];
+    'traditional_explanation', 'pathway', 'detail'];
   constructor(private rest: RestService,
               private router: Router,
               private globalService: GlobalService) { }
@@ -80,5 +81,11 @@ export class PrescriptionTableComponent implements OnInit, AfterViewInit {
       .subscribe(data => {
         this.dataSource.data = data;
       });
+  }
+
+  goPathwayList(prescriptionId: number | string) {
+    this.globalService.gotoPathwayList(PathwayListParamsType.prescription_id, {
+      prescriptionId: prescriptionId
+    });
   }
 }

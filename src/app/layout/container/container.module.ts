@@ -5,10 +5,13 @@ import {HerbTableComponent} from './herb-table/herb-table.component';
 import {PrescriptionTableComponent} from './prescription-table/prescription-table.component';
 import {PathwayTableComponent} from './pathway-table/pathway-table.component';
 import {TargetTableComponent} from './target-table/target-table.component';
+import {CommonModule} from '@angular/common';
+
 
 @NgModule({
   imports: [
     SharedModule,
+    CommonModule,
   ],
   declarations: [
     CompoundTableComponent,

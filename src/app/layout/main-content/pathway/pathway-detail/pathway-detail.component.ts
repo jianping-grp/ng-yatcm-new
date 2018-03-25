@@ -3,8 +3,6 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {RestService} from '../../../../services/rest/rest.service';
 import {PageMeta} from '../../../../yatcm/models/page-meta';
 import {MatTableDataSource} from '@angular/material';
-import {Compound} from '../../../../yatcm/models/compound';
-import {KeggCompound} from '../../../../yatcm/models/kegg-compound';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 
 @Component({
@@ -32,6 +30,41 @@ export class PathwayDetailComponent implements OnInit {
     this._getPathway();
   }
 
+  private _getPathway() {
+    this.route.queryParamMap.subscribe((params: ParamMap) => {
+      this.pathwayId = +params.get('pathwayId');
+      this.rest.getData(`keggpathways/?filter{id}=${this.pathwayId}`)
+        .subscribe(data => {
+          this.pathway = data['kegg_pathways'][0];
+        });
+      // 根据不同的参数， 获取tcm 和 keggCompound
+      if (params.has('herbId')) {
+        const herbId = +params.get('herbId');
+        this._getTcmAndKeggCompound(`keggsimilarities/?filter{tcm.herb_set.id}=${herbId}` +
+          `&filter{kegg_compound.pathway}=${this.pathwayId}${this.includeParams}`);
+      } else if (params.has('prescriptionId')) {
+        const prescriptionId = +params.get('prescriptionId');
+        this._getTcmAndKeggCompound(`keggsimilarities/?filter{tcm.herb_set.prescription_set.id}=${prescriptionId}` +
+          `&filter{kegg_compound.pathway}=${this.pathwayId}${this.includeParams}`);
+      } else {
+        this._getTcmAndKeggCompound( `keggsimilarities/?filter{kegg_compound.pathway}=${this.pathwayId}${this.includeParams}`);
+      }
+    });
+  }
+
+  // fetch tcm and keggcompound
+  private _getTcmAndKeggCompound(url: string, page?, perPage?) {
+    this.rest.getDataList(url, page,  perPage)
+      .subscribe(data => {
+        this.dataSource.data = data['kegg_similarities'];
+        this.pageMeta = data['meta'];
+      });
+  }
+
+  pageChange(event) {
+    this._getTcmAndKeggCompound(event.pageIndex, event.pageSize);
+  }
+
   gotoCompoundDetail(compoundId: number | string) {
     this.router.navigate(['compound', compoundId]);
   }
@@ -41,31 +74,5 @@ export class PathwayDetailComponent implements OnInit {
       compoundId: compoundId,
       pathwayId: this.pathwayId
     }});
-  }
-
-  private _getPathway() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.pathwayId = +params.get('id');
-      this.rest.getData(`keggpathways/?filter{id}=${this.pathwayId}`)
-        .subscribe(data => {
-          this.pathway = data['kegg_pathways'][0];
-        });
-     // fetch tcm and keggcompound
-      this._getTcmAndKeggCompound();
-    });
-  }
-
-  private _getTcmAndKeggCompound(page?, perPage?) {
-    this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${this.pathwayId}${this.includeParams}`,
-      page,  perPage)
-      .subscribe(data => {
-        this.dataSource.data = data['kegg_similarities'];
-        this.pageMeta = data['meta'];
-      });
-  }
-
-
-  pageChange(event) {
-    this._getTcmAndKeggCompound(event.pageIndex, event.pageSize);
   }
 }

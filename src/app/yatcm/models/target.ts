@@ -2,6 +2,8 @@ import {Compound} from './compound';
 import {Diseases} from './diseases';
 
 export interface Target {
+  chemblid?: string;
+  chembl_url: string;
   target_name?: string;
   gene_name?: string;
   uniprot_name?: string;

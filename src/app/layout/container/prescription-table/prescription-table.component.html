@@ -60,6 +60,15 @@
       <mat-cell *matCellDef="let row">{{row.fangjie}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="pathway">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>pathway</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button  color="primary" (click)="goPathwayList(row.id)">
+          {{row.id | pathwayNumber: 'prescription' | async}}
+        </button>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="detail">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Detail</mat-header-cell>
       <mat-cell *matCellDef="let row">

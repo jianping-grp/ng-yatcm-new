@@ -6,7 +6,7 @@ import {PathwayDetailComponent} from './pathway-detail/pathway-detail.component'
 import {ContainerModule} from '../../container/container.module';
 import {KeggMapComponent} from './kegg-map/kegg-map.component';
 import {CardModule} from '../../../shared/card/card.module';
-import {KeggMapCanvasComponent} from "./kegg-map-canvas/kegg-map-canvas.component";
+
 
 @NgModule({
   imports: [
@@ -19,7 +19,6 @@ import {KeggMapCanvasComponent} from "./kegg-map-canvas/kegg-map-canvas.componen
     PathwayListComponent,
     PathwayDetailComponent,
     KeggMapComponent,
-    KeggMapCanvasComponent
   ]
 })
 export class PathwayModule { }

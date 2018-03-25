@@ -112,14 +112,15 @@
     <td>{{compound?.rtb}}</td>
   </tr>
 </table>
+
 <!--SEA Targets-->
-<h5><strong>Protential Protein Targets(predict by SEA)</strong></h5>
+<h5><strong>Potential Protein Targets(predict by SEA)</strong></h5>
 <table class="mdl-data-table mdl-shadow--2dp" style="width: 100%">
   <tr>
     <th>ChEMBL ID</th>
     <th>Target Name</th>
     <th>Target Type</th>
-    <th>Species Group Flag</th>
+    <th>Species</th>
     <th>Organism</th>
   </tr>
   <tr *ngFor="let sea of seaTargets">
@@ -130,7 +131,7 @@
     </td>
     <td>{{sea?.name}}</td>
     <td>{{sea?.target_type}}</td>
-    <td>{{sea?.speccies_group_flag}}</td>
+    <td>{{sea?.species_group_flag}}</td>
     <td>{{sea?.organism}}</td>
   </tr>
 </table>
@@ -180,7 +181,6 @@
     <mat-header-cell *matHeaderCellDef>Oral</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.oral}}</mat-cell>
   </ng-container>
-
   <ng-container matColumnDef="targets">
     <mat-header-cell *matHeaderCellDef>Targets</mat-header-cell>
     <mat-cell *matCellDef="let row">
@@ -215,3 +215,37 @@
   </div>
 </div>
 
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     [routerLink]="'compound-network'"
+     routerLinkActive #ran="routerLinkActive"
+     [active]="ran.isActive">Network</a>
+  <a mat-tab-link [routerLink]="'compound-prescription'"
+     routerLinkActive #rap="routerLinkActive"
+     [active]="rap.isActive">Prescription</a>
+  <a mat-tab-link
+     [routerLink]="'compound-herb'"
+     routerLinkActive #rac="routerLinkActive"
+     [active]="rac.isActive">Herb</a>
+  <a mat-tab-link
+     [routerLink]="'compound-target'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Target</a>
+  <a mat-tab-link
+     [routerLink]="'compound-pathway'"
+     routerLinkActive #rapw="routerLinkActive"
+     [active]="rapw.isActive">Pathway</a>
+  <a mat-tab-link
+     [routerLink]="'compound-disease'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Disease</a>
+  <a mat-tab-link
+     [routerLink]="'compound-sea'"
+     routerLinkActive #ras="routerLinkActive"
+     [active]="ras.isActive">SEA</a>
+  <a mat-tab-link
+     [routerLink]="'relate-molecule'"
+     routerLinkActive #ram="routerLinkActive"
+     [active]="ram.isActive">Related Molecule</a>
+</nav>
+<router-outlet></router-outlet>

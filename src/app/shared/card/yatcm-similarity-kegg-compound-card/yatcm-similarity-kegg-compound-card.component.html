@@ -4,9 +4,9 @@
     <th>YaTCM</th>
     <th>KEGG</th>
   </tr>
-  <tr>
+  <tr *ngFor="let keggSimilarity of keggSimilarities">
     <td>
-      <app-jsme [elementId]="'undefined'"
+      <app-jsme [elementId]="keggSimilarity?.tcm.id"
                 [width]="'200px'"
                 [height]="'100px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
@@ -27,7 +27,6 @@
   </tr>
 </table>
 <div mat-dialog-actions>
-  <button mat-raised-button mat-dialog-close appViewPageById idType="compound"
-          pageId="{{keggSimilarity?.tcm.id}}">Detail</button>
   <button mat-raised-button mat-dialog-close>Close</button>
 </div>
+

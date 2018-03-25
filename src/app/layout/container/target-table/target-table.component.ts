@@ -24,7 +24,7 @@ export class TargetTableComponent implements OnInit {
   @Input() restUrl$: Observable<string>;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() pageSize = 10;
-  allColumns = ['target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'compounds'];
+  allColumns = ['chembl_id' , 'target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'compounds'];
   constructor(private rest: RestService,
               private router: Router,
               private globalService: GlobalService) {

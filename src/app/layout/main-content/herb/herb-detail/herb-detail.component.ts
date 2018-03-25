@@ -26,7 +26,7 @@ export class HerbDetailComponent implements OnInit {
     '&include[]=compounds.id&exclude[]=compounds.*' +
     '&exclude[]=prescription_set.*&include[]=prescription_set.id' +
     '&include[]=prescription_set.chinese_name&include[]=prescription_set.english_name';
-  displayedColumns = ['english_name', 'chinese_name', 'formula', 'mol_weight', 'category', 'alogp',
+  displayedColumns = ['english_name', 'formula', 'mol_weight', 'category', 'alogp',
                       'cid', 'cas', 'psa', 'hba', 'hbd', 'rtb'];
   allColumns = ['english_name', 'chinese_name', 'formula', 'mol_weight', 'category', 'alogp',
     'psa', 'hba', 'hbd', 'rtb'];
@@ -60,14 +60,14 @@ export class HerbDetailComponent implements OnInit {
       this.rest.getData(`herbs/${this.herbId}/${this.includeParams}`)
         .subscribe(data => {
           this.herb = data['herb'];
-          this.relatedHerbId = +data['herb']['related_herbs'];
+          // this.relatedHerbId = +data['herb']['related_herbs'];
 
           // fetch related herb
-          this.rest.getDataList(`herbs/?filter{related_herbs}=${this.relatedHerbId}&
-            exclude[]=*&include[]=English_name&include[]=id&include[]=Chinese_name`, 0, 99999)
-            .subscribe(herbData => {
-              this.relatedHerbs = herbData['herbs'];
-            });
+          // this.rest.getDataList(`herbs/?filter{related_herbs}=${this.relatedHerbId}&
+          //   exclude[]=*&include[]=English_name&include[]=id&include[]=Chinese_name`, 0, 99999)
+          //   .subscribe(herbData => {
+          //     this.relatedHerbs = herbData['herbs'];
+          //   });
 
           // fetch herb include ingredients
           this._getCompounds();

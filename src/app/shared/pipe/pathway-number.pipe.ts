@@ -22,7 +22,7 @@ export class PathwayNumberPipe implements PipeTransform {
        return empty();
         });
     } else if (idType === 'prescription') {
-      return this.rest.getDataList(`keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.prescription.id}=` +
+      return this.rest.getDataList(`keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.prescription_set.id}=` +
       `${id}` + `&include[]=id&exclude[]=*`, 0, 99999)
         .map(data => data['kegg_pathways'].length)
         .catch(() => {

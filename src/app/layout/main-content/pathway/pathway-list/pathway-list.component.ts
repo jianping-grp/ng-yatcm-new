@@ -33,7 +33,6 @@ export class PathwayListComponent implements OnInit, AfterViewInit {
   restUrl$: Observable<string>;
   includeParams = '&include[]=category.*';
   displayedColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
-  allColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
   constructor(private route: ActivatedRoute,
               private rest: RestService,
               private router: Router) {
@@ -45,9 +44,6 @@ export class PathwayListComponent implements OnInit, AfterViewInit {
     this.restUrl$ = this._getRestUrl();
   }
 
-  gotoPathwayDetail(pid: number | string) {
-    this.router.navigate(['pathway', pid]);
-  }
   // 根据不同的参数，生成$url
   private _getRestUrl(): Observable<string> {
     return this.route.queryParamMap.map((params: ParamMap) => {
@@ -58,13 +54,13 @@ export class PathwayListComponent implements OnInit, AfterViewInit {
             return `keggpathways/?${this.includeParams}`;
           case PathwayListParamsType.herb_id:
             this.herbId = +params.get('herbId');
-            this.displayedColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'detail'];
-            this.allColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'detail'];
+            this.displayedColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'herb_detail'];
             return `keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.id}=${this.herbId}` +
               `${this.includeParams}`;
           case PathwayListParamsType.prescription_id:
             this.prescriptionId = +params.get('prescriptionId');
-            return `keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.prescription.id}=` +
+            this.displayedColumns = ['pathway_name', 'category', 'prescription_compound_in_kegg_id', 'prescription_detail'];
+            return `keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.prescription_set.id}=` +
               `${this.prescriptionId}${this.includeParams}`;
         }
       }
@@ -91,7 +87,7 @@ export class PathwayListComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          this.keggPathwayCategory = data['kegg_pathway_categories'];
+          this.keggPathwayCategory = data['kegg_pathway_second_categories'];
           return data['kegg_pathways'];
         }),
         catchError(() => {
@@ -107,6 +103,37 @@ export class PathwayListComponent implements OnInit, AfterViewInit {
 
   getKeggPathwayCategory(category: number | string) {
     return this.keggPathwayCategory.find(el => el.id === category);
+  }
+
+  goHerbIdtoKeggMapDetail(pathwayId: number | string) {
+    this.router.navigate(['pathway/kegg-map'], {queryParams: {
+      herbId: this.herbId,
+      pathwayId: pathwayId
+    }});
+  }
+
+  goPrescriptionIdtoKeggMapDetail(pathwayId: number | string) {
+    this.router.navigate(['pathway/kegg-map'], {queryParams: {
+      prescriptionId: this.prescriptionId,
+      pathwayId: pathwayId
+    }});
+  }
+  gotoPathwayDetail(pathwayId: number) {
+    this.router.navigate(['pathway/detail'],{queryParams: {
+      pathwayId: pathwayId
+    }});
+  }
+  goHerbIdtoPathwayDetail(pathwayId: number) {
+    this.router.navigate(['pathway/detail'], {queryParams: {
+      herbId: this.herbId,
+      pathwayId: pathwayId
+    }});
+  }
+  goPrescriptionIdtoPathwayDetail(pathwayId: number) {
+    this.router.navigate(['pathway/detail'], {queryParams: {
+      prescriptionId: this.prescriptionId,
+      pathwayId: pathwayId
+    }});
   }
 
 }

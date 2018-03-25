@@ -25,6 +25,7 @@ import { MatToolbarModule,
 import {JsmeModule} from './jsme/jsme.module';
 import {DirectivesModule} from './directives/directives.module';
 import {PipesModule} from './pipe/pipes.module';
+import {NgxEchartsModule} from "ngx-echarts";
 
 
 
@@ -35,6 +36,7 @@ import {PipesModule} from './pipe/pipes.module';
     JsmeModule,
     DirectivesModule,
     PipesModule,
+    NgxEchartsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
@@ -63,6 +65,7 @@ import {PipesModule} from './pipe/pipes.module';
     JsmeModule,
     DirectivesModule,
     PipesModule,
+    NgxEchartsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,

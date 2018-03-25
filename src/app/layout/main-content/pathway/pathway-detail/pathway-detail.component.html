@@ -18,13 +18,13 @@
   <ng-container matColumnDef="tcm">
     <mat-header-cell *matHeaderCellDef>Ingredients from YaTCM</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <app-jsme [elementId]="row.tcm.id + row.id"
+      <app-jsme [elementId]="row.id + row.tcm.id"
                 [width]="'200px'"
                 [height]="'100px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                 [molString]="row.tcm.smiles"></app-jsme>
       <button mat-button color="primary" (click)="gotoCompoundDetail(row.tcm.id)">
-        {{row.tcm.english_name}}
+        {{row.tcm.id}}
       </button>
     </mat-cell>
   </ng-container>

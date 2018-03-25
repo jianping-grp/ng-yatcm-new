@@ -37,15 +37,15 @@
           <a href="{{herb?.wiki_chinese}}" target="_blank">Chinese-wiki</a>
         </td>
       </tr>
-      <tr>
-        <th>Related Herbs</th>
-        <td>
-          <ng-container *ngIf="relatedHerbs?.length">
-            <a (click)="gotoHerbDetail(relatedHerb?.id)" *ngFor="let relatedHerb of relatedHerbs">
-              {{relatedHerb.Chinese_name}}({{relatedHerb?.English_name}})</a>&nbsp;&nbsp;
-          </ng-container>
-        </td>
-      </tr>
+      <!--<tr>-->
+        <!--<th>Related Herbs</th>-->
+        <!--<td>-->
+          <!--<ng-container *ngIf="relatedHerbs?.length">-->
+            <!--<a (click)="gotoHerbDetail(relatedHerb?.id)" *ngFor="let relatedHerb of relatedHerbs">-->
+              <!--{{relatedHerb.Chinese_name}}({{relatedHerb?.English_name}})</a>&nbsp;&nbsp;-->
+          <!--</ng-container>-->
+        <!--</td>-->
+      <!--</tr>-->
       <tr>
         <th>Prescription</th>
         <td>
@@ -112,7 +112,7 @@
                 [height]="'100px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                 [molString]="row.smiles"></app-jsme>
-     <button mat-button color="primary">{{row.english_name}}</button>
+     <button mat-button color="primary" appViewPageById pageId="{{row.id}}" idType="compound">{{row.english_name}}</button>
     </mat-cell>
   </ng-container>
 
@@ -203,3 +203,30 @@
     </div>
   </div>
 </div>
+
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     [routerLink]="'herb-network'"
+     routerLinkActive #ran="routerLinkActive"
+     [active]="ran.isActive">Herb Network</a>
+  <a mat-tab-link [routerLink]="'herb-prescription'"
+     routerLinkActive #rap="routerLinkActive"
+     [active]="rap.isActive">Prescription</a>
+  <a mat-tab-link
+     [routerLink]="'herb-compound'"
+     routerLinkActive #rac="routerLinkActive"
+     [active]="rac.isActive">Molecule</a>
+  <a mat-tab-link
+     [routerLink]="'herb-target'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Target</a>
+  <a mat-tab-link
+     [routerLink]="'herb-pathway'"
+     routerLinkActive #rapw="routerLinkActive"
+     [active]="rapw.isActive">Pathway</a>
+  <a mat-tab-link
+     [routerLink]="'herb-disease'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Disease</a>
+</nav>
+<router-outlet></router-outlet>
