@@ -11,6 +11,7 @@ import {CompoundDiseaseTableComponent} from "./compound-disease-table/compound-d
 import {RelateChemblMoleculeComponent} from "./relate-chembl-molecule/relate-chembl-molecule.component";
 import {CompoundPrescriptionTableComponent} from "./compound-prescription-table/compound-prescription-table.component";
 import {CompoundHerbTableComponent} from "./compound-herb-table/compound-herb-table.component";
+import {CompoundNetworkComponent} from "./compound-network/compound-network.component";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {CompoundHerbTableComponent} from "./compound-herb-table/compound-herb-ta
   declarations: [
     CompoundListComponent,
     CompoundDetailComponent,
+    CompoundNetworkComponent,
     CompoundPrescriptionTableComponent,
     CompoundHerbTableComponent,
     CompoundPathwayTableComponent,

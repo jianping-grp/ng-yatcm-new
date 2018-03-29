@@ -20,9 +20,17 @@
     <mat-cell *matCellDef="let row">{{row.gene_name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="tcmid_link">
-    <mat-header-cell *matHeaderCellDef>TCMID Link</mat-header-cell>
+  <mat-header-cell *matHeaderCellDef>TCMID Link</mat-header-cell>
+  <mat-cell *matCellDef="let row">
+    <a href="{{row.tcmid_link}}" target="_blank">{{row.tcmid_link}}</a>
+  </mat-cell>
+ </ng-container>
+  <ng-container matColumnDef="detail">
+    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <a href="{{row.tcmid_link}}" target="_blank">{{row.tcmid_link}}</a>
+      <button mat-button color="primary" (click)="gotoTargetDetail(row.id)">
+        view
+      </button>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="compounds">

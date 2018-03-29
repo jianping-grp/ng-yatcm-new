@@ -16,7 +16,7 @@ export class PrescriptionDiseaseTableComponent implements OnInit {
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       const prescriptionId = +params.get('id');
-      return ``; // todo add api
+      return `disease/?filter{targets.compounds.herb_set.prescription_set.id}=${prescriptionId}`;
     });
 
   }

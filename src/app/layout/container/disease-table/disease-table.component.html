@@ -1,0 +1,61 @@
+<mat-table #diseaseTable [dataSource]="dataSource"
+           matSort matSortDisableClear matSortDirection="asc">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Disease Name*</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" appViewPageById pageId="{{row.id}}" idType="disease">
+        {{row.name}}
+      </button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="synonyms">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Synonyms*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.synonyms}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Description*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.description}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="clinical_feature">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Clinical Feature*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.clinical_feature}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="tcmid_url">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Tcmid link*</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <a href="{{row.tcmid_url}}" target="_blank">{{row.tcmid_url}}</a>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="omim_url">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Omim link*</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <a href="{{row.omim_url}}" target="_blank">{{row.omim_url}}</a>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<div>
+  <div class="mdl-grid mdl-grid--no-spacing">
+    <mat-form-field class="mdl-cell mdl-cell--2-col">
+      <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
+        <mat-option *ngFor="let column of allColumns" [value]="column">
+          {{column}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
+      <h5 class="mat-header-cell">
+        <b>{{tableTitle}}</b>
+      </h5>
+    </div>
+    <div class="mdl-cell mdl-cell--5-col">
+      <mat-paginator [length]="pageMeta?.total_results"
+                     [pageSize]="pageMeta?.per_page"
+                     [pageSizeOptions]="pageSizeOptions"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+

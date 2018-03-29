@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-compound-pathway-table',
@@ -9,15 +9,18 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 })
 export class CompoundPathwayTableComponent implements OnInit {
   restUrl$: Observable<string>;
+  compoundId: number;
+  body: Object;
   constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
-      const compoundId = +params.get('id');
-      return ``; // todo add api
-    })
+      this.compoundId = +params.get('id');
+      this.body = {cpd_id: this.compoundId};
+      return `keggpathways/cpd_map_kegg_list/?include[]=category.*`;
+    });
   }
 
 }

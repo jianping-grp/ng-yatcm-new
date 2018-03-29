@@ -6,6 +6,8 @@ import {PrescriptionTableComponent} from './prescription-table/prescription-tabl
 import {PathwayTableComponent} from './pathway-table/pathway-table.component';
 import {TargetTableComponent} from './target-table/target-table.component';
 import {CommonModule} from '@angular/common';
+import {NetworkTableComponent} from "./network-table/network-table.component";
+import {DiseaseTableComponent} from "./disease-table/disease-table.component";
 
 
 @NgModule({
@@ -18,14 +20,18 @@ import {CommonModule} from '@angular/common';
     HerbTableComponent,
     PrescriptionTableComponent,
     PathwayTableComponent,
-    TargetTableComponent
+    TargetTableComponent,
+    NetworkTableComponent,
+    DiseaseTableComponent
   ],
   exports: [
     CompoundTableComponent,
     HerbTableComponent,
     PrescriptionTableComponent,
     PathwayTableComponent,
-    TargetTableComponent
+    TargetTableComponent,
+    NetworkTableComponent,
+    DiseaseTableComponent
   ]
 })
 export class ContainerModule { }

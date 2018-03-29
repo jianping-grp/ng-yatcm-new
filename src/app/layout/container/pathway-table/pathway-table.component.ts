@@ -21,6 +21,9 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
   isLoadingError = false;
   restUrl: string;
   keggPathwayCategory: KeggPathwayCategory[];
+  @Input() body: Object;
+  @Input() idType: string;
+  @Input() id: number;
   @Input() tableTitle = '';
   @Input() includeParams = '';
   @Input() pageSize = 10;
@@ -38,11 +41,20 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     console.log('pathway table init');
     this.pageMeta.per_page = this.pageSize;
+    if (this.idType === 'herb') {
+      this.body = {herb_id: this.id};
+      this.displayedColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'herb_detail'];
+    } else if (this.idType === 'prescription') {
+      // this.body = {prescription_id: this.id};
+      this.displayedColumns = ['pathway_name', 'category', 'prescription_compound_in_kegg_id', 'prescription_detail'];
+    } else if (this.idType === 'compound') {
+      this.body = {cpd_id: this.id};
+      this.displayedColumns = ['pathway_name', 'category']; // todo modify
+    } else {
+      this.displayedColumns = ['pathway_name', 'category'];
+    }
   }
 
-  gotoPathwayDetail(pid: number | string) {
-    this.router.navigate(['pathway', pid]);
-  }
 
   ngAfterViewInit() {
     this.restUrl$.subscribe(data => this.restUrl = data);
@@ -52,19 +64,31 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoading = true;
-          return this.rest.getDataList(
-            this.restUrl,
-            this.paginator.pageIndex,
-            this.paginator.pageSize,
-            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
-            this.includeParams
+          // 判断数据类型
+          if (this.idType === 'compound' || 'herb' || 'prescription') {
+            return this.rest.postDataList(
+              this.restUrl,
+              this.body, // = {prescription_id: this.id},
+              this.paginator.pageIndex,
+              this.paginator.pageSize,
+                this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+                this.includeParams
           );
+          } else {
+            return this.rest.getDataList(
+              this.restUrl,
+              this.paginator.pageIndex,
+              this.paginator.pageSize,
+              this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+              this.includeParams
+            );
+          }
         }),
         map(data => {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          this.keggPathwayCategory = data['kegg_pathway_categories'];
+          this.keggPathwayCategory = data['kegg_pathway_second_categories'];
           return data['kegg_pathways'];
         }),
         catchError(() => {
@@ -80,5 +104,36 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
 
   getKeggPathwayCategory(category: number | string) {
     return this.keggPathwayCategory.find(el => el.id === category);
+  }
+
+  goHerbIdtoKeggMapDetail(pathwayId: number | string) {
+    this.router.navigate(['pathway/kegg-map'], {queryParams: {
+      herbId: this.id,
+      pathwayId: pathwayId
+    }});
+  }
+
+  goPrescriptionIdtoKeggMapDetail(pathwayId: number | string) {
+    this.router.navigate(['pathway/kegg-map'], {queryParams: {
+      prescriptionId: this.id,
+      pathwayId: pathwayId
+    }});
+  }
+  gotoPathwayDetail(pathwayId: number) {
+    this.router.navigate(['pathway/detail'],{queryParams: {
+      pathwayId: pathwayId
+    }});
+  }
+  goHerbIdtoPathwayDetail(pathwayId: number) {
+    this.router.navigate(['pathway/detail'], {queryParams: {
+      herbId: this.id,
+      pathwayId: pathwayId
+    }});
+  }
+  goPrescriptionIdtoPathwayDetail(pathwayId: number) {
+    this.router.navigate(['pathway/detail'], {queryParams: {
+      prescriptionId: this.id,
+      pathwayId: pathwayId
+    }});
   }
 }

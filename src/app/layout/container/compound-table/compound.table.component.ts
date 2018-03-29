@@ -26,8 +26,9 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
- allColumns = ['english_name', 'chinese_name', 'formula', 'mol_weight', 'alogp',
-    'cid', 'cas', 'psa', 'hba', 'hbd', 'rtb'];
+ allColumns = ['structure', 'english_name', 'chinese_name', 'formula', 'mol_weight', 'alogp',
+    // 'cid', 'cas',
+   'psa', 'hba', 'hbd', 'rtb'];
   constructor(private router: Router,
               private rest: RestService) {
   }

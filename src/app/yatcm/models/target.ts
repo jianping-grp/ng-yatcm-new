@@ -1,5 +1,5 @@
 import {Compound} from './compound';
-import {Diseases} from './diseases';
+import {Disease} from './disease';
 
 export interface Target {
   chemblid?: string;
@@ -10,6 +10,6 @@ export interface Target {
   uniprot_link?: string;
   tcmid_link?: string;
   related_drugs?: any; // todo
-  related_diseases?: Diseases[];
+  disease_set?: Disease[];
   compounds?: Compound[];
 }

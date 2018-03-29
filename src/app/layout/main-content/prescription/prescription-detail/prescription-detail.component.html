@@ -2,27 +2,27 @@
 <table class="mdl-data-table mdl-shadow--2dp table">
   <tr>
     <th>Chinese Name</th>
-    <td>{{prescription?.chinese_name}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.chinese_name}}</td>
   </tr>
   <tr>
     <th>Phonetic Name</th>
-    <td>{{prescription?.pinyin_name}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.pinyin_name}}</td>
   </tr>
   <tr>
     <th>English Name</th>
-    <td>{{prescription?.english_name}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.english_name}}</td>
   </tr>
   <tr>
     <th>Main Prescription</th>
-    <th>
+    <td class="mdl-data-table__cell--non-numeric">
      <button mat-button color="primary" *ngIf="mainPrescription">
        {{mainPrescription?.chinese_name}}({{mainPrescription?.english_name}})
      </button>
-    </th>
+    </td>
   </tr>
   <tr>
     <th>Prescription Herbs</th>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <ng-container *ngIf="prescription?.herbs.length">
         <a (click)="gotoHerbDetail(herb.id)" *ngFor="let herb of prescription?.herbs">
           {{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;
@@ -31,28 +31,32 @@
     </td>
   </tr>
   <tr>
+    <th>Reference</th>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.reference}}</td>
+  </tr>
+  <tr>
     <th>Traditional Usage</th>
-    <td>{{prescription?.yongfa}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.yongfa}}</td>
   </tr>
   <tr>
     <th>Traditonal Application</th>
-    <td>{{prescription?.chinese_indiction}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.chinese_indiction}}</td>
   </tr>
   <tr>
     <th>Traditional Application(english)</th>
-    <td>{{prescription?.english_indiction}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.english_indiction}}</td>
   </tr>
   <tr>
     <th>Modern Application</th>
-    <td>{{prescription?.chinese_modern_application}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.chinese_modern_application}}</td>
   </tr>
   <tr>
     <th>Modern Application(enlish)</th>
-    <td>{{prescription?.english_modern_application}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.english_modern_application}}</td>
   </tr>
   <tr>
     <th>Traditional Explanation</th>
-    <td>{{prescription?.fangjie}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{prescription?.fangjie}}</td>
   </tr>
 </table>
 
@@ -72,7 +76,6 @@
     <td>
     <button mat-button color="primary" (click)="goCompoundList(herb.id)">{{herb.compounds.length}}</button>records
     </td>
-    <!--<td></td>-->
   </tr>
 </table>
 <nav mat-tab-nav-bar>

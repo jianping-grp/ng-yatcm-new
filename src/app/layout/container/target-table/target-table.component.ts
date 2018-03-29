@@ -24,7 +24,7 @@ export class TargetTableComponent implements OnInit {
   @Input() restUrl$: Observable<string>;
   @Input() pageSizeOptions = [5, 10, 20, 50, 100];
   @Input() pageSize = 10;
-  allColumns = ['chembl_id' , 'target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'compounds'];
+  allColumns = ['chembl_id' , 'target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'compounds', 'detail'];
   constructor(private rest: RestService,
               private router: Router,
               private globalService: GlobalService) {
@@ -40,6 +40,10 @@ export class TargetTableComponent implements OnInit {
     this.globalService.gotoCompoundList(CompoundListParamsType.target_id, {
       targetId: targetId
     });
+  }
+
+  gotoTargetDetail(targetId: number| string) {
+    this.router.navigate(['target', targetId]);
   }
 
   private _getTargets(page?, perPage?) {

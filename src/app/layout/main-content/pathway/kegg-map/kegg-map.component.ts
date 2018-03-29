@@ -4,7 +4,8 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 import {MatDialog} from '@angular/material';
 import {YatcmSimilarityKeggCompoundCardComponent} from '../../../../shared/card/yatcm-similarity-kegg-compound-card/yatcm-similarity-kegg-compound-card.component';
-import {MappingKeggCpds} from '../../../../yatcm/models/kegg-pathway-map/mapping-kegg-cpds';
+import {MappingKeggCpd} from '../../../../yatcm/models/kegg-pathway-map/mapping-kegg-cpd';
+import {MappingKeggTgt} from '../../../../yatcm/models/kegg-pathway-map/mapping-kegg-tgt';
 
 @Component({
   selector: 'app-kegg-map',
@@ -17,9 +18,13 @@ export class KeggMapComponent implements OnInit {
   pathwayId: number | string;
   compoundId: number | string;
   herbId: number | string;
+  cpdUrl: string;
+  tgtUrl: string;
+  body: object;
   prescriptionId: number | string;
   keggPathway: KeggPathway;
-  mappingKeggCpds: MappingKeggCpds[] | null;
+  mappingKeggCpds: MappingKeggCpd[] | null;
+  mappingKeggTgts: MappingKeggTgt[] | null;
   constructor(private rest: RestService,
               private route: ActivatedRoute,
               public dialog: MatDialog) {
@@ -35,7 +40,6 @@ export class KeggMapComponent implements OnInit {
   private _getData() {
     this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.pathwayId = +params.get('pathwayId');
-      // this.compoundId = +params.get('compoundId');
       // fetch pathway information
       this.rest.getData(`keggpathways/${this.pathwayId}/`)
         .subscribe(data => {
@@ -46,29 +50,40 @@ export class KeggMapComponent implements OnInit {
       if (params.has('compoundId')) {
         this.displayType = 'compound';
         this.compoundId = +params.get('compoundId');
-        const body = {cpd_id: this.compoundId, kegg_pathway_id: this.pathwayId};
-        // fetch pathway map information
-        this.rest.postData(`compounds/cpd_kegg_map/`, body)
-          .subscribe(mapdata => {
-            this.mappingKeggCpds = mapdata['mapping_kegg_cpds'];
-          });
+        this.cpdUrl = `compounds/cpd_kegg_map/`;
+        this.tgtUrl = `compounds/tgt_kegg_map/`;
+        this.body = {cpd_id: this.compoundId, kegg_pathway_id: this.pathwayId};
       } else if (params.has('herbId')) {
         this.displayType = 'herb';
         this.herbId = +params.get('herbId');
-        const body = {herb_id: this.herbId, kegg_pathway_id: this.pathwayId};
-        this.rest.postData(`herbs/cpd_kegg_map/`, body)
-          .subscribe(herbMapData => {
-            this.mappingKeggCpds = herbMapData['mapping_kegg_cpds'];
-          });
+        this.cpdUrl = `herbs/cpd_kegg_map/`;
+        this.tgtUrl = `herbs/tgt_kegg_map/`;
+        this.body = {herb_id: this.herbId, kegg_pathway_id: this.pathwayId};
       } else if (params.has('prescriptionId')) {
         this.displayType = 'prescription';
         this.prescriptionId = +params.get('prescriptionId');
-        const body = {prescription_id: this.prescriptionId, kegg_pathway_id: this.pathwayId};
-        this.rest.postData(`prescriptions/cpd_kegg_map/`, body)
-          .subscribe(prescriptionMapData => {
-          this.mappingKeggCpds = prescriptionMapData['mapping_kegg_cpds'];
-        });
+        this.cpdUrl = `prescriptions/cpd_kegg_map/`;
+        this.tgtUrl = `prescriptions/tgt_kegg_map/`;
+        this.body = {prescription_id: this.prescriptionId, kegg_pathway_id: this.pathwayId};
+      } else {
+        // todo add target and disease
       }
+      this._fetchMappingKeggCpds(this.cpdUrl, this.body);
+      this._fetchMappingKeggTgts(this.tgtUrl, this.body);
+    });
+  }
+
+  // fetch compound mapping information
+  private _fetchMappingKeggCpds(url: string, body: object) {
+    this.rest.postData(url, body).subscribe(data => {
+      this.mappingKeggCpds = data['mapping_kegg_cpds'];
+    });
+  }
+
+  // fetch target mapping information
+  private _fetchMappingKeggTgts(url: string, body: object) {
+    this.rest.postData(url, body).subscribe(data => {
+      this.mappingKeggTgts = data['mapping_kegg_tgts'];
     });
   }
 
@@ -104,4 +119,8 @@ export class KeggMapComponent implements OnInit {
     });
   }
 
+  stringToNumber(string: string): number {
+    console.log( parseInt(string, 10) - 22);
+    return  parseInt(string, 10) - 22;
+  }
 }

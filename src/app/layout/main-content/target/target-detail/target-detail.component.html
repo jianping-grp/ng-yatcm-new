@@ -1,0 +1,50 @@
+<table class="mdl-data-table mdl-shadow--2dp">
+  <tr>
+    <th>Target Name</th>
+    <td class="mdl-data-table__cell--non-numeric">{{target?.target_name}}</td>
+  </tr>
+  <tr>
+    <th>ChEMBL ID</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <a href="{{target?.chembl_url}}" target="_blank">{{target?.chemblid}}</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Uniprot Name</th>
+    <td class="mdl-data-table__cell--non-numeric">
+    <a href="{{target?.uniprot_link}}" target="_blank">{{target?.uniprot_name}}</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Gene Name</th>
+    <td class="mdl-data-table__cell--non-numeric" target="_blank">{{target?.gene_name}}</td>
+  </tr>
+  <tr>
+    <th>TCMID Link</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <a href="{{target?.tcmid_link}}" target="_blank">{{target?.tcmid_link}}</a>
+    </td>
+  </tr>
+</table>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     [routerLink]="'target-prescription'"
+     routerLinkActive #ran="routerLinkActive"
+     [active]="ran.isActive">Prescription</a>
+  <a mat-tab-link [routerLink]="'target-herb'"
+     routerLinkActive #rap="routerLinkActive"
+     [active]="rap.isActive">Herb</a>
+  <a mat-tab-link
+     [routerLink]="'target-compound'"
+     routerLinkActive #rac="routerLinkActive"
+     [active]="rac.isActive">Molecule</a>
+  <a mat-tab-link
+     [routerLink]="'target-pathway'"
+     routerLinkActive #rapw="routerLinkActive"
+     [active]="rapw.isActive">Pathway</a>
+  <a mat-tab-link
+     [routerLink]="'target-disease'"
+     routerLinkActive #rad="routerLinkActive"
+     [active]="rad.isActive">Disease</a>
+</nav>
+<router-outlet></router-outlet>

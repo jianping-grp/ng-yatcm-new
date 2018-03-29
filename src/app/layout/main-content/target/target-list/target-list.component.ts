@@ -15,7 +15,7 @@ export class TargetListComponent implements OnInit {
   includeParams = 'include[]=compounds.id&exclude[]=compounds.*' +
                   '&include[]=';
   restUrl$: Observable<string>;
-  displayedColumns = ['target_name', 'uniprot_name', 'gene_name', 'tcmid_link'];
+  displayedColumns = ['target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'detail'];
   constructor(private route: ActivatedRoute) {
 
   }

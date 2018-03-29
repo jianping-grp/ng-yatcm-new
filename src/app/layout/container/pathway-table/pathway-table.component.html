@@ -2,7 +2,9 @@
   <ng-container matColumnDef="pathway_name">
     <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Pathway Name</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      {{row.name}}
+      <a href="http://www.kegg.jp/kegg-bin/show_pathway?{{row.kegg_id}}" target="_blank">
+        {{row.name}}
+      </a>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="category">
@@ -16,35 +18,51 @@
       </a>
     </mat-cell>
   </ng-container>
+
+
+  <ng-container matColumnDef="herb_compound_in_kegg_id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>View in KEGG</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="goHerbIdtoKeggMapDetail(row.id)">
+        {{row.kegg_id}}
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="prescription_compound_in_kegg_id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>View in KEGG</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="goPrescriptionIdtoKeggMapDetail(row.id)">
+        {{row.kegg_id}}
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="detail">
     <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <button mat-button color="primary" (click)="gotoPathwayDetail(row.id)">view</button>
     </mat-cell>
   </ng-container>
+
+  <ng-container matColumnDef="prescription_detail">
+    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="goPrescriptionIdtoPathwayDetail(row.id)">view</button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="herb_detail">
+    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="goHerbIdtoPathwayDetail(row.id)">view</button>
+    </mat-cell>
+  </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-<div>
-  <div class="mdl-grid mdl-grid--no-spacing table-option-container">
-    <mat-form-field class="mdl-cell mdl-cell--2-col">
-      <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
-        <mat-option *ngFor="let column of allColumns" [value]="column">
-          {{column}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
-      <h5 class="mat-header-cell">
-        <b>{{tableTitle}}</b>
-      </h5>
-    </div>
-    <div class="mdl-cell mdl-cell--5-col">
-      <mat-paginator [length]="pageMeta?.total_results"
-                     [pageSize]="pageMeta?.per_page"
-                     [pageSizeOptions]="pageSizeOptions"
-      >
-      </mat-paginator>
-    </div>
-  </div>
-</div>
+<mat-paginator [length]="pageMeta?.total_results"
+               [pageSize]="pageMeta?.per_page"
+               [pageSizeOptions]="pageSizeOptions"
+>
+</mat-paginator>

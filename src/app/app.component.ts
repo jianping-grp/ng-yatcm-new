@@ -13,6 +13,7 @@ import {TargetListParamsType} from './yatcm/enum/target-list-param-type.enum';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  coords = '1571,838,1453,838';
   title = 'yatcm';
   loadingStatus: boolean;
   loadingStatus$: Observable<boolean>;

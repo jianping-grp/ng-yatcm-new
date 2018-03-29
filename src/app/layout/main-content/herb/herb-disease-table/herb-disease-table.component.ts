@@ -17,7 +17,7 @@ export class HerbDiseaseTableComponent implements OnInit {
     console.log('herb disease table init');
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       const herbId = +params.get('id');
-      return ``  // todo add api
-    })
+      return `disease/?filter{targets.compounds.herb_set.id}=${herbId}`;
+    });
   }
 }

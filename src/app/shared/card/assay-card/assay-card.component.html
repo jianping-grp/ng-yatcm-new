@@ -1,7 +1,7 @@
 <table class="mdl-data-table mdl-shadow--2dp" style="width: 100%;">
   <tr>
     <th>ChEMBL ID</th>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <a href="https://www.ebi.ac.uk/chembl/assay/inspect/{{assay?.chemblid}}" target="_blank">
         {{assay?.chemblid}}
       </a>
@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th>Description</th>
-    <td>{{assay?.description}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{assay?.description}}</td>
   </tr>
 </table>
 <div mat-dialog-actions>

@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'chembl-compound',
     loadChildren: 'app/layout/main-content/chembl/chembl.module#ChemblModule'
+  },
+  {
+    path: 'disease',
+    loadChildren: 'app/layout/main-content/disease/disease.module#DiseaseModule'
   }
 ];
 @NgModule({

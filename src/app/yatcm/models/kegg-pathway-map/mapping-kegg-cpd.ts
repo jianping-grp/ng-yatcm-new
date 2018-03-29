@@ -1,4 +1,4 @@
-export interface MappingKeggCpds {
+export interface MappingKeggCpd {
   x?: string;
   y?: string;
   keggcompound_keggid?: string;

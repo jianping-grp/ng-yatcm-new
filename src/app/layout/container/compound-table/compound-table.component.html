@@ -1,20 +1,24 @@
 <mat-table #ingredientsTable [dataSource]="dataSource"  style="width: 100%;"
            matSort matSortDisableClear matSortDirection="asc">
-  <ng-container matColumnDef="english_name">
-    <mat-header-cell *matHeaderCellDef>English Name</mat-header-cell>
+  <ng-container matColumnDef="structure">
+    <mat-header-cell *matHeaderCellDef>Structure</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <app-jsme [elementId]="row.id"
                 [width]="'100px'"
                 [height]="'100px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                 [molString]="row.smiles"></app-jsme>
-      <button mat-button color="primary" (click)="gotoCompoundDetail(row.id)">{{row.english_name}}</button>
+      <button mat-button color="primary" (click)="gotoCompoundDetail(row.id)">{{row.id}}</button>
     </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="english_name">
+    <mat-header-cell *matHeaderCellDef>Enlish Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.english_name}}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="chinese_name">
     <mat-header-cell *matHeaderCellDef>Chinese Name</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.Chinese_name}}</mat-cell>
+    <mat-cell *matCellDef="let row">{{row.chinese_name}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="formula">

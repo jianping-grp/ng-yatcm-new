@@ -5,26 +5,26 @@
     <img src="{{herb?.image}}" alt="{{herb?.Chinese_name}} Image" style="height: 320px; width: 100%;">
   </div>
   <div class="mdl-cell mdl-cell--9-col">
-    <table class=" mdl-data-table mdl-js-table mdl-shadow--2dp table " style="width: 100%;">
+    <table class=" mdl-data-table mdl-shadow--2dp" style="width: 100%;">
       <tr>
         <th>Chinese Name</th>
-        <td>{{herb?.Chinese_name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{herb?.Chinese_name}}</td>
       </tr>
       <tr>
         <th>English Name</th>
-        <td>{{herb?.English_name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{herb?.English_name}}</td>
       </tr>
       <tr>
         <th>Phonetic Name</th>
-        <td>{{herb?.pinyin_name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{herb?.pinyin_name}}</td>
       </tr>
       <tr>
         <th>Latin Name</th>
-        <td>{{herb?.latin_name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{herb?.latin_name}}</td>
       </tr>
       <tr>
         <th>Medicinal Part</th>
-        <td>{{herb?.use_part}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{herb?.use_part}}</td>
       </tr>
       <!--<tr>-->
         <!--<th>Taxonomy</th>-->
@@ -32,7 +32,7 @@
       <!--</tr>-->
       <tr>
         <th>Wikipedia</th>
-        <td>
+        <td class="mdl-data-table__cell--non-numeric">
           <a href="{{herb?.wiki_english}}" target="_blank">English-wiki</a>&nbsp;&nbsp;
           <a href="{{herb?.wiki_chinese}}" target="_blank">Chinese-wiki</a>
         </td>
@@ -48,7 +48,7 @@
       <!--</tr>-->
       <tr>
         <th>Prescription</th>
-        <td>
+        <td class="mdl-data-table__cell--non-numeric">
           <ng-container *ngIf="herb?.prescription_set.length">
             <a (click)="gotoPrescriptionDetail(prescription.id)" *ngFor="let prescription of herb?.prescription_set">
               {{prescription.chinese_name}}({{prescription.english_name}})&nbsp;&nbsp;
@@ -63,15 +63,15 @@
 <h5><strong>Property</strong></h5>
 <table class=" mdl-data-table mdl-js-table mdl-shadow--2dp " style="width: 100%">
   <tr>
-    <th>Property</th>
-    <th>Value</th>
-    <th>Reference</th>
+    <th class="mdl-data-table__cell--non-numeric">Property</th>
+    <th class="mdl-data-table__cell--non-numeric">Value</th>
+    <th class="mdl-data-table__cell--non-numeric">Reference</th>
   </tr>
   <tr>
-    <td>Category</td>
+    <td class="mdl-data-table__cell--non-numeric">Category</td>
     <ng-container *ngIf="herb?.first_catagory_chinese">
-      <td>{{herb?.first_catagory_chinese}}({{herb?.first_catagory_english}})</td>
-      <td><a href="http://tcm.cmu.edu.tw/download.php?menuid=5" target="_blank">Database@Taiwan</a></td>
+      <td class="mdl-data-table__cell--non-numeric">{{herb?.first_catagory_chinese}}({{herb?.first_catagory_english}})</td>
+      <td class="mdl-data-table__cell--non-numeric"><a href="http://tcm.cmu.edu.tw/download.php?menuid=5" target="_blank">Database@Taiwan</a></td>
     </ng-container>
     <ng-container *ngIf="!herb?.first_catagory_chinese">
       <td></td>
@@ -79,10 +79,10 @@
     </ng-container>
   </tr>
   <tr>
-    <td>Effect</td>
+    <td class="mdl-data-table__cell--non-numeric">Effect</td>
     <ng-container *ngIf="herb?.effect">
-      <td>{{herb?.effect}}</td>
-      <td><a [href]="generaterTcmidUrl(herb?.pinyin_name)" target="_blank">TCMID</a></td>
+      <td class="mdl-data-table__cell--non-numeric">{{herb?.effect}}</td>
+      <td class="mdl-data-table__cell--non-numeric"><a [href]="generaterTcmidUrl(herb?.pinyin_name)" target="_blank">TCMID</a></td>
     </ng-container>
     <ng-container *ngIf="!herb?.effect">
       <td></td>
@@ -90,10 +90,10 @@
     </ng-container>
   </tr>
   <tr>
-    <td>Indication</td>
+    <td class="mdl-data-table__cell--non-numeric">Indication</td>
     <ng-container *ngIf="herb?.indication">
-      <td>{{herb.indication}}</td>
-      <td><a [href]="generaterTcmidUrl(herb?.pinyin_name)" target="_blank">TCMID</a></td>
+      <td class="mdl-data-table__cell--non-numeric">{{herb.indication}}</td>
+      <td class="mdl-data-table__cell--non-numeric"><a [href]="generaterTcmidUrl(herb?.pinyin_name)" target="_blank">TCMID</a></td>
     </ng-container>
     <ng-container *ngIf="!herb?.indication">
       <td></td>

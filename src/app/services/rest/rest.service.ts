@@ -40,4 +40,21 @@ export class RestService {
     return this.http.post(`${this.restHost}/${url}`, body)
       .finally(() => this.globalService.setLoading(false));
   }
+
+  public postDataList(url: string,
+                      body: Object,
+                      page = 0,
+                      perPage = Setting.PER_PAGE,
+                      sortby = '', extraParam = ''): Observable<any> {
+    // page + 1, as mat-paginator is 0-base while DRF is 1-base;
+    page = +(page) + 1;
+    // set global loadingStatus to true
+    this.globalService.setLoading(true);
+    let sortParam = '';
+    if (sortby !== '') {
+      sortParam = `&sort[]=${sortby}`;
+    }
+    return this.http.post(`${this.restHost}/${url}${extraParam}&page=${page}&per_page=${perPage}${sortParam}`, body)
+      .finally(() => this.globalService.setLoading(false));
+  }
 }

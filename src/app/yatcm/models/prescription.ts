@@ -8,6 +8,7 @@ export interface Prescription {
   main_prescription?: any; // todo modify
   compounds?: Compound[];
   yongfa?: string;
+  reference?: string;
   chinese_name?: string;
   pinyin_name?: string;
   english_modern_application?: string;

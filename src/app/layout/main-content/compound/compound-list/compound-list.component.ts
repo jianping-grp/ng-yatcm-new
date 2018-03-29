@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {CompoundListParamsType} from "../../../../yatcm/enum/compound-list-param-type.enum";
+import {CompoundListParamsType} from '../../../../yatcm/enum/compound-list-param-type.enum';
 
 @Component({
   selector: 'app-compound-list',
@@ -13,8 +13,9 @@ export class CompoundListComponent implements OnInit {
   restUrl$: Observable<string>;
   includeParams = '';
 
-  displayedColumns = ['english_name', 'formula', 'mol_weight', 'alogp',
-    'cid', 'cas', 'psa', 'hba', 'hbd', 'rtb'];
+  displayedColumns = ['structure', 'english_name', 'formula', 'mol_weight', 'alogp',
+    // 'cid', 'cas',
+    'psa', 'hba', 'hbd', 'rtb'];
   constructor(private route: ActivatedRoute) {
   }
   ngOnInit() {

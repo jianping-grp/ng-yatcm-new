@@ -9,16 +9,19 @@ import {Observable} from "rxjs/Observable";
 })
 
 export class HerbPathwayTableComponent implements OnInit {
-  restUrl$: Observable<string>
+  restUrl$: Observable<string>;
+  herbId: number;
+  body: Object;
   constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
      this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
-      const herbId = +params.get('id');
-      return ``; // todo add api
-    })
+      this.herbId = +params.get('id');
+      this.body = {herb_id: this.herbId};
+      return `keggpathways/herb_map_kegg_list/?include[]=category.*`;
+    });
   }
 
 }

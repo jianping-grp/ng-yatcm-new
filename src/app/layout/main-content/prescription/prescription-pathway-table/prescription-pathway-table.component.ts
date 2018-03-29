@@ -9,15 +9,18 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 })
 export class PrescriptionPathwayTableComponent implements OnInit {
   restUrl$: Observable<string>;
+  prescriptionId: number;
+  body: Object;
   constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
-      const prescriptionId = +params.get('id');
-      return ``;
-    })
+      this.prescriptionId = +params.get('id');
+      this.body = {prescription_id: this.prescriptionId};
+      return `keggpathways/prescription_map_kegg_list/?include[]=category.*`;
+    });
   }
 
 }
