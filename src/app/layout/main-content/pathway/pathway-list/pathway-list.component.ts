@@ -1,46 +1,29 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {Component, OnInit,} from '@angular/core';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {PathwayListParamsType} from '../../../../yatcm/enum/pathway-list-param-type.enum';
-import {KeggPathwayCategory} from '../../../../yatcm/models/kegg-pathway-category';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {PageMeta} from '../../../../yatcm/models/page-meta';
-import {merge} from 'rxjs/observable/merge';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import {of as observableOf} from 'rxjs/observable/of';
-import {RestService} from '../../../../services/rest/rest.service';
+
 
 @Component({
   selector: 'app-pathway-list',
   templateUrl: './pathway-list.component.html',
   styleUrls: ['./pathway-list.component.css']
 })
-export class PathwayListComponent implements OnInit, AfterViewInit {
+export class PathwayListComponent implements OnInit {
   herbId: number | string;
   prescriptionId: number  | string;
-  pageMeta = new PageMeta();
-  dataSource = new MatTableDataSource();
-  isLoading = false;
-  isLoadingError = false;
-  restUrl: string;
-  keggPathwayCategory: KeggPathwayCategory[];
   tableTitle = '';
   pageSize = 10;
   pageSizeOptions = [5, 10, 50, 100];
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   restUrl$: Observable<string>;
   includeParams = '&include[]=category.*';
   displayedColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
-  constructor(private route: ActivatedRoute,
-              private rest: RestService,
-              private router: Router) {
+  constructor(private route: ActivatedRoute) {
 
   }
   ngOnInit() {
     console.log('pathway list init');
-    this.pageMeta.per_page = this.pageSize;
     this.restUrl$ = this._getRestUrl();
   }
 
@@ -65,75 +48,6 @@ export class PathwayListComponent implements OnInit, AfterViewInit {
         }
       }
     });
-  }
-
-  // fetch data list
-  ngAfterViewInit() {
-    this.restUrl$.subscribe(data => this.restUrl = data);
-    this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
-    merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoading = true;
-          return this.rest.getDataList(
-            this.restUrl,
-            this.paginator.pageIndex,
-            this.paginator.pageSize,
-            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active, ''
-          );
-        }),
-        map(data => {
-          this.isLoading = false;
-          this.isLoadingError = false;
-          this.pageMeta = data['meta'];
-          this.keggPathwayCategory = data['kegg_pathway_second_categories'];
-          return data['kegg_pathways'];
-        }),
-        catchError(() => {
-          this.isLoadingError = true;
-          this.isLoading = false;
-          return observableOf([]);
-        })
-      )
-      .subscribe(data => {
-        this.dataSource.data = data;
-      });
-  }
-
-  getKeggPathwayCategory(category: number | string) {
-    return this.keggPathwayCategory.find(el => el.id === category);
-  }
-
-  goHerbIdtoKeggMapDetail(pathwayId: number | string) {
-    this.router.navigate(['pathway/kegg-map'], {queryParams: {
-      herbId: this.herbId,
-      pathwayId: pathwayId
-    }});
-  }
-
-  goPrescriptionIdtoKeggMapDetail(pathwayId: number | string) {
-    this.router.navigate(['pathway/kegg-map'], {queryParams: {
-      prescriptionId: this.prescriptionId,
-      pathwayId: pathwayId
-    }});
-  }
-  gotoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'],{queryParams: {
-      pathwayId: pathwayId
-    }});
-  }
-  goHerbIdtoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'], {queryParams: {
-      herbId: this.herbId,
-      pathwayId: pathwayId
-    }});
-  }
-  goPrescriptionIdtoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'], {queryParams: {
-      prescriptionId: this.prescriptionId,
-      pathwayId: pathwayId
-    }});
   }
 
 }

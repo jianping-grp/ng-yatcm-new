@@ -1,12 +1,12 @@
-import {RouterModule, Routes} from "@angular/router";
-import {NgModule} from "@angular/core";
-import {DiseaseDetailComponent} from "./disease-detail/disease-detail.component";
-import {DiseaseListComponent} from "./disease-list/disease-list.component";
-import {DiseasePrescriptionTableComponent} from "./disease-prescription-table/disease-prescription-table.component";
-import {DiseaseHerbTableComponent} from "./disease-herb-table/disease-herb-table.component";
-import {DiseaseCompoundTableComponent} from "./disease-compound-table/disease-compound-table.component";
-import {DiseaseTargetTableComponent} from "./disease-target-table/disease-target-table.component";
-import {DiseasePathwayTableCompoent} from "./disease-pathway-table/disease-pathway-table.component";
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {DiseaseDetailComponent} from './disease-detail/disease-detail.component';
+import {DiseaseListComponent} from './disease-list/disease-list.component';
+import {DiseasePrescriptionTableComponent} from './disease-prescription-table/disease-prescription-table.component';
+import {DiseaseHerbTableComponent} from './disease-herb-table/disease-herb-table.component';
+import {DiseaseCompoundTableComponent} from './disease-compound-table/disease-compound-table.component';
+import {DiseaseTargetTableComponent} from './disease-target-table/disease-target-table.component';
+import {DiseasePathwayTableComponent} from './disease-pathway-table/disease-pathway-table.component';
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
       },
       {
         path: 'disease-pathway',
-        component: DiseasePathwayTableCompoent
+        component: DiseasePathwayTableComponent
       }
     ]
   }

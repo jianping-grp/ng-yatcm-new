@@ -1,33 +1,33 @@
 <mat-table #ingredientsTable [dataSource]="dataSource"  style="width: 100%;"
            matSort matSortDisableClear matSortDirection="asc">
-  <ng-container matColumnDef="structure">
-    <mat-header-cell *matHeaderCellDef>Structure</mat-header-cell>
+  <ng-container matColumnDef="molecule">
+    <mat-header-cell *matHeaderCellDef>Molecule</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <app-jsme [elementId]="row.id"
                 [width]="'100px'"
                 [height]="'100px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                 [molString]="row.smiles"></app-jsme>
-      <button mat-button color="primary" (click)="gotoCompoundDetail(row.id)">{{row.id}}</button>
+      <button mat-button color="primary" appViewPageById idType="compound" pageId="{{row.id}}">{{row.id}}</button>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="english_name">
-    <mat-header-cell *matHeaderCellDef>Enlish Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Enlish Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.english_name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="chinese_name">
-    <mat-header-cell *matHeaderCellDef>Chinese Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Chinese Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.chinese_name}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="formula">
-    <mat-header-cell *matHeaderCellDef>Formula</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Formula*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.formula}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="mol_weight">
-    <mat-header-cell *matHeaderCellDef>Mol Weight</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Mol Weight*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.mol_weight}}</mat-cell>
   </ng-container>
 
@@ -42,27 +42,27 @@
   </ng-container>
 
   <ng-container matColumnDef="rtb">
-    <mat-header-cell *matHeaderCellDef>RTB</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>RTB*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.rtb}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="psa">
-    <mat-header-cell *matHeaderCellDef>PSA</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>PSA*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.psa}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="hba">
-    <mat-header-cell *matHeaderCellDef>HBA</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>HBA*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.hba}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="hbd">
-    <mat-header-cell *matHeaderCellDef>HBD</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>HBD*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.hbd}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="alogp">
-    <mat-header-cell *matHeaderCellDef>Alogp</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Alogp*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.alogp}}</mat-cell>
   </ng-container>
 

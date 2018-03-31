@@ -42,16 +42,17 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
     console.log('pathway table init');
     this.pageMeta.per_page = this.pageSize;
     if (this.idType === 'herb') {
-      this.body = {herb_id: this.id};
       this.displayedColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'herb_detail'];
     } else if (this.idType === 'prescription') {
-      // this.body = {prescription_id: this.id};
       this.displayedColumns = ['pathway_name', 'category', 'prescription_compound_in_kegg_id', 'prescription_detail'];
     } else if (this.idType === 'compound') {
-      this.body = {cpd_id: this.id};
-      this.displayedColumns = ['pathway_name', 'category']; // todo modify
+      this.displayedColumns = ['pathway_name', 'category', 'compound_in_kegg_id', 'compound_detail']; // todo modify
+    } else if (this.idType === 'target') {
+      this.displayedColumns = ['pathway_name', 'category', 'target_in_kegg_id'];  // todo add target detail
+    } else if (this.idType === 'disease') {
+      this.displayedColumns = ['pathway_name', 'category', 'disease_in_kegg_id'];
     } else {
-      this.displayedColumns = ['pathway_name', 'category'];
+      this.displayedColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
     }
   }
 
@@ -65,15 +66,15 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
         switchMap(() => {
           this.isLoading = true;
           // 判断数据类型
-          if (this.idType === 'compound' || 'herb' || 'prescription') {
+        if (this.idType === 'compound' || this.idType === 'herb' || this.idType === 'prescription') {
             return this.rest.postDataList(
               this.restUrl,
-              this.body, // = {prescription_id: this.id},
+              this.body,
               this.paginator.pageIndex,
               this.paginator.pageSize,
-                this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
-                this.includeParams
-          );
+              this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+              this.includeParams
+            );
           } else {
             return this.rest.getDataList(
               this.restUrl,
@@ -106,21 +107,27 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
     return this.keggPathwayCategory.find(el => el.id === category);
   }
 
-  goHerbIdtoKeggMapDetail(pathwayId: number | string) {
-    this.router.navigate(['pathway/kegg-map'], {queryParams: {
-      herbId: this.id,
-      pathwayId: pathwayId
-    }});
+
+  gotoKeggMapDetail(pathwayId: number | string, type: string) {
+    const queryParams = {pathwayId: pathwayId};
+    if (type === 'prescription') {
+      Object.assign(queryParams, {prescriptionId: this.id});
+    } else if (type === 'herb') {
+      Object.assign(queryParams, {herbId: this.id});
+    } else if (type === 'compound') {
+      Object.assign(queryParams, {compoundId: this.id});
+    } else if (type === 'target') {
+      Object.assign(queryParams, {targetId: this.id});
+    } else if (type === 'disease') {
+      Object.assign(queryParams, {diseaseId: this.id});
+    }
+    this.router.navigate(['pathway/kegg-map'], {queryParams: queryParams});
   }
 
-  goPrescriptionIdtoKeggMapDetail(pathwayId: number | string) {
-    this.router.navigate(['pathway/kegg-map'], {queryParams: {
-      prescriptionId: this.id,
-      pathwayId: pathwayId
-    }});
-  }
+
+
   gotoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'],{queryParams: {
+    this.router.navigate(['pathway/detail'], {queryParams: {
       pathwayId: pathwayId
     }});
   }
@@ -133,6 +140,12 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
   goPrescriptionIdtoPathwayDetail(pathwayId: number) {
     this.router.navigate(['pathway/detail'], {queryParams: {
       prescriptionId: this.id,
+      pathwayId: pathwayId
+    }});
+  }
+  goCompoundIdtoPathwayDetail(pathwayId: number) {
+    this.router.navigate(['pathway/detail'], {queryParams: {
+      compoundId: this.id,
       pathwayId: pathwayId
     }});
   }

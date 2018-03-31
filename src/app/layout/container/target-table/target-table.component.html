@@ -1,4 +1,5 @@
-<mat-table #targetTable [dataSource]="dataSource">
+<mat-table #targetTable [dataSource]="dataSource"
+           matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="chembl_id">
     <mat-header-cell *matHeaderCellDef>ChEMBL ID</mat-header-cell>
     <mat-cell *matCellDef="let row">
@@ -6,21 +7,21 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="target_name">
-    <mat-header-cell *matHeaderCellDef>Target Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Target Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.target_name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="uniprot_name">
-    <mat-header-cell *matHeaderCellDef>Uniprot Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Uniprot Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <a href="{{row.uniprot_link}}" target="_blank">{{row.uniprot_name}}</a>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="gene_name">
-    <mat-header-cell *matHeaderCellDef>Gene Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Gene Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.gene_name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="tcmid_link">
-  <mat-header-cell *matHeaderCellDef>TCMID Link</mat-header-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header>TCMID Link*</mat-header-cell>
   <mat-cell *matCellDef="let row">
     <a href="{{row.tcmid_link}}" target="_blank">{{row.tcmid_link}}</a>
   </mat-cell>
@@ -28,7 +29,7 @@
   <ng-container matColumnDef="detail">
     <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-button color="primary" (click)="gotoTargetDetail(row.id)">
+      <button mat-button color="primary" appViewPageById idType="target" pageId="{{row.id}}">
         view
       </button>
     </mat-cell>

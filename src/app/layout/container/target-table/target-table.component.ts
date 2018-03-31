@@ -1,12 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {PageMeta} from '../../../yatcm/models/page-meta';
 import {Observable} from 'rxjs/Observable';
+import {merge} from 'rxjs/observable/merge';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {of as observableOf} from 'rxjs/observable/of';
 import {Target} from '../../../yatcm/models/target';
-import {GlobalService} from "../../../services/global/global.service";
-import {CompoundListParamsType} from "../../../yatcm/enum/compound-list-param-type.enum";
+import {GlobalService} from '../../../services/global/global.service';
+import {CompoundListParamsType} from '../../../yatcm/enum/compound-list-param-type.enum';
 
 @Component({
   selector: 'app-target-table',
@@ -14,16 +17,20 @@ import {CompoundListParamsType} from "../../../yatcm/enum/compound-list-param-ty
   styleUrls: ['./target-table.component.css']
 })
 
-export class TargetTableComponent implements OnInit {
+export class TargetTableComponent implements OnInit, AfterViewInit {
+  pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
-  targets: Target[];
-  pageMeta: PageMeta | null;
+  isLoading = false;
+  isLoadingError = false;
   restUrl: string;
   @Input() tableTitle = '';
+  @Input() includeParams = '';
+  @Input() pageSize = 10;
+  @Input() pageSizeOptions = [5, 10, 50, 100];
   @Input() displayedColumns = [];
   @Input() restUrl$: Observable<string>;
-  @Input() pageSizeOptions = [5, 10, 20, 50, 100];
-  @Input() pageSize = 10;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = ['chembl_id' , 'target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'compounds', 'detail'];
   constructor(private rest: RestService,
               private router: Router,
@@ -33,8 +40,42 @@ export class TargetTableComponent implements OnInit {
 
   ngOnInit() {
     console.log('target table init');
-    this._getTargets(0, this.pageSize);
+    this.pageMeta.per_page = this.pageSize;
   }
+
+  ngAfterViewInit() {
+    this.restUrl$.subscribe(data => this.restUrl = data);
+    this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
+    merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoading = true;
+          return this.rest.getDataList(
+            this.restUrl,
+            this.paginator.pageIndex,
+            this.paginator.pageSize,
+            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+            this.includeParams
+          );
+        }),
+        map(data => {
+          this.isLoading = false;
+          this.isLoadingError = false;
+          this.pageMeta = data['meta'];
+          return data['targets'];
+        }),
+        catchError(() => {
+          this.isLoadingError = true;
+          this.isLoading = false;
+          return observableOf([]);
+        })
+      )
+      .subscribe(data => {
+        this.dataSource.data = data;
+      });
+  }
+
 
   gotoCompoundList(targetId: number | string) {
     this.globalService.gotoCompoundList(CompoundListParamsType.target_id, {
@@ -42,23 +83,6 @@ export class TargetTableComponent implements OnInit {
     });
   }
 
-  gotoTargetDetail(targetId: number| string) {
-    this.router.navigate(['target', targetId]);
-  }
 
-  private _getTargets(page?, perPage?) {
-    this.restUrl$.subscribe(data => this.restUrl = data);
-    this.rest.getDataList(this.restUrl, page, perPage)
-      .subscribe(data => {
-        this.targets = data['targets'];
-        this.dataSource.data = this.targets;
-        this.pageMeta = data['meta'];
-      });
-
-  }
-
-  pageChange(event) {
-    this._getTargets(event.pageIndex, event.pageSize);
-  }
 
 }

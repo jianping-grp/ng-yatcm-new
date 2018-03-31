@@ -27,9 +27,9 @@ export class RelateChemblMoleculeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   compoundId: number;
-  displayedColumns = ['chembl_id', 'pref_name', 'tanimoto', 'same_or_similarity', 'prodrug',
+  displayedColumns = ['chembl_id', 'pref_name', 'tanimoto', 'same_or_similar', 'prodrug',
     'max_phase', 'oral'];
-  allColumns = ['chembl_id', 'pref_name', 'tanimoto', 'same_or_similarity', 'prodrug',
+  allColumns = ['chembl_id', 'pref_name', 'tanimoto', 'same_or_similar', 'prodrug',
     'max_phase', 'oral'];
   constructor(private route: ActivatedRoute,
               private rest: RestService,

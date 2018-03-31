@@ -26,7 +26,7 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
- allColumns = ['structure', 'english_name', 'chinese_name', 'formula', 'mol_weight', 'alogp',
+ allColumns = ['molecule', 'english_name', 'chinese_name', 'formula', 'mol_weight', 'alogp',
     // 'cid', 'cas',
    'psa', 'hba', 'hbd', 'rtb'];
   constructor(private router: Router,
@@ -34,10 +34,6 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     this.pageMeta.per_page = this.pageSize;
-  }
-
-  gotoCompoundDetail(compoundId: number | string) {
-    this.router.navigate(['compound', compoundId]);
   }
 
   ngAfterViewInit() {

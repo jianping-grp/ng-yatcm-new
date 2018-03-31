@@ -8,6 +8,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
   styleUrls: ['./target-pathway-table.component.css']
 })
 export class TargetPathwayTableComponent implements OnInit {
+  targetId: number;
   restUrl$: Observable<string>;
   constructor(private route: ActivatedRoute) {
 
@@ -15,8 +16,9 @@ export class TargetPathwayTableComponent implements OnInit {
 
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
-      const targetId = +params.get('id');
-      return `keggpathways/?filter{keggprotein_set.targets.id}=${targetId}`;
+      this.targetId = +params.get('id');
+      return `keggpathways/?filter{keggprotein_set.targets.id}=${this.targetId}` +
+        `&include[]=category.*`;
     });
   }
 }

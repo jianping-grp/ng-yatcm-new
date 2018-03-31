@@ -6,4 +6,6 @@ export interface MappingKeggTgt {
   keggprotein_keggid?: string;
   prescription_id?: number | string;
   cpd_id?: number;
+  target_id?: number;
+  disease_id?: number;
 }

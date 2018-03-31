@@ -23,7 +23,7 @@
                 [height]="'100px'"
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
                 [molString]="row.tcm.smiles"></app-jsme>
-      <button mat-button color="primary" (click)="gotoCompoundDetail(row.tcm.id)">
+      <button mat-button color="primary" appViewPageById idType="compound" pageId="{{row.tcm.id}}">
         {{row.tcm.id}}
       </button>
     </mat-cell>
@@ -32,7 +32,7 @@
   <ng-container matColumnDef="view_in_map">
     <mat-header-cell *matHeaderCellDef>View in Map</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-button color="primary" (click)="gotoKeggMapDetail(row.tcm.id)">Open</button>
+      <button mat-button color="primary" (click)="gotoKeggMapDetail(row.tcm.id, row.kegg_compound.kegg_id)">Open</button>
     </mat-cell>
   </ng-container>
 

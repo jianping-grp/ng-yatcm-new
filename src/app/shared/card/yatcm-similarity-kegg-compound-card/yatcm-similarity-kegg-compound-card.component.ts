@@ -15,6 +15,7 @@ export class YatcmSimilarityKeggCompoundCardComponent implements OnInit {
     '&include[]=tcm.id&include[]=tcm.english_name' +
     '&include[]=tcm.smiles&include[]=tcm.mol_image&exclude[]=tcm.*';
   keggSimilarities: KeggSimilarity[];
+  restUrl: string;
   constructor(public  dialogRef: MatDialogRef<YatcmSimilarityKeggCompoundCardComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private rest: RestService,
@@ -24,28 +25,29 @@ export class YatcmSimilarityKeggCompoundCardComponent implements OnInit {
   ngOnInit() {
     console.log('yatcm similarity kegg compound card init');
    if (this.data.herbId) {
-     this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
+     this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
        `&filter{tcm.herb_set.id}=${this.data.herbId}&filter{kegg_compound.kegg_id}=${this.data.keggId}` +
-       `${this.includeParams}`,0, 9999)
-       .subscribe(herbData => {
-         this.keggSimilarities = herbData['kegg_similarities'];
-       });
+       `${this.includeParams}`;
+     this._getCompounds(this.restUrl);
    } else if (this.data.compoundId) {
       // 根据compound id 和 pathway id来获取结构
-      this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
-        `&filter{tcm.id}=${this.data.compoundId}` + `${this.includeParams}`)
-        .subscribe(data => {
-          this.keggSimilarities = data['kegg_similarities'];
-        });
+      this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
+        `&filter{tcm.id}=${this.data.compoundId}` + `&filter{kegg_compound.kegg_id}=${this.data.keggId}` +
+        `${this.includeParams}`;
+      this._getCompounds(this.restUrl);
     } else if (this.data.prescriptionId) {
-      this.rest.getDataList(`keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
+      this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
       `&filter{tcm.herb_set.prescription_set.id}=${this.data.prescriptionId}` +
-        `&filter{kegg_compound.kegg_id}=${this.data.keggId}` + `${this.includeParams}`)
-        .subscribe(prescriptionData => {
-          this.keggSimilarities = prescriptionData['kegg_similarities'];
-        });
-    }
+        `&filter{kegg_compound.kegg_id}=${this.data.keggId}` + `${this.includeParams}`;
+      this._getCompounds(this.restUrl);
+    };
+  }
 
+  private _getCompounds(url: string) {
+    this.rest.getDataList(url, 0, 9999)
+      .subscribe(herbData => {
+        this.keggSimilarities = herbData['kegg_similarities'];
+      });
   }
 
   kclose() {
