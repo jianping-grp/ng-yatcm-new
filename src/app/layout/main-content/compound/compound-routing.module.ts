@@ -22,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'compound-network',
+        redirectTo: 'compound-prescription',
         pathMatch: 'full'
       },
       {

@@ -37,7 +37,7 @@
   </ng-container>
 
   <ng-container matColumnDef="target_in_kegg_id">
-    <mat-header-cell *matHeaderCellDef >View in KEGG</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>View in KEGG</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <button mat-button color="primary" (click)="gotoKeggMapDetail(row.id, 'target')">
         {{row.kegg_id}}
@@ -62,33 +62,68 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="detail">
-    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <button mat-button color="primary" (click)="gotoPathwayDetail(row.id)">view</button>
-    </mat-cell>
-  </ng-container>
-
   <ng-container matColumnDef="compound_detail">
-    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Pathway Compound Detail</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-button color="primary" (click)="goCompoundIdtoPathwayDetail(row.id)">view</button>
+      <button mat-button color="primary" (click)="gotoPathwayCompoundDetail(row.id)">view</button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="compound_compound_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Compound Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayCompoundDetail(row.id, 'compound')">view</button>
     </mat-cell>
   </ng-container>
 
 
-  <ng-container matColumnDef="prescription_detail">
-    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
+  <ng-container matColumnDef="prescription_compound_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Compound Detail</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-button color="primary" (click)="goPrescriptionIdtoPathwayDetail(row.id)">view</button>
+      <button mat-button color="primary" (click)="gotoPathwayCompoundDetail(row.id, 'prescription')">view</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="herb_compound_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Compound Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayCompoundDetail(row.id, 'herb')">view</button>
     </mat-cell>
   </ng-container>
 
-
-  <ng-container matColumnDef="herb_detail">
-    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
+  <ng-container matColumnDef="protein_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-button color="primary" (click)="goHerbIdtoPathwayDetail(row.id)">view</button>
+      <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id)">view</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="herb_protein_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id, 'herb')">view</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="compound_protein_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id, 'compound')">view</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="prescription_protein_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id, 'prescription')">view</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="target_protein_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id, 'target')">view</button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="disease_protein_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id, 'disease')">view</button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

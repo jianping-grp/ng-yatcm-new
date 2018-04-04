@@ -20,7 +20,7 @@ export class HerbPathwayTableComponent implements OnInit {
      this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       this.herbId = +params.get('id');
       this.body = {herb_id: this.herbId};
-      return `keggpathways/herb_map_kegg_list/?include[]=category.*`;
+      return `keggpathwaysexclude/herb_map_kegg_list/?include[]=category.*`;
     });
   }
 

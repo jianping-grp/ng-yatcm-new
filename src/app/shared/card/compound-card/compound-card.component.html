@@ -1,0 +1,23 @@
+<table class="mdl-data-table mdl-shadow--2dp">
+  <tr>
+    <th>Enlish Name</th>
+    <td class="mdl-data-table__cell--non-numeric">{{compound?.english_name}}</td>
+  </tr>
+  <tr>
+    <th>Structure</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <app-jsme [elementId]="'compound_popup'"
+                [width]="'200px'"
+                [height]="'180px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode useopenchemlib'"
+                [molString]="compound?.smiles"
+      ></app-jsme>
+    </td>
+  </tr>
+</table>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close appViewPageById idType="compound"
+          pageId="{{compound?.id}}">Detail
+  </button>
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

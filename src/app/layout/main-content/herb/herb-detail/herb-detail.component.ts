@@ -46,7 +46,7 @@ export class HerbDetailComponent implements OnInit {
 
   generaterTcmidUrl(pinyinName: string): string {
      const newPinyinName = pinyinName.split(' ').join('+');
-     console.log(newPinyinName);
+     // console.log(newPinyinName);
      return `http://megabionet.org/tcmid/herbsearch/?chinese_Name=${newPinyinName}&english_Name=`;
   }
 

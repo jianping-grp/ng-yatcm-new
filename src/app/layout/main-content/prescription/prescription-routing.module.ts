@@ -20,8 +20,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'prescription-network',
-        component: PrescriptionNetworkComponent
+        redirectTo: 'prescription-herb',
+        pathMatch: 'full'
       },
       {
         path: 'prescription-network',

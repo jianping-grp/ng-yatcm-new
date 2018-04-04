@@ -10,6 +10,7 @@ import {DiseaseCompoundTableComponent} from './disease-compound-table/disease-co
 import {DiseaseHerbTableComponent} from './disease-herb-table/disease-herb-table.component';
 import {DiseasePrescriptionTableComponent} from './disease-prescription-table/disease-prescription-table.component';
 import {DiseasePathwayTableComponent} from './disease-pathway-table/disease-pathway-table.component';
+import {DiseaseNetworkComponent} from "./disease-network/disease-network.component";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {DiseasePathwayTableComponent} from './disease-pathway-table/disease-path
     DiseaseCompoundTableComponent,
     DiseaseHerbTableComponent,
     DiseasePrescriptionTableComponent,
-    DiseasePathwayTableComponent
+    DiseasePathwayTableComponent,
+    DiseaseNetworkComponent
   ]
 })
 export class DiseaseModule {}

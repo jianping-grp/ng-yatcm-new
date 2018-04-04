@@ -102,113 +102,109 @@
   </tr>
 </table>
 
-<h5><strong>Ingredients</strong></h5>
-<mat-table #ingredientsTable [dataSource]="dataSource"  style="width: 100%;">
-  <ng-container matColumnDef="english_name">
-    <mat-header-cell *matHeaderCellDef>English Name</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <app-jsme [elementId]="row.id"
-                [width]="'100px'"
-                [height]="'100px'"
-                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-                [molString]="row.smiles"></app-jsme>
-     <button mat-button color="primary" appViewPageById pageId="{{row.id}}" idType="compound">{{row.english_name}}</button>
-    </mat-cell>
-  </ng-container>
+<!--<h5><strong>Ingredients</strong></h5>-->
+<!--<mat-table #ingredientsTable [dataSource]="dataSource"  style="width: 100%;">-->
+  <!--<ng-container matColumnDef="english_name">-->
+    <!--<mat-header-cell *matHeaderCellDef>English Name</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">-->
+      <!--<app-jsme [elementId]="row.id"-->
+                <!--[width]="'100px'"-->
+                <!--[height]="'100px'"-->
+                <!--[option]="'depict nozoom noshowdraganddropsymbolindepictmode'"-->
+                <!--[molString]="row.smiles"></app-jsme>-->
+     <!--<button mat-button color="primary" appViewPageById pageId="{{row.id}}" idType="compound">{{row.english_name}}</button>-->
+    <!--</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="chinese_name">
-    <mat-header-cell *matHeaderCellDef>Chinese Name</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.Chinese_name}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="chinese_name">-->
+    <!--<mat-header-cell *matHeaderCellDef>Chinese Name</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.Chinese_name}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="formula">
-    <mat-header-cell *matHeaderCellDef>Formula</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.formula}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="formula">-->
+    <!--<mat-header-cell *matHeaderCellDef>Formula</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.formula}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="mol_weight">
-    <mat-header-cell *matHeaderCellDef>Mol Weight</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.mol_weight}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="mol_weight">-->
+    <!--<mat-header-cell *matHeaderCellDef>Mol Weight</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.mol_weight}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="category">
-    <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
-    <mat-cell *matCellDef="let row">Category</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="category">-->
+    <!--<mat-header-cell *matHeaderCellDef>Category</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">Category</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="cid">
-    <mat-header-cell *matHeaderCellDef>CID</mat-header-cell>
-    <mat-cell *matCellDef="let row">cid</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="cid">-->
+    <!--<mat-header-cell *matHeaderCellDef>CID</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">cid</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="cas">
-    <mat-header-cell *matHeaderCellDef>CAS</mat-header-cell>
-    <mat-cell *matCellDef="let row">cas</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="cas">-->
+    <!--<mat-header-cell *matHeaderCellDef>CAS</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">cas</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="rtb">
-    <mat-header-cell *matHeaderCellDef>RTB</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.rtb}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="rtb">-->
+    <!--<mat-header-cell *matHeaderCellDef>RTB</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.rtb}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="psa">
-    <mat-header-cell *matHeaderCellDef>PSA</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.psa}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="psa">-->
+    <!--<mat-header-cell *matHeaderCellDef>PSA</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.psa}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="hba">
-    <mat-header-cell *matHeaderCellDef>HBA</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.hba}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="hba">-->
+    <!--<mat-header-cell *matHeaderCellDef>HBA</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.hba}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="hbd">
-    <mat-header-cell *matHeaderCellDef>HBD</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.hbd}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="hbd">-->
+    <!--<mat-header-cell *matHeaderCellDef>HBD</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.hbd}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="alogp">
-    <mat-header-cell *matHeaderCellDef>Alogp</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.alogp}}</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="alogp">-->
+    <!--<mat-header-cell *matHeaderCellDef>Alogp</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">{{row.alogp}}</mat-cell>-->
+  <!--</ng-container>-->
 
-  <ng-container matColumnDef="detail">
-    <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
-    <mat-cell *matCellDef="let row">view</mat-cell>
-  </ng-container>
+  <!--<ng-container matColumnDef="detail">-->
+    <!--<mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>-->
+    <!--<mat-cell *matCellDef="let row">view</mat-cell>-->
+  <!--</ng-container>-->
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-<div>
-  <div class="mdl-grid mdl-grid--no-spacing">
-    <mat-form-field class="mdl-cell mdl-cell--2-col">
-      <mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">
-        <mat-option *ngFor="let column of allColumns" [value]="column">
-          {{column}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div class="mdl-cell mdl-cell--5-col mdl-typography--text-center">
-      <h5 class="mat-header-cell">
-        <b>{{tableTitle}}</b>
-      </h5>
-    </div>
-    <div class="mdl-cell mdl-cell--5-col">
-      <mat-paginator [length]="pageMeta?.total_results"
-                     [pageSize]="pageMeta?.per_page"
-                     [pageSizeOptions]="pageSizeOptions"
-                     (page)="pageChange($event)"
-      >
-      </mat-paginator>
-    </div>
-  </div>
-</div>
+  <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+  <!--<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
+<!--</mat-table>-->
+<!--<div>-->
+  <!--<div class="mdl-grid mdl-grid&#45;&#45;no-spacing">-->
+    <!--<mat-form-field class="mdl-cell mdl-cell&#45;&#45;2-col">-->
+      <!--<mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">-->
+        <!--<mat-option *ngFor="let column of allColumns" [value]="column">-->
+          <!--{{column}}-->
+        <!--</mat-option>-->
+      <!--</mat-select>-->
+    <!--</mat-form-field>-->
+    <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col mdl-typography&#45;&#45;text-center">-->
+      <!--<h5 class="mat-header-cell">-->
+        <!--<b>{{tableTitle}}</b>-->
+      <!--</h5>-->
+    <!--</div>-->
+    <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col">-->
+      <!--<mat-paginator [length]="pageMeta?.total_results"-->
+                     <!--[pageSize]="pageMeta?.per_page"-->
+                     <!--[pageSizeOptions]="pageSizeOptions"-->
+                     <!--(page)="pageChange($event)"-->
+      <!--&gt;-->
+      <!--</mat-paginator>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 <nav mat-tab-nav-bar>
-  <a mat-tab-link
-     [routerLink]="'herb-network'"
-     routerLinkActive #ran="routerLinkActive"
-     [active]="ran.isActive">Herb Network</a>
   <a mat-tab-link [routerLink]="'herb-prescription'"
      routerLinkActive #rap="routerLinkActive"
      [active]="rap.isActive">Prescription</a>
@@ -228,5 +224,9 @@
      [routerLink]="'herb-disease'"
      routerLinkActive #rat="routerLinkActive"
      [active]="rat.isActive">Disease</a>
+  <a mat-tab-link
+     [routerLink]="'herb-network'"
+     routerLinkActive #ran="routerLinkActive"
+     [active]="ran.isActive">Network</a>
 </nav>
 <router-outlet></router-outlet>

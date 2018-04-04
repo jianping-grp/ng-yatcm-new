@@ -46,5 +46,9 @@
      [routerLink]="'target-disease'"
      routerLinkActive #rad="routerLinkActive"
      [active]="rad.isActive">Disease</a>
+  <a mat-tab-link
+     [routerLink]="'target-network'"
+     routerLinkActive #ratn="routerLinkActive"
+     [active]="ratn.isActive">Network</a>
 </nav>
 <router-outlet></router-outlet>

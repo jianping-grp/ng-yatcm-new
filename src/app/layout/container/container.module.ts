@@ -8,12 +8,14 @@ import {TargetTableComponent} from './target-table/target-table.component';
 import {CommonModule} from '@angular/common';
 import {NetworkTableComponent} from "./network-table/network-table.component";
 import {DiseaseTableComponent} from "./disease-table/disease-table.component";
+import {CardModule} from "../../shared/card/card.module";
 
 
 @NgModule({
   imports: [
     SharedModule,
     CommonModule,
+    CardModule
   ],
   declarations: [
     CompoundTableComponent,

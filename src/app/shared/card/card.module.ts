@@ -6,6 +6,7 @@ import {ChemblRelatedTargetCardComponent} from './chembl-related-target-card/che
 import {NgModule} from '@angular/core';
 import {YatcmSimilarityKeggCompoundCardComponent} from "./yatcm-similarity-kegg-compound-card/yatcm-similarity-kegg-compound-card.component";
 import {KeggproteinToTargetComponent} from "./keggprotein-to-target/keggprotein-to-target.component";
+import {CompoundCardComponent} from "./compound-card/compound-card.component";
 
 @NgModule({
   imports: [
@@ -17,21 +18,24 @@ import {KeggproteinToTargetComponent} from "./keggprotein-to-target/keggprotein-
     AssayCardComponent,
     ChemblRelatedTargetCardComponent,
     YatcmSimilarityKeggCompoundCardComponent,
-    KeggproteinToTargetComponent
+    KeggproteinToTargetComponent,
+    CompoundCardComponent
   ],
   exports: [
     DocCardComponent,
     AssayCardComponent,
     ChemblRelatedTargetCardComponent,
     YatcmSimilarityKeggCompoundCardComponent,
-    KeggproteinToTargetComponent
+    KeggproteinToTargetComponent,
+    CompoundCardComponent
   ],
   entryComponents: [
     DocCardComponent,
     AssayCardComponent,
     ChemblRelatedTargetCardComponent,
     YatcmSimilarityKeggCompoundCardComponent,
-    KeggproteinToTargetComponent
+    KeggproteinToTargetComponent,
+    CompoundCardComponent
   ]
 })
 

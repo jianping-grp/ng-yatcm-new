@@ -42,17 +42,20 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
     console.log('pathway table init');
     this.pageMeta.per_page = this.pageSize;
     if (this.idType === 'herb') {
-      this.displayedColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'herb_detail'];
+      this.displayedColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'herb_compound_detail',
+        'herb_protein_detail'];
     } else if (this.idType === 'prescription') {
-      this.displayedColumns = ['pathway_name', 'category', 'prescription_compound_in_kegg_id', 'prescription_detail'];
+      this.displayedColumns = ['pathway_name', 'category', 'prescription_compound_in_kegg_id',
+        'prescription_compound_detail', 'prescription_protein_detail'];
     } else if (this.idType === 'compound') {
-      this.displayedColumns = ['pathway_name', 'category', 'compound_in_kegg_id', 'compound_detail']; // todo modify
+      this.displayedColumns = ['pathway_name', 'category', 'compound_in_kegg_id',
+        'compound_compound_detail', 'compound_protein_detail']; // todo modify
     } else if (this.idType === 'target') {
-      this.displayedColumns = ['pathway_name', 'category', 'target_in_kegg_id'];  // todo add target detail
+      this.displayedColumns = ['pathway_name', 'category', 'target_in_kegg_id', 'target_protein_detail'];  // todo add target detail
     } else if (this.idType === 'disease') {
-      this.displayedColumns = ['pathway_name', 'category', 'disease_in_kegg_id'];
+      this.displayedColumns = ['pathway_name', 'category', 'disease_in_kegg_id', 'disease_protein_detail'];
     } else {
-      this.displayedColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
+      this.displayedColumns = ['pathway_name', 'category', 'kegg_id', 'compound_detail', 'protein_detail'];
     }
   }
 
@@ -124,29 +127,37 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
     this.router.navigate(['pathway/kegg-map'], {queryParams: queryParams});
   }
 
+  gotoPathwayCompoundDetail(pathwayId: number, type?: string) {
+    const queryParams = {pathwayId: pathwayId};
+    if (type === 'prescription') {
+      Object.assign(queryParams, {prescriptionId: this.id});
+    } else if (type === 'herb') {
+      Object.assign(queryParams, {herbId: this.id});
+    } else if (type === 'compound') {
+      Object.assign(queryParams, {compoundId: this.id});
+    } else {
+      Object.assign(queryParams, {});
+    }
+    this.router.navigate(['pathway/compound-detail'], {queryParams: queryParams});
+  }
+
+  gotoPathwayProteinDetail(pathwayId: number, type?: string) {
+    const queryParams = {pathwayId: pathwayId};
+    if (type === 'prescription') {
+      Object.assign(queryParams, {prescriptionId: this.id});
+    } else if (type === 'herb') {
+      Object.assign(queryParams, {herbId: this.id});
+    } else if (type === 'compound') {
+      Object.assign(queryParams, {compoundId: this.id});
+    } else if (type === 'target') {
+      Object.assign(queryParams, {targetId: this.id});
+    } else if (type === 'disease') {
+      Object.assign(queryParams, {diseaseId: this.id});
+    } else {
+      Object.assign(queryParams, {});
+    }
+    this.router.navigate(['pathway/protein-detail'], {queryParams: queryParams});
+  }
 
 
-  gotoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'], {queryParams: {
-      pathwayId: pathwayId
-    }});
-  }
-  goHerbIdtoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'], {queryParams: {
-      herbId: this.id,
-      pathwayId: pathwayId
-    }});
-  }
-  goPrescriptionIdtoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'], {queryParams: {
-      prescriptionId: this.id,
-      pathwayId: pathwayId
-    }});
-  }
-  goCompoundIdtoPathwayDetail(pathwayId: number) {
-    this.router.navigate(['pathway/detail'], {queryParams: {
-      compoundId: this.id,
-      pathwayId: pathwayId
-    }});
-  }
 }

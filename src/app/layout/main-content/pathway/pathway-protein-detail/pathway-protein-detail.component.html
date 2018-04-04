@@ -1,0 +1,44 @@
+<h5><strong>
+  Mapping of YaTCM target to {{pathway?.name}}
+  (<a href="http://www.kegg.jp/kegg-bin/show_pathway?{{pathway?.kegg_id}}" target="_blank">{{pathway?.kegg_id}}</a>)
+</strong></h5>
+<mat-table  #pathwayProteinDetail [dataSource]="dataSource">
+  <ng-container matColumnDef="kegg_protein">
+    <mat-header-cell *matHeaderCellDef>Protein of this Pathway</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+     <ng-container *ngFor="let keggprotein of row.keggprotein_set">
+       <a href="http://www.kegg.jp/dbget-bin/www_bget?{{keggprotein.kegg_id}}" target="_blank">
+         {{keggprotein.kegg_id}}</a>
+     </ng-container>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="tcm_target">
+    <mat-header-cell *matHeaderCellDef>Target from YaTCM</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <p>
+        <button mat-button color="primary"  appViewPageById idType="target" pageId="{{row.id}}">
+          {{row.target_name}}
+        </button>
+        <button *ngIf="!row.target_name" appViewPageById idType="target" pageId="{{row.id}}">
+          {{row.id}}
+        </button>
+        <a href="{{row.uniprot_link}}" target="_blank">{{row.uniprot_name}}</a>
+      </p>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="view_in_map">
+    <mat-header-cell *matHeaderCellDef>View in map</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoKeggMapDetail(row.id)">Open</button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [length]="pageMeta?.total_results"
+               [pageSize]="pageMeta?.per_page"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageChange($event)"
+>
+</mat-paginator>
+

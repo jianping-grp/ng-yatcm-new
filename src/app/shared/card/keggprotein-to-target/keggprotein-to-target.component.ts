@@ -28,12 +28,12 @@ export class KeggproteinToTargetComponent implements OnInit {
         `&filter{compounds.herb_set.id}=${this.data.herbId}` +
         `&filter{keggprotein_set.kegg_id}=${this.data.keggId}`;
       this._getTargets(this.restUrl);
-    } else if (this.data.presriptionId) {
+    } else if (this.data.prescriptionId) {
       this.restUrl = `targets/?filter{keggprotein_set.pathways.id}=${this.data.pathwayId}` +
         `&filter{compounds.herb_set.prescription_set.id}=${this.data.prescriptionId}` +
         `&filter{keggprotein_set.kegg_id}=${this.data.keggId}`;
       this._getTargets(this.restUrl);
-    } else if (this.data.prescriptionId) {
+    } else if (this.data.compoundId) {
       this.restUrl = `targets/?filter{keggprotein_set.pathways.id}=${this.data.pathwayId}` +
         `&filter{compounds.id}=${this.data.compoundId}` +
         `&filter{keggprotein_set.kegg_id}=${this.data.keggId}`;

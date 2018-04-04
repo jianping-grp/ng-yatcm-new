@@ -8,15 +8,18 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
   styleUrls: ['./prescription-network.component.css']
 })
 export class PrescriptionNetworkComponent implements OnInit {
-  restUrl$: Observable<string>;
+  restUrl: string;
+  body: object;
+  prescriptionId: number;
   constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
-      const prescriptionId = +params.get('id');
-      return ``; // todo add api
+    this.restUrl = 'prescriptions/prescription_network/'
+    this.route.parent.paramMap.subscribe((params: ParamMap) => {
+      this.prescriptionId = +params.get('id');
+      this.body = {prescription_id: this.prescriptionId};
     });
   }
 }

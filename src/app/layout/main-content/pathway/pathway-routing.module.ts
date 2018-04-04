@@ -1,8 +1,9 @@
 import {RouterModule, Routes} from '@angular/router';
 import {PathwayListComponent} from './pathway-list/pathway-list.component';
 import {NgModule} from '@angular/core';
-import {PathwayDetailComponent} from './pathway-detail/pathway-detail.component';
+import {PathwayCompoundDetailComponent} from './pathway-compound-detail/pathway-compound-detail.component';
 import {KeggMapComponent} from './kegg-map/kegg-map.component';
+import {PathwayProteinDetailComponent} from './pathway-protein-detail/pathway-protein-detail.component';
 
 const routes: Routes = [
   {
@@ -14,8 +15,12 @@ const routes: Routes = [
     component: KeggMapComponent,
   },
   {
-    path: 'detail',
-    component: PathwayDetailComponent,
+    path: 'compound-detail',
+    component: PathwayCompoundDetailComponent,
+  },
+  {
+    path: 'protein-detail',
+    component: PathwayProteinDetailComponent
   }
 ];
 

@@ -42,9 +42,9 @@
      [routerLink]="'disease-pathway'"
      routerLinkActive #rapw="routerLinkActive"
      [active]="rapw.isActive">Pathway</a>
-  <!--<a mat-tab-link-->
-     <!--[routerLink]="'disease-disease'"-->
-     <!--routerLinkActive #rat="routerLinkActive"-->
-     <!--[active]="rat.isActive">Disease</a>-->
+  <a mat-tab-link
+     [routerLink]="'disease-network'"
+     routerLinkActive #ratn="routerLinkActive"
+     [active]="ratn.isActive">Network</a>
 </nav>
 <router-outlet></router-outlet>

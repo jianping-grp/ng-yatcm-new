@@ -58,7 +58,11 @@ export class KeggMapComponent implements OnInit {
         if (params.has('keggId')) {
           this.keggId = params.get('keggId');
           // 通过keggId compoundId, pathwayId 获取唯一的坐标
-          this._fetchMappingKeggCpds(`compounds/cpd_kegg_map/?filter{keggcompound_keggid}=${this.keggId}`, this.body);
+          this.rest.postData(`compounds/cpd_kegg_map/`, this.body).subscribe(data => {
+            this.mappingKeggCpds = [];
+            const mapingKeggCompounds = data['mapping_kegg_cpds'];
+            this.mappingKeggCpds.push(mapingKeggCompounds.find(el => el.keggcompound_keggid === this.keggId));
+          });
         } else {
           this._fetchMappingKeggCpds(`compounds/cpd_kegg_map/`, this.body);
           this._fetchMappingKeggTgts(`compounds/tgt_kegg_map/`, this.body);

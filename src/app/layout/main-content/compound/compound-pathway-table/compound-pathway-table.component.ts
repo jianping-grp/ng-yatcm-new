@@ -19,7 +19,7 @@ export class CompoundPathwayTableComponent implements OnInit {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       this.compoundId = +params.get('id');
       this.body = {cpd_id: this.compoundId};
-      return `keggpathways/cpd_map_kegg_list/?include[]=category.*`;
+      return `keggpathwaysexclude/cpd_map_kegg_list/?include[]=category.*`;
     });
   }
 

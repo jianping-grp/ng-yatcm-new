@@ -19,7 +19,7 @@ export class PrescriptionPathwayTableComponent implements OnInit {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       this.prescriptionId = +params.get('id');
       this.body = {prescription_id: this.prescriptionId};
-      return `keggpathways/prescription_map_kegg_list/?include[]=category.*`;
+      return `keggpathwaysexclude/prescription_map_kegg_list/?include[]=category.*`;
     });
   }
 

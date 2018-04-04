@@ -114,10 +114,6 @@
 </table>
 
 <nav mat-tab-nav-bar>
-  <a mat-tab-link
-     [routerLink]="'compound-network'"
-     routerLinkActive #ran="routerLinkActive"
-     [active]="ran.isActive">Network</a>
   <a mat-tab-link [routerLink]="'compound-prescription'"
      routerLinkActive #rap="routerLinkActive"
      [active]="rap.isActive">Prescription</a>
@@ -145,5 +141,9 @@
      [routerLink]="'relate-molecule'"
      routerLinkActive #ram="routerLinkActive"
      [active]="ram.isActive">Related Molecule</a>
+  <a mat-tab-link
+     [routerLink]="'compound-network'"
+     routerLinkActive #ran="routerLinkActive"
+     [active]="ran.isActive">Network</a>
 </nav>
 <router-outlet></router-outlet>

@@ -7,10 +7,10 @@ import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 
 @Component({
   selector: 'app-pathway-detail',
-  templateUrl: './pathway-detail.component.html',
-  styleUrls: ['./pathway-detail.component.css']
+  templateUrl: './pathway-compound-detail.component.html',
+  styleUrls: ['./pathway-compound-detail.component.css']
 })
-export class PathwayDetailComponent implements OnInit {
+export class PathwayCompoundDetailComponent implements OnInit {
   pageSizeOptions = [5, 10, 50, 100];
   pathwayId: number | string;
   pathway: KeggPathway[];
@@ -28,13 +28,13 @@ export class PathwayDetailComponent implements OnInit {
   }
   ngOnInit() {
     console.log('pathway detail init');
-    this._getPathway();
+    this._getData();
   }
 
-  private _getPathway() {
+  private _getData() {
     this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.pathwayId = +params.get('pathwayId');
-      this.rest.getData(`keggpathways/?filter{id}=${this.pathwayId}`)
+      this.rest.getDataList(`keggpathways/?filter{id}=${this.pathwayId}`, 0, 9999)
         .subscribe(data => {
           this.pathway = data['kegg_pathways'][0];
         });

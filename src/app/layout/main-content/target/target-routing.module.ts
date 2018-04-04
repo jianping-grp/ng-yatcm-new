@@ -7,6 +7,7 @@ import {TargetDiseaseTableComponent} from "./target-disease-table/target-disease
 import {TargetPathwayTableComponent} from "./target-pathway-table/target-pathway-table.component";
 import {TargetHerbTableComponent} from "./target-herb-table/target-herb-table.component";
 import {TargetPrescriptionTableComponent} from "./target-prescription-table/target-prescription-table.component";
+import {TargetNetworkComponent} from "./target-network/target-network.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,15 @@ const routes: Routes = [
     path: ':id',
     component: TargetDetailComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'target-prescription',
+        pathMatch: 'full'
+      },
+      {
+        path: 'target-network',
+        component: TargetNetworkComponent
+      },
       {
         path: 'target-compound',
         component: TargetCompoundTableComponent
