@@ -26,8 +26,9 @@ export class NetworkTableComponent implements OnInit {
 
   }
   chartOptions = {
+    height: '1000px',
     title: {
-      text: 'Network',
+      text: '',
       top: 'top',
       left: 'center',
     },
