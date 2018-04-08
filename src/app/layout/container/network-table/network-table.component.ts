@@ -42,7 +42,8 @@ export class NetworkTableComponent implements OnInit {
       selectedMode: 'false',
       left: 10,
       orient: 'vertical',
-      data: ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease'],
+      data: this.idType === 'prescription' ?
+        ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease'] : ['Prescription', 'Herb', 'Compound'],
     }],
     toolbox: {
       show: true,
@@ -105,6 +106,7 @@ export class NetworkTableComponent implements OnInit {
       .subscribe(data => {
         this.nodes = data['nodes'];
         this.links = data['links'];
+        console.log('nodes', this.nodes);
         this.echart.setOption({
           series: [{
             nodes: this.nodes,
@@ -124,9 +126,20 @@ export class NetworkTableComponent implements OnInit {
      const name = event.data['name'];
      const endSlice = name.indexOf('*') - 1;
      switch (event.data['category']) {
+       case 'Prescription': {
+         const prescriptionId = +(name.slice(16, endSlice));
+         this.router.navigate(['prescription', prescriptionId]);
+         break;
+       }
        case 'Compound': {
          const compoundId = +(name.slice(12, endSlice));
-         this.openDialog(compoundId);
+         if (this.idType === 'prescription') {
+           this.router.navigate(['prescription/network'], {queryParams: {
+             compoundId: compoundId
+             }});
+         } else {
+           this.openDialog(compoundId);
+         }
          break;
        }
        case 'Target': {
@@ -142,11 +155,6 @@ export class NetworkTableComponent implements OnInit {
        case 'Disease': {
          const diseaseId = +(name.slice(11, endSlice));
          this.router.navigate(['disease', diseaseId]);
-         break;
-       }
-       case 'Prescription': {
-         const prescriptinId = +(name.slice(15, endSlice));
-         this.router.navigate(['prescription', prescriptinId]);
          break;
        }
        case 'Pathway': {

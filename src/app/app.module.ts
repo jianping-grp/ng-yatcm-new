@@ -10,7 +10,7 @@ import {SearchComponent} from './layout/main-content/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     CoreModule,

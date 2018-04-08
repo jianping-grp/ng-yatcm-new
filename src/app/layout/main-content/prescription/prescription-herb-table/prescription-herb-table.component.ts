@@ -15,7 +15,7 @@ export class PrescriptionHerbTableComponent implements OnInit {
 
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
-      const prescriptionId = + params.get('id');
+      const prescriptionId = +(params.get('id'));
       return `herbs/?filter{prescription_set.id}=${prescriptionId}`;
     });
   }
