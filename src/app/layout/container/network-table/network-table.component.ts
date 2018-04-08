@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
-import {Network} from '../../../yatcm/models/network/network';
 import {Node} from '../../../yatcm/models/network/node';
 import {Link} from '../../../yatcm/models/network/link';
 import {Router} from '@angular/router';
@@ -42,8 +41,8 @@ export class NetworkTableComponent implements OnInit {
       selectedMode: 'false',
       left: 10,
       orient: 'vertical',
-      data: this.idType === 'prescription' ?
-        ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease'] : ['Prescription', 'Herb', 'Compound'],
+      data: this.idType === 'prescription' ? ['Prescription', 'Herb', 'Compound'] :
+        ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease']
     }],
     toolbox: {
       show: true,
@@ -106,7 +105,7 @@ export class NetworkTableComponent implements OnInit {
       .subscribe(data => {
         this.nodes = data['nodes'];
         this.links = data['links'];
-        console.log('nodes', this.nodes);
+        console.log('nodes', this.nodes, 'links', this.links);
         this.echart.setOption({
           series: [{
             nodes: this.nodes,
@@ -121,7 +120,7 @@ export class NetworkTableComponent implements OnInit {
   }
 
   onDbClick(event) {
-    console.log('dbclickevent', event);
+    // console.log('dbclickevent', event);
    if (event.dataType === 'node') {
      const name = event.data['name'];
      const endSlice = name.indexOf('*') - 1;
@@ -133,13 +132,7 @@ export class NetworkTableComponent implements OnInit {
        }
        case 'Compound': {
          const compoundId = +(name.slice(12, endSlice));
-         if (this.idType === 'prescription') {
-           this.router.navigate(['prescription/network'], {queryParams: {
-             compoundId: compoundId
-             }});
-         } else {
-           this.openDialog(compoundId);
-         }
+         this.openDialog(compoundId);
          break;
        }
        case 'Target': {
@@ -179,11 +172,13 @@ export class NetworkTableComponent implements OnInit {
   }
 
   openDialog(compoundId: number): void {
+    const data = {compoundId: compoundId};
+    if (this.idType === 'prescription') {
+      Object.assign(data, {prescriptionId: this.id});
+    }
     this.dialog.open(CompoundCardComponent, {
       width: '400px',
-      data: {
-        compoundId: compoundId
-      }
+      data: data
     });
   }
 }

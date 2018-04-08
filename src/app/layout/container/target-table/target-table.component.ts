@@ -27,7 +27,8 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = [];
+  @Input() displayedColumns = ['chembl_id' , 'target_name', 'uniprot_name',
+    'gene_name', 'tcmid_link', 'compounds', 'detail'];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

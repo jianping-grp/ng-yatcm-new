@@ -18,7 +18,6 @@ const routes: Routes = [
   {
     path: 'network',
     component: SpliceNetworkComponent,
-    outlet: 'popup'
   },
   {
     path: ':id',
@@ -52,7 +51,8 @@ const routes: Routes = [
       {
         path: 'prescription-disease',
         component: PrescriptionDiseaseTableComponent
-      }
+      },
+
     ]
   }
 ];

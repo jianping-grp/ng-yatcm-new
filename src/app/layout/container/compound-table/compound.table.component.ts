@@ -22,7 +22,9 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = [];
+  @Input() displayedColumns = ['molecule', 'english_name', 'formula', 'mol_weight', 'alogp',
+    // 'cid', 'cas',
+    'psa', 'hba', 'hbd', 'rtb'];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

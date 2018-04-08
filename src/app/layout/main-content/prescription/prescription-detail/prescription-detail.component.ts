@@ -48,7 +48,7 @@ export class PrescriptionDetailComponent implements OnInit {
           this.prescription = data['prescription'];
           const mainPrescriptionId = this.prescription.main_prescription;
 
-          // fectch main_presrciption
+          // fetch main_presrciption
           this.rest.getData(`prescriptions/${mainPrescriptionId}/?${this.prescriptionIncludeParams}`)
             .subscribe(mainPrescriptionData => {
             this.mainPrescription = mainPrescriptionData['prescription'];

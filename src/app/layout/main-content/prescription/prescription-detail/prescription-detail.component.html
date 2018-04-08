@@ -63,17 +63,17 @@
 <h5><strong>Ingredient</strong></h5>
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
   <tr>
-    <th>Herbs</th>
-    <th>Structure</th>
+    <th class="mdl-data-table__cell--non-numeric">Herbs</th>
+    <th class="mdl-data-table__cell--non-numeric">Structure</th>
     <!--<th>Pathway</th>-->
   </tr>
   <tr *ngFor="let herb of herbs">
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <button mat-button color="primary" appViewPageById pageId="{{herb.id}}" idType="herb">
         {{herb.Chinese_name}}({{herb?.English_name}})
       </button>
     </td>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <button mat-button color="primary" (click)="goCompoundList(herb.id)">{{herb.compounds.length}}</button>
       records
     </td>
