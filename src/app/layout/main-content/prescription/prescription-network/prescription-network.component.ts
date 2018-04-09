@@ -16,7 +16,7 @@ export class PrescriptionNetworkComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.restUrl = 'prescriptions/prescription_network/'
+    this.restUrl = 'prescriptions/prescription_network/';
     this.route.parent.paramMap.subscribe((params: ParamMap) => {
       this.prescriptionId = +params.get('id');
       this.body = {prescription_id: this.prescriptionId};
