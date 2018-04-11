@@ -15,6 +15,7 @@ export class ViewPageByIdDirective {
       case 'pathway': this.router.navigate(['pathway', +(this.pageId)]); break;
       case 'target': this.router.navigate(['target', +(this.pageId)]); break;
       case 'disease': this.router.navigate(['disease', +(this.pageId)]); break;
+      case 'chembl-compound': this.router.navigate(['chembl-compound', +(this.pageId)]); break;
     }
   }
 

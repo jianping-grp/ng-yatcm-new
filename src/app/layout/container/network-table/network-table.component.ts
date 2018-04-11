@@ -120,7 +120,7 @@ export class NetworkTableComponent implements OnInit {
   }
 
   onDbClick(event) {
-    console.log('dbclickevent', event);
+    // console.log('dbclickevent', event);
    if (event.dataType === 'node') {
      const name = event.data['name'];
      const endSlice = name.indexOf('*') - 1;
@@ -132,7 +132,7 @@ export class NetworkTableComponent implements OnInit {
        }
        case 'Compound': {
          const compoundId = +(name.slice(12, endSlice));
-         console.log(typeof event.data['name'], event.data['name'])
+         // console.log(typeof event.data['name'], event.data['name']);
          this.openDialog(compoundId);
          break;
        }

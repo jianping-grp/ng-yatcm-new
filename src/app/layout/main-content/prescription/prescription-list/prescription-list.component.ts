@@ -12,9 +12,12 @@ import {PrescriptionListParamsType} from '../../../../yatcm/enum/prescription-li
 export class PrescriptionListComponent implements OnInit {
 
   restUrl$: Observable<string>;
-  includeParams = '?inlcude[]=herbs.id&exclude[]=herbs.*';
-  displayedColumns = ['chinese_name', 'english_name', 'phonetic_name', 'main_prescription', 'prescription_herb',
-    'traditional_usage', 'modern_usage', 'modern_usage(english)', 'traditional_application', 'detail'];
+  includeParams = '&include[]=herbs.id&exclude[]=herbs.*';
+  displayedColumns = ['chinese_name', 'english_name', 'phonetic_name',
+    // 'main_prescription', 'detail',
+    // 'prescription_herb',
+    'traditional_usage', 'modern_usage', 'modern_usage(english)',
+    'traditional_application', 'traditional_application(english)', 'traditional_explanation'];
 
   constructor(private route: ActivatedRoute) { }
 
@@ -29,10 +32,19 @@ export class PrescriptionListComponent implements OnInit {
       if (paramsType) {
         switch (paramsType) {
           case PrescriptionListParamsType.prescription:
-            return `prescriptions/${this.includeParams}`;
+            return `prescriptions/?${this.includeParams}`;
           case PrescriptionListParamsType.herb_id:
             const herbId = +params.get('herbId');
-            return `prescriptions/?filter{herbs.id}=${herbId}`;
+            return `prescriptions/?filter{herbs.id}=${herbId}${this.includeParams}`;
+          case PrescriptionListParamsType.chinese_name:
+            const chineseName = params.get('chineseName');
+            return `prescriptions/?filter{chinese_name.icontains}=${chineseName}${this.includeParams}`;
+          case PrescriptionListParamsType.english_name:
+            const englishName = params.get('englishName');
+            return `prescriptions/?filter{english_name.icontains}=${englishName}${this.includeParams}`;
+          case PrescriptionListParamsType.pinyin_name:
+            const pinyinName = params.get('phoneticName');
+            return `prescriptions/?filter{pinyin_name.icontains}=${pinyinName}${this.includeParams}`;
         }
       }
     });

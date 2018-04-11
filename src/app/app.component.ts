@@ -6,6 +6,7 @@ import {PrescriptionListParamsType} from './yatcm/enum/prescription-list-param-t
 import {CompoundListParamsType} from './yatcm/enum/compound-list-param-type.enum';
 import {PathwayListParamsType} from './yatcm/enum/pathway-list-param-type.enum';
 import {TargetListParamsType} from './yatcm/enum/target-list-param-type.enum';
+import {DiseaseListParamsType} from "./yatcm/enum/disease-list-param-type.enum";
 
 @Component({
   selector: 'app-root',
@@ -42,5 +43,9 @@ export class AppComponent {
 
   goTargetList() {
     this.globalService.gotoTargetList(TargetListParamsType.target);
+  }
+
+  goDiseaseList() {
+    this.globalService.gotoDiseaseList(DiseaseListParamsType.disease);
   }
 }

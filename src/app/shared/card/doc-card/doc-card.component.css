@@ -2,3 +2,8 @@
   white-space: normal;
 }
 
+.scroll-content {
+  max-height: 300px;
+  overflow-y: auto;
+}
+

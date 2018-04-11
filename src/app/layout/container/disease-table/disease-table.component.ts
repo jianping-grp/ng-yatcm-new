@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
-import {GlobalService} from "../../../services/global/global.service";
+import {GlobalService} from '../../../services/global/global.service';
 
 @Component({
   selector: 'app-disease-table',

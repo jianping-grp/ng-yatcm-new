@@ -1,5 +1,5 @@
 <h5><strong>{{prescription?.chinese_name}}({{prescription?.pinyin_name}})</strong></h5>
-<table class="mdl-data-table mdl-shadow--2dp table">
+<table class="mdl-data-table mdl-shadow--2dp ">
   <tr>
     <th>Chinese Name</th>
     <td class="mdl-data-table__cell--non-numeric">{{prescription?.chinese_name}}</td>
@@ -60,25 +60,25 @@
   </tr>
 </table>
 
-<h5><strong>Ingredient</strong></h5>
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
-  <tr>
-    <th class="mdl-data-table__cell--non-numeric">Herbs</th>
-    <th class="mdl-data-table__cell--non-numeric">Structure</th>
-    <!--<th>Pathway</th>-->
-  </tr>
-  <tr *ngFor="let herb of herbs">
-    <td class="mdl-data-table__cell--non-numeric">
-      <button mat-button color="primary" appViewPageById pageId="{{herb.id}}" idType="herb">
-        {{herb.Chinese_name}}({{herb?.English_name}})
-      </button>
-    </td>
-    <td class="mdl-data-table__cell--non-numeric">
-      <button mat-button color="primary" (click)="goCompoundList(herb.id)">{{herb.compounds.length}}</button>
-      records
-    </td>
-  </tr>
-</table>
+<!--<h5><strong>Ingredient</strong></h5>-->
+<!--<table class="mdl-data-table mdl-js-data-table mdl-shadow&#45;&#45;2dp" style="width: 100%">-->
+  <!--<tr>-->
+    <!--<th class="mdl-data-table__cell&#45;&#45;non-numeric">Herbs</th>-->
+    <!--<th class="mdl-data-table__cell&#45;&#45;non-numeric">Structure</th>-->
+    <!--&lt;!&ndash;<th>Pathway</th>&ndash;&gt;-->
+  <!--</tr>-->
+  <!--<tr *ngFor="let herb of herbs">-->
+    <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">-->
+      <!--<button mat-button color="primary" appViewPageById pageId="{{herb.id}}" idType="herb">-->
+        <!--{{herb.Chinese_name}}({{herb?.English_name}})-->
+      <!--</button>-->
+    <!--</td>-->
+    <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">-->
+      <!--<button mat-button color="primary" (click)="goCompoundList(herb.id)">{{herb.compounds.length}}</button>-->
+      <!--records-->
+    <!--</td>-->
+  <!--</tr>-->
+<!--</table>-->
 <nav mat-tab-nav-bar>
   <a mat-tab-link [routerLink]="'prescription-herb'"
      routerLinkActive #rap="routerLinkActive"
@@ -105,4 +105,3 @@
      [active]="ran.isActive">Network</a>
 </nav>
 <router-outlet></router-outlet>
-<router-outlet name="popup"></router-outlet>

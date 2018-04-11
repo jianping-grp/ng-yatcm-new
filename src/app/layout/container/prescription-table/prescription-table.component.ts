@@ -27,26 +27,29 @@ export class PrescriptionTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = ['chinese_name', 'phonetic_name', 'english_name', 'main_prescription', 'prescription_herb',
+  @Input() displayedColumns = ['chinese_name', 'phonetic_name', 'english_name',
+    // 'main_prescription', 'detail', 'pathway',
+    // 'prescription_herb',
     'traditional_usage', 'modern_usage', 'modern_usage(english)', 'traditional_application',
     'traditional_application(english)',
-    'traditional_explanation', 'pathway', 'detail'];
+    'traditional_explanation'];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  allColumns = ['chinese_name', 'phonetic_name', 'english_name', 'main_prescription', 'prescription_herb',
+  allColumns = ['chinese_name', 'phonetic_name', 'english_name',
+    // 'main_prescription', 'detail', 'pathway',
+    'prescription_herb',
     'traditional_usage', 'modern_usage', 'modern_usage(english)', 'traditional_application',
     'traditional_application(english)',
-    'traditional_explanation', 'pathway', 'detail'];
+    'traditional_explanation' ];
   constructor(private rest: RestService,
               private router: Router,
               private globalService: GlobalService) { }
-  ngOnInit() { }
-
-  gotoPrescriptionDetail(prescriptionId: number | string) {
-    this.router.navigate(['prescription', prescriptionId]);
+  ngOnInit() {
+    this.pageMeta.per_page = this.pageSize;
   }
+
 
   goHerbList(prescriptionId: number | string) {
     this.globalService.gotoHerbList(HerbListParamsType.prescription_id, {

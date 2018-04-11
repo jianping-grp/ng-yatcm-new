@@ -1,5 +1,9 @@
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError">
+    <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
 <mat-table #targetTable [dataSource]="dataSource"
-           matSort matSortDisableClear matSortDirection="asc">
+           matSort matSortActive="uniprot_name" matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="chembl_id">
     <mat-header-cell *matHeaderCellDef>ChEMBL ID</mat-header-cell>
     <mat-cell *matCellDef="let row">
@@ -21,9 +25,9 @@
     <mat-cell *matCellDef="let row">{{row.gene_name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="tcmid_link">
-  <mat-header-cell *matHeaderCellDef mat-sort-header>TCMID Link*</mat-header-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header>TCMID Link</mat-header-cell>
   <mat-cell *matCellDef="let row">
-    <a href="{{row.tcmid_link}}" target="_blank">{{row.tcmid_link}}</a>
+    <a href="{{row.tcmid_link}}" target="_blank">TCMID Link</a>
   </mat-cell>
  </ng-container>
   <ng-container matColumnDef="detail">
@@ -39,6 +43,14 @@
     <mat-cell *matCellDef="let row">
       <button mat-button color="primary" (click)="gotoCompoundList(row.id)">
         {{row.compounds.length}}
+      </button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="diseases">
+    <mat-header-cell *matHeaderCellDef>Diseases</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoDiseaseList(row.id)">
+        {{row.disease_set.length}}
       </button>
     </mat-cell>
   </ng-container>
@@ -68,4 +80,5 @@
       </mat-paginator>
     </div>
   </div>
+</div>
 </div>

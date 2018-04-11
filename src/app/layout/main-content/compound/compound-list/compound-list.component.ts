@@ -38,6 +38,18 @@ export class CompoundListComponent implements OnInit {
           case CompoundListParamsType.target_id:
             const targetId = +params.get('targetId');
             return `compounds/?filter{target_set.id}=${targetId}`;
+          case CompoundListParamsType.english_name:
+            const englishName = params.get('englishName');
+            return `compounds/?filter{english_name.icontains}=${englishName}`;
+          case CompoundListParamsType.formula:
+            const formula = params.get('formula');
+            return `compounds/?filter{formula}=${formula}`;
+          case CompoundListParamsType.cas:
+            const cas = params.get('cas');
+            return `compounds/?filter{cas.cas}=${cas}`;
+          case CompoundListParamsType.cid:
+            const cid = params.get('cid');
+            return `compounds/?filter{cid.cid}=${cid}`;
         }
       }
     });

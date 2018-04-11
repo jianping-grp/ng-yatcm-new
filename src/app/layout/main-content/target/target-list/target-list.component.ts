@@ -12,8 +12,8 @@ import {TargetListParamsType} from '../../../../yatcm/enum/target-list-param-typ
 
 export class TargetListComponent implements OnInit {
 
-  includeParams = 'include[]=compounds.id&exclude[]=compounds.*' +
-                  '&include[]=';
+  includeParams = '&include[]=compounds.id&exclude[]=compounds.*' +
+                  '&include[]=disease_set.id.*&exclude[]=disease_set.*';
   restUrl$: Observable<string>;
   displayedColumns = ['target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'detail'];
   constructor(private route: ActivatedRoute) {
@@ -32,6 +32,15 @@ export class TargetListComponent implements OnInit {
         switch (paramsType) {
           case TargetListParamsType.target:
             return `targets/?${this.includeParams}`;
+          case TargetListParamsType.target_name:
+            const targetName = params.get('targetName');
+            return `targets/?filter{target_name.icontains}=${targetName}${this.includeParams}`;
+          case TargetListParamsType.uniprot_name:
+            const uniprotName = params.get('uniprotName');
+            return `targets/?filter{uniprot_name.icontains}=${uniprotName}${this.includeParams}`;
+          case TargetListParamsType.gene_name:
+            const geneName = params.get('geneName')
+            return `targets/?filter{gene_name.icontains}=${geneName}${this.includeParams}`;
         }
       }
     });

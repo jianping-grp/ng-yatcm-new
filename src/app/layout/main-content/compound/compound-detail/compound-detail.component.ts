@@ -2,12 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../../services/rest/rest.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Compound} from '../../../../yatcm/models/compound';
-import {Target} from '../../../../yatcm/models/target';
-import {PageMeta} from '../../../../yatcm/models/page-meta';
-import {Chembl} from "../../../../yatcm/models/chembl";
-import {MatTableDataSource} from "@angular/material";
-import {Seatarget} from '../../../../yatcm/models/seatarget';
-
 
 @Component({
   selector: 'app-compound-detail',
@@ -22,7 +16,7 @@ export class CompoundDetailComponent implements OnInit {
     '&include[]=herb_set.English_name&exclude[]=herb_set.*' +
     '&include[]=cid.*&include[]=cas.*' +
     '&include[]=compoundfirstcatagory_set.*&include[]=compoundsecondcatagory_set' +
-    '&include[]=tcmid_herbs_set.*&include[]=target_set.*';
+    '&include[]=tcmid_herbs_set.*';
   constructor(private rest: RestService,
               private router: Router,
               private route: ActivatedRoute) { }

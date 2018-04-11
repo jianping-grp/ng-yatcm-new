@@ -10,6 +10,8 @@ import {Observable} from "rxjs/Observable";
 
 export class HerbTargetTableComponent implements OnInit {
   restUrl$: Observable<string>;
+  includeParams = '&include[]=compounds.id&exclude[]=compounds.*' +
+    '&include[]=disease_set.id.*&exclude[]=disease_set.*';
   constructor(private route: ActivatedRoute) {
 
   }
@@ -17,7 +19,7 @@ export class HerbTargetTableComponent implements OnInit {
   ngOnInit() {
      this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
        const herbId = +params.get('id');
-       return `targets/?filter{compounds.herb_set.id}=${herbId}`;
+       return `targets/?filter{compounds.herb_set.id}=${herbId}${this.includeParams}`;
      });
   }
 }

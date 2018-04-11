@@ -10,6 +10,7 @@ import {of as observableOf} from 'rxjs/observable/of';
 import {Target} from '../../../yatcm/models/target';
 import {GlobalService} from '../../../services/global/global.service';
 import {CompoundListParamsType} from '../../../yatcm/enum/compound-list-param-type.enum';
+import {DiseaseListParamsType} from "../../../yatcm/enum/disease-list-param-type.enum";
 
 @Component({
   selector: 'app-target-table',
@@ -27,12 +28,13 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = ['chembl_id' , 'target_name', 'uniprot_name',
-    'gene_name', 'tcmid_link', 'compounds', 'detail'];
+  @Input() displayedColumns = ['target_name', 'uniprot_name',
+    'gene_name', 'tcmid_link', 'detail'];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['chembl_id' , 'target_name', 'uniprot_name', 'gene_name', 'tcmid_link', 'compounds', 'detail'];
+  allColumns = ['chembl_id' , 'target_name', 'uniprot_name', 'gene_name',
+    'tcmid_link', 'compounds', 'diseases', 'detail'];
   constructor(private rest: RestService,
               private router: Router,
               private globalService: GlobalService) {
@@ -84,6 +86,10 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
     });
   }
 
-
+  gotoDiseaseList(targetId: number | string) {
+    this.globalService.gotoDiseaseList(DiseaseListParamsType.target_id, {
+      targetId: targetId
+    });
+  }
 
 }

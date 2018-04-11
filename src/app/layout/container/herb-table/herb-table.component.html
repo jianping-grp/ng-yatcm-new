@@ -1,8 +1,7 @@
-<div>
-  <!--<div *ngIf="isLoading || isLoadingError">-->
-    <!--<mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>-->
-  <!--</div>-->
-
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError">
+    <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
   <mat-table #herbTable [dataSource]="dataSource"
              matSort matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="image">
@@ -14,31 +13,43 @@
 
     <ng-container matColumnDef="English_name">
       <mat-cell *matHeaderCellDef mat-sort-header>English Name*</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.English_name}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" appViewPageById [idType]="'herb'" pageId="{{row.id}}">
+          {{row.English_name}}
+        </button>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Chinese_name">
       <mat-cell *matHeaderCellDef mat-sort-header>Chinese Name*</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.Chinese_name}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" appViewPageById [idType]="'herb'" pageId="{{row.id}}">
+          {{row.Chinese_name}}
+        </button>
+       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="phonetic_name">
-      <mat-cell *matHeaderCellDef mat-sort-header>Phonetic Name*</mat-cell>
+      <mat-cell *matHeaderCellDef>Phonetic Name</mat-cell>
       <mat-cell *matCellDef="let row">{{row.pinyin_name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ingredients">
-      <mat-cell *matHeaderCellDef mat-sort-header>Ingredients*</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.compounds.length}}</mat-cell>
+      <mat-cell *matHeaderCellDef>Ingredients</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" (click)="gotoCompoundList(row.id)">
+          {{row.compounds.length}}
+        </button>
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="first_category">
-      <mat-cell *matHeaderCellDef mat-sort-header>First Category*</mat-cell>
+      <mat-cell *matHeaderCellDef >First Category</mat-cell>
       <mat-cell *matCellDef="let row">{{row.first_catagory_chinese}}({{row.first_catagory_english}})</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="second_category">
-      <mat-cell *matHeaderCellDef mat-sort-header>Second Category*</mat-cell>
+      <mat-cell *matHeaderCellDef>Second Category</mat-cell>
       <mat-cell *matCellDef="let row">{{row.second_catagory_chinese}}({{row.second_catagory_english}})</mat-cell>
     </ng-container>
 
@@ -69,11 +80,11 @@
 
     <ng-container matColumnDef="indication">
       <mat-cell *matHeaderCellDef mat-sort-header>Indication*</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.indication}}</mat-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">{{row.indication}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="meridians">
-      <mat-cell *matHeaderCellDef>Meridians</mat-cell>
+      <mat-cell *matHeaderCellDef mat-sort-header>Meridians</mat-cell>
       <mat-cell *matCellDef="let row">{{row.meridians}}</mat-cell>
     </ng-container>
 
@@ -98,7 +109,7 @@
     <ng-container matColumnDef="detail">
       <mat-cell *matHeaderCellDef>Detail</mat-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" (click)="gotoHerbDetail(row.id)">view</button>
+        <button mat-button color="primary" appViewPageById [idType]="'herb'" pageId="{{row.id}}">view</button>
       </mat-cell>
     </ng-container>
 

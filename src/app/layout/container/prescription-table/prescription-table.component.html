@@ -1,20 +1,24 @@
-<div>
-  <!--<div *ngIf="isLoading || isLoadingError">-->
-  <!--<mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>-->
-  <!--</div>-->
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError">
+  <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
   <mat-table #herbTable [dataSource]="dataSource"
-             matSort matSortDisableClear matSortDirection="asc">
+             matSort matSortActive="english_name" matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="chinese_name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Chinese_name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.chinese_name}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Chinese_name*</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" appViewPageById pageId="{{row.id}}" [idType]="'prescription'">
+          {{row.chinese_name}}
+        </button>
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="phonetic_name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Phonetic Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Phonetic Name</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.pinyin_name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="english_name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>English Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>English Name*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.english_name}}</mat-cell>
     </ng-container>
 
@@ -24,44 +28,50 @@
     </ng-container>
 
     <ng-container matColumnDef="prescription_herb">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Prescription Herb</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Prescription Herb</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <button mat-button color="primary" (click)="goHerbList(row.id)">{{row.herbs.length}}</button>
     </mat-cell>
    </ng-container>
 
     <ng-container matColumnDef="traditional_usage">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Traditional Usage</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Traditional Usage</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.yongfa}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="modern_usage">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Modern Application</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.chinese_modern_application}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Modern Application</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">
+        {{row.chinese_modern_application}}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="modern_usage(english)">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Modern Application(english)</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.english_modern_application}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Modern Application(english)</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">
+        {{row.english_modern_application}}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="traditional_application">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Traditional Application</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.chinese_indiction}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Traditional Application</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">{{row.chinese_indiction}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="traditional_application(english)">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Traditioanl Application(english)</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.english_indiction}}</mat-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">{{row.english_indiction}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="traditional_explanation">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Traditional Explanation</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.fangjie}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Traditional Explanation</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">
+        {{row.fangjie}}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="pathway">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>pathway</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>pathway</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button  color="primary" (click)="goPathwayList(row.id)">
           {{row.id | pathwayNumber: 'prescription' | async}}
@@ -72,7 +82,7 @@
     <ng-container matColumnDef="detail">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Detail</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button  color="primary" (click)="gotoPrescriptionDetail(row.id)">view</button>
+        <button mat-button  color="primary" appViewPageById pageId="{{row.id}}" [idType]="'prescription'">view</button>
       </mat-cell>
     </ng-container>
 

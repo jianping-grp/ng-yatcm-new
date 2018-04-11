@@ -4,6 +4,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {HerbListParamsType} from '../../../../yatcm/enum/herb-list-param-type.enum';
+import {Herb} from "../../../../yatcm/models/herb";
 
 @Component({
   selector: 'app-herb-list',
@@ -11,12 +12,13 @@ import {HerbListParamsType} from '../../../../yatcm/enum/herb-list-param-type.en
   styleUrls: ['./herb-list.component.css']
 })
 export class HerbListComponent implements OnInit {
-  includeParams = '&include[]=subherb_set.id&exclude[]=subherb_set.*' +
-    '&include[]=compounds.id&exclude[]=compounds.*';
+  includeParams = '&include[]=compounds.id&exclude[]=compounds.*';
   restUrl$: Observable<string>;
-  displayedColumns = ['image', 'English_name', 'Chinese_name', 'phonetic_name', 'ingredients', 'first_category',
-                      'second_category', 'effect', 'latin_name', 'drug_property', 'wiki_chinese', 'wiki_english', 'indication',
-                     'meridians', 'related_herb', 'subherb', 'detail'];
+  displayedColumns = ['image', 'Chinese_name', 'English_name', 'phonetic_name',
+     'first_category', 'effect', 'drug_property',
+    // 'wiki_chinese', 'wiki_english', 'second_category', 'ingredients',
+    // 'subherb', 'latin_name', 'detail',  'related_herb'
+    'indication', 'meridians'];
 
   constructor(private rest: RestService,
               private route: ActivatedRoute) {
@@ -38,6 +40,15 @@ export class HerbListComponent implements OnInit {
          case HerbListParamsType.prescription_id:
            const prescriptionId = +params.get('prescriptionId');
            return `herbs/?filter{prescription_set.id}=${prescriptionId}${this.includeParams}`;
+         case HerbListParamsType.chinese_name:
+           const chineseName = params.get('chineseName');
+           return `herbs/?filter{Chinese_name.icontains}=${chineseName}${this.includeParams}`;
+         case HerbListParamsType.english_name:
+           const englishName = params.get('englishName');
+           return `herbs/?filter{English_name.icontains}=${englishName}${this.includeParams}`;
+         case HerbListParamsType.pinyin_name:
+           const pinyingName = params.get('phoneticName')
+           return `herbs/?filter{pinyin_name.icontains}=${pinyingName}${this.includeParams}`;
        }
      }
     });

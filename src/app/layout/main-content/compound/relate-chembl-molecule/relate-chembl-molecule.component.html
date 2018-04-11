@@ -1,3 +1,7 @@
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError">
+    <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
 <mat-table #chemblTable [dataSource]="dataSource"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="chembl_id">
@@ -9,12 +13,14 @@
                 [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
                 [molString]="row.canonical_smi"
       ></app-jsme>
-      <button mat-button color="primary" (click)="gotoChemblDetail(row.id)">{{row.chembl_id}}</button>
+      <button mat-button color="primary" appViewPageById
+              [idType]="'chembl-compound'"
+              pageId="{{row.id}}">{{row.chembl_id}}</button>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="tanimoto">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Tanimoto*</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.tanimoto}}</mat-cell>
+    <mat-cell *matCellDef="let row">{{tanimotoHandle(row.tanimoto)}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="same_or_similar">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Same or Similar*</mat-header-cell>
@@ -60,4 +66,5 @@
     >
     </mat-paginator>
   </div>
+</div>
 </div>

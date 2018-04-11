@@ -6,6 +6,7 @@ import {PrescriptionListParamsType} from "../../yatcm/enum/prescription-list-par
 import {CompoundListParamsType} from "../../yatcm/enum/compound-list-param-type.enum";
 import {PathwayListParamsType} from "../../yatcm/enum/pathway-list-param-type.enum";
 import {TargetListParamsType} from "../../yatcm/enum/target-list-param-type.enum";
+import {DiseaseListParamsType} from "../../yatcm/enum/disease-list-param-type.enum";
 
 declare const JSApplet: any;
 
@@ -70,6 +71,14 @@ export class GlobalService implements OnInit {
     const queryParams = {paramsType: paramsType};
     Object.assign(queryParams, params);
     this.router.navigate(['target'], {
+      queryParams: queryParams
+    });
+  }
+
+  gotoDiseaseList(paramsType: DiseaseListParamsType, params?: any) {
+    const queryParams = {paramsType: paramsType};
+    Object.assign(queryParams, params);
+    this.router.navigate(['disease'], {
       queryParams: queryParams
     });
   }

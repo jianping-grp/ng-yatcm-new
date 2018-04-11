@@ -1,5 +1,9 @@
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError">
+    <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
 <mat-table #pathwayTable [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
-  <ng-container matColumnDef="pathway_name">
+  <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Pathway Name</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <a href="http://www.kegg.jp/kegg-bin/show_pathway?{{row.kegg_id}}" target="_blank">
@@ -8,7 +12,7 @@
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="category">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
     <mat-cell *matCellDef="let row">{{getKeggPathwayCategory(row.category)?.name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="kegg_id">
@@ -134,3 +138,4 @@
                [pageSizeOptions]="pageSizeOptions"
 >
 </mat-paginator>
+</div>

@@ -27,10 +27,12 @@ export class RelateChemblMoleculeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   compoundId: number;
-  displayedColumns = ['chembl_id', 'pref_name', 'tanimoto', 'same_or_similar', 'prodrug',
-    'max_phase', 'oral'];
-  allColumns = ['chembl_id', 'pref_name', 'tanimoto', 'same_or_similar', 'prodrug',
-    'max_phase', 'oral'];
+  displayedColumns = ['chembl_id', 'pref_name', 'tanimoto',
+    // 'same_or_similar',
+    'prodrug', 'max_phase', 'oral'];
+  allColumns = ['chembl_id', 'pref_name', 'tanimoto',
+    // 'same_or_similar',
+    'prodrug', 'max_phase', 'oral'];
   constructor(private route: ActivatedRoute,
               private rest: RestService,
               private router: Router) {
@@ -78,8 +80,7 @@ export class RelateChemblMoleculeComponent implements OnInit, AfterViewInit {
       });
   }
 
-  gotoChemblDetail(chemblId: number | string) {
-    this.router.navigate(['chembl-compound', chemblId]);
-  }
-
+ tanimotoHandle(tanimoto: number): string {
+    return tanimoto.toString(10).slice(0, 4); // 得到两位有效数字
+ }
 }

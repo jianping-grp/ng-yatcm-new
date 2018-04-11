@@ -1,3 +1,7 @@
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError">
+    <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
 <mat-table #ingredientsTable [dataSource]="dataSource"  style="width: 100%;"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="molecule">
@@ -96,4 +100,5 @@
       </mat-paginator>
     </div>
   </div>
+</div>
 </div>

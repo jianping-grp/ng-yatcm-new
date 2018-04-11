@@ -18,6 +18,8 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  @Input() body: object;
+  @Input() type: string;
   @Input() tableTitle = '';
   @Input() includeParams = '';
   @Input() pageSize = 10;
@@ -46,13 +48,25 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoading = true;
-          return this.rest.getDataList(
-            this.restUrl,
-            this.paginator.pageIndex,
-            this.paginator.pageSize,
-            this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
-            this.includeParams
-          );
+          if (this.type === 'structureSearch') {
+            return this.rest.postDataList(
+              this.restUrl,
+              this.body,
+              this.paginator.pageIndex,
+              this.paginator.pageSize,
+              this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+              this.includeParams
+              );
+          } else {
+            return this.rest.getDataList(
+              this.restUrl,
+              this.paginator.pageIndex,
+              this.paginator.pageSize,
+              this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
+              this.includeParams
+            );
+          }
+
         }),
         map(data => {
           this.isLoading = false;

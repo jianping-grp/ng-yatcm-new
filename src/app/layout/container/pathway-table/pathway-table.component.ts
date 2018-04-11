@@ -32,7 +32,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
+  allColumns = ['name', 'category', 'kegg_id', 'detail'];
   constructor(private rest: RestService,
               private router: Router) {
 
@@ -42,20 +42,20 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
     console.log('pathway table init');
     this.pageMeta.per_page = this.pageSize;
     if (this.idType === 'herb') {
-      this.displayedColumns = ['pathway_name', 'category', 'herb_compound_in_kegg_id', 'herb_compound_detail',
+      this.displayedColumns = ['name', 'category', 'herb_compound_in_kegg_id', 'herb_compound_detail',
         'herb_protein_detail'];
     } else if (this.idType === 'prescription') {
-      this.displayedColumns = ['pathway_name', 'category', 'prescription_compound_in_kegg_id',
+      this.displayedColumns = ['name', 'category', 'prescription_compound_in_kegg_id',
         'prescription_compound_detail', 'prescription_protein_detail'];
     } else if (this.idType === 'compound') {
-      this.displayedColumns = ['pathway_name', 'category', 'compound_in_kegg_id',
+      this.displayedColumns = ['name', 'category', 'compound_in_kegg_id',
         'compound_compound_detail', 'compound_protein_detail']; // todo modify
     } else if (this.idType === 'target') {
-      this.displayedColumns = ['pathway_name', 'category', 'target_in_kegg_id', 'target_protein_detail'];  // todo add target detail
+      this.displayedColumns = ['name', 'category', 'target_in_kegg_id', 'target_protein_detail'];  // todo add target detail
     } else if (this.idType === 'disease') {
-      this.displayedColumns = ['pathway_name', 'category', 'disease_in_kegg_id', 'disease_protein_detail'];
+      this.displayedColumns = ['name', 'category', 'disease_in_kegg_id', 'disease_protein_detail'];
     } else {
-      this.displayedColumns = ['pathway_name', 'category', 'kegg_id', 'compound_detail', 'protein_detail'];
+      this.displayedColumns = ['name', 'category', 'kegg_id', 'compound_detail', 'protein_detail'];
     }
   }
 

@@ -8,8 +8,9 @@ import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
-import {GlobalService} from "../../../services/global/global.service";
-import {PathwayListParamsType} from "../../../yatcm/enum/pathway-list-param-type.enum";
+import {GlobalService} from '../../../services/global/global.service';
+import {PathwayListParamsType} from '../../../yatcm/enum/pathway-list-param-type.enum';
+import {CompoundListParamsType} from "../../../yatcm/enum/compound-list-param-type.enum";
 
 @Component({
   selector: 'app-herb-table',
@@ -28,13 +29,18 @@ export class HerbTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = [];
+  @Input() displayedColumns = ['image', 'Chinese_name', 'English_name', 'phonetic_name',
+     'first_category', 'effect', 'drug_property',
+    // 'wiki_chinese', 'wiki_english', 'second_category', 'subherb',
+    // 'latin_name', 'detail',  'related_herb','ingredients',
+    'indication', 'meridians'];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['image', 'English_name', 'Chinese_name', 'phonetic_name', 'ingredients', 'first_category',
-    'second_category', 'effect', 'latin_name', 'drug_property', 'wiki_chinese', 'wiki_english', 'indication',
-    'meridians', 'related_herb', 'subherb', 'pathway', 'detail'];
+  allColumns = ['image', 'Chinese_name', 'English_name', 'phonetic_name', 'latin_name',
+    'ingredients', 'first_category', 'effect', 'drug_property',
+    // 'wiki_chinese', 'wiki_english', 'second_category', 'subherb',  'detail',  'related_herb'
+    'indication', 'meridians'];
   constructor(private rest: RestService,
               private router: Router,
               private globalService: GlobalService) { }
@@ -43,16 +49,17 @@ export class HerbTableComponent implements OnInit, AfterViewInit {
     this.pageMeta.per_page = this.pageSize;
   }
 
-  gotoHerbDetail(hid: number | string) {
-    this.router.navigate(['herb', hid]);
-  }
-
   goPathwayList(herbId: number | string) {
     this.globalService.gotoPathwayList(PathwayListParamsType.herb_id, {
       herbId: herbId
-    })
+    });
   }
 
+  gotoCompoundList(herbId: number) {
+    this.globalService.gotoCompoundList(CompoundListParamsType.herb_id, {
+      herbId: herbId
+    });
+  }
 
   ngAfterViewInit() {
     this.restUrl$.subscribe(data => this.restUrl = data);

@@ -9,6 +9,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 })
 export class CompoundPrescriptionTableComponent implements OnInit {
   restUrl$: Observable<string>;
+  includeParams = '&include[]=herbs.id&exclude[]=herbs.*';
   constructor(private route: ActivatedRoute) {
 
   }
@@ -16,7 +17,7 @@ export class CompoundPrescriptionTableComponent implements OnInit {
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       const compoundId = +params.get('id');
-      return `prescriptions/?filter{herbs.compounds.id}=${compoundId}`;
+      return `prescriptions/?filter{herbs.compounds.id}=${compoundId}${this.includeParams}`;
     });
   }
 }

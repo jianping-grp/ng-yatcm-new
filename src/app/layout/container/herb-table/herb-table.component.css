@@ -1,1 +1,4 @@
-
+.scroll-content {
+  max-height: 180px;
+  overflow-y: auto;
+}

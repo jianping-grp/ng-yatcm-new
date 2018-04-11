@@ -1,4 +1,4 @@
-import {Component, OnInit,} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -45,6 +45,12 @@ export class PathwayListComponent implements OnInit {
             this.displayedColumns = ['pathway_name', 'category', 'prescription_compound_in_kegg_id', 'prescription_detail'];
             return `keggpathways/?filter{keggcompound_set.keggsimilarity_set.tcm.herb_set.prescription_set.id}=` +
               `${this.prescriptionId}${this.includeParams}`;
+          case PathwayListParamsType.pathway_name:
+            const pathwayName = params.get('pathwayName');
+            return `keggpathways/?filter{name.icontains}=${pathwayName}${this.includeParams}`;
+          case PathwayListParamsType.kegg_id:
+            const keggId = params.get('keggId');
+            return `keggpathways/?filter{kegg_id}=${keggId}${this.includeParams}`;
         }
       }
     });

@@ -69,8 +69,10 @@
         <th>Related Herbs</th>
         <td class="mdl-data-table__cell--non-numeric">
           <ng-container *ngIf="compound?.herb_set.length">
-          <button mat-button color="primary" (click)="gotoHerbDetail(herb.id)" *ngFor="let herb of compound?.herb_set">
-          {{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;</button>
+          <button mat-button color="primary" appViewPageById pageId="{{herb.id}}" [idType]="'herb'"
+                  *ngFor="let herb of compound?.herb_set"
+          >{{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;
+          </button>
           </ng-container>
           <ng-container *ngIf="!compound?.herb_set.length">
           <a *ngFor="let tcmid of compound?.tcmid_herbs_set" href="{{tcmid.tcmid_link}}" target="_blank">
@@ -112,38 +114,40 @@
     <td class="mdl-data-table__cell--non-numeric">{{compound?.rtb}}</td>
   </tr>
 </table>
+<!--<mat-tab-group>-->
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link [routerLink]="'compound-prescription'"
+       routerLinkActive #rap="routerLinkActive"
+       [active]="rap.isActive">Prescription</a>
+    <a mat-tab-link
+       [routerLink]="'compound-herb'"
+       routerLinkActive #rac="routerLinkActive"
+       [active]="rac.isActive">Herb</a>
+    <a mat-tab-link
+       [routerLink]="'compound-target'"
+       routerLinkActive #rat="routerLinkActive"
+       [active]="rat.isActive">Target</a>
+    <a mat-tab-link
+       [routerLink]="'compound-pathway'"
+       routerLinkActive #rapw="routerLinkActive"
+       [active]="rapw.isActive">Pathway</a>
+    <a mat-tab-link
+       [routerLink]="'compound-disease'"
+       routerLinkActive #rat="routerLinkActive"
+       [active]="rat.isActive">Disease</a>
+    <a mat-tab-link
+       [routerLink]="'compound-sea'"
+       routerLinkActive #ras="routerLinkActive"
+       [active]="ras.isActive">SEA</a>
+    <a mat-tab-link
+       [routerLink]="'relate-molecule'"
+       routerLinkActive #ram="routerLinkActive"
+       [active]="ram.isActive">Related Molecule</a>
+    <a mat-tab-link
+       [routerLink]="'compound-network'"
+       routerLinkActive #ran="routerLinkActive"
+       [active]="ran.isActive">Network</a>
+  </nav>
+  <router-outlet></router-outlet>
+<!--</mat-tab-group>-->
 
-<nav mat-tab-nav-bar>
-  <a mat-tab-link [routerLink]="'compound-prescription'"
-     routerLinkActive #rap="routerLinkActive"
-     [active]="rap.isActive">Prescription</a>
-  <a mat-tab-link
-     [routerLink]="'compound-herb'"
-     routerLinkActive #rac="routerLinkActive"
-     [active]="rac.isActive">Herb</a>
-  <a mat-tab-link
-     [routerLink]="'compound-target'"
-     routerLinkActive #rat="routerLinkActive"
-     [active]="rat.isActive">Target</a>
-  <a mat-tab-link
-     [routerLink]="'compound-pathway'"
-     routerLinkActive #rapw="routerLinkActive"
-     [active]="rapw.isActive">Pathway</a>
-  <a mat-tab-link
-     [routerLink]="'compound-disease'"
-     routerLinkActive #rat="routerLinkActive"
-     [active]="rat.isActive">Disease</a>
-  <a mat-tab-link
-     [routerLink]="'compound-sea'"
-     routerLinkActive #ras="routerLinkActive"
-     [active]="ras.isActive">SEA</a>
-  <a mat-tab-link
-     [routerLink]="'relate-molecule'"
-     routerLinkActive #ram="routerLinkActive"
-     [active]="ram.isActive">Related Molecule</a>
-  <a mat-tab-link
-     [routerLink]="'compound-network'"
-     routerLinkActive #ran="routerLinkActive"
-     [active]="ran.isActive">Network</a>
-</nav>
-<router-outlet></router-outlet>

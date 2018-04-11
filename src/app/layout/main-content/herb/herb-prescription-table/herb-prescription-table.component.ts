@@ -9,6 +9,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class HerbPrescriptionTableComponent implements OnInit {
   restUrl$: Observable<string>;
+  includeParams = '&include[]=herbs.id&exclude[]=herbs.*';
   constructor(private route: ActivatedRoute) {
 
   }
@@ -17,7 +18,7 @@ export class HerbPrescriptionTableComponent implements OnInit {
     console.log('herb prescription init');
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       const herbId = +(params.get('id'));
-      return `prescriptions/?filter{herbs.id}=${herbId}`;
+      return `prescriptions/?filter{herbs.id}=${herbId}${this.includeParams}`;
     });
   }
 

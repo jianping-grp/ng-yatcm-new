@@ -1,3 +1,7 @@
+<div class="table-section-container">
+  <div *ngIf="isLoading || isLoadingError">
+    <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
 <mat-table #diseaseTable [dataSource]="dataSource"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="name">
@@ -10,15 +14,15 @@
   </ng-container>
   <ng-container matColumnDef="synonyms">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Synonyms*</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.synonyms}}</mat-cell>
+    <mat-cell *matCellDef="let row" class="scroll-content">{{row.synonyms}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="description">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Description*</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.description}}</mat-cell>
+    <mat-cell *matCellDef="let row" class="scroll-content">{{row.description}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="clinical_feature">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Clinical Feature*</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.clinical_feature}}</mat-cell>
+    <mat-cell *matCellDef="let row" class="scroll-content">{{row.clinical_feature}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="tcmid_url">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Tcmid link*</mat-header-cell>
@@ -58,4 +62,4 @@
     </div>
   </div>
 </div>
-
+</div>

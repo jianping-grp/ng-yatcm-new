@@ -1,7 +1,7 @@
 <!--chembl compound infomation-->
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--3-col">
-    <app-jsme [elementId]="'undefined'"
+    <app-jsme [elementId]="'chemblid'"
               [width]="'300px'"
               [height]="'320px'"
               [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
@@ -9,28 +9,28 @@
     ></app-jsme>
   </div>
 <div class="mdl-cell mdl-cell--9-col">
-  <table class="mdl-data-table mdl-shdow--2-dp" style="width: 100%">
+  <table class="mdl-data-table mdl-shdow--2-dp">
     <tr>
       <th>ChEMBL ID</th>
-      <td>
+      <td class="mdl-data-table__cell--non-numeric">
         <a href="{{chembl?.url}}" target="_blank">{{chembl?.chembl_id}}</a>
       </td>
     </tr>
     <tr>
       <th>Pref Name</th>
-      <td>{{chembl?.pref_name}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{chembl?.pref_name}}</td>
     </tr>
     <tr>
       <th>Prodrug</th>
-      <td>{{chembl?.prodrug}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{chembl?.prodrug}}</td>
     </tr>
     <tr>
       <th>Max Phase</th>
-      <td>{{chembl?.max_phase}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{chembl?.max_phase}}</td>
     </tr>
     <tr>
       <th>Oral</th>
-      <td>{{chembl?.oral}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{chembl?.oral}}</td>
     </tr>
   </table>
 </div>
@@ -70,8 +70,8 @@
   <ng-container matColumnDef="target">
   <mat-header-cell *matHeaderCellDef>Target</mat-header-cell>
   <mat-cell *matCellDef="let row">
-    <button mat-button color="primary" (click)="openTargetDialog(chemblId, row.id)">
-      {{row.id  | getTargetChemblId: chemblId  | async}}
+    <button mat-button color="primary" (click)="openTargetDialog(id, row.id)">
+      {{row.id  | getTargetChemblId: id  | async}}
     </button>
   </mat-cell>
  </ng-container>

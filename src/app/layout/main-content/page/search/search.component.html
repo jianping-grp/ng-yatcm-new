@@ -1,0 +1,172 @@
+<div class="container">
+  <br>
+  <mat-tab-group class="demo-tab-group">
+    <mat-tab label="Structure">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col">
+          <app-jsme [elementId]="'jsme-demo-id'"
+                    #applet
+                    [width]="'450px'"
+                    [height]="'420px'"
+                    [showDemo]="true"
+          >loading JSME widget
+          </app-jsme>
+        </div>
+        <div class="mdl-cell mdl-cell--1-col"></div>
+        <div class="mdl-cell mdl-cell--5-col">
+          <h6>Structure Type:</h6>
+          <mat-radio-group [(ngModel)]="structureType">
+            <mat-radio-button *ngFor="let structureType of structureTypeList" [value]="structureType">
+              {{structureType}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+          <h6>Tanimoto threshold: {{similaritySlider.value}}</h6>
+          <mat-slider class="slider-width"
+                      min="0.7" max="1" step="0.01"
+                      [(ngModel)]="similarity"
+                      [thumbLabel]="true"
+                      [disabled]="structureType === 'Substructure'"
+                      #similaritySlider>
+          </mat-slider>
+          <br>
+          <button mat-raised-button color="primary" (click)="onSubmit(applet.smiles)">
+            Search
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Prescription">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+          <form #prescriptionForm="ngForm" (ngSubmit)="pstSubmit()">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Input type" [(ngModel)]="pstSelectedType" name="Input Type">
+                <mat-option *ngFor="let pstInputType of inputTypeList" [value]="pstInputType">
+                  {{pstInputType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput [(ngModel)]="pstKeyword" required name="keyword" placeholder="Input keywords">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="prescriptionForm.invalid">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Herb">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+          <form #herbForm="ngForm" (ngSubmit)="herbSubmit()">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Input type" [(ngModel)]="herbSelectedType" name="Input Type">
+                <mat-option *ngFor="let herbInputType of inputTypeList" [value]="herbInputType">
+                  {{herbInputType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput [(ngModel)]="herbKeyword" required name="keyword" placeholder="Input keywords">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="herbForm.invalid">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Molecule">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+          <form #compoundForm="ngForm" (ngSubmit)="compoundSubmit()">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Input type" [(ngModel)]="compoundSelectedType" name="Input Type">
+                <mat-option *ngFor="let compoundInputType of compoundInputTypeList" [value]="compoundInputType">
+                  {{compoundInputType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput [(ngModel)]="compoundKeyword" required name="keyword" placeholder="Input keywords">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="compoundForm.invalid">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div></mat-tab>
+    <mat-tab label="Target">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+          <form #targetForm="ngForm" (ngSubmit)="targetSubmit()">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Input type" [(ngModel)]="targetSelectedType" name="Input Type">
+                <mat-option *ngFor="let targetInputType of targetInputTypeList" [value]="targetInputType">
+                  {{targetInputType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput [(ngModel)]="targetKeyword" required name="keyword" placeholder="Input keywords">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="targetForm.invalid">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Pathway">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+          <form #pathwayForm="ngForm" (ngSubmit)="pathwaySubmit()">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Input type" [(ngModel)]="pathwaySelectedType" name="Input Type">
+                <mat-option *ngFor="let pathwayInputType of pathwayInputTypeList" [value]="pathwayInputType">
+                  {{pathwayInputType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput [(ngModel)]="pathwayKeyword" required name="keyword" placeholder="Input keywords">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="pathwayForm.invalid">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Disease">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+          <form #diseaseForm="ngForm" (ngSubmit)="diseaseSubmit()">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Input type" [(ngModel)]="diseaseSelectedType" name="Input Type">
+                <mat-option *ngFor="let diseaseInputType of diseaseInputTypeList" [value]="diseaseInputType">
+                  {{diseaseInputType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput [(ngModel)]="diseaseKeyword" required name="keyword" placeholder="Input keywords">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="diseaseForm.invalid">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
