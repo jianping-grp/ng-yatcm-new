@@ -14,15 +14,36 @@
   </ng-container>
   <ng-container matColumnDef="synonyms">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Synonyms*</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="scroll-content">{{row.synonyms}}</mat-cell>
+    <mat-cell *matCellDef="let row" class="scroll-content">
+      <ng-container *ngIf="row.synonyms">{{row.synonyms}}</ng-container>
+      <ng-container *ngIf="!row.synonyms">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+      </ng-container>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="description">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Description*</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="scroll-content">{{row.description}}</mat-cell>
+    <mat-cell *matCellDef="let row" class="scroll-content">
+      <ng-container *ngIf="row.description">{{row.description}}</ng-container>
+      <ng-container *ngIf="!row.description">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+      </ng-container>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="clinical_feature">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Clinical Feature*</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="scroll-content">{{row.clinical_feature}}</mat-cell>
+    <mat-cell *matCellDef="let row" class="scroll-content">
+      <ng-container *ngIf="row.clinical_feature">{{row.clinical_feature}}</ng-container>
+      <ng-container *ngIf="!row.clinical_feature">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+      </ng-container>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="tcmid_url">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Tcmid link*</mat-header-cell>

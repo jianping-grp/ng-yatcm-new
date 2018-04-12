@@ -22,7 +22,7 @@ export class PrescriptionTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
-
+  emptyTooltip = 'Sorry, there is no related information';
   @Input() tableTitle = '';
   @Input() includeParams = '';
   @Input() pageSize = 10;

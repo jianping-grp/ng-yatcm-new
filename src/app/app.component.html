@@ -1,6 +1,7 @@
-<mat-toolbar color="accent">
+<mat-toolbar class="toolbar-color">
+  <mat-toolbar-row>
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <span>YATCM</span>
+    <span>YaTCM</span>
     <button mat-button routerLink="home">Home</button>
     <button mat-button (click)="goPrescriptionList()">Prescription</button>
     <button mat-button (click)="goHerbList()">Herb</button>
@@ -9,6 +10,9 @@
     <button mat-button (click)="goPathwayList()">Pathway</button>
     <button mat-button (click)="goDiseaseList()">Disease</button>
     <button mat-button routerLink="search">Search</button>
+  </mat-toolbar-row>
+
+
 </mat-toolbar>
 
 <!--Progress Bar-->

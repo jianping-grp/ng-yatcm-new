@@ -10,7 +10,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {GlobalService} from '../../../services/global/global.service';
 import {PathwayListParamsType} from '../../../yatcm/enum/pathway-list-param-type.enum';
-import {CompoundListParamsType} from "../../../yatcm/enum/compound-list-param-type.enum";
+import {CompoundListParamsType} from '../../../yatcm/enum/compound-list-param-type.enum';
 
 @Component({
   selector: 'app-herb-table',
@@ -18,7 +18,7 @@ import {CompoundListParamsType} from "../../../yatcm/enum/compound-list-param-ty
   styleUrls: ['./herb-table.component.css']
 })
 export class HerbTableComponent implements OnInit, AfterViewInit {
-
+  emptyTooltip = 'Sorry, there is no related information';
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;

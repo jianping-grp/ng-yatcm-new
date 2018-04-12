@@ -4,7 +4,7 @@
   </div>
 <mat-table #pathwayTable [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Pathway Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Pathway Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <a href="http://www.kegg.jp/kegg-bin/show_pathway?{{row.kegg_id}}" target="_blank">
         {{row.name}}
@@ -16,7 +16,7 @@
     <mat-cell *matCellDef="let row">{{getKeggPathwayCategory(row.category)?.name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="kegg_id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>View in KEGG</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>View in KEGG*</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <a href="http://www.kegg.jp/kegg-bin/show_pathway?{{row.kegg_id}}" target="_blank">{{row.kegg_id}}
       </a>

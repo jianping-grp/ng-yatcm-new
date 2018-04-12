@@ -15,6 +15,7 @@ import {KeggproteinToTargetComponent} from '../../../../shared/card/keggprotein-
 })
 
 export class KeggMapComponent implements OnInit {
+  tooltipWords = 'Click to view more';
   displayType: string;
   pathwayId: number | string;
   compoundId: number | string;

@@ -6,7 +6,7 @@ import {PrescriptionListParamsType} from './yatcm/enum/prescription-list-param-t
 import {CompoundListParamsType} from './yatcm/enum/compound-list-param-type.enum';
 import {PathwayListParamsType} from './yatcm/enum/pathway-list-param-type.enum';
 import {TargetListParamsType} from './yatcm/enum/target-list-param-type.enum';
-import {DiseaseListParamsType} from "./yatcm/enum/disease-list-param-type.enum";
+import {DiseaseListParamsType} from './yatcm/enum/disease-list-param-type.enum';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,6 @@ import {DiseaseListParamsType} from "./yatcm/enum/disease-list-param-type.enum";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  coords = '1571,838,1453,838';
   title = 'yatcm';
   loadingStatus: boolean;
   loadingStatus$: Observable<boolean>;

@@ -15,30 +15,36 @@
         <ng-container *ngFor="let keggCompoundMap of mappingKeggCpds">
           <circle [attr.cx]="keggCompoundMap.x" [attr.cy]="keggCompoundMap.y" r="10"
                   (click)="openCompoundDialog(keggCompoundMap.keggcompound_keggid, 'compound')"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:red;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle [attr.cx]="keggCompoundMap.x" [attr.cy]="keggCompoundMap.y" r="4"
                   (click)="openCompoundDialog(keggCompoundMap.keggcompound_keggid, 'compound')"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
         </ng-container>
         <ng-container *ngFor="let keggTargetMap of mappingKeggTgts">
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'compound')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.y" r="10"
-                  style="fill:#00FF00;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
+                  matTooltip="{{tooltipWords}}"
+                  style="fill:blue;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'compound')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.x" r="4"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
 
           <rect *ngIf="keggTargetMap.type === 'rectangle' || 'roundrectangle'"
                 (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'compound')"
                 [attr.x]="keggTargetMap.coords.x - 22" [attr.y]="keggTargetMap.coords.y - 9"
                 [attr.width]="keggTargetMap.coords.width" [attr.height]="keggTargetMap.coords.height"
-                style="fill:#00FF00;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
+                matTooltip="{{tooltipWords}}"
+                style="fill:#00FF00;stroke:blue;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
           <polyline *ngIf="keggTargetMap.type === 'line'"
                     (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'compound')"
                     [attr.points]="keggTargetMap.coords"
-                    style="fill:none;stroke:#00FF00;stroke-width:4"/>
+                    matTooltip="{{tooltipWords}}"
+                    style="fill:none;stroke:blue;stroke-width:6"/>
         </ng-container>
       </svg>
     </div>
@@ -59,8 +65,10 @@
         <ng-container *ngFor="let keggHerbMap of mappingKeggCpds">
           <circle [attr.cx]="keggHerbMap.x" [attr.cy]="keggHerbMap.y" r="10"
                   (click)="openCompoundDialog(keggHerbMap?.keggcompound_keggid, 'herb')"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:red;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle [attr.cx]="keggHerbMap.x" [attr.cy]="keggHerbMap.y" r="4"
+                  matTooltip="{{tooltipWords}}"
                   (click)="openCompoundDialog(keggHerbMap?.keggcompound_keggid, 'herb')"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
         </ng-container>
@@ -68,22 +76,26 @@
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'herb')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.y" r="10"
-                  style="fill:#FFFF00;stroke:#FFFF00;stroke-width:1; fill-opacity: 1; opacity: 5"/>
+                  matTooltip="{{tooltipWords}}"
+                  style="fill:blue;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'herb')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.x" r="4"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
 
           <rect *ngIf="keggTargetMap.type === 'rectangle' || 'roundrectangle'"
                 (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'herb')"
                 [attr.x]="keggTargetMap.coords.x - 22" [attr.y]="keggTargetMap.coords.y - 9"
                 [attr.width]="keggTargetMap.coords.width" [attr.height]="keggTargetMap.coords.height"
-                style="fill:#FFFF00;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
+                matTooltip="{{tooltipWords}}"
+                style="fill:#FFFF00;stroke:blue;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
           <polyline *ngIf="keggTargetMap.type === 'line'"
                     (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'herb')"
                     (click)="openHerbTargetMapDialog(keggTargetMap.keggprotein_keggid)"
                     [attr.points]="keggTargetMap.coords"
-                    style="fill:none;stroke:#FFFF00;stroke-width:4"/>
+                    matTooltip="{{tooltipWords}}"
+                    style="fill:none;stroke:blue;stroke-width:6"/>
         </ng-container>
       </svg>
     </div>
@@ -105,30 +117,36 @@
         <ng-container *ngFor="let keggPrescriptionMap of mappingKeggCpds">
           <circle [attr.cx]="keggPrescriptionMap.x" [attr.cy]="keggPrescriptionMap.y" r="10"
                   (click)="openCompoundDialog(keggPrescriptionMap?.keggcompound_keggid, 'prescription')"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:red;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle [attr.cx]="keggPrescriptionMap.x" [attr.cy]="keggPrescriptionMap.y" r="4"
                   (click)="openCompoundDialog(keggPrescriptionMap?.keggcompound_keggid, 'prescription')"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
         </ng-container>
         <ng-container *ngFor="let keggTargetMap of mappingKeggTgts">
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'prescription')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.y" r="10"
-                  style="fill:#FFFF00;stroke:#FFFF00;stroke-width:1; fill-opacity: 1; opacity: 5"/>
+                  matTooltip="{{tooltipWords}}"
+                  style="fill:blue;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'prescription')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.x" r="4"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
 
           <rect *ngIf="keggTargetMap.type === 'rectangle' || 'roundrectangle'"
                 (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'prescription')"
                 [attr.x]="keggTargetMap.coords.x - 22" [attr.y]="keggTargetMap.coords.y - 9"
                 [attr.width]="keggTargetMap.coords.width" [attr.height]="keggTargetMap.coords.height"
-                style="fill:#FFFF00;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
+                matTooltip="{{tooltipWords}}"
+                style="fill:#FFFF00;stroke:blue;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
           <polyline *ngIf="keggTargetMap.type === 'line'"
                     (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'prescription')"
                     [attr.points]="keggTargetMap.coords"
-                    style="fill:none;stroke:#FFFF00;stroke-width:4"/>
+                    matTooltip="{{tooltipWords}}"
+                    style="fill:none;stroke:blue;stroke-width:6"/>
         </ng-container>
       </svg>
     </div>
@@ -150,21 +168,25 @@
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'target')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.y" r="10"
-                  style="fill:#FFFF00;stroke:#FFFF00;stroke-width:1; fill-opacity: 1; opacity: 5"/>
+                  matTooltip="{{tooltipWords}}"
+                  style="fill:blue;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'target')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.x" r="4"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
 
           <rect *ngIf="keggTargetMap.type === 'rectangle' || 'roundrectangle'"
                 (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'target')"
                 [attr.x]="keggTargetMap.coords.x - 22" [attr.y]="keggTargetMap.coords.y - 9"
                 [attr.width]="keggTargetMap.coords.width" [attr.height]="keggTargetMap.coords.height"
-                style="fill:#FFFF00;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
+                matTooltip="{{tooltipWords}}"
+                style="fill:#FFFF00;stroke:blue;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
           <polyline *ngIf="keggTargetMap.type === 'line'"
                     (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'target')"
                     [attr.points]="keggTargetMap.coords"
-                    style="fill:none;stroke:black;stroke-width:4"/>
+                    matTooltip="{{tooltipWords}}"
+                    style="fill:none:;stroke:blue;stroke-width:6"/>
         </ng-container>
       </svg>
     </div>
@@ -187,21 +209,25 @@
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'disease')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.y" r="10"
-                  style="fill:#FFFF00;stroke:#FFFF00;stroke-width:1; fill-opacity: 1; opacity: 5"/>
+                  matTooltip="{{tooltipWords}}"
+                  style="fill:blue;stroke:green;stroke-width:1; fill-opacity: 1; opacity: 5"/>
           <circle *ngIf="keggTargetMap.type === 'circle'"
                   (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'disease')"
                   [attr.cx]="keggTargetMap.coords.x" [attr.cy]="keggTargetMap.coords.x" r="4"
+                  matTooltip="{{tooltipWords}}"
                   style="fill:none;stroke:black;stroke-width:1; fill-opacity: 0.1;"/>
 
           <rect *ngIf="keggTargetMap.type === 'rectangle' || 'roundrectangle'"
                 (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'disease')"
                 [attr.x]="keggTargetMap.coords.x - 22" [attr.y]="keggTargetMap.coords.y - 9"
                 [attr.width]="keggTargetMap.coords.width" [attr.height]="keggTargetMap.coords.height"
-                style="fill:#FFFF00;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
+                matTooltip="{{tooltipWords}}"
+                style="fill:#FFFF00;stroke:blue;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"/>
           <polyline *ngIf="keggTargetMap.type === 'line'"
                     (click)="openTargetDialog(keggTargetMap.keggprotein_keggid, 'disease')"
                     [attr.points]="keggTargetMap.coords"
-                    style="fill:none;stroke:#FFFF00;stroke-width:4"/>
+                    matTooltip="{{tooltipWords}}"
+                    style="fill:none;stroke:blue;stroke-width:6"/>
         </ng-container>
       </svg>
     </div>

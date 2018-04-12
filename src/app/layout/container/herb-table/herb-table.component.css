@@ -2,3 +2,7 @@
   max-height: 180px;
   overflow-y: auto;
 }
+
+.icon-color {
+  color: grey;
+}

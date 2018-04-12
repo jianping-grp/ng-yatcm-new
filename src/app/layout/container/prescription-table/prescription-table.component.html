@@ -36,37 +36,73 @@
 
     <ng-container matColumnDef="traditional_usage">
       <mat-header-cell *matHeaderCellDef>Traditional Usage</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.yongfa}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.yongfa">{{row.yongfa}}</ng-container>
+        <ng-container *ngIf="!row.yongfa">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="modern_usage">
       <mat-header-cell *matHeaderCellDef>Modern Application</mat-header-cell>
       <mat-cell *matCellDef="let row" class="scroll-content">
-        {{row.chinese_modern_application}}
+        <ng-container *ngIf="row.chinese_modern_application">{{row.chinese_modern_application}}</ng-container>
+        <ng-container *ngIf="!row.chinese_modern_application">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="modern_usage(english)">
       <mat-header-cell *matHeaderCellDef>Modern Application(english)</mat-header-cell>
       <mat-cell *matCellDef="let row" class="scroll-content">
-        {{row.english_modern_application}}
+        <ng-container *ngIf="row.english_modern_application">{{row.english_modern_application}}</ng-container>
+        <ng-container *ngIf="!row.english_modern_application">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="traditional_application">
       <mat-header-cell *matHeaderCellDef>Traditional Application</mat-header-cell>
-      <mat-cell *matCellDef="let row" class="scroll-content">{{row.chinese_indiction}}</mat-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">
+        <ng-container *ngIf="row.chinese_indiction">{{row.chinese_indiction}}</ng-container>
+        <ng-container *ngIf="!row.chinese_indiction">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="traditional_application(english)">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Traditioanl Application(english)</mat-header-cell>
-      <mat-cell *matCellDef="let row" class="scroll-content">{{row.english_indiction}}</mat-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">
+        <ng-container *ngIf="row.english_indiction">{{row.english_indiction}}</ng-container>
+        <ng-container *ngIf="!row.english_indiction">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="traditional_explanation">
       <mat-header-cell *matHeaderCellDef>Traditional Explanation</mat-header-cell>
       <mat-cell *matCellDef="let row" class="scroll-content">
-        {{row.fangjie}}
+        <ng-container *ngIf="row.fangjie">{{row.fangjie}}</ng-container>
+        <ng-container *ngIf="!row.fangjie">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
       </mat-cell>
     </ng-container>
 

@@ -1,1 +1,8 @@
 
+.toolbar-color {
+  color: #fff;
+  background: -webkit-linear-gradient(right, #56cc9d, rgba(86,204,157,0)); /* Safari 5.1 - 6 */
+  background: -o-linear-gradient(right, #56cc9d, rgba(86,204,157,0)); /* Opera 11.1 - 12*/
+  background: -moz-linear-gradient(right, #56cc9d, rgba(86,204,157,0)); /* Firefox 3.6 - 15*/
+  background: linear-gradient(to right, #56cc9d, rgba(86,204,157,0)); /* 标准的语法 */
+}

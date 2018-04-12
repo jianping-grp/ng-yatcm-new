@@ -9,15 +9,17 @@
       <a href="http://www.kegg.jp/dbget-bin/www_bget?{{keggId}}" target="_blank">{{keggId}}</a>
     </td>
     <td class="mdl-data-table__cell--non-numeric">
-      <p *ngFor="let target of targets">
+      <ng-container *ngFor="let target of targets">
+        <a href="{{target?.uniprot_link}}" target="_blank">{{target?.uniprot_name}}</a>
         <button mat-button color="primary" (click)="kclose()" appViewPageById idType="target" pageId="{{target?.id}}">
           {{target?.target_name}}
         </button>
-        <button *ngIf="!target?.target_name" (click)="kclose()" appViewPageById idType="target" pageId="{{target?.id}}">
-          {{target?.id}}
+        <button mat-button color="primary"
+                *ngIf="!target?.target_name"
+                (click)="kclose()" appViewPageById idType="target" pageId="{{target?.id}}"
+        >{{target?.id}}
         </button>
-        <a href="{{target?.uniprot_link}}" target="_blank">{{target?.uniprot_name}}</a>
-      </p>
+      </ng-container>
     </td>
   </tr>
 </table>

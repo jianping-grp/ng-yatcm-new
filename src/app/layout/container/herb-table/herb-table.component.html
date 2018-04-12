@@ -12,7 +12,7 @@
     </ng-container>
 
     <ng-container matColumnDef="English_name">
-      <mat-cell *matHeaderCellDef mat-sort-header>English Name*</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>English Name*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" appViewPageById [idType]="'herb'" pageId="{{row.id}}">
           {{row.English_name}}
@@ -21,7 +21,7 @@
     </ng-container>
 
     <ng-container matColumnDef="Chinese_name">
-      <mat-cell *matHeaderCellDef mat-sort-header>Chinese Name*</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Chinese Name*</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" appViewPageById [idType]="'herb'" pageId="{{row.id}}">
           {{row.Chinese_name}}
@@ -30,12 +30,12 @@
     </ng-container>
 
     <ng-container matColumnDef="phonetic_name">
-      <mat-cell *matHeaderCellDef>Phonetic Name</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Phonetic Name</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.pinyin_name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ingredients">
-      <mat-cell *matHeaderCellDef>Ingredients</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Ingredients</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" (click)="gotoCompoundList(row.id)">
           {{row.compounds.length}}
@@ -44,62 +44,94 @@
     </ng-container>
 
     <ng-container matColumnDef="first_category">
-      <mat-cell *matHeaderCellDef >First Category</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.first_catagory_chinese}}({{row.first_catagory_english}})</mat-cell>
+      <mat-header-cell *matHeaderCellDef >First Category</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.first_catagory_chinese">
+          {{row.first_catagory_chinese}}({{row.first_catagory_english}})
+        </ng-container>
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="second_category">
-      <mat-cell *matHeaderCellDef>Second Category</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Second Category</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.second_catagory_chinese}}({{row.second_catagory_english}})</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="effect">
-      <mat-cell *matHeaderCellDef mat-sort-header>Effect*</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.effect}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Effect*</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.effect">{{row.effect}}</ng-container>
+        <ng-container *ngIf="!row.effect">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="latin_name">
-      <mat-cell *matHeaderCellDef mat-sort-header>Latin Name*</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Latin Name*</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.latin_name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="drug_property">
-      <mat-cell *matHeaderCellDef mat-sort-header>Drug ProPerty*</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.drug_property}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Drug ProPerty*</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.drug_property">{{row.drug_property}}</ng-container>
+        <ng-container *ngIf="!row.drug_property">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="wiki_chinese">
-      <mat-cell *matHeaderCellDef>Wiki Chinese</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Wiki Chinese</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.wiki_chinese}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="wiki_english">
-      <mat-cell *matHeaderCellDef>Wiki English</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Wiki English</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.wiki_english}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="indication">
-      <mat-cell *matHeaderCellDef mat-sort-header>Indication*</mat-cell>
-      <mat-cell *matCellDef="let row" class="scroll-content">{{row.indication}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Indication*</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="scroll-content">
+        <ng-container *ngIf="row.indication">{{row.indication}}</ng-container>
+        <ng-container *ngIf="!row.indication">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="meridians">
-      <mat-cell *matHeaderCellDef mat-sort-header>Meridians</mat-cell>
-      <mat-cell *matCellDef="let row">{{row.meridians}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Meridians</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.meridians">{{row.meridians}}</ng-container>
+        <ng-container *ngIf="!row.meridians">
+          <span>
+            <mat-icon class="icon-color" matTooltip="{{emptyTooltip}}">error</mat-icon>
+          </span>
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="related_herb">
-      <mat-cell *matHeaderCellDef>Related Herb</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Related Herb</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.related_herbs}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="subherb">
-      <mat-cell *matHeaderCellDef>Subherb</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Subherb</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.subherb_set.length}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="pathway">
-      <mat-cell *matHeaderCellDef>Pathway</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Pathway</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" (click)="goPathwayList(row.id)">
           {{row.id | pathwayNumber: 'herb' | async}}
@@ -107,7 +139,7 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="detail">
-      <mat-cell *matHeaderCellDef>Detail</mat-cell>
+      <mat-header-cell *matHeaderCellDef>Detail</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" appViewPageById [idType]="'herb'" pageId="{{row.id}}">view</button>
       </mat-cell>
