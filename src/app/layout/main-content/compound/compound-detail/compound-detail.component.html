@@ -9,7 +9,7 @@
     ></app-jsme>
   </div>
   <div class="mdl-cell mdl-cell--9-col">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" >
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-width" >
       <tr>
         <th>Enlish Name</th>
         <td class="mdl-data-table__cell--non-numeric">{{compound?.english_name}}</td>
@@ -94,7 +94,7 @@
   </div>
 </div>
 <h5><strong>Structure Information</strong></h5>
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+<table id="structureTable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <tr>
     <th class="mdl-data-table__cell--non-numeric">Molecule Formula</th>
     <th class="mdl-data-table__cell--non-numeric">Mol Weight</th>

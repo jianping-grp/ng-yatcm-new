@@ -16,7 +16,6 @@ import {GlobalService} from '../../../services/global/global.service';
   styleUrls: ['./disease-table.component.css']
 })
 export class DiseaseTableComponent implements OnInit, AfterViewInit {
-  emptyTooltip = 'Sorry, there is no related information';
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;

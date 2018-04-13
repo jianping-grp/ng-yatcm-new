@@ -10,4 +10,51 @@ img {
   left: 0px;
 }
 
+.compound-outer-circle {
+  fill:red;
+  stroke:black;
+  stroke-width:1;
+  fill-opacity: 1;
+  opacity: 5
+}
 
+.inner-circle {
+  fill:none;
+  stroke:black;
+  stroke-width:1;
+  fill-opacity: 0.1;
+}
+
+.protein-outer-circle {
+  fill:blue;
+  stroke:green;
+  stroke-width:1;
+  fill-opacity: 1;
+  opacity: 5
+}
+
+.protein-rect {
+  fill:#FFFF00;
+  stroke:blue;
+  stroke-width:5;
+  fill-opacity:0.1;
+  stroke-opacity:0.9
+}
+
+.protein-polyline {
+ fill:none;
+  stroke:blue;
+  stroke-width:6
+}
+
+.red-color {
+  color: red;
+}
+
+.blue-color {
+  color: blue;
+}
+
+.alert-color {
+  color: yellow;
+}

@@ -2,6 +2,11 @@
   white-space: normal;
 }
 
-table {
+
+.table-width {
   min-width: 800px;
+}
+
+#structureTable {
+  width: 100%;
 }

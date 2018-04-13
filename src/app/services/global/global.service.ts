@@ -1,12 +1,12 @@
 import {Injectable, NgZone, OnInit} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
-import {HerbListParamsType} from "../../yatcm/enum/herb-list-param-type.enum";
-import {PrescriptionListParamsType} from "../../yatcm/enum/prescription-list-param-type.enum";
-import {CompoundListParamsType} from "../../yatcm/enum/compound-list-param-type.enum";
-import {PathwayListParamsType} from "../../yatcm/enum/pathway-list-param-type.enum";
-import {TargetListParamsType} from "../../yatcm/enum/target-list-param-type.enum";
-import {DiseaseListParamsType} from "../../yatcm/enum/disease-list-param-type.enum";
+import {HerbListParamsType} from '../../yatcm/enum/herb-list-param-type.enum';
+import {PrescriptionListParamsType} from '../../yatcm/enum/prescription-list-param-type.enum';
+import {CompoundListParamsType} from '../../yatcm/enum/compound-list-param-type.enum';
+import {PathwayListParamsType} from '../../yatcm/enum/pathway-list-param-type.enum';
+import {TargetListParamsType} from '../../yatcm/enum/target-list-param-type.enum';
+import {DiseaseListParamsType} from '../../yatcm/enum/disease-list-param-type.enum';
 
 declare const JSApplet: any;
 

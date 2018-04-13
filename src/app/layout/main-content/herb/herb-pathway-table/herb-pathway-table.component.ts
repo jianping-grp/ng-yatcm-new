@@ -11,7 +11,7 @@ import {Observable} from 'rxjs/Observable';
 export class HerbPathwayTableComponent implements OnInit {
   restUrl$: Observable<string>;
   herbId: number;
-  body: Object;
+  body: object;
   constructor(private route: ActivatedRoute) {
 
   }

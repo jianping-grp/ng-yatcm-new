@@ -2,7 +2,7 @@
   <div *ngIf="isLoading || isLoadingError">
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
-<mat-table #ingredientsTable [dataSource]="dataSource"  style="width: 100%;"
+<mat-table #ingredientsTable [dataSource]="dataSource"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="molecule">
     <mat-header-cell *matHeaderCellDef>Molecule</mat-header-cell>

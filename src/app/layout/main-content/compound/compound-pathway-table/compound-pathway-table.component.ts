@@ -10,7 +10,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 export class CompoundPathwayTableComponent implements OnInit {
   restUrl$: Observable<string>;
   compoundId: number;
-  body: Object;
+  body: object;
   constructor(private route: ActivatedRoute) {
 
   }

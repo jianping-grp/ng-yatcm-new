@@ -31,7 +31,7 @@ export class ChemblDetailComponent implements OnInit {
   pageSizeOptions = [5, 10, 50, 100];
   displayedColumns = ['standard_type', 'standard_flag', 'standard_value', 'standard_relation',
     'published_value', 'pchembl_value', 'target', 'assay', 'reference'];
-  allColumns = ['standard_type', 'standard_value', 'standard_value', 'standard_relation',
+  allColumns = ['standard_type', 'standard_value', 'standard_relation',
     'published_value', 'target', 'assay', 'reference'];
 
 
@@ -57,7 +57,7 @@ export class ChemblDetailComponent implements OnInit {
 
   openAssayDialog(assayId: number): void {
     this.dialog.open(AssayCardComponent, {
-      width: '400px',
+      width: '500px',
       data: {
         assayId: assayId
       }
@@ -66,7 +66,7 @@ export class ChemblDetailComponent implements OnInit {
 
   openTargetDialog(chemblId: number | string, activityId: number | string) {
     this.dialog.open(ChemblRelatedTargetCardComponent, {
-      width: '400px',
+      width: '500px',
       data: {
         chemblId: chemblId,
         activityId: activityId

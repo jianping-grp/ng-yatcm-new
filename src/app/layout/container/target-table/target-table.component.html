@@ -12,14 +12,7 @@
   </ng-container>
   <ng-container matColumnDef="target_name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Target Name*</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <ng-container *ngIf="row.target_name">{{row.target_name}}</ng-container>
-      <ng-container *ngIf="!row.target_name">
-          <span>
-            <mat-icon class="icon-color" matTooltip="Sorry, there is no related information">error</mat-icon>
-          </span>
-      </ng-container>
-      {{row.target_name}}</mat-cell>
+    <mat-cell *matCellDef="let row">{{row.target_name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="uniprot_name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Uniprot Name*</mat-header-cell>

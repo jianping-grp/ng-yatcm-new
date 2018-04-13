@@ -21,7 +21,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
   isLoadingError = false;
   restUrl: string;
   keggPathwayCategory: KeggPathwayCategory[];
-  @Input() body: Object;
+  @Input() body: object;
   @Input() idType: string;
   @Input() id: number;
   @Input() tableTitle = '';
@@ -49,9 +49,9 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
         'prescription_compound_detail', 'prescription_protein_detail'];
     } else if (this.idType === 'compound') {
       this.displayedColumns = ['name', 'category', 'compound_in_kegg_id',
-        'compound_compound_detail', 'compound_protein_detail']; // todo modify
+        'compound_compound_detail', 'compound_protein_detail'];
     } else if (this.idType === 'target') {
-      this.displayedColumns = ['name', 'category', 'target_in_kegg_id', 'target_protein_detail'];  // todo add target detail
+      this.displayedColumns = ['name', 'category', 'target_in_kegg_id', 'target_protein_detail'];
     } else if (this.idType === 'disease') {
       this.displayedColumns = ['name', 'category', 'disease_in_kegg_id', 'disease_protein_detail'];
     } else {
@@ -158,6 +158,5 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
     }
     this.router.navigate(['pathway/protein-detail'], {queryParams: queryParams});
   }
-
 
 }

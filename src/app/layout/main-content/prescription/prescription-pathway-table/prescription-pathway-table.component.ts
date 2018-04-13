@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-prescription-pathway-table',
@@ -10,7 +10,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 export class PrescriptionPathwayTableComponent implements OnInit {
   restUrl$: Observable<string>;
   prescriptionId: number;
-  body: Object;
+  body: object;
   constructor(private route: ActivatedRoute) {
 
   }
