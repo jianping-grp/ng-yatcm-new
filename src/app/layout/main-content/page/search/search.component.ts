@@ -6,7 +6,7 @@ import {CompoundListParamsType} from '../../../../yatcm/enum/compound-list-param
 import {TargetListParamsType} from '../../../../yatcm/enum/target-list-param-type.enum';
 import {DiseaseListParamsType} from '../../../../yatcm/enum/disease-list-param-type.enum';
 import {PathwayListParamsType} from '../../../../yatcm/enum/pathway-list-param-type.enum';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -25,9 +25,13 @@ export class SearchComponent implements OnInit {
   compoundInputTypeList = ['English name', 'Formula', 'CID', 'CAS'];
   compoundSelectedType = this.compoundInputTypeList[0];
   compoundKeyword = '';
-  diseaseInputTypeList = ['Disease name', 'Synonym'];
+  // diseaseInputTypeList = ['Disease name', 'Synonym'];
+  diseaseInputTypeList = [
+    {value: 'Disease name', placeholder: 'Nail Disorder, Nonsyndromic Congenital, 10 Ndnc10'},
+    {value: 'Synonyms', placeholder: 'Claw-Shaped Nails Onychauxis, Hyponychia, And Onycholysis'}
+  ];
   diseaseSelectedType = this.diseaseInputTypeList[0];
-  diseaseKeyword = '';
+  diseaseKeyword: string;
   pathwayInputTypeList = ['Pathway name', 'KEGG ID'];
   pathwaySelectedType = this.pathwayInputTypeList[0];
   pathwayKeyword = ``;
@@ -82,9 +86,9 @@ export class SearchComponent implements OnInit {
   }
 
   diseaseSubmit() {
-    if (this.diseaseSelectedType === 'Disease name') {
+    if (this.diseaseSelectedType.value === 'Disease name') {
       this.globalService.gotoDiseaseList(DiseaseListParamsType.disease_name, {diseaseName: this.diseaseKeyword});
-    } else if (this.diseaseSelectedType === 'Synonym') {
+    } else if (this.diseaseSelectedType.value === 'Synonym') {
       this.globalService.gotoDiseaseList(DiseaseListParamsType.synonyms, {synonym: this.diseaseKeyword});
     }
   }

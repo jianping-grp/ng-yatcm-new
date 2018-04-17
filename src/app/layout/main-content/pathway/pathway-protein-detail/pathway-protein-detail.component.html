@@ -15,15 +15,13 @@
   <ng-container matColumnDef="tcm_target">
     <mat-header-cell *matHeaderCellDef>Target from YaTCM</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <p>
-        <button mat-button color="primary"  appViewPageById idType="target" pageId="{{row.id}}">
-          {{row.target_name}}
-        </button>
-        <button *ngIf="!row.target_name" appViewPageById idType="target" pageId="{{row.id}}">
-          {{row.id}}
-        </button>
-        <a href="{{row.uniprot_link}}" target="_blank">{{row.uniprot_name}}</a>
-      </p>
+      <a href="{{row.uniprot_link}}" target="_blank">{{row.uniprot_name}}</a>
+      <button mat-button color="primary"  appViewPageById idType="target" pageId="{{row.id}}">
+        {{row.target_name}}
+      </button>
+      <button *ngIf="!row.target_name" appViewPageById idType="target" pageId="{{row.id}}">
+        {{row.id}}
+      </button>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="view_in_map">

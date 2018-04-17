@@ -1,10 +1,18 @@
 .mdl-data-table {
   white-space: normal;
+}
+
+.table-min-width {
+  min-width: 600px;
+}
+
+.full-width {
+  width: 100%;
   min-width: 600px;
 }
 
 .img-style {
   height: 320px;
-  width: 100%
+  width: 320px;
 }
 

@@ -1,97 +1,89 @@
 <h5><strong>{{compound?.english_name}} Basic Information</strong></h5>
 <div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--3-col">
-    <app-jsme [elementId]="'undefined'"
-              [width]="'300px'"
-              [height]="'320px'"
-              [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
-              [molString]="compound?.smiles"
-    ></app-jsme>
-  </div>
-  <div class="mdl-cell mdl-cell--9-col">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-width" >
-      <tr>
-        <th>Enlish Name</th>
-        <td class="mdl-data-table__cell--non-numeric">{{compound?.english_name}}</td>
-      </tr>
-      <tr>
-        <th>Chinese Name</th>
-        <td class="mdl-data-table__cell--non-numeric">{{compound?.chinese_name}}</td>
-      </tr>
-      <tr>
-        <th>Smiles</th>
-        <td class="mdl-data-table__cell--non-numeric">{{compound?.smiles}}</td>
-      </tr>
-      <tr>
-        <th>CID</th>
-        <td class="mdl-data-table__cell--non-numeric">
-          <a href="{{cid.url}}" target="_blank" *ngFor="let cid of compound?.cid">
-            {{cid.cid}}&nbsp;&nbsp;</a>
-        </td>
-      </tr>
-      <tr>
-        <th>CAS</th>
-        <td class="mdl-data-table__cell--non-numeric">
-          <a href="http://www.molbase.com/en/search.html?search_keyword={{cas.cas}}" target="_blank" *ngFor="let cas of compound?.cas">
-            {{cas.cas}}</a>&nbsp;&nbsp;
-        </td>
-      </tr>
-      <tr>
-        <th>First Category</th>
-        <td *ngIf="compound?.compoundfirstcatagory_set.length" class="mdl-data-table__cell--non-numeric">
-          <p>
-            <ng-container *ngFor="let firstCategory of compound?.compoundfirstcatagory_set">
-              {{firstCategory.Chinese_first_catagory}}({{firstCategory.English_first_catagory}})&nbsp;&nbsp;
-            </ng-container>
-          </p>
-        </td>
-        <td *ngIf="!compound?.compoundfirstcatagory_set.length" class="mdl-data-table__cell--non-numeric"></td>
-      </tr>
-      <tr>
-        <th>Second Category</th>
-        <td *ngIf="compound?.compoundsecondcatagory_set.length" class="mdl-data-table__cell--non-numeric">
-          <p>
-            <ng-container *ngFor="let secondCategory of compound?.compoundsecondcatagory_set">
-              {{secondCategory.Chinese_second_catagory}}({{secondCategory.English_second_catagory}})&nbsp;&nbsp;
-            </ng-container>
-          </p>
-        </td>
-        <td *ngIf="!compound?.compoundsecondcatagory_set.length" class="mdl-data-table__cell--non-numeric"></td>
-      </tr>
-      <tr>
-        <th>Compound MS</th>
-        <td class="mdl-data-table__cell--non-numeric">
-          <a href="{{ms.ms_link}}" *ngFor="let ms of compound?.compound_ms_set" target="_blank">
-            {{getMsId(ms.ms_link)}}&nbsp;&nbsp;</a>
-        </td>
-      </tr>
-      <tr>
-        <th>Related Herbs</th>
-        <td class="mdl-data-table__cell--non-numeric">
-          <ng-container *ngIf="compound?.herb_set.length">
-          <button mat-button color="primary" appViewPageById pageId="{{herb.id}}" [idType]="'herb'"
-                  *ngFor="let herb of compound?.herb_set"
-          >{{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;
-          </button>
-          </ng-container>
-          <ng-container *ngIf="!compound?.herb_set.length">
-          <a *ngFor="let tcmid of compound?.tcmid_herbs_set" href="{{tcmid.tcmid_link}}" target="_blank">
+<div class="mdl-cell mdl-cell--3-col">
+<app-jsme [elementId]="'undefined'"
+          [width]="'300px'"
+          [height]="'320px'"
+          [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+          [molString]="compound?.smiles"
+></app-jsme>
+</div>
+<div class="mdl-cell mdl-cell--9-col">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-width">
+  <tr>
+    <th>Enlish Name</th>
+    <td class="mdl-data-table__cell--non-numeric">{{compound?.english_name}}</td>
+  </tr>
+  <tr>
+    <th>Chinese Name</th>
+    <td class="mdl-data-table__cell--non-numeric">{{compound?.chinese_name}}</td>
+  </tr>
+  <tr>
+    <th>Smiles</th>
+    <td class="mdl-data-table__cell--non-numeric">{{compound?.smiles}}</td>
+  </tr>
+  <tr>
+    <th>CID</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <a href="{{cid.url}}" target="_blank" *ngFor="let cid of compound?.cid">
+        {{cid.cid}}&nbsp;&nbsp;</a>
+    </td>
+  </tr>
+  <tr>
+    <th>CAS</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <a href="http://www.molbase.com/en/search.html?search_keyword={{cas.cas}}" target="_blank"
+         *ngFor="let cas of compound?.cas">
+        {{cas.cas}}</a>&nbsp;&nbsp;
+    </td>
+  </tr>
+  <tr>
+    <th>First Category</th>
+    <td *ngIf="compound?.compoundfirstcatagory_set.length" class="mdl-data-table__cell--non-numeric">
+      <p>
+        <ng-container *ngFor="let firstCategory of compound?.compoundfirstcatagory_set">
+          {{firstCategory.Chinese_first_catagory}}({{firstCategory.English_first_catagory}})&nbsp;&nbsp;
+        </ng-container>
+      </p>
+    </td>
+    <td *ngIf="!compound?.compoundfirstcatagory_set.length" class="mdl-data-table__cell--non-numeric"></td>
+  </tr>
+  <tr>
+    <th>Second Category</th>
+    <td *ngIf="compound?.compoundsecondcatagory_set.length" class="mdl-data-table__cell--non-numeric">
+      <p>
+        <ng-container *ngFor="let secondCategory of compound?.compoundsecondcatagory_set">
+          {{secondCategory.Chinese_second_catagory}}({{secondCategory.English_second_catagory}})&nbsp;&nbsp;
+        </ng-container>
+      </p>
+    </td>
+    <td *ngIf="!compound?.compoundsecondcatagory_set.length" class="mdl-data-table__cell--non-numeric"></td>
+  </tr>
+  <tr>
+    <th>Compound MS</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <a href="{{ms.ms_link}}" *ngFor="let ms of compound?.compound_ms_set" target="_blank">
+        {{getMsId(ms.ms_link)}}&nbsp;&nbsp;</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Related Herbs</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <ng-container *ngIf="compound?.herb_set.length">
+        <button mat-button color="primary" appViewPageById pageId="{{herb.id}}" [idType]="'herb'"
+                *ngFor="let herb of compound?.herb_set"
+        >{{herb.Chinese_name}}({{herb.English_name}})&nbsp;&nbsp;
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!compound?.herb_set.length">
+        <a *ngFor="let tcmid of compound?.tcmid_herbs_set" href="{{tcmid.tcmid_link}}" target="_blank">
           {{tcmid.English_name}}&nbsp;&nbsp;
-          </a>
-          </ng-container>
-        </td>
-      </tr>
-      <!--<tr>-->
-        <!--<th>SEA</th>-->
-        <!--<td>-->
-          <!--<a href="http://www.ebi.ac.uk/chembl/target/inspect/{{target.chembl_id}}"-->
-          <!--*ngFor="let target of compound?.sea_targets" target="_blank">-->
-          <!--{{target.chembl_id}}&nbsp;&nbsp;-->
-          <!--</a>-->
-        <!--</td>-->
-      <!--</tr>-->
-    </table>
-  </div>
+        </a>
+      </ng-container>
+    </td>
+  </tr>
+</table>
+</div>
 </div>
 <h5><strong>Structure Information</strong></h5>
 <table id="structureTable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -114,40 +106,40 @@
     <td class="mdl-data-table__cell--non-numeric">{{compound?.rtb}}</td>
   </tr>
 </table>
-<!--<mat-tab-group>-->
-  <nav mat-tab-nav-bar>
-    <a mat-tab-link [routerLink]="'compound-prescription'"
-       routerLinkActive #rap="routerLinkActive"
-       [active]="rap.isActive">Prescription</a>
-    <a mat-tab-link
-       [routerLink]="'compound-herb'"
-       routerLinkActive #rac="routerLinkActive"
-       [active]="rac.isActive">Herb</a>
-    <a mat-tab-link
-       [routerLink]="'compound-target'"
-       routerLinkActive #rat="routerLinkActive"
-       [active]="rat.isActive">Target</a>
-    <a mat-tab-link
-       [routerLink]="'compound-pathway'"
-       routerLinkActive #rapw="routerLinkActive"
-       [active]="rapw.isActive">Pathway</a>
-    <a mat-tab-link
-       [routerLink]="'compound-disease'"
-       routerLinkActive #rat="routerLinkActive"
-       [active]="rat.isActive">Disease</a>
-    <a mat-tab-link
-       [routerLink]="'compound-sea'"
-       routerLinkActive #ras="routerLinkActive"
-       [active]="ras.isActive">SEA</a>
-    <a mat-tab-link
-       [routerLink]="'relate-molecule'"
-       routerLinkActive #ram="routerLinkActive"
-       [active]="ram.isActive">Related Molecule</a>
-    <a mat-tab-link
-       [routerLink]="'compound-network'"
-       routerLinkActive #ran="routerLinkActive"
-       [active]="ran.isActive">Network</a>
-  </nav>
-  <router-outlet></router-outlet>
-<!--</mat-tab-group>-->
+
+<nav mat-tab-nav-bar>
+  <a mat-tab-link [routerLink]="'compound-prescription'"
+     routerLinkActive #rap="routerLinkActive"
+     [active]="rap.isActive">Prescription</a>
+  <a mat-tab-link
+     [routerLink]="'compound-herb'"
+     routerLinkActive #rac="routerLinkActive"
+     [active]="rac.isActive">Herb</a>
+  <a mat-tab-link
+     [routerLink]="'compound-target'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Target</a>
+  <a mat-tab-link
+     [routerLink]="'compound-pathway'"
+     routerLinkActive #rapw="routerLinkActive"
+     [active]="rapw.isActive">Pathway</a>
+  <a mat-tab-link
+     [routerLink]="'compound-disease'"
+     routerLinkActive #rat="routerLinkActive"
+     [active]="rat.isActive">Disease</a>
+  <a mat-tab-link
+     [routerLink]="'compound-sea'"
+     routerLinkActive #ras="routerLinkActive"
+     [active]="ras.isActive">SEA</a>
+  <a mat-tab-link
+     [routerLink]="'relate-molecule'"
+     routerLinkActive #ram="routerLinkActive"
+     [active]="ram.isActive">Related Molecule</a>
+  <a mat-tab-link
+     [routerLink]="'compound-network'"
+     routerLinkActive #ran="routerLinkActive"
+     [active]="ran.isActive">Network</a>
+</nav>
+<router-outlet></router-outlet>
+
 

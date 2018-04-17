@@ -17,7 +17,7 @@ export class PathwayProteinDetailComponent implements OnInit {
   targetId: number;
   targets: Target[];
   pathwayId: number | string;
-  pathway: KeggPathway[];
+  pathway: KeggPathway;
   pageMeta: PageMeta | null;
   restUrl: string;
   url: string;

@@ -13,7 +13,7 @@ import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 export class PathwayCompoundDetailComponent implements OnInit {
   pageSizeOptions = [5, 10, 50, 100];
   pathwayId: number | string;
-  pathway: KeggPathway[];
+  pathway: KeggPathway;
   pageMeta: PageMeta | null;
   restUrl: string;
   dataSource = new MatTableDataSource();
