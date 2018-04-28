@@ -2,7 +2,9 @@
   Mapping of YaTCM target to {{pathway?.name}}
   (<a href="http://www.kegg.jp/kegg-bin/show_pathway?{{pathway?.kegg_id}}" target="_blank">{{pathway?.kegg_id}}</a>)
 </strong></h5>
-<mat-table  #pathwayProteinDetail [dataSource]="dataSource">
+<mat-table #pathwayProteinDetail
+           class="data-table"
+           [dataSource]="dataSource">
   <ng-container matColumnDef="kegg_protein">
     <mat-header-cell *matHeaderCellDef>Protein of this Pathway</mat-header-cell>
     <mat-cell *matCellDef="let row">

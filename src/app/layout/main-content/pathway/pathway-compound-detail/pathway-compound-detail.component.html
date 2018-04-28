@@ -2,7 +2,9 @@
   Similarity mapping of YaTCM compounds to {{pathway?.name}}
   (<a href="http://www.kegg.jp/kegg-bin/show_pathway?{{pathway?.kegg_id}}" target="_blank">{{pathway?.kegg_id}}</a>)
 </strong></h5>
-<mat-table #pathwayDetailTable [dataSource]="dataSource">
+<mat-table #pathwayDetailTable
+           class="data-table"
+           [dataSource]="dataSource">
   <ng-container matColumnDef="keggcompound">
     <mat-header-cell *matHeaderCellDef>Compound of this Pathway</mat-header-cell>
     <mat-cell *matCellDef="let row">

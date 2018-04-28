@@ -30,10 +30,13 @@ export class HerbTableComponent implements OnInit, AfterViewInit {
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
   @Input() displayedColumns = ['image', 'Chinese_name', 'English_name', 'phonetic_name',
-     'first_category', 'effect', 'drug_property',
+      'effect',
+    // 'first_category', 'drug_property',
     // 'wiki_chinese', 'wiki_english', 'second_category', 'subherb',
     // 'latin_name', 'detail',  'related_herb','ingredients',
-    'indication', 'meridians'];
+    'indication',
+    // 'meridians'
+  ];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

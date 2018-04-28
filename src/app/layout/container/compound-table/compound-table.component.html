@@ -1,8 +1,9 @@
 <div class="table-section-container">
-  <div *ngIf="isLoading || isLoadingError">
+  <div *ngIf="isLoading || isLoadingError"  class="table-loading-shade">
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
 <mat-table #ingredientsTable [dataSource]="dataSource"
+           class="data-table"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="molecule">
     <mat-header-cell *matHeaderCellDef>Molecule</mat-header-cell>

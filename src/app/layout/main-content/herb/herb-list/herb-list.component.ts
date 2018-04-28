@@ -4,7 +4,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {HerbListParamsType} from '../../../../yatcm/enum/herb-list-param-type.enum';
-import {Herb} from "../../../../yatcm/models/herb";
+
 
 @Component({
   selector: 'app-herb-list',
@@ -15,10 +15,14 @@ export class HerbListComponent implements OnInit {
   includeParams = '&include[]=compounds.id&exclude[]=compounds.*';
   restUrl$: Observable<string>;
   displayedColumns = ['image', 'Chinese_name', 'English_name', 'phonetic_name',
-     'first_category', 'effect', 'drug_property',
+      'effect',
+    // 'drug_property',
+    // 'first_category',
     // 'wiki_chinese', 'wiki_english', 'second_category', 'ingredients',
     // 'subherb', 'latin_name', 'detail',  'related_herb'
-    'indication', 'meridians'];
+    'indication',
+    // 'meridians'
+  ];
 
   constructor(private rest: RestService,
               private route: ActivatedRoute) {
@@ -47,7 +51,7 @@ export class HerbListComponent implements OnInit {
            const englishName = params.get('englishName');
            return `herbs/?filter{English_name.icontains}=${englishName}${this.includeParams}`;
          case HerbListParamsType.pinyin_name:
-           const pinyingName = params.get('phoneticName')
+           const pinyingName = params.get('phoneticName');
            return `herbs/?filter{pinyin_name.icontains}=${pinyingName}${this.includeParams}`;
        }
      }

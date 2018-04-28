@@ -15,9 +15,13 @@ export class PrescriptionListComponent implements OnInit {
   includeParams = '&include[]=herbs.id&exclude[]=herbs.*';
   displayedColumns = ['chinese_name', 'english_name', 'phonetic_name',
     // 'main_prescription', 'detail',
-    // 'prescription_herb',
-    'traditional_usage', 'modern_usage', 'modern_usage(english)',
-    'traditional_application', 'traditional_application(english)', 'traditional_explanation'];
+    // 'prescription_herb','traditional_usage',
+    // 'modern_usage',
+    'modern_usage(english)',
+    // 'traditional_application',
+    'traditional_application(english)',
+    // 'traditional_explanation'
+  ];
 
   constructor(private route: ActivatedRoute) { }
 

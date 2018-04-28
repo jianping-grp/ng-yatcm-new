@@ -27,12 +27,15 @@ export class PrescriptionTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = ['chinese_name', 'phonetic_name', 'english_name',
-    // 'main_prescription', 'detail', 'pathway',
-    // 'prescription_herb',
-    'traditional_usage', 'modern_usage', 'modern_usage(english)', 'traditional_application',
+  @Input() displayedColumns = ['chinese_name', 'english_name', 'phonetic_name',
+    // 'main_prescription', 'detail',
+    // 'prescription_herb','traditional_usage',
+    // 'modern_usage',
+    'modern_usage(english)',
+    // 'traditional_application',
     'traditional_application(english)',
-    'traditional_explanation'];
+    // 'traditional_explanation'
+  ];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

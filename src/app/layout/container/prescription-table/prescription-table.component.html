@@ -1,8 +1,9 @@
 <div class="table-section-container">
-  <div *ngIf="isLoading || isLoadingError">
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
   <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
   <mat-table #herbTable [dataSource]="dataSource"
+             class="data-table"
              matSort matSortActive="english_name" matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="chinese_name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Chinese_name*</mat-header-cell>

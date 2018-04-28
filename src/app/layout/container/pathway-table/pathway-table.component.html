@@ -1,8 +1,10 @@
 <div class="table-section-container">
-  <div *ngIf="isLoading || isLoadingError">
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
-<mat-table #pathwayTable [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
+<mat-table #pathwayTable [dataSource]="dataSource"
+           class="data-table"
+           matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Pathway Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">

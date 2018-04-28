@@ -43,6 +43,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() { }
 
   pstSubmit() {
+    this.pstKeyword = this.pstKeyword.trim();
     if (this.pstSelectedType === 'Chinese name') {
       this.globalService.gotoPrescriptionList(PrescriptionListParamsType.chinese_name, {chineseName: this.pstKeyword});
     } else if (this.pstSelectedType === 'English name') {
@@ -53,6 +54,7 @@ export class SearchComponent implements OnInit {
   }
 
   herbSubmit() {
+    this.herbKeyword = this.herbKeyword.trim();
     if (this.herbSelectedType === 'Chinese name') {
       this.globalService.gotoHerbList(HerbListParamsType.chinese_name, {chineseName: this.herbKeyword});
     } else if (this.herbSelectedType === 'English name') {
@@ -64,6 +66,7 @@ export class SearchComponent implements OnInit {
   }
 
   compoundSubmit() {
+    this.compoundKeyword = this.compoundKeyword.trim();
     if (this.compoundSelectedType === 'English name') {
       this.globalService.gotoCompoundList(CompoundListParamsType.english_name, {englishName: this.compoundKeyword});
     } else if (this.compoundSelectedType === 'Formula') {
@@ -76,6 +79,7 @@ export class SearchComponent implements OnInit {
   }
 
   targetSubmit() {
+    this.targetKeyword = this.targetKeyword.trim();
     if (this.targetSelectedType === 'Target name') {
       this.globalService.gotoTargetList(TargetListParamsType.target_name, {targetName: this.targetKeyword});
       } else if (this.targetSelectedType === 'Uniprot name') {
@@ -86,6 +90,7 @@ export class SearchComponent implements OnInit {
   }
 
   diseaseSubmit() {
+    this.diseaseKeyword = this.diseaseKeyword.trim();
     if (this.diseaseSelectedType.value === 'Disease name') {
       this.globalService.gotoDiseaseList(DiseaseListParamsType.disease_name, {diseaseName: this.diseaseKeyword});
     } else if (this.diseaseSelectedType.value === 'Synonym') {
@@ -94,6 +99,7 @@ export class SearchComponent implements OnInit {
   }
 
   pathwaySubmit() {
+    this.pathwayKeyword = this.pathwayKeyword.trim();
     if (this.pathwaySelectedType === 'Pathway name') {
       this.globalService.gotoPathwayList(PathwayListParamsType.pathway_name, {pathwayName: this.pathwayKeyword});
     } else if (this.pathwaySelectedType === 'KEGG ID') {
