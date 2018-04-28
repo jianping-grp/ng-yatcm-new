@@ -7,10 +7,9 @@ import {Observable} from 'rxjs/Observable';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
-import {Target} from '../../../yatcm/models/target';
 import {GlobalService} from '../../../services/global/global.service';
 import {CompoundListParamsType} from '../../../yatcm/enum/compound-list-param-type.enum';
-import {DiseaseListParamsType} from "../../../yatcm/enum/disease-list-param-type.enum";
+import {DiseaseListParamsType} from '../../../yatcm/enum/disease-list-param-type.enum';
 
 @Component({
   selector: 'app-target-table',
@@ -33,7 +32,7 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['chembl_id' , 'target_name', 'uniprot_name', 'gene_name',
+  allColumns = ['chembl_id' , 'target_name', 'ttd_target_id', 'ttd_target_name', 'ttd_target_type', 'uniprot_name', 'gene_name',
     'tcmid_link', 'compounds', 'diseases', 'detail'];
   constructor(private rest: RestService,
               private router: Router,

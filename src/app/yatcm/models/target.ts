@@ -1,6 +1,6 @@
 import {Compound} from './compound';
 import {Disease} from './disease';
-import {KeggProtein} from "./kegg-protein";
+import {KeggProtein} from './kegg-protein';
 
 export interface Target {
   id?: number;
@@ -11,7 +11,10 @@ export interface Target {
   uniprot_name?: string;
   uniprot_link?: string;
   tcmid_link?: string;
-  related_drugs?: any; // todo
+  TTD_target_id?: string;
+  TTD_target_name?: string;
+  TTD_target_type?: string;
+  related_drugs?: any;
   disease_set?: Disease[];
   compounds?: Compound[];
   keggprotein_set?: KeggProtein[];

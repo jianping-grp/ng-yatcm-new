@@ -15,6 +15,28 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Target Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.target_name}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="ttd_target_id">
+    <mat-header-cell *matHeaderCellDef>TTD Target ID</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <a *ngIf="row.TTD_target_id"
+         href="https://db.idrblab.org/ttd/home/search-api/target?search_api_fulltext={{row.TTD_target_id}}"
+         target="_blank"
+      >{{row.TTD_target_id}}</a>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ttd_target_name">
+    <mat-header-cell *matHeaderCellDef>TTD Target Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <a *ngIf="row.TTD_target_name"
+         href="https://db.idrblab.org/ttd/home/search-api/target?search_api_fulltext={{row.TTD_target_name}}"
+         target="_blank"
+      >{{row.TTD_target_name}}</a>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ttd_target_type">
+    <mat-header-cell *matHeaderCellDef>TTD Target Type</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.TTD_target_type}}</mat-cell>
+  </ng-container>
   <ng-container matColumnDef="uniprot_name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Uniprot Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">

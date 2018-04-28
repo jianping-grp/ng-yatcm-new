@@ -10,6 +10,26 @@
     </td>
   </tr>
   <tr>
+    <th>TTD Target ID</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <a href="https://db.idrblab.org/ttd/home/search-api/target?search_api_fulltext={{target?.TTD_target_id}}"
+         target="_blank"
+      >{{target?.TTD_target_id}}</a>
+    </td>
+  </tr>
+  <tr>
+    <th>TTD Target Name</th>
+    <td class="mdl-data-table__cell--non-numeric">
+      <a href="https://db.idrblab.org/ttd/home/search-api/target?search_api_fulltext={{target?.TTD_target_name}}"
+         target="_blank"
+    >{{target?.TTD_target_name}}</a>
+    </td>
+  </tr>
+  <tr>
+    <th>TTD Target Type</th>
+    <td class="mdl-data-table__cell--non-numeric">{{target?.TTD_target_type}}</td>
+  </tr>
+  <tr>
     <th>Uniprot Name</th>
     <td class="mdl-data-table__cell--non-numeric">
     <a href="{{target?.uniprot_link}}" target="_blank">{{target?.uniprot_name}}</a>
