@@ -1,22 +1,26 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {Node} from '../../../yatcm/models/network/node';
 import {Link} from '../../../yatcm/models/network/link';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {CompoundCardComponent} from '../../../shared/card/compound-card/compound-card.component';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-network-table',
   templateUrl: './network-table.component.html',
   styleUrls: ['./network-table.component.css']
 })
-export class NetworkTableComponent implements OnInit {
+export class NetworkTableComponent implements OnInit, OnDestroy {
+  targetType = 'ttd_target';
+  networkDataSubscription: Subscription;
   @Input() restUrl: string;
   @Input() body: object;
   @Input() idType: string;
   @Input() id: number;
   private echart;
+  echartOptions: any;
   nodes: Node[];
   links: Link[];
   constructor(private rest: RestService,
@@ -24,99 +28,123 @@ export class NetworkTableComponent implements OnInit {
               public dialog: MatDialog) {
 
   }
-  chartOptions = {
-    height: '1000px',
-    title: {
-      text: '',
-      top: 'top',
-      left: 'center',
-    },
-    tooltip: {},
-    legend: [{
-      top: '20px',
-      formatter: name,
-      tooltip: {
-        show: true
-      },
-      selectedMode: 'false',
-      left: 10,
-      orient: 'vertical',
-      data: this.idType === 'prescription' ? ['Prescription', 'Herb', 'Compound'] :
-        ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease']
-    }],
-    toolbox: {
-      show: true,
-      feature: {
-        dataView : {show: true, readOnly: true},
-        restore : {show: true},
-        saveAsImage : {show: true}
-      }
-    },
-    animationDuration: 3000,
-    animationEasingUpdate: 'quinticInOut',
-    series: [{
-      name: '',
-      type: 'graph',
-      layout: 'force',
-
-      force: {
-        repulsion: 50,
-        gravity: 0.1,
-        edgeLength: [5, 20]
-      },
-      categories: [
-        {'name': 'Herb'},
-        {'name': 'Prescription'},
-        {'name': 'Compound'},
-        {'name': 'Pathway'},
-        {'name': 'Target'},
-        {'name': 'Disease'}
-      ],
-      focusNodeAdjacency: true,
-      roam: true,
-      label: {
-        normal: {
-          show: false,
-          formatter: (name) => {
-            return name.data['category'];
-          },
-          position: 'top',
-        }
-      },
-      lineStyle: {
-        normal: {
-          color: 'source',
-          curveness: 0,
-          type: 'solid'
-        }
-      }
-    }],
-  };
 
   ngOnInit() {
     console.log('network table init');
+    this.ininNetworkOptions();
+  }
+
+  ininNetworkOptions() {
+    this.echartOptions = {
+      height: '1000px',
+      title: {
+        text: '',
+        top: 'top',
+        left: 'center',
+      },
+      tooltip: {},
+      legend: [{
+        top: '20px',
+        formatter: name,
+        selectedMode: 'true',
+        left: 10,
+        orient: 'vertical',
+        data: this.idType === 'prescription' ? ['Prescription', 'Herb', 'Compound'] :
+          ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease']
+      }],
+      toolbox: {
+        show: true,
+        feature: {
+          dataView : {show: true, readOnly: true},
+          restore : {show: true},
+          saveAsImage : {show: true}
+        }
+      },
+      animationDuration: 3000,
+      animationEasingUpdate: 'quinticInOut',
+      series: [{
+        name: '',
+        type: 'graph',
+        layout: 'force',
+
+        force: {
+          repulsion: 50,
+          gravity: 0.1,
+          edgeLength: [5, 20]
+        },
+        categories: [
+          {'name': 'Herb'},
+          {'name': 'Prescription'},
+          {'name': 'Compound'},
+          {'name': 'Pathway'},
+          {'name': 'Target'},
+          {'name': 'Disease'}
+        ],
+        focusNodeAdjacency: true,
+        roam: true,
+        label: {
+          normal: {
+            show: false,
+            formatter: (name) => {
+              return name.data['category'];
+            },
+            position: 'top',
+          }
+        },
+        lineStyle: {
+          normal: {
+            color: 'source',
+            curveness: 0,
+            type: 'solid'
+          }
+        }
+      }],
+    };
+  }
+
+
+  ngOnDestroy() {
+    this.networkDataSubscription.unsubscribe();
   }
 
   onChartInit(ec) {
     this.echart = ec;
     this.echart.showLoading();
-    // fetch data
-    this.rest.postData(this.restUrl, this.body)
+    this.updateNetworkData();
+  }
+
+  updateNetworkData() {
+    if (this.echart !== undefined) {
+      this.echart.showLoading();
+    }
+    if (this.idType === 'compound' && this.targetType === 'all_target') {
+      this.body = {cpd_id: this.id, only_ttd_target: 'False'};
+    } else if (this.idType === 'herb' && this.targetType === 'all_target') {
+      this.body = {herb_id: this.id, only_ttd_target: 'False'};
+    }
+    this.getNetworkData();
+  }
+
+  getNetworkData() {
+    if (this.echart !== undefined) {
+      this.echart.showLoading();
+    }
+    this.networkDataSubscription = this.rest.postData(this.restUrl, this.body)
       .subscribe(data => {
-        this.nodes = data['nodes'];
-        this.links = data['links'];
-        console.log('nodes', this.nodes, 'links', this.links);
-        this.echart.setOption({
-          series: [{
-            nodes: this.nodes,
-            links: this.links
-          }]
-        });
-        this.echart.hideLoading();
-      },
+          this.nodes = data['nodes'];
+          this.links = data['links'];
+          console.log('nodes', this.nodes, 'links', this.links);
+          this.echart.setOption({
+            series: [{
+              nodes: this.nodes,
+              links: this.links
+            }]
+          });
+          this.echart.hideLoading();
+        },
         () => {
           this.echart.hideLoading();
-          });
+        });
   }
 
   onDbClick(event) {

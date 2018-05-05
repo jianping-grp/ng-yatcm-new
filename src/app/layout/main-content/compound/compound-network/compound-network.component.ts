@@ -17,9 +17,10 @@ export class CompoundNetworkComponent implements OnInit {
   ngOnInit() {
     console.log('compound network init');
     this.restUrl = `compounds/compound_network/`;
+
     this.route.parent.paramMap.subscribe((params: ParamMap) => {
       this.compoundId  = +params.get('id');
-      this.body = {cpd_id: this.compoundId};
+      this.body = {cpd_id: this.compoundId, only_ttd_target: 'True'};
     });
   }
 }

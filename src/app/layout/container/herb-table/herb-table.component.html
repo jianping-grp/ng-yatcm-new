@@ -8,7 +8,7 @@
     <ng-container matColumnDef="image">
       <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <img src="{{row.image}}" alt="Herb Image" style="width: 100px; height: 100px;">
+        <img src="{{row.image}}" alt="Herb Image" class="herb-image">
       </mat-cell>
     </ng-container>
 
@@ -22,7 +22,7 @@
     </ng-container>
 
     <ng-container matColumnDef="Chinese_name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Chinese Name*</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Chinese Name</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-button color="primary" appViewPageById [idType]="'herb'" pageId="{{row.id}}">
           {{row.Chinese_name}}

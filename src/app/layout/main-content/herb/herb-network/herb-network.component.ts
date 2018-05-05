@@ -24,7 +24,7 @@ export class HerbNetworkComponent implements OnInit {
     this.restUrl = `herbs/herb_network/`;
     this.route.parent.paramMap.subscribe((params: ParamMap) => {
       this.herbId = +params.get('id');
-      this.body = {herb_id: this.herbId};
+      this.body = {herb_id: this.herbId, only_ttd_target: 'True'};
     });
   }
 

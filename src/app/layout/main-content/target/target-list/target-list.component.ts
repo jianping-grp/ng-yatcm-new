@@ -39,8 +39,21 @@ export class TargetListComponent implements OnInit {
             const uniprotName = params.get('uniprotName');
             return `targets/?filter{uniprot_name.icontains}=${uniprotName}${this.includeParams}`;
           case TargetListParamsType.gene_name:
-            const geneName = params.get('geneName')
+            const geneName = params.get('geneName');
             return `targets/?filter{gene_name.icontains}=${geneName}${this.includeParams}`;
+          case TargetListParamsType.herb_herb: {
+            const first_herb = +(params.get('first_herb'));
+            const second_herb = +(params.get('second_herb'));
+            let topAct = +(params.get('top'));
+            if (isNaN(topAct)) {
+              topAct = 0;
+            }
+            // this.displayedColumns = [
+            //   'target_name', 'uniprot_name', 'gene_name', 'ttd_target_id', 'ttd_target_name',
+            //   'tdd_target_type', 'detail'];
+            return `targets/herb_target_list/?first_herb=${first_herb}&second_herb=${second_herb}` +
+              `&top=${topAct}${this.includeParams}`;
+          }
         }
       }
     });

@@ -126,5 +126,9 @@
      [routerLink]="'herb-network'"
      routerLinkActive #ran="routerLinkActive"
      [active]="ran.isActive">Network</a>
+  <a mat-tab-link
+     [routerLink]="'graph'"
+     routerLinkActive #rag="routerLinkActive"
+     [active]="rag.isActive">Graph</a>
 </nav>
 <router-outlet></router-outlet>

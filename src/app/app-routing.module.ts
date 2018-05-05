@@ -51,6 +51,10 @@ const routes: Routes = [
     loadChildren: 'app/layout/main-content/chembl/chembl.module#ChemblModule'
   },
   {
+    path: 'network-datatable',
+    loadChildren: 'app/layout/main-content/network-datatable/network-datatable.module#NetworkDatatableModule'
+  },
+  {
     path: 'disease',
     loadChildren: 'app/layout/main-content/disease/disease.module#DiseaseModule'
   }

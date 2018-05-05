@@ -9,6 +9,7 @@ import {CommonModule} from '@angular/common';
 import {NetworkTableComponent} from "./network-table/network-table.component";
 import {DiseaseTableComponent} from "./disease-table/disease-table.component";
 import {CardModule} from "../../shared/card/card.module";
+import {HerbHerbNetworkTableComponent} from "./herb-herb-network-table/herb-herb-network-table.component";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {CardModule} from "../../shared/card/card.module";
     PathwayTableComponent,
     TargetTableComponent,
     NetworkTableComponent,
-    DiseaseTableComponent
+    DiseaseTableComponent,
+    HerbHerbNetworkTableComponent
   ],
   exports: [
     CompoundTableComponent,
@@ -33,7 +35,8 @@ import {CardModule} from "../../shared/card/card.module";
     PathwayTableComponent,
     TargetTableComponent,
     NetworkTableComponent,
-    DiseaseTableComponent
+    DiseaseTableComponent,
+    HerbHerbNetworkTableComponent
   ]
 })
 export class ContainerModule { }

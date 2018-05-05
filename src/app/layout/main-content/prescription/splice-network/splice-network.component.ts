@@ -18,7 +18,7 @@ export class SpliceNetworkComponent implements OnInit {
     console.log('splice network init');
     this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.compoundId = +(params.get('compoundId'));
-      this.body = {cpd_id: this.compoundId};
+      this.body = {cpd_id: this.compoundId, only_ttd_target: 'True'};
       this.restUrl = 'compounds/compound_network/';
     });
   }
