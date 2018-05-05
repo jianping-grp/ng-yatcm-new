@@ -9,6 +9,7 @@ import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {GlobalService} from '../../../services/global/global.service';
+import {TargetListParamsType} from '../../../yatcm/enum/target-list-param-type.enum';
 
 @Component({
   selector: 'app-herb-herb-network-table',
@@ -36,7 +37,7 @@ export class HerbHerbNetworkTableComponent implements OnInit, AfterViewInit {
     '&include[]=second_herb.Chinese_name&include[]=second_herb.English_name';
   allColumns = ['first_herb', 'second_herb', 'first_herb_image', 'second_herb_image', 'shared_targets'];
   constructor(private rest: RestService,
-              private router: Router) {
+              private globalService: GlobalService) {
   }
 
   ngOnInit() {
@@ -82,6 +83,11 @@ export class HerbHerbNetworkTableComponent implements OnInit, AfterViewInit {
   }
 
   gotoNetworkTargets(firstHerbId, secondHerbId) {
-    // todo add
+    this.globalService.gotoTargetList(TargetListParamsType.herb_herb, {
+      first_herb: firstHerbId,
+      second_herb: secondHerbId,
+      top: 0
+    });
   }
+
 }

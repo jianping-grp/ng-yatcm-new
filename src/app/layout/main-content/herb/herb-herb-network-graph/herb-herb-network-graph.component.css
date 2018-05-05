@@ -1,3 +1,7 @@
 .herb-target-network-graph {
-  min-height: 650px;
+  min-height: 800px;
+}
+
+.mdl-data-table {
+  margin: auto;
 }
