@@ -9,6 +9,7 @@ import {PrescriptionTargetTableComponent} from './prescription-target-table/pres
 import {PrescriptionPathwayTableComponent} from './prescription-pathway-table/prescription-pathway-table.component';
 import {PrescriptionDiseaseTableComponent} from './prescription-disease-table/prescription-disease-table.component';
 import {SpliceNetworkComponent} from './splice-network/splice-network.component';
+import {PrescriptionHerbTargetNetworkGraphComponent} from "./prescription-herb-target-network-graph/prescription-herb-target-network-graph.component";
 
 const routes: Routes = [
   {
@@ -52,7 +53,10 @@ const routes: Routes = [
         path: 'prescription-disease',
         component: PrescriptionDiseaseTableComponent
       },
-
+      {
+        path: 'herb-target',
+        component: PrescriptionHerbTargetNetworkGraphComponent
+      },
     ]
   }
 ];

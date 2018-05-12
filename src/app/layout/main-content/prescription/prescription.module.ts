@@ -11,6 +11,7 @@ import {PrescriptionTargetTableComponent} from './prescription-target-table/pres
 import {PrescriptionPathwayTableComponent} from './prescription-pathway-table/prescription-pathway-table.component';
 import {PrescriptionDiseaseTableComponent} from './prescription-disease-table/prescription-disease-table.component';
 import {SpliceNetworkComponent} from './splice-network/splice-network.component';
+import {PrescriptionHerbTargetNetworkGraphComponent} from "./prescription-herb-target-network-graph/prescription-herb-target-network-graph.component";
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {SpliceNetworkComponent} from './splice-network/splice-network.component'
     PrescriptionTargetTableComponent,
     PrescriptionPathwayTableComponent,
     PrescriptionDiseaseTableComponent,
-    SpliceNetworkComponent
+    SpliceNetworkComponent,
+    PrescriptionHerbTargetNetworkGraphComponent
   ]
 })
 export class PrescriptionModule { }

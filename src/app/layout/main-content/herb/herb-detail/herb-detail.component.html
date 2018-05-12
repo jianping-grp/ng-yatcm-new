@@ -7,23 +7,23 @@
   <div class="mdl-cell mdl-cell--9-col">
     <table class=" mdl-data-table mdl-shadow--2dp table-min-width">
       <tr>
-        <th>Chinese Name</th>
+        <th class="th-width">Chinese Name</th>
         <td class="mdl-data-table__cell--non-numeric">{{herb?.Chinese_name}}</td>
       </tr>
       <tr>
-        <th>English Name</th>
+        <th class="th-width">English Name</th>
         <td class="mdl-data-table__cell--non-numeric">{{herb?.English_name}}</td>
       </tr>
       <tr>
-        <th>Phonetic Name</th>
+        <th class="th-width">Phonetic Name</th>
         <td class="mdl-data-table__cell--non-numeric">{{herb?.pinyin_name}}</td>
       </tr>
       <tr>
-        <th>Latin Name</th>
+        <th class="th-width">Latin Name</th>
         <td class="mdl-data-table__cell--non-numeric">{{herb?.latin_name}}</td>
       </tr>
       <tr>
-        <th>Medicinal Part</th>
+        <th class="th-width">Medicinal Part</th>
         <td class="mdl-data-table__cell--non-numeric">{{herb?.use_part}}</td>
       </tr>
       <!--<tr>-->
@@ -31,7 +31,7 @@
         <!--<td>{{herb.texonomy}}</td>-->
       <!--</tr>-->
       <tr>
-        <th>Wikipedia</th>
+        <th class="th-width">Wikipedia</th>
         <td class="mdl-data-table__cell--non-numeric">
           <a href="{{herb?.wiki_english}}" target="_blank" *ngIf="herb?.wiki_english">English-wiki</a>&nbsp;&nbsp;
           <a href="{{herb?.wiki_chinese}}" target="_blank" *ngIf="herb?.wiki_chinese">Chinese-wiki</a>
@@ -47,7 +47,7 @@
         <!--</td>-->
       <!--</tr>-->
       <tr>
-        <th>Prescription</th>
+        <th class="th-width">Prescription</th>
         <td class="mdl-data-table__cell--non-numeric">
           <ng-container *ngIf="herb?.prescription_set.length">
             <a (click)="gotoPrescriptionDetail(prescription.id)" *ngFor="let prescription of herb?.prescription_set">

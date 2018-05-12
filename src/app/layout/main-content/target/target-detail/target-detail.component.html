@@ -1,16 +1,16 @@
 <table class="mdl-data-table mdl-shadow--2dp">
   <tr>
-    <th>Target Name</th>
+    <th class="th-width">Target Name</th>
     <td class="mdl-data-table__cell--non-numeric">{{target?.target_name}}</td>
   </tr>
   <tr>
-    <th>ChEMBL ID</th>
+    <th class="th-width">ChEMBL ID</th>
     <td class="mdl-data-table__cell--non-numeric">
       <a href="{{target?.chembl_url}}" target="_blank">{{target?.chemblid}}</a>
     </td>
   </tr>
   <tr>
-    <th>TTD Target ID</th>
+    <th class="th-width">TTD Target ID</th>
     <td class="mdl-data-table__cell--non-numeric">
       <a href="https://db.idrblab.org/ttd/home/search-api/target?search_api_fulltext={{target?.TTD_target_id}}"
          target="_blank"
@@ -18,7 +18,7 @@
     </td>
   </tr>
   <tr>
-    <th>TTD Target Name</th>
+    <th class="th-width">TTD Target Name</th>
     <td class="mdl-data-table__cell--non-numeric">
       <a href="https://db.idrblab.org/ttd/home/search-api/target?search_api_fulltext={{target?.TTD_target_name}}"
          target="_blank"
@@ -26,21 +26,21 @@
     </td>
   </tr>
   <tr>
-    <th>TTD Target Type</th>
+    <th class="th-width">TTD Target Type</th>
     <td class="mdl-data-table__cell--non-numeric">{{target?.TTD_target_type}}</td>
   </tr>
   <tr>
-    <th>Uniprot Name</th>
+    <th class="th-width">Uniprot Name</th>
     <td class="mdl-data-table__cell--non-numeric">
     <a href="{{target?.uniprot_link}}" target="_blank">{{target?.uniprot_name}}</a>
     </td>
   </tr>
   <tr>
-    <th>Gene Name</th>
+    <th class="th-width">Gene Name</th>
     <td class="mdl-data-table__cell--non-numeric" target="_blank">{{target?.gene_name}}</td>
   </tr>
   <tr>
-    <th>TCMID Link</th>
+    <th class="th-width">TCMID Link</th>
     <td class="mdl-data-table__cell--non-numeric">
       <a href="{{target?.tcmid_link}}" target="_blank">{{target?.tcmid_link}}</a>
     </td>

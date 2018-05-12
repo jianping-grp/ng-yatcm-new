@@ -46,8 +46,10 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput [(ngModel)]="pstKeyword" required name="keyword" placeholder="Input keywords">
+            <mat-form-field class="full-width" >
+              <input matInput [(ngModel)]="pstKeyword"
+                     shouldLabelFloat="true"
+                     required name="keyword" [placeholder]="'Input keywords'" [value]="'hu'">
             </mat-form-field>
             <br>
             <button mat-raised-button color="primary" type="submit" [disabled]="prescriptionForm.invalid">

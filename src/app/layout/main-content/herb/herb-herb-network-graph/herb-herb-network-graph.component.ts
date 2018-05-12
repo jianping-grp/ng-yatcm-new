@@ -118,7 +118,7 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
         top: 'bottom',
         left: 'center',
         textStyle: {
-          color: '#cdd0d5'
+          color: '#b2b2b2'
         }
       },
       tooltip: {
@@ -126,7 +126,7 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
         formatter: (el) => {
           switch (el.dataType) {
             case 'node':
-              return `Herb Id: ${el.data.herb_id}` +
+              return `Herb Id: ${el.data.herb_id}</br>`  +
                 `Chinese name: ${el.data.Chinese_name}</br>` +
                 `English name: ${el.data.English_name}</br>`;
             case 'edge':

@@ -2,3 +2,7 @@
   white-space: normal;
   min-width: 400px;
 }
+
+.th-width {
+  width: 150px;
+}

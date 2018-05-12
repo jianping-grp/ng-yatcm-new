@@ -10,3 +10,7 @@
 #structureTable {
   width: 100%;
 }
+
+.th-width {
+  width: 150px;
+}

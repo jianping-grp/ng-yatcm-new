@@ -23,6 +23,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
   echartOptions: any;
   nodes: Node[];
   links: Link[];
+  title: string;
   constructor(private rest: RestService,
               private router: Router,
               public dialog: MatDialog) {
@@ -39,18 +40,33 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       height: '1000px',
       title: {
         text: '',
-        top: 'top',
+        top: 'bottom',
         left: 'center',
+        textStyle: {
+          color: '#b2b2b2'
+        }
       },
-      tooltip: {},
+      tooltip: {
+        show: true,
+        formatter: (el) => {
+          switch (el.dataType) {
+            case 'node':
+              const nameId = el.data['name'].split('-*-');
+              return `${nameId[0]}</br>`  +
+                `name: ${nameId[1]}</br>`;
+            case 'edge': {
+              return
+            }
+          }
+        }
+      },
       legend: [{
         top: '20px',
         formatter: name,
         selectedMode: 'true',
         left: 10,
         orient: 'vertical',
-        data: this.idType === 'prescription' ? ['Prescription', 'Herb', 'Compound'] :
-          ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease']
+        data: this.lengendData(),
       }],
       toolbox: {
         show: true,
@@ -85,8 +101,10 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
         label: {
           normal: {
             show: false,
-            formatter: (name) => {
-              return name.data['category'];
+            formatter: (el) => {
+              // fetch name
+              const nameId = el.data['name'].split('-*-');
+              return nameId[1];
             },
             position: 'top',
           }
@@ -102,6 +120,17 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     };
   }
 
+  lengendData() {
+    {
+      if (this.idType === 'prescription') {
+        return ['Prescription', 'Herb', 'Compound'];
+      } else if (this.idType === 'prescription-herb-target') {
+        return ['Herb', 'Target'];
+      } else {
+        return ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease'];
+      }
+    }
+  }
 
   ngOnDestroy() {
     this.networkDataSubscription.unsubscribe();
@@ -134,7 +163,17 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
           this.nodes = data['nodes'];
           this.links = data['links'];
           console.log('nodes', this.nodes, 'links', this.links);
+          if (this.idType === 'prescription-herb-target') {
+            if (this.nodes.length > 0) {
+              this.title = `Common  TTD targets between two specific herbs`;
+            } else if (this.nodes.length === 0) {
+              this.title = `common  TTD targets between two specific  herbs(no data)`;
+            }
+          }
           this.echart.setOption({
+            title: {
+             text: this.title
+            },
             series: [{
               nodes: this.nodes,
               links: this.links
