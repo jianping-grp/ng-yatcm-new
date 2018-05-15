@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/Observable';
   templateUrl: './disease-list.component.html',
   styleUrls: ['./disease-list.component.css']
 })
-export class DiseaseListComponent implements OnInit {
+export class DiseaseListComponent implements OnInit {  // this disease is ttd_disease
   restUrl$: Observable<string>;
   constructor(private route: ActivatedRoute,
               private globlaservice: GlobalService) {
@@ -22,7 +22,7 @@ export class DiseaseListComponent implements OnInit {
       if (paramsType) {
         switch (paramsType) {
           case DiseaseListParamsType.disease:
-            return `disease/?`
+            return `disease/?`;
           case DiseaseListParamsType.disease_name:
             const diseaseName = params.get('diseaseName');
             return `disease/?filter{name.icontains}=${diseaseName}`;

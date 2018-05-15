@@ -1,5 +1,10 @@
 <app-network-table
-[restUrl]="restUrl"
+[restUrl]="herbTargetsRestUrl"
 [body]="body"
 [idType]="'prescription-herb-target'"
 [id]="prescriptionId"></app-network-table>
+<hr>
+<app-herb-herb-network-graph
+[restUrl$]="herbHerbRestUrl$"
+[id]="prescriptionId"
+[idType]="'prescription'"></app-herb-herb-network-graph>

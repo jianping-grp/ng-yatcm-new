@@ -7,9 +7,9 @@
 // import {Herb} from "../../../../yatcm/models/herb";
 //
 // @Component({
-//   selector: 'app-prescription-herb-herb-network-graph',
-//   templateUrl: './prescription-herb-herb-network-graph.component.html',
-//   styleUrls: ['./prescription-herb-herb-network-graph.component.css']
+//   selector: 'app-prescription-herb-network-graph',
+//   templateUrl: './prescription-herb-network-graph.component.html',
+//   styleUrls: ['./prescription-herb-network-graph.component.css']
 // })
 // export class PrescriptionHerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
 //   series: any;

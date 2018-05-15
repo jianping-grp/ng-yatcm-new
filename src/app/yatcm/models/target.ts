@@ -1,6 +1,7 @@
 import {Compound} from './compound';
 import {Disease} from './disease';
 import {KeggProtein} from './kegg-protein';
+import {TtdDisease} from "./ttd-disease";
 
 export interface Target {
   id?: number;
@@ -18,4 +19,5 @@ export interface Target {
   disease_set?: Disease[];
   compounds?: Compound[];
   keggprotein_set?: KeggProtein[];
+  ttddisease_set?: TtdDisease[];
 }

@@ -1,30 +1,33 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {RestService} from '../../../../services/rest/rest.service';
-import {HerbNetwork} from '../../../../yatcm/models/herb-network/herb-network';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {RestService} from '../../../services/rest/rest.service';
+import {HerbNetwork} from '../../../yatcm/models/herb-network/herb-network';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {Herb} from '../../../../yatcm/models/herb';
-import {GlobalService} from '../../../../services/global/global.service';
-import {TargetListParamsType} from "../../../../yatcm/enum/target-list-param-type.enum";
+import {Herb} from '../../../yatcm/models/herb';
+import {GlobalService} from '../../../services/global/global.service';
+import {TargetListParamsType} from '../../../yatcm/enum/target-list-param-type.enum';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-herb-herb-network-graph',
   templateUrl: './herb-herb-network-graph.component.html',
   styleUrls: ['./herb-herb-network-graph.component.css']
 })
-
 export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
-  herbId: number;
   herbList: Herb[];
   series: any;
   echartOptions: any;
   data: any;
   showLabel = false;
+  restUrl: string;
+  @Input() restUrl$: Observable<string>;
+  @Input() id: number;
+  @Input() idType: string;
   lengthThreshold = 1; // shared number of targets threshold
   private echartNetwork; // network graph instance
   herbNetworkList: HerbNetwork[]; // full link data
   herbIdSubscription: Subscription;
-  includeParmas = '&exclude[]=first_herb.*&include[]=first_herb.id' +
+  includeParams = '&exclude[]=first_herb.*&include[]=first_herb.id' +
     '&include[]=first_herb.Chinese_name&include[]=first_herb.English_name' +
     '&exclude[]=second_herb.*&include[]=second_herb.id' +
     '&include[]=second_herb.Chinese_name&include[]=second_herb.English_name';
@@ -38,10 +41,10 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initNetworkOption();
-    this.herbIdSubscription = this.route.parent.paramMap
-      .subscribe((params: ParamMap) => {
-      this.herbId = +(params.get('id'));
-      this.getData();
+    this.herbIdSubscription = this.restUrl$
+      .subscribe(data => {
+        this.restUrl = `${data}` + `${this.includeParams}`;
+        this.getData();
       });
   }
 
@@ -153,7 +156,7 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
     if (this.echartNetwork !== undefined) {
       this.echartNetwork.showLoading();
     }
-    this.rest.getDataList(`herbnetworks/herb/?herb_id=${this.herbId}${this.includeParmas}`, 0, 999999)
+    this.rest.getDataList(this.restUrl, 0, 999999)
       .subscribe(data => {
         this.herbList = data['herbs'];
         this.herbNetworkList = data['herb_networks'];
@@ -223,11 +226,10 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
   }
 
   onDbClick(event) {
-    console.log(event); // todo delete
     switch (event.dataType) {
       case 'node': {
         const selectedHerbId = event.data.herb_id;
-        if (selectedHerbId === this.herbId) {
+        if (selectedHerbId === this.id && this.idType === 'herb') {
           return;
         }
         this.router.navigate(['herb', +(selectedHerbId)]);
@@ -243,10 +245,15 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
   }
 
   gotoNetworkTable() {
+    let queryParams: object;
+    if (this.idType === 'herb') {
+      queryParams = {herbId: this.id};
+    } else if (this.idType === 'prescription') {
+      queryParams = {prescriptionId: this.id};
+    }
     this.router.navigate(['network-datatable/herb-herb-network-data'], {
-      queryParams: {
-        herbId: this.herbId
-      }
+      queryParams: queryParams
     });
   }
 }
+

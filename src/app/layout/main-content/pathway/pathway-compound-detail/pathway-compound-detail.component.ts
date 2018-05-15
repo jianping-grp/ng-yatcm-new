@@ -1,21 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {RestService} from '../../../../services/rest/rest.service';
 import {PageMeta} from '../../../../yatcm/models/page-meta';
 import {MatTableDataSource} from '@angular/material';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-pathway-detail',
   templateUrl: './pathway-compound-detail.component.html',
   styleUrls: ['./pathway-compound-detail.component.css']
 })
-export class PathwayCompoundDetailComponent implements OnInit {
+export class PathwayCompoundDetailComponent implements OnInit, OnDestroy {
   pageSizeOptions = [5, 10, 50, 100];
   pathwayId: number | string;
   pathway: KeggPathway;
   pageMeta: PageMeta | null;
   restUrl: string;
+  idSubscription: Subscription;
   dataSource = new MatTableDataSource();
   includeParams = '&include[]=kegg_compound.*' +
     '&include[]=tcm.id&include[]=tcm.english_name' +
@@ -31,8 +33,12 @@ export class PathwayCompoundDetailComponent implements OnInit {
     this._getData();
   }
 
+  ngOnDestroy() {
+    this.idSubscription.unsubscribe();
+  }
+
   private _getData() {
-    this.route.queryParamMap.subscribe((params: ParamMap) => {
+   this.idSubscription = this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.pathwayId = +params.get('pathwayId');
       this.rest.getDataList(`keggpathways/?filter{id}=${this.pathwayId}`, 0, 9999)
         .subscribe(data => {

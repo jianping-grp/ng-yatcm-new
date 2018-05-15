@@ -7,7 +7,7 @@ import {DiseaseHerbTableComponent} from './disease-herb-table/disease-herb-table
 import {DiseaseCompoundTableComponent} from './disease-compound-table/disease-compound-table.component';
 import {DiseaseTargetTableComponent} from './disease-target-table/disease-target-table.component';
 import {DiseasePathwayTableComponent} from './disease-pathway-table/disease-pathway-table.component';
-import {DiseaseNetworkComponent} from "./disease-network/disease-network.component";
+import {DiseaseNetworkComponent} from './disease-network/disease-network.component';
 
 const routes: Routes = [
   {

@@ -4,16 +4,22 @@
      (chartInit)="onChartInit($event)"
      (chartDblClick)="onDbClick($event)"
 ></div>
-<table class="mdl-data-table" *ngIf="idType==='herb' || idType === 'compound'">
+<table class="mdl-data-table">
   <tr>
-    <th>Target Type</th>
+    <th *ngIf="idType==='herb' || idType === 'compound'">Target Type</th>
+    <th>Nodes name</th>
   </tr>
   <tr>
-    <td>
+    <td *ngIf="idType==='herb' || idType === 'compound'">
       <mat-select [(value)]="targetType" (valueChange)="updateNetworkData()">
         <mat-option value="ttd_target">TTD Target</mat-option>
         <mat-option value="all_target">All Target</mat-option>
       </mat-select>
     </td>
+    <td>
+      <mat-slide-toggle
+        [(ngModel)]="showLabel"
+        (change)="showNodeLabel()"
+      ></mat-slide-toggle>
   </tr>
 </table>

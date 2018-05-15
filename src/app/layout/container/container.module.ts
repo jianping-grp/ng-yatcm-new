@@ -6,10 +6,11 @@ import {PrescriptionTableComponent} from './prescription-table/prescription-tabl
 import {PathwayTableComponent} from './pathway-table/pathway-table.component';
 import {TargetTableComponent} from './target-table/target-table.component';
 import {CommonModule} from '@angular/common';
-import {NetworkTableComponent} from "./network-table/network-table.component";
-import {DiseaseTableComponent} from "./disease-table/disease-table.component";
-import {CardModule} from "../../shared/card/card.module";
-import {HerbHerbNetworkTableComponent} from "./herb-herb-network-table/herb-herb-network-table.component";
+import {NetworkTableComponent} from './network-table/network-table.component';
+import {DiseaseTableComponent} from './disease-table/disease-table.component';
+import {CardModule} from '../../shared/card/card.module';
+import {HerbHerbNetworkTableComponent} from './herb-herb-network-table/herb-herb-network-table.component';
+import { HerbHerbNetworkGraphComponent } from './herb-herb-network-graph/herb-herb-network-graph.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {HerbHerbNetworkTableComponent} from "./herb-herb-network-table/herb-herb
     TargetTableComponent,
     NetworkTableComponent,
     DiseaseTableComponent,
-    HerbHerbNetworkTableComponent
+    HerbHerbNetworkTableComponent,
+    HerbHerbNetworkGraphComponent
   ],
   exports: [
     CompoundTableComponent,
@@ -36,7 +38,8 @@ import {HerbHerbNetworkTableComponent} from "./herb-herb-network-table/herb-herb
     TargetTableComponent,
     NetworkTableComponent,
     DiseaseTableComponent,
-    HerbHerbNetworkTableComponent
+    HerbHerbNetworkTableComponent,
+    HerbHerbNetworkGraphComponent
   ]
 })
 export class ContainerModule { }

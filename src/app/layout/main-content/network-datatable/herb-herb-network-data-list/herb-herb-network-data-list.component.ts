@@ -21,9 +21,17 @@ export class HerbHerbNetworkDataListComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.restUrl$ = this.route.queryParamMap.map((params: ParamMap) => {
-      const herbId = +(params.get('herbId'));
-      return `herbnetworks/herb/?herb_id=${herbId}`;
+   this.restUrl$ = this._getRestUrl();
+  }
+  private _getRestUrl(): Observable<string> {
+    return this.route.queryParamMap.map((params: ParamMap) => {
+      if (params.get('herbId')) {
+        const herbId = +(params.get('herbId'));
+        return `herbnetworks/herb/?herb_id=${herbId}`;
+      } else if (params.has('prescriptionId')) {
+        const prescriptionId = +(params.get('prescriptionId'));
+        return `herbnetworks/prescription/?prescription_id=${prescriptionId}`
+      }
     });
   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RestService} from '../../../../services/rest/rest.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
@@ -7,6 +7,7 @@ import {YatcmSimilarityKeggCompoundCardComponent} from '../../../../shared/card/
 import {MappingKeggCpd} from '../../../../yatcm/models/kegg-pathway-map/mapping-kegg-cpd';
 import {MappingKeggTgt} from '../../../../yatcm/models/kegg-pathway-map/mapping-kegg-tgt';
 import {KeggproteinToTargetComponent} from '../../../../shared/card/keggprotein-to-target/keggprotein-to-target.component';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-kegg-map',
@@ -14,7 +15,7 @@ import {KeggproteinToTargetComponent} from '../../../../shared/card/keggprotein-
   styleUrls: ['./kegg-map.component.css']
 })
 
-export class KeggMapComponent implements OnInit {
+export class KeggMapComponent implements OnInit, OnDestroy {
   tooltipWords = 'Click to view more';
   displayType: string;
   pathwayId: number | string;
@@ -26,6 +27,7 @@ export class KeggMapComponent implements OnInit {
   cpdUrl: string;
   tgtUrl: string;
   body: object;
+  idSubsrciption: Subscription;
   prescriptionId: number | string;
   keggPathway: KeggPathway;
   mappingKeggCpds: MappingKeggCpd[] | null;
@@ -42,8 +44,12 @@ export class KeggMapComponent implements OnInit {
 
   }
 
+  ngOnDestroy() {
+    this.idSubsrciption.unsubscribe();
+  }
+
   private _getData() {
-    this.route.queryParamMap.subscribe((params: ParamMap) => {
+    this.idSubsrciption = this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.pathwayId = +params.get('pathwayId');
       // fetch pathway information
       this.rest.getData(`keggpathways/${this.pathwayId}/`)

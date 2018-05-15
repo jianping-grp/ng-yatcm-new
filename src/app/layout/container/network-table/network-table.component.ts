@@ -15,6 +15,8 @@ import {Subscription} from 'rxjs/Subscription';
 export class NetworkTableComponent implements OnInit, OnDestroy {
   targetType = 'ttd_target';
   networkDataSubscription: Subscription;
+  showLabel = false;
+  series: any;
   @Input() restUrl: string;
   @Input() body: object;
   @Input() idType: string;
@@ -24,6 +26,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
   nodes: Node[];
   links: Link[];
   title: string;
+
   constructor(private rest: RestService,
               private router: Router,
               public dialog: MatDialog) {
@@ -32,10 +35,48 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('network table init');
-    this.ininNetworkOptions();
+    this.inintNetworkOptions();
   }
 
-  ininNetworkOptions() {
+  inintNetworkOptions() {
+    this.series = {
+      name: '',
+      type: 'graph',
+      layout: 'force',
+      force: {
+        repulsion: 50,
+        gravity: 0.1,
+        edgeLength: [5, 20]
+      },
+      categories: [
+        {'name': 'Herb'},
+        {'name': 'Prescription'},
+        {'name': 'Compound'},
+        {'name': 'Pathway'},
+        {'name': 'Target'},
+        {'name': 'Disease'}
+      ],
+      focusNodeAdjacency: true,
+      roam: true,
+      label: {
+        normal: {
+          show: this.showLabel,
+          formatter: (el) => {
+            // fetch name
+            const nameId = el.data['name'].split('-*-');
+            return nameId[1];
+          },
+          position: 'top',
+        }
+      },
+      lineStyle: {
+        normal: {
+          color: 'source',
+          curveness: 0,
+          type: 'solid'
+        }
+      },
+    };
     this.echartOptions = {
       height: '1000px',
       title: {
@@ -50,12 +91,20 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
         show: true,
         formatter: (el) => {
           switch (el.dataType) {
-            case 'node':
+            case 'node': {
               const nameId = el.data['name'].split('-*-');
-              return `${nameId[0]}</br>`  +
-                `name: ${nameId[1]}</br>`;
-            case 'edge': {
-              return
+              if (el.data['category'] === 'Pathway') {
+                return `${nameId[0]}</br>` +
+                  `english_name: ${nameId[1]}</br>` +
+                  `kegg_id: ${nameId[2]} `;
+              } else if (el.data['category'] === 'Prescription') {
+                return `${nameId[0]}</br>` +
+                  `chinese_name: ${nameId[1]}</br>` +
+                  `english_name: ${nameId[2]}`;
+              } else {
+                return `${nameId[0]}</br>` +
+                  `english_name: ${nameId[1]}</br>`;
+              }
             }
           }
         }
@@ -71,52 +120,14 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       toolbox: {
         show: true,
         feature: {
-          dataView : {show: true, readOnly: true},
-          restore : {show: true},
-          saveAsImage : {show: true}
+          dataView: {show: true, readOnly: true},
+          restore: {show: true},
+          saveAsImage: {show: true}
         }
       },
       animationDuration: 3000,
       animationEasingUpdate: 'quinticInOut',
-      series: [{
-        name: '',
-        type: 'graph',
-        layout: 'force',
-
-        force: {
-          repulsion: 50,
-          gravity: 0.1,
-          edgeLength: [5, 20]
-        },
-        categories: [
-          {'name': 'Herb'},
-          {'name': 'Prescription'},
-          {'name': 'Compound'},
-          {'name': 'Pathway'},
-          {'name': 'Target'},
-          {'name': 'Disease'}
-        ],
-        focusNodeAdjacency: true,
-        roam: true,
-        label: {
-          normal: {
-            show: false,
-            formatter: (el) => {
-              // fetch name
-              const nameId = el.data['name'].split('-*-');
-              return nameId[1];
-            },
-            position: 'top',
-          }
-        },
-        lineStyle: {
-          normal: {
-            color: 'source',
-            curveness: 0,
-            type: 'solid'
-          }
-        }
-      }],
+      series: [this.series]
     };
   }
 
@@ -142,6 +153,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     this.updateNetworkData();
   }
 
+
   updateNetworkData() {
     if (this.echart !== undefined) {
       this.echart.showLoading();
@@ -162,6 +174,8 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       .subscribe(data => {
           this.nodes = data['nodes'];
           this.links = data['links'];
+          this.series['nodes'] = [];
+          this.series['links'] = [];
           console.log('nodes', this.nodes, 'links', this.links);
           if (this.idType === 'prescription-herb-target') {
             if (this.nodes.length > 0) {
@@ -172,7 +186,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
           }
           this.echart.setOption({
             title: {
-             text: this.title
+              text: this.title
             },
             series: [{
               nodes: this.nodes,
@@ -186,56 +200,71 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
         });
   }
 
+
+  showNodeLabel() {
+    this.series.label.normal.show = this.showLabel;
+    this.echart.setOption(this.echartOptions);
+    this.echart.setOption({
+      title: {
+        text: this.title
+      },
+      series: [{
+        nodes: this.nodes,
+        links: this.links
+      }]
+    });
+  }
+
   onDbClick(event) {
     // console.log('dbclickevent', event);
-   if (event.dataType === 'node') {
-     const name = event.data['name'];
-     const endSlice = name.indexOf('*') - 1;
-     switch (event.data['category']) {
-       case 'Prescription': {
-         const prescriptionId = +(name.slice(16, endSlice));
-         this.router.navigate(['prescription', prescriptionId]);
-         break;
-       }
-       case 'Compound': {
-         const compoundId = +(name.slice(12, endSlice));
-         // console.log(typeof event.data['name'], event.data['name']);
-         this.openDialog(compoundId);
-         break;
-       }
-       case 'Target': {
-         const targetId = +(name.slice(10, endSlice));
-         this.router.navigate(['target', targetId]);
-         break;
-       }
-       case 'Herb': {
-         const herbId = +(name.slice(8, endSlice));
-         this.router.navigate(['herb', herbId]);
-         break;
-       }
-       case 'Disease': {
-         const diseaseId = +(name.slice(11, endSlice));
-         this.router.navigate(['disease', diseaseId]);
-         break;
-       }
-       case 'Pathway': {
-         const pathwayId = +(name.slice(11, endSlice));
-         const queryParams = {pathwayId: pathwayId};
-         if (this.idType === 'prescription') {
-           Object.assign(queryParams, {prescriptionId: this.id});
-         } else if (this.idType === 'herb') {
-           Object.assign(queryParams, {herbId: this.id});
-         } else if (this.idType === 'compound') {
-           Object.assign(queryParams, {compoundId: this.id});
-         } else if (this.idType === 'target') {
-           Object.assign(queryParams, {targetId: this.id});
-         } else if (this.idType === 'disease') {
-           Object.assign(queryParams, {diseaseId: this.id});
-         }
-         this.router.navigate(['pathway/kegg-map'], {queryParams: queryParams});
-         break;
-       }
-     }
+    if (event.dataType === 'node') {
+      const name = event.data['name'];
+      const endSlice = name.indexOf('*') - 1;
+      switch (event.data['category']) {
+        case 'Prescription': {
+          const prescriptionId = +(name.slice(16, endSlice));
+          this.router.navigate(['prescription', prescriptionId]);
+          break;
+        }
+        case 'Compound': {
+          const compoundId = +(name.slice(12, endSlice));
+          // console.log(typeof event.data['name'], event.data['name']);
+          this.openDialog(compoundId);
+          break;
+        }
+        case 'Target': {
+          const targetId = +(name.slice(10, endSlice));
+          this.router.navigate(['target', targetId]);
+          break;
+        }
+        case 'Herb': {
+          const herbId = +(name.slice(8, endSlice));
+          this.router.navigate(['herb', herbId]);
+          break;
+        }
+        case 'Disease': {
+          const diseaseId = +(name.slice(11, endSlice));
+          this.router.navigate(['disease', diseaseId]);
+          break;
+        }
+        case 'Pathway': {
+          const pathwayId = +(name.slice(11, endSlice));
+          const queryParams = {pathwayId: pathwayId};
+          if (this.idType === 'prescription') {
+            Object.assign(queryParams, {prescriptionId: this.id});
+          } else if (this.idType === 'herb') {
+            Object.assign(queryParams, {herbId: this.id});
+          } else if (this.idType === 'compound') {
+            Object.assign(queryParams, {compoundId: this.id});
+          } else if (this.idType === 'target') {
+            Object.assign(queryParams, {targetId: this.id});
+          } else if (this.idType === 'disease') {
+            Object.assign(queryParams, {diseaseId: this.id});
+          }
+          this.router.navigate(['pathway/kegg-map'], {queryParams: queryParams});
+          break;
+        }
+      }
     }
   }
 

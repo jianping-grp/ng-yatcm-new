@@ -4,7 +4,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {GlobalService} from '../../../../services/global/global.service';
 import {Prescription} from '../../../../yatcm/models/prescription';
 import {Herb} from '../../../../yatcm/models/herb';
-import {CompoundListParamsType} from "../../../../yatcm/enum/compound-list-param-type.enum";
+import {CompoundListParamsType} from '../../../../yatcm/enum/compound-list-param-type.enum';
 
 @Component({
   selector: 'app-prescription-detail',

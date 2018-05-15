@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {RestService} from '../../../../services/rest/rest.service';
 import {PageMeta} from '../../../../yatcm/models/page-meta';
@@ -6,13 +6,14 @@ import {MatTableDataSource} from '@angular/material';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 import {KeggProtein} from '../../../../yatcm/models/kegg-protein';
 import {Target} from '../../../../yatcm/models/target';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-pathway-protein-detail',
   templateUrl: './pathway-protein-detail.component.html',
   styleUrls: ['./pathway-protein-detail.component.css']
 })
-export class PathwayProteinDetailComponent implements OnInit {
+export class PathwayProteinDetailComponent implements OnInit, OnDestroy {
   pageSizeOptions = [5, 10, 50, 100];
   targetId: number;
   targets: Target[];
@@ -21,6 +22,7 @@ export class PathwayProteinDetailComponent implements OnInit {
   pageMeta: PageMeta | null;
   restUrl: string;
   url: string;
+  idSubsription: Subscription;
   dataSource = new MatTableDataSource();
   includeParams = '&include[]=keggprotein_set.kegg_id&exclude[]=keggprotein_set.*';
   displayedColumns = ['kegg_protein', 'tcm_target', 'view_in_map'];
@@ -34,8 +36,12 @@ export class PathwayProteinDetailComponent implements OnInit {
     this._getData();
   }
 
+  ngOnDestroy() {
+    this.idSubsription.unsubscribe();
+  }
+
    private _getData() {
-     this.route.queryParamMap.subscribe((params: ParamMap) => {
+    this.idSubsription = this.route.queryParamMap.subscribe((params: ParamMap) => {
        this.pathwayId = +params.get('pathwayId');
        this.rest.getDataList(`keggpathways/?filter{id}=${this.pathwayId}`, 0, 99999)
          .subscribe(data => {
