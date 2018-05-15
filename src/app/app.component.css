@@ -6,3 +6,18 @@
   background: -moz-linear-gradient(right, #56cc9d, rgba(86,204,157,0)); /* Firefox 3.6 - 15*/
   background: linear-gradient(to right, #56cc9d, rgba(86,204,157,0)); /* 标准的语法 */
 }
+
+.footer-style {
+  margin-top: 45px;
+  height: 80px;
+  background: #f2f3f5;
+  /*border-bottom: .6rem solid;*/
+  /*border-bottom-color: #56cc9d;*/
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.router-height {
+  min-height:800px;
+}

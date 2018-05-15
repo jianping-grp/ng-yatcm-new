@@ -1,3 +1,7 @@
 .network-table {
-  min-height: 1000px;
+  min-height: 750px;
+}
+
+.mdl-data-table {
+  margin: auto;
 }
