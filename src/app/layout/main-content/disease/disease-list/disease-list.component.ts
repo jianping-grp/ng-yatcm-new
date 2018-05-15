@@ -22,16 +22,16 @@ export class DiseaseListComponent implements OnInit {  // this disease is ttd_di
       if (paramsType) {
         switch (paramsType) {
           case DiseaseListParamsType.disease:
-            return `disease/?`;
+            return `ttddisease/?`;
           case DiseaseListParamsType.disease_name:
             const diseaseName = params.get('diseaseName');
-            return `disease/?filter{name.icontains}=${diseaseName}`;
+            return `ttddisease/?filter{name.icontains}=${diseaseName}`;
           case DiseaseListParamsType.synonyms:
             const synonym = params.get('synonym');
-            return `disease/?filter{synonyms.icontains}=${synonym}`;
+            return `ttddisease/?filter{synonyms.icontains}=${synonym}`;
           case DiseaseListParamsType.target_id:
             const targetId = +params.get('targetId');
-            return `disease/?filter{targets.id}=${targetId}`;
+            return `ttddisease/?filter{targets.id}=${targetId}`;
          }
       }
     });

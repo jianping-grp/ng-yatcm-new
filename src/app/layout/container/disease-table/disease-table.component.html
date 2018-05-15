@@ -3,7 +3,7 @@
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
 <mat-table #diseaseTable [dataSource]="dataSource"
-          class="data-table"
+           class="data-table"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Disease Name*</mat-header-cell>
@@ -13,29 +13,13 @@
       </button>
     </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="synonyms">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Synonyms*</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="scroll-content">{{row.synonyms}}</mat-cell>
+  <ng-container matColumnDef="IDC9">
+    <mat-header-cell *matHeaderCellDef>IDC9</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.ICD9}}</mat-cell>
   </ng-container>
-  <ng-container matColumnDef="description">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Description*</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="scroll-content">{{row.description}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="clinical_feature">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Clinical Feature*</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="scroll-content">{{row.clinical_feature}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="tcmid_url">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Tcmid link*</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <a href="{{row.tcmid_url}}" target="_blank">{{row.tcmid_url}}</a>
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="omim_url">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Omim link*</mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <a href="{{row.omim_url}}" target="_blank">{{row.omim_url}}</a>
-    </mat-cell>
+  <ng-container matColumnDef="IDC10">
+    <mat-header-cell *matHeaderCellDef>IDC10</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.ICD10}}</mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

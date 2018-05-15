@@ -1,5 +1,6 @@
 .mdl-data-table {
   white-space: normal;
+  min-width: 400px;
 }
 
 .th-width {

@@ -25,15 +25,11 @@ export class DiseaseTableComponent implements OnInit, AfterViewInit {
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = ['name', 'synonyms', 'description', 'clinical_feature',
-  // 'tcmid_url',
-    'omim_url'];
+  @Input() displayedColumns = ['name', 'IDC9', 'IDC10'];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['name', 'synonyms', 'description', 'clinical_feature',
-    // 'tcmid_url',
-    'omim_url'];
+  allColumns = ['name', 'IDC9', 'IDC10'];
   constructor(private rest: RestService,
               private globalService: GlobalService) {
 
@@ -64,7 +60,7 @@ export class DiseaseTableComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
-          return data['diseases'];
+          return data['ttd_diseases'];
         }),
         catchError(() => {
           this.isLoadingError = true;

@@ -95,7 +95,7 @@ export class KeggMapComponent implements OnInit, OnDestroy {
         this.displayType = 'disease';
         this.diseaseId = +params.get('diseaseId');
         this.body = {disease_id: this.diseaseId, kegg_pathway_id: this.pathwayId};
-        this._fetchMappingKeggTgts(`disease/tgt_kegg_map/`, this.body);
+        this._fetchMappingKeggTgts(`ttddisease/tgt_kegg_map/`, this.body);
       }
     });
   }

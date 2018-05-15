@@ -16,7 +16,7 @@ export class DiseaseNetworkComponent implements OnInit {
 
   ngOnInit() {
     console.log('disease network init');
-    this.restUrl = 'disease/disease_network/';
+    this.restUrl = 'ttddisease/disease_network/';
     this.route.parent.paramMap.subscribe((params: ParamMap) => {
       this.diseaseId = +params.get('id');
       this.body = {disease_id: this.diseaseId};

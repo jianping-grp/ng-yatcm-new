@@ -174,9 +174,6 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       .subscribe(data => {
           this.nodes = data['nodes'];
           this.links = data['links'];
-          this.series['nodes'] = [];
-          this.series['links'] = [];
-          console.log('nodes', this.nodes, 'links', this.links);
           if (this.idType === 'prescription-herb-target') {
             if (this.nodes.length > 0) {
               this.title = `Common  TTD targets between two specific herbs`;

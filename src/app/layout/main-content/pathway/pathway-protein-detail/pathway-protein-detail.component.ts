@@ -68,7 +68,7 @@ export class PathwayProteinDetailComponent implements OnInit, OnDestroy {
        } else if (params.get('diseaseId')) {
          const diseaseId = +params.get('diseaseId');
          this.url = `targets/?filter{keggprotein_set.pathways.id}=${this.pathwayId}` +
-           `&filter{disease_set.id}=${diseaseId}` + `${this.includeParams}`;
+           `&filter{ttddisease_set.id}=${diseaseId}` + `${this.includeParams}`;
        } else {
          this.url = `targets/?filter{keggprotein_set.pathways.id}=${this.pathwayId}` +
            `${this.includeParams}`;

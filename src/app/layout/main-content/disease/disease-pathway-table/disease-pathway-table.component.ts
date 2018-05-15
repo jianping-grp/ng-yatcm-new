@@ -17,7 +17,7 @@ export class DiseasePathwayTableComponent implements OnInit {
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       this.diseaseId = +params.get('id');
-      return `keggpathways/?filter{keggprotein_set.targets.disease_set.id}=${this.diseaseId}` +
+      return `keggpathways/?filter{keggprotein_set.targets.ttddisease_set.id}=${this.diseaseId}` +
         `&include[]=category.*`;
     });
   }

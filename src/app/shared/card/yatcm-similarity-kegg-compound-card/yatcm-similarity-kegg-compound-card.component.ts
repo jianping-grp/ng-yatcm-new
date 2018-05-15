@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
-import {KeggSimilarity} from "../../../yatcm/models/kegg-similarity";
+import {KeggSimilarity} from '../../../yatcm/models/kegg-similarity';
 
 @Component({
   selector: 'app-yatcm-similarity-kegg-compound-card',
@@ -40,7 +40,7 @@ export class YatcmSimilarityKeggCompoundCardComponent implements OnInit {
       `&filter{tcm.herb_set.prescription_set.id}=${this.data.prescriptionId}` +
         `&filter{kegg_compound.kegg_id}=${this.data.keggId}` + `${this.includeParams}`;
       this._getCompounds(this.restUrl);
-    };
+    }
   }
 
   private _getCompounds(url: string) {

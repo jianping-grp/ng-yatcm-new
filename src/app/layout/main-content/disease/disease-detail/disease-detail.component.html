@@ -1,25 +1,18 @@
 <table class="mdl-data-table mdl-shadow--2dp">
   <tr>
     <th class="th-width">Disease Name</th>
-    <td class="mdl-data-table__cell--non-numeric">{{disease?.name}}</td>
-  </tr>
-  <tr>
-    <th class="th-width">Synonyms</th>
-    <td class="mdl-data-table__cell--non-numeric">{{disease?.synonyms}}</td>
-  </tr>
-  <tr>
-    <th class="th-width">Description</th>
-    <td class="mdl-data-table__cell--non-numeric">{{disease?.description}}</td>
-  </tr>
-  <tr>
-    <th class="th-width">Clinical Feature</th>
-    <td class="mdl-data-table__cell--non-numeric">{{disease?.clinical_feature}}</td>
-  </tr>
-  <tr>
-    <th class="th-width">Omim link</th>
     <td class="mdl-data-table__cell--non-numeric">
-      <a href="{{disease?.omim_url}}" target="_blank">{{disease?.omim_url}}</a>
+      <a href="https://db.idrblab.org/ttd/home/search-api/target?search_api_fulltext={{ttdDisease?.name}}"
+         target="_blank">{{ttdDisease?.name}}</a>
     </td>
+  </tr>
+  <tr>
+    <th class="th-width">IDC9</th>
+    <td class="mdl-data-table__cell--non-numeric">{{ttdDisease?.ICD9}}</td>
+  </tr>
+  <tr>
+    <th class="th-width">IDC10</th>
+    <td class="mdl-data-table__cell--non-numeric">{{ttdDisease?.ICD10}}</td>
   </tr>
 </table>
 <nav mat-tab-nav-bar>

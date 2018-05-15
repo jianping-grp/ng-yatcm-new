@@ -44,7 +44,7 @@ export class KeggproteinToTargetComponent implements OnInit {
       this._getTargets(this.restUrl);
     } else if (this.data.diseaseId) {
       this.restUrl = `targets/?filter{keggprotein_set.pathways.id}=${this.data.pathwayId}` +
-        `&filter{disease_set.id}=${this.data.diseaseId}` +
+        `&filter{ttddisease_set.id}=${this.data.diseaseId}` +
         `&filter{keggprotein_set.kegg_id}=${this.data.keggId}`;
       this._getTargets(this.restUrl);
     }
