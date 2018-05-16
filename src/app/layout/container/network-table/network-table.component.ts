@@ -153,7 +153,6 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     this.updateNetworkData();
   }
 
-
   updateNetworkData() {
     if (this.echart !== undefined) {
       this.echart.showLoading();
