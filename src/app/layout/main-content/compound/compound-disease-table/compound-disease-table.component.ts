@@ -16,7 +16,7 @@ export class CompoundDiseaseTableComponent implements OnInit {
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       const compoundId = +params.get('id');
-      return `disease/?filter{targets.compounds.id}=${compoundId}`;
+      return `ttddisease/?filter{targets.compounds.id}=${compoundId}`;
     });
   }
 

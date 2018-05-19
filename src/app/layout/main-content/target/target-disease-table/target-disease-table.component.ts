@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {Observable} from "rxjs/Observable";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-target-disease-table',
@@ -16,7 +16,7 @@ export class TargetDiseaseTableComponent implements OnInit {
   ngOnInit() {
     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
       const targetId = +params.get('id');
-      return `disease/?filter{targets.id}=${targetId}`;
+      return `ttddisease/?filter{targets.id}=${targetId}`;
     });
   }
 }
