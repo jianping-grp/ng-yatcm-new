@@ -151,18 +151,14 @@
         <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
           <form #diseaseForm="ngForm" (ngSubmit)="diseaseSubmit()">
             <mat-form-field class="full-width">
-              <mat-select placeholder="Input type" [(ngModel)]="diseaseSelectedType" name="Input Type" #diseaseValue>
-                <mat-option *ngFor="let diseaseInputType of diseaseInputTypeList" [value]="diseaseInputType.value" >
-                  {{diseaseInputType.value}}
+              <mat-select placeholder="Input type" [(ngModel)]="diseaseSelectedType" name="Input Type">
+                <mat-option *ngFor="let diseaseInputType of diseaseInputTypeList" [value]="diseaseInputType">
+                  {{diseaseInputType}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="full-width">
-              <input matInput [(ngModel)]="diseaseKeyword" required name="keyword"
-                     placeholder="Input keywords"
-                     value="{{diseaseSelectedType.placeholder}}"
-              >
-
+              <input matInput [(ngModel)]="diseaseKeyword" required name="keyword" placeholder="Input keywords">
             </mat-form-field>
             <br>
             <button mat-raised-button color="primary" type="submit" [disabled]="diseaseForm.invalid">

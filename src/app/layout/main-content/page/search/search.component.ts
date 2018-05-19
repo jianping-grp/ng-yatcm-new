@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {GlobalService} from '../../../../services/global/global.service';
 import {PrescriptionListParamsType} from '../../../../yatcm/enum/prescription-list-param-type.enum';
 import {HerbListParamsType} from '../../../../yatcm/enum/herb-list-param-type.enum';
@@ -7,6 +7,7 @@ import {TargetListParamsType} from '../../../../yatcm/enum/target-list-param-typ
 import {DiseaseListParamsType} from '../../../../yatcm/enum/disease-list-param-type.enum';
 import {PathwayListParamsType} from '../../../../yatcm/enum/pathway-list-param-type.enum';
 import {Router} from '@angular/router';
+import {JsmeComponent} from '../../../../shared/jsme/jsme/jsme.component';
 
 @Component({
   selector: 'app-search',
@@ -14,6 +15,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  @ViewChild(JsmeComponent)
+  private jsme: JsmeComponent;
   pstKeyword = '';
   herbKeyword = '';
   inputTypeList = ['Chinese name', 'English name', 'Phonetic name'];
@@ -26,10 +29,7 @@ export class SearchComponent implements OnInit {
   compoundSelectedType = this.compoundInputTypeList[0];
   compoundKeyword = '';
   // diseaseInputTypeList = ['Disease name', 'Synonym'];
-  diseaseInputTypeList = [
-    {value: 'Disease name', placeholder: 'Nail Disorder, Nonsyndromic Congenital, 10 Ndnc10'},
-    {value: 'Synonyms', placeholder: 'Claw-Shaped Nails Onychauxis, Hyponychia, And Onycholysis'}
-  ];
+  diseaseInputTypeList = ['Disease name', 'Synonyms'];
   diseaseSelectedType = this.diseaseInputTypeList[0];
   diseaseKeyword: string;
   pathwayInputTypeList = ['Pathway name', 'KEGG ID'];
@@ -91,9 +91,9 @@ export class SearchComponent implements OnInit {
 
   diseaseSubmit() {
     this.diseaseKeyword = this.diseaseKeyword.trim();
-    if (this.diseaseSelectedType.value === 'Disease name') {
+    if (this.diseaseSelectedType === 'Disease name') {
       this.globalService.gotoDiseaseList(DiseaseListParamsType.disease_name, {diseaseName: this.diseaseKeyword});
-    } else if (this.diseaseSelectedType.value === 'Synonym') {
+    } else if (this.diseaseSelectedType === 'Synonym') {
       this.globalService.gotoDiseaseList(DiseaseListParamsType.synonyms, {synonym: this.diseaseKeyword});
     }
   }
@@ -107,18 +107,18 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  onSubmit(smiles: string) {
+  onSubmit() {
     let queryParams = {};
     if (this.structureType === 'Structure') {
       queryParams = {
         structureType: 'structure',
-        smiles: smiles,
+        smiles: this.jsme.smiles,
         similarity: this.similarity
       };
       } else if (this.structureType === 'Substructure') {
       queryParams = {
         structureType: 'substructure',
-        smiles: smiles,
+        smiles: this.jsme.smiles,
       };
     }
     this.router.navigate(['compound/search'], {queryParams: queryParams});

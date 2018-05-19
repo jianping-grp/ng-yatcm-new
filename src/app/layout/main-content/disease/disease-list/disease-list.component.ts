@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {GlobalService} from '../../../../services/global/global.service';
 import {DiseaseListParamsType} from '../../../../yatcm/enum/disease-list-param-type.enum';
 import {Observable} from 'rxjs/Observable';
 
@@ -11,8 +10,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class DiseaseListComponent implements OnInit {  // this disease is ttd_disease
   restUrl$: Observable<string>;
-  constructor(private route: ActivatedRoute,
-              private globlaservice: GlobalService) {
+  constructor(private route: ActivatedRoute) {
 
   }
 
