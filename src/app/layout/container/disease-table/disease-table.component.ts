@@ -1,10 +1,8 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {PageMeta} from '../../../yatcm/models/page-meta';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {Herb} from '../../../yatcm/models/herb';
 import {Observable} from 'rxjs/Observable';
 import {RestService} from '../../../services/rest/rest.service';
-import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
