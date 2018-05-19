@@ -9,9 +9,10 @@ import {CommonModule} from '@angular/common';
 import {NetworkTableComponent} from './network-table/network-table.component';
 import {DiseaseTableComponent} from './disease-table/disease-table.component';
 import {CardModule} from '../../shared/card/card.module';
-import {HerbHerbNetworkTableComponent} from './herb-herb-network-table/herb-herb-network-table.component';
-import { HerbHerbNetworkGraphComponent } from './herb-herb-network-graph/herb-herb-network-graph.component';
-
+import {HerbHerbSharedTargetNetworkDataTableComponent} from './herb-herb-shared-target-network-date-table/herb-herb-shared-target-network-data-table.component';
+import { HerbHerbSharedTargetNetworkGraphComponent } from './herb-herb-shared-target-network-graph/herb-herb-shared-target-network-graph.component';
+import { HerbHerbSharedDiseaseNetworkGraphComponent } from './herb-herb-shared-disease-network-graph/herb-herb-shared-disease-network-graph.component';
+import { HerbHerbSharedDiseaseNetworkDataTableComponent } from './herb-herb-shared-disease-network-data-table/herb-herb-shared-disease-network-data-table.component';
 
 @NgModule({
   imports: [
@@ -27,8 +28,11 @@ import { HerbHerbNetworkGraphComponent } from './herb-herb-network-graph/herb-he
     TargetTableComponent,
     NetworkTableComponent,
     DiseaseTableComponent,
-    HerbHerbNetworkTableComponent,
-    HerbHerbNetworkGraphComponent
+    HerbHerbSharedTargetNetworkDataTableComponent,
+    HerbHerbSharedTargetNetworkGraphComponent,
+    HerbHerbSharedDiseaseNetworkGraphComponent,
+    HerbHerbSharedDiseaseNetworkDataTableComponent,
+
   ],
   exports: [
     CompoundTableComponent,
@@ -38,8 +42,10 @@ import { HerbHerbNetworkGraphComponent } from './herb-herb-network-graph/herb-he
     TargetTableComponent,
     NetworkTableComponent,
     DiseaseTableComponent,
-    HerbHerbNetworkTableComponent,
-    HerbHerbNetworkGraphComponent
+    HerbHerbSharedTargetNetworkDataTableComponent,
+    HerbHerbSharedTargetNetworkGraphComponent,
+    HerbHerbSharedDiseaseNetworkGraphComponent,
+    HerbHerbSharedDiseaseNetworkDataTableComponent
   ]
 })
 export class ContainerModule { }

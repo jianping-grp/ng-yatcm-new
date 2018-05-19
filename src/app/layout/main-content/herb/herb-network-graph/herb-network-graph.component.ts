@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {of as observableOf} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-herb-network-graph',
@@ -11,14 +12,16 @@ import {Observable} from 'rxjs/Observable';
 
 export class HerbNetworkGraphComponent implements OnInit {
   herbId: number;
-  restUrl$: Observable<string>;
+  herbHerbSharedTargetsRestUrl$: Observable<string>;
+  herbHerbSharedDiseasesRestUrl$: Observable<string>;
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-   this.restUrl$ =  this.route.parent.paramMap
-      .map((params: ParamMap) => {
+    this.route.parent.paramMap
+      .subscribe((params: ParamMap) => {
         this.herbId = +(params.get('id'));
-        return `herbnetworks/herb/?herb_id=${this.herbId}`;
+        this.herbHerbSharedTargetsRestUrl$ = observableOf(`herbnetworks/herb/?herb_id=${this.herbId}`);
+        this.herbHerbSharedDiseasesRestUrl$ = observableOf(`herbdiseasenetworks/herb/?herb_id=${this.herbId}`);
       });
   }
 }

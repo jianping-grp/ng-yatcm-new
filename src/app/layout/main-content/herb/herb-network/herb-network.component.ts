@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {RestService} from '../../../../services/rest/rest.service';
-import {Herb} from '../../../../yatcm/models/herb';
-import {Prescription} from '../../../../yatcm/models/prescription';
-import {Compound} from '../../../../yatcm/models/compound';
 
 @Component({
   selector: 'app-herb-network-data',

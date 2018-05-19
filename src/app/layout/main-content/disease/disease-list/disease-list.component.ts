@@ -32,6 +32,16 @@ export class DiseaseListComponent implements OnInit {  // this disease is ttd_di
           case DiseaseListParamsType.target_id:
             const targetId = +params.get('targetId');
             return `ttddisease/?filter{targets.id}=${targetId}`;
+          case DiseaseListParamsType.herb_herb: {
+            const first_herb = +(params.get('first_herb'));
+            const second_herb = +(params.get('second_herb'));
+            let topAct = +(params.get('top'));
+            if (isNaN(topAct)) {
+              topAct = 0;
+            }
+            return `ttddisease/herb_disease_list/?first_herb=${first_herb}&second_herb=${second_herb}` +
+              `&top=${topAct}`;
+          }
          }
       }
     });

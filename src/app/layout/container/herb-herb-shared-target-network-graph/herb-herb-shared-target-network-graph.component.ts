@@ -9,11 +9,11 @@ import {TargetListParamsType} from '../../../yatcm/enum/target-list-param-type.e
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-herb-herb-network-graph',
-  templateUrl: './herb-herb-network-graph.component.html',
-  styleUrls: ['./herb-herb-network-graph.component.css']
+  selector: 'app-herb-herb-shared-target-network-graph',
+  templateUrl: './herb-herb-shared-target-network-graph.component.html',
+  styleUrls: ['./herb-herb-shared-target-network-graph.component.css']
 })
-export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
+export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDestroy {
   herbList: Herb[];
   series: any;
   echartOptions: any;
@@ -117,7 +117,6 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
     };
     this.echartOptions = {
       title: {
-        text: '',
         top: 'bottom',
         left: 'center',
         textStyle: {
@@ -251,7 +250,7 @@ export class HerbHerbNetworkGraphComponent implements OnInit, OnDestroy {
     } else if (this.idType === 'prescription') {
       queryParams = {prescriptionId: this.id};
     }
-    this.router.navigate(['network-datatable/herb-herb-network-data'], {
+    this.router.navigate(['network-datatable/herb-herb-shared-target'], {
       queryParams: queryParams
     });
   }

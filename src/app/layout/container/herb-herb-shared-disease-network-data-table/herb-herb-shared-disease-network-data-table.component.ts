@@ -4,20 +4,19 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Herb} from '../../../yatcm/models/herb';
 import {Observable} from 'rxjs/Observable';
 import {RestService} from '../../../services/rest/rest.service';
-import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {GlobalService} from '../../../services/global/global.service';
-import {TargetListParamsType} from '../../../yatcm/enum/target-list-param-type.enum';
+import {DiseaseListParamsType} from '../../../yatcm/enum/disease-list-param-type.enum';
 
 @Component({
-  selector: 'app-herb-herb-network-table',
-  templateUrl: './herb-herb-network-table.component.html',
-  styleUrls: ['./herb-herb-network-table.component.css']
+  selector: 'app-herb-herb-shared-disease-network-data-table',
+  templateUrl: './herb-herb-shared-disease-network-data-table.component.html',
+  styleUrls: ['./herb-herb-shared-disease-network-data-table.component.css']
 })
+export class HerbHerbSharedDiseaseNetworkDataTableComponent implements OnInit, AfterViewInit {
 
-export class HerbHerbNetworkTableComponent implements OnInit, AfterViewInit {
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
@@ -27,7 +26,7 @@ export class HerbHerbNetworkTableComponent implements OnInit, AfterViewInit {
   @Input() tableTitle = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
-  @Input() displayedColumns = ['first_herb', 'second_herb', 'first_herb_image', 'second_herb_image', 'shared_targets'];
+  @Input() displayedColumns = ['first_herb', 'second_herb', 'first_herb_image', 'second_herb_image', 'shared_diseases'];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,7 +34,7 @@ export class HerbHerbNetworkTableComponent implements OnInit, AfterViewInit {
     '&include[]=first_herb.Chinese_name&include[]=first_herb.English_name' +
     '&exclude[]=second_herb.*&include[]=second_herb.id&include[]=second_herb.image' +
     '&include[]=second_herb.Chinese_name&include[]=second_herb.English_name';
-  allColumns = ['first_herb', 'second_herb', 'first_herb_image', 'second_herb_image', 'shared_targets'];
+  allColumns = ['first_herb', 'second_herb', 'first_herb_image', 'second_herb_image', 'shared_diseases'];
   constructor(private rest: RestService,
               private globalService: GlobalService) {
   }
@@ -65,7 +64,7 @@ export class HerbHerbNetworkTableComponent implements OnInit, AfterViewInit {
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
           this.herbList = data['herbs'];
-          return data['herb_networks'];
+          return data['herb_disease_networks'];
         }),
         catchError(() => {
           this.isLoadingError = true;
@@ -82,8 +81,8 @@ export class HerbHerbNetworkTableComponent implements OnInit, AfterViewInit {
     return <Herb>this.herbList.find(el => el.id === herbId);
   }
 
-  gotoNetworkTargets(firstHerbId, secondHerbId) {
-    this.globalService.gotoTargetList(TargetListParamsType.herb_herb, {
+  gotoSharedDiseases(firstHerbId, secondHerbId) {
+    this.globalService.gotoDiseaseList(DiseaseListParamsType.herb_herb, {
       first_herb: firstHerbId,
       second_herb: secondHerbId,
       top: 0

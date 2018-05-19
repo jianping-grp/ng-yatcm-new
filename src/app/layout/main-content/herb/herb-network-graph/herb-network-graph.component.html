@@ -1,4 +1,9 @@
-<app-herb-herb-network-graph
-[restUrl$]="restUrl$"
+<app-herb-herb-shared-target-network-graph
+[restUrl$]="herbHerbSharedTargetsRestUrl$"
 [id]="herbId"
-[idType]="'herb'"></app-herb-herb-network-graph>
+[idType]="'herb'"></app-herb-herb-shared-target-network-graph>
+<hr>
+<app-herb-herb-shared-disease-network-graph
+[restUrl$]="herbHerbSharedDiseasesRestUrl$"
+[idType]="'herb'"
+[id]="herbId"></app-herb-herb-shared-disease-network-graph>

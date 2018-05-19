@@ -2,7 +2,7 @@
   <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
-  <mat-table #herbHerbNetworkTable [dataSource]="dataSource"
+  <mat-table #herbHerbSharedDiseaseNetworkDataTable [dataSource]="dataSource"
              class="data-table"
              matSort matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="first_herb">
@@ -10,7 +10,7 @@
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="getHerbIdObj(row.first_herb) as firstHerb">
           <button mat-button color="primary"
-          appViewPageById pageId="{{firstHerb.id}}" [idType]="'herb'">
+                  appViewPageById pageId="{{firstHerb.id}}" [idType]="'herb'">
             {{firstHerb.Chinese_name}}
           </button>
           <br/>
@@ -55,13 +55,13 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="shared_targets">
-      <mat-header-cell *matHeaderCellDef>Shared NO. of targets"</mat-header-cell>
+    <ng-container matColumnDef="shared_diseases">
+      <mat-header-cell *matHeaderCellDef>Shared NO. of diseases</mat-header-cell>
       <mat-cell *matCellDef="let row">
-         <button mat-button color="primary"
-                 (click)="gotoNetworkTargets(row.first_herb, row.second_herb)">
-           {{row.targets.length}}
-         </button>
+        <button mat-button color="primary"
+                (click)="gotoSharedDiseases(row.first_herb, row.second_herb)">
+          {{row.diseases.length}}
+        </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

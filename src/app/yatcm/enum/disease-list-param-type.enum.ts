@@ -3,4 +3,5 @@ export enum DiseaseListParamsType {
   disease_name,
   synonyms,
   target_id,
+  herb_herb
 }

@@ -44,9 +44,9 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       type: 'graph',
       layout: 'force',
       force: {
-        repulsion: 50,
+        repulsion: 100,
         gravity: 0.1,
-        edgeLength: [5, 20]
+        edgeLength: [20, 50]
       },
       categories: [
         {'name': 'Herb'},
@@ -54,7 +54,11 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
         {'name': 'Compound'},
         {'name': 'Pathway'},
         {'name': 'Target'},
-        {'name': 'Disease'}
+        {name: 'Disease',
+          itemStyle: {
+            color: '#56cc9d'
+          }
+        }
       ],
       focusNodeAdjacency: true,
       roam: true,
@@ -80,7 +84,6 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     this.echartOptions = {
       height: '1000px',
       title: {
-        text: '',
         top: 'bottom',
         left: 'center',
         textStyle: {
@@ -137,6 +140,8 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
         return ['Prescription', 'Herb', 'Compound'];
       } else if (this.idType === 'prescription-herb-target') {
         return ['Herb', 'Target'];
+      } else if (this.idType === 'prescription-herb-disease') {
+        return ['Herb', 'Disease'];
       } else {
         return ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease'];
       }
@@ -179,6 +184,12 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
             } else if (this.nodes.length === 0) {
               this.title = `common  TTD targets between two specific  herbs(no data)`;
             }
+          } else if (this.idType === 'prescription-herb-disease') {
+            if (this.nodes.length > 0) {
+              this.title = `Common  TTD Disease between two specific herbs`;
+            } else if (this.nodes.length === 0) {
+              this.title = `common  TTD Disease between two specific  herbs(no data)`;
+            }
           }
           this.echart.setOption({
             title: {
@@ -200,15 +211,6 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
   showNodeLabel() {
     this.series.label.normal.show = this.showLabel;
     this.echart.setOption(this.echartOptions);
-    this.echart.setOption({
-      title: {
-        text: this.title
-      },
-      series: [{
-        nodes: this.nodes,
-        links: this.links
-      }]
-    });
   }
 
   onDbClick(event) {

@@ -1,0 +1,34 @@
+<div echarts
+     class="herb-target-network-graph"
+     [options]="echartOptions"
+     (chartInit)="onChartInit($event)"
+     (chartDblClick)="onDbClick($event)"
+></div>
+<table class="mdl-data-table">
+  <tr>
+    <th>Shared targets threshold({{lengthThreshold}})</th>
+    <th>Nodes name</th>
+    <th>View data table</th>
+  </tr>
+  <tr>
+    <td>
+      <mat-slider
+        [min]="1"
+        [max]="200"
+        [step]="1"
+        [thumbLabel]="true"
+        [(ngModel)]="lengthThreshold"
+        (change)="updateNetworkData()"
+      ></mat-slider>
+    </td>
+    <td>
+      <mat-slide-toggle
+        [(ngModel)]="showLabel"
+        (change)="showNodeLabel()"
+      ></mat-slide-toggle>
+    </td>
+    <td>
+      <button mat-button color="primary" (click)="gotoHerbHerbSharedTargetTable()">View</button>
+    </td>
+  </tr>
+</table>
