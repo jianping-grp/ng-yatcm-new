@@ -3,11 +3,13 @@ import {RestService} from '../../../../services/rest/rest.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 import {MatDialog} from '@angular/material';
-import {YatcmSimilarityKeggCompoundCardComponent} from '../../../../shared/card/yatcm-similarity-kegg-compound-card/yatcm-similarity-kegg-compound-card.component';
+import {
+  YatcmSimilarityKeggCompoundCardComponent
+} from '../../../../shared/card/yatcm-similarity-kegg-compound-card/yatcm-similarity-kegg-compound-card.component';
 import {MappingKeggCpd} from '../../../../yatcm/models/kegg-pathway-map/mapping-kegg-cpd';
 import {MappingKeggTgt} from '../../../../yatcm/models/kegg-pathway-map/mapping-kegg-tgt';
 import {KeggproteinToTargetComponent} from '../../../../shared/card/keggprotein-to-target/keggprotein-to-target.component';
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-kegg-map',
@@ -27,6 +29,8 @@ export class KeggMapComponent implements OnInit, OnDestroy {
   cpdUrl: string;
   tgtUrl: string;
   body: object;
+  firstHerbId: number;
+  secondHerbId: number;
   idSubsrciption: Subscription;
   prescriptionId: number | string;
   keggPathway: KeggPathway;
@@ -96,6 +100,16 @@ export class KeggMapComponent implements OnInit, OnDestroy {
         this.diseaseId = +params.get('diseaseId');
         this.body = {disease_id: this.diseaseId, kegg_pathway_id: this.pathwayId};
         this._fetchMappingKeggTgts(`ttddisease/tgt_kegg_map/`, this.body);
+      } else if (params.has('firstHerbId')) {
+        this.displayType = 'herb_herb';
+        this.firstHerbId = +params.get('firstHerbId');
+        this.secondHerbId = +params.get('secondHerbId');
+        this.body = {
+          first_herb_id: this.firstHerbId,
+          second_herb_id: this.secondHerbId,
+          kegg_pathway_id: this.pathwayId
+        };
+        this._fetchMappingKeggTgts(`targets/herb_herb_tgt_kegg_map/`, this.body);
       }
     });
   }
@@ -115,17 +129,7 @@ export class KeggMapComponent implements OnInit, OnDestroy {
   }
 
   openCompoundDialog(keggId: string, type: string): void {
-    const dialogData = {
-      pathwayId: this.pathwayId,
-      keggId: keggId
-    };
-    if (type === 'prescription') {
-      Object.assign(dialogData, {prescriptionId: this.prescriptionId});
-    } else if (type === 'herb') {
-      Object.assign(dialogData, {herbId: this.herbId});
-    } else if (type === 'compound') {
-      Object.assign(dialogData, {compoundId: this.compoundId});
-    }
+    const dialogData = Object.assign({kegg_id: keggId}, this.body);
     this.dialog.open(YatcmSimilarityKeggCompoundCardComponent, {
       width: '680px',
       data: dialogData
@@ -133,22 +137,7 @@ export class KeggMapComponent implements OnInit, OnDestroy {
   }
 
   openTargetDialog(keggId: string, type: string) {
-    const dialogData = {
-      pathwayId: this.pathwayId,
-      keggId: keggId
-    };
-    if (type === 'prescription') {
-      Object.assign(dialogData, {prescriptionId: this.prescriptionId});
-    } else if (type === 'herb') {
-      Object.assign(dialogData, {herbId: this.herbId});
-    } else if (type === 'compound') {
-      Object.assign(dialogData, {compoundId: this.compoundId});
-    } else if (type === 'target') {
-      Object.assign(dialogData, {targetId: this.targetId});
-    } else if (type === 'disease') {
-      Object.assign(dialogData, {diseaseId: this.diseaseId});
-    }
-
+    const dialogData = Object.assign({kegg_id: keggId}, this.body);
     this.dialog.open(KeggproteinToTargetComponent, {
       width: '600px',
       data: dialogData,

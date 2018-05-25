@@ -67,3 +67,6 @@
   position: relative;
 }
 
+body {
+  min-height: 100%;
+}

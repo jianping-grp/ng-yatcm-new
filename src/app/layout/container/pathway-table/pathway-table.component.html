@@ -33,10 +33,19 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="herb_compound_in_kegg_id">
+  <ng-container matColumnDef="herb_in_kegg_id">
     <mat-header-cell *matHeaderCellDef>View in KEGG</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <button mat-button color="primary" (click)="gotoKeggMapDetail(row.id, 'herb')">
+        {{row.kegg_id}}
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="herb_herb_in_kegg_id">
+    <mat-header-cell *matHeaderCellDef>View in KEGG</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoKeggMapDetail(row.id, 'herb_herb')">
         {{row.kegg_id}}
       </button>
     </mat-cell>
@@ -51,7 +60,7 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="prescription_compound_in_kegg_id">
+  <ng-container matColumnDef="prescription_in_kegg_id">
     <mat-header-cell *matHeaderCellDef>View in KEGG</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <button mat-button color="primary" (click)="gotoKeggMapDetail(row.id, 'prescription')">

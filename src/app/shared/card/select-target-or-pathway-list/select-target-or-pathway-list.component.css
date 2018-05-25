@@ -1,0 +1,6 @@
+x-close {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  z-index: 999;
+}

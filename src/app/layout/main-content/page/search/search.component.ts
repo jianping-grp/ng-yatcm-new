@@ -17,41 +17,73 @@ import {JsmeComponent} from '../../../../shared/jsme/jsme/jsme.component';
 export class SearchComponent implements OnInit {
   @ViewChild(JsmeComponent)
   private jsme: JsmeComponent;
-  pstKeyword = '';
-  herbKeyword = '';
-  inputTypeList = ['Chinese name', 'English name', 'Phonetic name'];
-  pstSelectedType = this.inputTypeList[0]; // pst is Prescription
-  herbSelectedType = this.inputTypeList[0];
-  targetKeyword = '';
-  targetInputTypeList = ['Target name', 'Uniprot name', 'Gene name'];
-  targetSelectedType = this.targetInputTypeList[0];
-  compoundInputTypeList = ['English name', 'Formula', 'CID', 'CAS'];
-  compoundSelectedType = this.compoundInputTypeList[0];
-  compoundKeyword = '';
-  // diseaseInputTypeList = ['Disease name', 'Synonym'];
-  diseaseInputTypeList = ['Disease name', 'Synonyms'];
-  diseaseSelectedType = this.diseaseInputTypeList[0];
-  diseaseKeyword: string;
-  pathwayInputTypeList = ['Pathway name', 'KEGG ID'];
-  pathwaySelectedType = this.pathwayInputTypeList[0];
-  pathwayKeyword = ``;
   structureTypeList = ['Structure', 'Substructure'];
   structureType = this.structureTypeList[0];
   similarity = 0.9;
+  prescriptionSearchTypeList = [
+    {inputType: 'Chinese name', value: '玉屏风散'},
+    {inputType: 'English name', value: 'yupingfeng powder'},
+    {inputType: 'Phonetic name', value: 'yu ping feng san'}
+  ];
+  prescriptionSelectedType = this.prescriptionSearchTypeList[0].inputType;
+  prescriptionKeyword = this.prescriptionSearchTypeList[0].value;
+  herbSearchTypeList = [
+    {inputType: 'Chinese name', value: '甘草'},
+    {inputType: 'English name', value: 'Glycyrrhiza Uralensis'},
+    {inputType: 'Phonetic name', value: 'GAN CAO'}
+  ];
+  herbSelectedType = this.herbSearchTypeList[0].inputType;
+  herbKeyword = this.herbSearchTypeList[0].value;
+
+  compoundSearchTypeList = [
+    {inputType: 'English name', value: 'artemisinin'},
+    {inputType: 'Formula', value: 'C15H22O5'},
+    {inputType: 'CAS', value: '63968-64-9'},
+    {inputType: 'CID', value: '68827'}
+  ];
+  compoundSelectedType = this.compoundSearchTypeList[0].inputType;
+  compoundKeyword = this.compoundSearchTypeList[0].value;
+  targetSearchTypeList = [
+    {inputType: 'Target name', value: 'Acetylcholinesterase'},
+    {inputType: 'Uniprot name', value: 'P22303'},
+    {inputType: 'Gene name', value: 'ACHE'}
+  ];
+  targetSelectedType = this.targetSearchTypeList[0].inputType;
+  targetKeyword = this.targetSearchTypeList[0].value;
+  pathwaySearchTypeList = [
+    {inputType: 'Pathway name', value: 'Citrate cycle (TCA cycle)'},
+    {inputType: 'KEGG ID', value: 'map00020'}
+  ];
+  pathwaySelectedType = this.pathwaySearchTypeList[0].inputType;
+  pathwayKeyword = this.pathwaySearchTypeList[0].value;
+  diseaseSearchTypeList = [
+    {inputType: 'Disease name', value: 'Depression'}
+  ];
+  diseaseSelectedType = this.diseaseSearchTypeList[0].inputType;
+  diseaseKeyword = this.diseaseSearchTypeList[0].value;
+
   constructor(private globalService: GlobalService,
               private router: Router) { }
   ngOnInit() { }
 
-  pstSubmit() {
-    this.pstKeyword = this.pstKeyword.trim();
-    if (this.pstSelectedType === 'Chinese name') {
-      this.globalService.gotoPrescriptionList(PrescriptionListParamsType.chinese_name, {chineseName: this.pstKeyword});
-    } else if (this.pstSelectedType === 'English name') {
-      this.globalService.gotoPrescriptionList(PrescriptionListParamsType.english_name, {englishName: this.pstKeyword});
-    } else if (this.pstSelectedType === 'Phonetic name') {
-      this.globalService.gotoPrescriptionList(PrescriptionListParamsType.pinyin_name, {phoneticName: this.pstKeyword});
+  prescriptionSearchTypeChange(selectedType: string) {
+    this.prescriptionKeyword = this.prescriptionSearchTypeList.find(el => el.inputType === selectedType).value;
+  }
+
+  prescriptionSubmit() {
+    this.prescriptionKeyword = this.prescriptionKeyword.trim();
+    if (this.prescriptionSelectedType === 'Chinese name') {
+      this.globalService.gotoPrescriptionList(PrescriptionListParamsType.chinese_name, {chineseName: this.prescriptionKeyword});
+    } else if (this.prescriptionSelectedType === 'English name') {
+      this.globalService.gotoPrescriptionList(PrescriptionListParamsType.english_name, {englishName: this.prescriptionKeyword});
+    } else if (this.prescriptionSelectedType === 'Phonetic name') {
+      this.globalService.gotoPrescriptionList(PrescriptionListParamsType.pinyin_name, {phoneticName: this.prescriptionKeyword});
     }
   }
+
+ herbSearchTypeChange(selectedType: string) {
+    this.herbKeyword = this.herbSearchTypeList.find(el => el.inputType === selectedType).value;
+ }
 
   herbSubmit() {
     this.herbKeyword = this.herbKeyword.trim();
@@ -65,6 +97,10 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  compoundSearchTypeChange(selectedType: string) {
+    this.compoundKeyword = this.compoundSearchTypeList.find(el => el.inputType === selectedType).value;
+  }
+
   compoundSubmit() {
     this.compoundKeyword = this.compoundKeyword.trim();
     if (this.compoundSelectedType === 'English name') {
@@ -76,6 +112,10 @@ export class SearchComponent implements OnInit {
     } else if (this.compoundSelectedType === 'CID') {
       this.globalService.gotoCompoundList(CompoundListParamsType.cid, {cid: this.compoundKeyword});
     }
+  }
+
+  targetSearchTypeChange(selectedType: string) {
+    this.targetKeyword = this.targetSearchTypeList.find(el => el.inputType === selectedType).value;
   }
 
   targetSubmit() {
@@ -96,6 +136,10 @@ export class SearchComponent implements OnInit {
     } else if (this.diseaseSelectedType === 'Synonym') {
       this.globalService.gotoDiseaseList(DiseaseListParamsType.synonyms, {synonym: this.diseaseKeyword});
     }
+  }
+
+  pathwaySearchTypeChange(selectedType: string) {
+    this.pathwayKeyword = this.pathwaySearchTypeList.find(el => el.inputType === selectedType).value;
   }
 
   pathwaySubmit() {
@@ -123,4 +167,7 @@ export class SearchComponent implements OnInit {
     }
     this.router.navigate(['compound/search'], {queryParams: queryParams});
   }
+
+
+
 }

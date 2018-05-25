@@ -3,5 +3,5 @@ export enum PathwayListParamsType {
   herb_id,
   prescription_id,
   pathway_name,
-  kegg_id
+  kegg_id,
 }

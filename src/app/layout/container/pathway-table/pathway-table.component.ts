@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {PageMeta} from '../../../yatcm/models/page-meta';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
@@ -8,22 +8,24 @@ import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
 import {KeggPathwayCategory} from '../../../yatcm/models/kegg-pathway-category';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-pathway-table',
   templateUrl: './pathway-table.component.html',
   styleUrls: ['./pathway-table.component.css']
 })
-export class PathwayTableComponent implements OnInit, AfterViewInit {
+export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  dataSubscription: Subscription;
   keggPathwayCategory: KeggPathwayCategory[];
   @Input() body: object;
   @Input() idType: string;
-  @Input() id: number;
+  @Input() id: any;
   @Input() tableTitle = '';
   @Input() includeParams = '';
   @Input() pageSize = 10;
@@ -42,10 +44,10 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
     console.log('pathway table init');
     this.pageMeta.per_page = this.pageSize;
     if (this.idType === 'herb') {
-      this.displayedColumns = ['name', 'category', 'herb_compound_in_kegg_id', 'herb_compound_detail',
+      this.displayedColumns = ['name', 'category', 'herb_in_kegg_id', 'herb_compound_detail',
         'herb_protein_detail'];
     } else if (this.idType === 'prescription') {
-      this.displayedColumns = ['name', 'category', 'prescription_compound_in_kegg_id',
+      this.displayedColumns = ['name', 'category', 'prescription_in_kegg_id',
         'prescription_compound_detail', 'prescription_protein_detail'];
     } else if (this.idType === 'compound') {
       this.displayedColumns = ['name', 'category', 'compound_in_kegg_id',
@@ -54,6 +56,8 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
       this.displayedColumns = ['name', 'category', 'target_in_kegg_id', 'target_protein_detail'];
     } else if (this.idType === 'disease') {
       this.displayedColumns = ['name', 'category', 'disease_in_kegg_id', 'disease_protein_detail'];
+    } else if (this.idType === 'herb_herb') {
+      this.displayedColumns = ['name', 'category', 'herb_herb_in_kegg_id']; // todo add
     } else {
       this.displayedColumns = ['name', 'category', 'kegg_id', 'compound_detail', 'protein_detail'];
     }
@@ -63,7 +67,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.restUrl$.subscribe(data => this.restUrl = data);
     this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
-    merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
+    this.dataSubscription = merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -106,6 +110,10 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
       });
   }
 
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
+  }
+
   getKeggPathwayCategory(category: number | string) {
     return this.keggPathwayCategory.find(el => el.id === category);
   }
@@ -123,6 +131,14 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
       Object.assign(queryParams, {targetId: this.id});
     } else if (type === 'disease') {
       Object.assign(queryParams, {diseaseId: this.id});
+    } else if (type === 'herb_herb') {
+      const idArray = this.id.split(',');
+      const first_herb_id = idArray[0];
+      const second_herb_id = idArray[1];
+      Object.assign(queryParams, {
+        firstHerbId: first_herb_id,
+        secondHerbId: second_herb_id,
+      });
     }
     this.router.navigate(['pathway/kegg-map'], {queryParams: queryParams});
   }
@@ -155,6 +171,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit {
       Object.assign(queryParams, {diseaseId: this.id});
     } else {
       Object.assign(queryParams, {});
+      // todo add herb_herb
     }
     this.router.navigate(['pathway/protein-detail'], {queryParams: queryParams});
   }

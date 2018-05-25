@@ -7,6 +7,8 @@ import {Herb} from '../../../yatcm/models/herb';
 import {GlobalService} from '../../../services/global/global.service';
 import {TargetListParamsType} from '../../../yatcm/enum/target-list-param-type.enum';
 import {Observable} from 'rxjs/Observable';
+import {MatDialog} from '@angular/material';
+import {SelectTargetOrPathwayListComponent} from "../../../shared/card/select-target-or-pathway-list/select-target-or-pathway-list.component";
 
 @Component({
   selector: 'app-herb-herb-shared-target-network-graph',
@@ -35,7 +37,8 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
   constructor(private rest: RestService,
               private route: ActivatedRoute,
               private router: Router,
-              private globalService: GlobalService) {
+              private globalService: GlobalService,
+              public matDialog: MatDialog) {
 
   }
 
@@ -235,12 +238,24 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
         break;
       }
       case 'edge':
-        this.globalService.gotoTargetList(TargetListParamsType.herb_herb, {
-          first_herb: event.data.source,
-          second_herb: event.data.target,
-          top: event.data.value
-        });
+        // this.globalService.gotoTargetList(TargetListParamsType.herb_herb, {
+        //   first_herb: event.data.source,
+        //   second_herb: event.data.target,
+        //   top: event.data.value
+        // });
+            this.openDialog(event);
     }
+  }
+
+  openDialog(event: any) {
+    this.matDialog.open(SelectTargetOrPathwayListComponent, {
+      width: '400px',
+      data: {
+        first_herb: event.data.source,
+        second_herb: event.data.target,
+        top: event.data.value
+      }
+    });
   }
 
   gotoNetworkTable() {
@@ -254,5 +269,6 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
       queryParams: queryParams
     });
   }
+
 }
 

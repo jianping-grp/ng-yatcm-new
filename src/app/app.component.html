@@ -1,22 +1,23 @@
 <mat-toolbar class="toolbar-color">
-    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <span>YaTCM</span>
-    <button mat-button routerLink="home">Home</button>
-    <button mat-button (click)="goPrescriptionList()">Prescription</button>
-    <button mat-button (click)="goHerbList()">Herb</button>
-    <button mat-button (click)="goCompundList()">Compound</button>
-    <button mat-button (click)="goTargetList()">Target</button>
-    <button mat-button (click)="goPathwayList()">Pathway</button>
-    <button mat-button (click)="goDiseaseList()">Disease</button>
-    <button mat-button routerLink="search">Search</button>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span>YaTCM</span>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <button mat-button (click)="goPrescriptionList()">Prescription</button>
+  <button mat-button (click)="goHerbList()">Herb</button>
+  <button mat-button (click)="goCompundList()">Compound</button>
+  <button mat-button (click)="goTargetList()">Target</button>
+  <button mat-button (click)="goPathwayList()">Pathway</button>
+  <button mat-button (click)="goDiseaseList()">Disease</button>
+  <button mat-button routerLink="search">Search</button>
+  <button mat-button routerLink="Help">Help</button>
 </mat-toolbar>
 
 <!--Progress Bar-->
 <mat-progress-bar
-*ngIf="loadingStatus"
-mode="query"
-color="primary"
-class="global-progress-bar"
+  *ngIf="loadingStatus"
+  mode="query"
+  color="primary"
+  class="global-progress-bar"
 ></mat-progress-bar>
 
 <div class="router-height">
@@ -25,5 +26,6 @@ class="global-progress-bar"
 
 
 <footer class="footer-style">
-Copyright©2018 NaiKai All Rights Reserved
+  Copyright©2018 NaiKai All Rights Reserved
 </footer>
+

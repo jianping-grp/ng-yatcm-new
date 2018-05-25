@@ -24,21 +24,21 @@ export class YatcmSimilarityKeggCompoundCardComponent implements OnInit {
 
   ngOnInit() {
     console.log('yatcm similarity kegg compound card init');
-   if (this.data.herbId) {
-     this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
-       `&filter{tcm.herb_set.id}=${this.data.herbId}&filter{kegg_compound.kegg_id}=${this.data.keggId}` +
+   if (this.data.herb_id) {
+     this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.kegg_pathway_id}` +
+       `&filter{tcm.herb_set.id}=${this.data.herb_id}&filter{kegg_compound.kegg_id}=${this.data.kegg_id}` +
        `${this.includeParams}`;
      this._getCompounds(this.restUrl);
-   } else if (this.data.compoundId) {
+   } else if (this.data.cpd_id) {
       // 根据compound id 和 pathway id来获取结构
-      this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
-        `&filter{tcm.id}=${this.data.compoundId}` + `&filter{kegg_compound.kegg_id}=${this.data.keggId}` +
+      this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.kegg_pathway_id}` +
+        `&filter{tcm.id}=${this.data.cpd_id}` + `&filter{kegg_compound.kegg_id}=${this.data.kegg_id}` +
         `${this.includeParams}`;
       this._getCompounds(this.restUrl);
-    } else if (this.data.prescriptionId) {
-      this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.pathwayId}` +
-      `&filter{tcm.herb_set.prescription_set.id}=${this.data.prescriptionId}` +
-        `&filter{kegg_compound.kegg_id}=${this.data.keggId}` + `${this.includeParams}`;
+    } else if (this.data.prescription_id) {
+      this.restUrl = `keggsimilarities/?filter{kegg_compound.pathway}=${this.data.kegg_pathway_id}` +
+      `&filter{tcm.herb_set.prescription_set.id}=${this.data.prescription_id}` +
+        `&filter{kegg_compound.kegg_id}=${this.data.kegg_id}` + `${this.includeParams}`;
       this._getCompounds(this.restUrl);
     }
   }

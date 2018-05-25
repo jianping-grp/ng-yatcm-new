@@ -7,6 +7,7 @@ import {NgModule} from '@angular/core';
 import {YatcmSimilarityKeggCompoundCardComponent} from "./yatcm-similarity-kegg-compound-card/yatcm-similarity-kegg-compound-card.component";
 import {KeggproteinToTargetComponent} from "./keggprotein-to-target/keggprotein-to-target.component";
 import {CompoundCardComponent} from "./compound-card/compound-card.component";
+import { SelectTargetOrPathwayListComponent } from './select-target-or-pathway-list/select-target-or-pathway-list.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {CompoundCardComponent} from "./compound-card/compound-card.component";
     ChemblRelatedTargetCardComponent,
     YatcmSimilarityKeggCompoundCardComponent,
     KeggproteinToTargetComponent,
-    CompoundCardComponent
+    CompoundCardComponent,
+    SelectTargetOrPathwayListComponent
   ],
   exports: [
     DocCardComponent,
@@ -27,7 +29,8 @@ import {CompoundCardComponent} from "./compound-card/compound-card.component";
     ChemblRelatedTargetCardComponent,
     YatcmSimilarityKeggCompoundCardComponent,
     KeggproteinToTargetComponent,
-    CompoundCardComponent
+    CompoundCardComponent,
+    SelectTargetOrPathwayListComponent
   ],
   entryComponents: [
     DocCardComponent,
@@ -35,7 +38,8 @@ import {CompoundCardComponent} from "./compound-card/compound-card.component";
     ChemblRelatedTargetCardComponent,
     YatcmSimilarityKeggCompoundCardComponent,
     KeggproteinToTargetComponent,
-    CompoundCardComponent
+    CompoundCardComponent,
+    SelectTargetOrPathwayListComponent
   ]
 })
 

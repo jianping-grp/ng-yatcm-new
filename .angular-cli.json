@@ -29,6 +29,7 @@
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/material-design-lite/material.min.js",
         "./assets/jsme/jsme.nocache.js",
+        "./assets/jsme/jsme.helper.js",
         "../node_modules/echarts/dist/echarts.min.js"
       ],
       "environmentSource": "environments/environment.ts",

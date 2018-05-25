@@ -9,6 +9,9 @@ import {
 import {
   HerbHerbSharedDiseaseNetworkDataListComponent
 } from './herb-herb-shared-disease-network-data-list/herb-herb-shared-disease-network-data-list.component';
+import {
+  HerbHerbNetworkSharedPathwayListComponent
+} from './herb-herb-network-shared-pathway-list/herb-herb-network-shared-pathway-list.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,8 @@ import {
   ],
   declarations: [
     HerbHerbSharedTargetNetworkDataListComponent,
-    HerbHerbSharedDiseaseNetworkDataListComponent
+    HerbHerbSharedDiseaseNetworkDataListComponent,
+    HerbHerbNetworkSharedPathwayListComponent,
   ]
 })
 export class NetworkDatatableModule { }

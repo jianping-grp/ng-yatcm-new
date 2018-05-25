@@ -17,7 +17,7 @@ export class PathwayListComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions = [5, 10, 50, 100];
   restUrl$: Observable<string>;
-  includeParams = '&include[]=category.*';
+  includeParams = '&include[]=category.*&include[]=*&exclude[]=kgml';
   displayedColumns = ['pathway_name', 'category', 'kegg_id', 'detail'];
   constructor(private route: ActivatedRoute) {
 
