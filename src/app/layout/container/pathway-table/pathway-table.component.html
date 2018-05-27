@@ -117,6 +117,12 @@
       <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id, 'herb')">view</button>
     </mat-cell>
   </ng-container>
+  <ng-container matColumnDef="herb_herb_protein_detail">
+    <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="gotoPathwayProteinDetail(row.id, 'herb_herb')">view</button>
+    </mat-cell>
+  </ng-container>
   <ng-container matColumnDef="compound_protein_detail">
     <mat-header-cell *matHeaderCellDef>Pathway Protein Detail</mat-header-cell>
     <mat-cell *matCellDef="let row">

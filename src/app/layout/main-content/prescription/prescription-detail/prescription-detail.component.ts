@@ -46,13 +46,15 @@ export class PrescriptionDetailComponent implements OnInit {
       this.rest.getData(`prescriptions/${this.prescriptionId}/${this.includeParams}`)
         .subscribe(data => {
           this.prescription = data['prescription'];
-          const mainPrescriptionId = this.prescription.main_prescription;
+          const mainPrescriptionId = +(this.prescription.main_prescription);
 
           // fetch main_presrciption
-          this.rest.getData(`prescriptions/${mainPrescriptionId}/?${this.prescriptionIncludeParams}`)
-            .subscribe(mainPrescriptionData => {
-            this.mainPrescription = mainPrescriptionData['prescription'];
-          });
+          if (mainPrescriptionId > 0) {
+            this.rest.getData(`prescriptions/${mainPrescriptionId}/?${this.prescriptionIncludeParams}`)
+              .subscribe(mainPrescriptionData => {
+                this.mainPrescription = mainPrescriptionData['prescription'];
+              });
+          }
 
           // fetch ingredient
           this.rest.getDataList(`herbs/?filter{prescription_set.id}=${this.prescriptionId}` +

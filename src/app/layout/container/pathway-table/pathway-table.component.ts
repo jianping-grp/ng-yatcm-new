@@ -23,9 +23,10 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
   restUrl: string;
   dataSubscription: Subscription;
   keggPathwayCategory: KeggPathwayCategory[];
+  params: object;
   @Input() body: object;
   @Input() idType: string;
-  @Input() id: any;
+  @Input() id: string;
   @Input() tableTitle = '';
   @Input() includeParams = '';
   @Input() pageSize = 10;
@@ -57,7 +58,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
     } else if (this.idType === 'disease') {
       this.displayedColumns = ['name', 'category', 'disease_in_kegg_id', 'disease_protein_detail'];
     } else if (this.idType === 'herb_herb') {
-      this.displayedColumns = ['name', 'category', 'herb_herb_in_kegg_id']; // todo add
+      this.displayedColumns = ['name', 'category', 'herb_herb_in_kegg_id', 'herb_herb_protein_detail'];
     } else {
       this.displayedColumns = ['name', 'category', 'kegg_id', 'compound_detail', 'protein_detail'];
     }
@@ -118,8 +119,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.keggPathwayCategory.find(el => el.id === category);
   }
 
-
-  gotoKeggMapDetail(pathwayId: number | string, type: string) {
+  gotoKeggMapDetail(pathwayId: number | string, type?: string) {
     const queryParams = {pathwayId: pathwayId};
     if (type === 'prescription') {
       Object.assign(queryParams, {prescriptionId: this.id});
@@ -151,8 +151,6 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
       Object.assign(queryParams, {herbId: this.id});
     } else if (type === 'compound') {
       Object.assign(queryParams, {compoundId: this.id});
-    } else {
-      Object.assign(queryParams, {});
     }
     this.router.navigate(['pathway/compound-detail'], {queryParams: queryParams});
   }
@@ -169,9 +167,14 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
       Object.assign(queryParams, {targetId: this.id});
     } else if (type === 'disease') {
       Object.assign(queryParams, {diseaseId: this.id});
-    } else {
-      Object.assign(queryParams, {});
-      // todo add herb_herb
+    } else if (type === 'herb_herb') {
+      const idArray = this.id.split(',');
+      const first_herb_id = idArray[0];
+      const second_herb_id = idArray[1];
+      Object.assign(queryParams, {
+        firstHerbId: first_herb_id,
+        secondHerbId: second_herb_id,
+      });
     }
     this.router.navigate(['pathway/protein-detail'], {queryParams: queryParams});
   }

@@ -238,12 +238,7 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
         break;
       }
       case 'edge':
-        // this.globalService.gotoTargetList(TargetListParamsType.herb_herb, {
-        //   first_herb: event.data.source,
-        //   second_herb: event.data.target,
-        //   top: event.data.value
-        // });
-            this.openDialog(event);
+        this.openDialog(event);
     }
   }
 

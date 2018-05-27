@@ -51,6 +51,13 @@ export class TargetListComponent implements OnInit {
             return `targets/herb_target_list/?first_herb=${first_herb}&second_herb=${second_herb}` +
               `&top=${topAct}${this.includeParams}`;
           }
+          case TargetListParamsType.pathway_mapping: {
+            // herb 与 herb 共同的target的共同的pathway 所映射回的 target_list
+            const first_herb = +(params.get('first_herb'));
+            const second_herb = +(params.get('second_herb'));
+            return `targets/herb_herb_tgt_list_in_pathways/?first_herb_id=${first_herb}` +
+              `&second_herb_id=${second_herb}${this.includeParams}`;
+          }
         }
       }
     });

@@ -36,7 +36,14 @@ export class SelectTargetOrPathwayListComponent implements OnInit {
         first_herb: this.data.first_herb,
         second_herb: this.data.second_herb
       }
-    })
+    });
+  }
+
+  gotoPathwayMappingTargetList() { // herb 与 herb 共同的target的共同的pathway 所映射回的 target_list
+    this.globalSerive.gotoTargetList(TargetListParamsType.pathway_mapping, {
+        first_herb: this.data.first_herb,
+        second_herb: this.data.second_herb
+    });
   }
 
   kclose() {

@@ -6,7 +6,7 @@ import {MatTableDataSource} from '@angular/material';
 import {KeggPathway} from '../../../../yatcm/models/kegg-pathway';
 import {KeggProtein} from '../../../../yatcm/models/kegg-protein';
 import {Target} from '../../../../yatcm/models/target';
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-pathway-protein-detail',
@@ -69,6 +69,12 @@ export class PathwayProteinDetailComponent implements OnInit, OnDestroy {
          const diseaseId = +params.get('diseaseId');
          this.url = `targets/?filter{keggprotein_set.pathways.id}=${this.pathwayId}` +
            `&filter{ttddisease_set.id}=${diseaseId}` + `${this.includeParams}`;
+       } else if (params.get('firstHerbId')) {
+         const firstHerbId = +params.get('firstHerbId');
+         const secondHerbId = +params.get('secondHerbId');
+         this.url = `targets/herb_herb_tgt_list_in_special_pathway/?first_herb_id=${firstHerbId}` +
+           `&second_herb_id=${secondHerbId}&kegg_pathway_id=${this.pathwayId}` +
+           `${this.includeParams}`;
        } else {
          this.url = `targets/?filter{keggprotein_set.pathways.id}=${this.pathwayId}` +
            `${this.includeParams}`;

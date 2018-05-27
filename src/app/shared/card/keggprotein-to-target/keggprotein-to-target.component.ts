@@ -22,10 +22,10 @@ export class KeggproteinToTargetComponent implements OnInit {
   ngOnInit() {
     console.log('kegg protein to target');
     this.keggId = this.data.kegg_id;
-    if (this.data.herbId) {
+    if (this.data.herb_id) {
       this.restUrl = `targets/?filter{keggprotein_set.pathways.id}=${this.data.kegg_pathway_id}` +
         `&filter{keggprotein_set.kegg_id}=${this.keggId}` +
-        `&filter{compounds.herb_set.id}=${this.data.herbId}`;
+        `&filter{compounds.herb_set.id}=${this.data.herb_id}`;
       this._getTargets(this.restUrl);
     } else if (this.data.prescription_id) {
       this.restUrl = `targets/?filter{keggprotein_set.pathways.id}=${this.data.kegg_pathway_id}` +

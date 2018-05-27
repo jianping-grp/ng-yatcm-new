@@ -128,7 +128,7 @@ export class KeggMapComponent implements OnInit, OnDestroy {
     });
   }
 
-  openCompoundDialog(keggId: string, type: string): void {
+  openCompoundDialog(keggId: string): void {
     const dialogData = Object.assign({kegg_id: keggId}, this.body);
     this.dialog.open(YatcmSimilarityKeggCompoundCardComponent, {
       width: '680px',
@@ -136,7 +136,7 @@ export class KeggMapComponent implements OnInit, OnDestroy {
     });
   }
 
-  openTargetDialog(keggId: string, type: string) {
+  openTargetDialog(keggId: string) {
     const dialogData = Object.assign({kegg_id: keggId}, this.body);
     this.dialog.open(KeggproteinToTargetComponent, {
       width: '600px',
