@@ -7,6 +7,7 @@ import {CompoundListParamsType} from './yatcm/enum/compound-list-param-type.enum
 import {PathwayListParamsType} from './yatcm/enum/pathway-list-param-type.enum';
 import {TargetListParamsType} from './yatcm/enum/target-list-param-type.enum';
 import {DiseaseListParamsType} from './yatcm/enum/disease-list-param-type.enum';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,16 @@ export class AppComponent {
   loadingStatus: boolean;
   loadingStatus$: Observable<boolean>;
   constructor(private globalService: GlobalService,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              private router: Router) {
     this.globalService.loadingStatus$.subscribe(status => {
       this.loadingStatus = status;
       this.cd.detectChanges();
     });
+  }
+
+  goHome() {
+    this.router.navigate(['home']);
   }
   goHerbList() {
     this.globalService.gotoHerbList(HerbListParamsType.herb);

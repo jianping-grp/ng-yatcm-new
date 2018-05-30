@@ -180,15 +180,15 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
           this.links = data['links'];
           if (this.idType === 'prescription-herb-target') {
             if (this.nodes.length > 0) {
-              this.title = `Common  TTD targets between two specific herbs`;
+              this.title = `Common  TTD targets between two specific herbs in this prescription`;
             } else if (this.nodes.length === 0) {
-              this.title = `common  TTD targets between two specific  herbs(no data)`;
+              this.title = `common  TTD targets between two specific  herbs(no data) in this prescription`;
             }
           } else if (this.idType === 'prescription-herb-disease') {
             if (this.nodes.length > 0) {
-              this.title = `Common  TTD Disease between two specific herbs`;
+              this.title = `Common  TTD Disease between two specific herbs in this prescription`;
             } else if (this.nodes.length === 0) {
-              this.title = `common  TTD Disease between two specific  herbs(no data)`;
+              this.title = `common  TTD Disease between two specific  herbs(no data) in this prescription`;
             }
           }
           this.echart.setOption({

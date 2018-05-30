@@ -209,7 +209,8 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
           English_name: herbEl.English_name,
           herb_id: herbEl.id,
           name: herbEl.id.toString(),
-          category: 'Herb'
+          category: 'Herb',
+          draggable: true
         };
       });
     this.echartOptions['series'] = [this.series];

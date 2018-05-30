@@ -1,0 +1,11 @@
+.home-content {
+  max-width: 980px;
+  padding-left: 24px !important;
+}
+.text-center {
+  text-align: center;
+}
+
+.card-content {
+  padding-top: 10px;
+}
