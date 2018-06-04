@@ -1,16 +1,17 @@
 <div class="home-content mdl-grid">
   <div class="mdl-cell mdl-cell--12-col">
-    <h4 class="text-center">Yet another Chinese Traditional Medicine</h4>
+    <h4 class="text-center">Yet another Traditional Chinese Medicine</h4>
   </div>
   <div class="mdl-cell mdl-cell--12-col">
     <mat-card>
       <mat-card-header></mat-card-header>
       <mat-card-title>
-        <h6>Database Introduction
-          <mat-divider></mat-divider>
-        </h6>
+        <h6>Database Introduction</h6>
+        <mat-divider></mat-divider>
       </mat-card-title>
+      <img mat-card-image class="screen-image" src="assets/img/yatcm-schetch.jpg" alt="schetch" >
       <mat-card-content>
+        <mat-divider></mat-divider>
         <p class="card-content">   The YaTCM database is a freely available resource that
           provides the comprehensive TCM information, including ingredients, herbs and prescriptions.
           YaTCM contains 47,696 natural compounds (including Chinese names, English names,
@@ -36,16 +37,15 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <h6>YaTCM screenshots montage
-            <mat-divider></mat-divider>
-          </h6>
+          <h6>YaTCM screenshots montage</h6>
+          <mat-divider></mat-divider>
         </mat-card-title>
       </mat-card-header>
-      <img  src="#" alt="screenshots">
-      <!--todo add-->
-
+        <img mat-card-image class="screen-image" src="assets/img/screenshot-1.jpg" alt="Yatcm screenshots">
+        <img mat-card-image class="screen-image" src="assets/img/screenshot-2.jpg" alt="Yatcm screenshots">
       <mat-card-content>
-
+        <p>For instruction of using ChEMBL-explorer, please refer to the
+          <a (click)="gohelp()">help</a> page.</p>
       </mat-card-content>
     </mat-card>
   </div>

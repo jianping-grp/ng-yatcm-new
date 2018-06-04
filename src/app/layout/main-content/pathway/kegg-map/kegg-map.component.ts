@@ -25,13 +25,17 @@ export class KeggMapComponent implements OnInit, OnDestroy {
   herbId: number | string;
   targetId: number | string;
   diseaseId: number | string;
+  isLoading = false;
+  isLoadingError = false;
   keggId: string;
   cpdUrl: string;
   tgtUrl: string;
   body: object;
   firstHerbId: number;
   secondHerbId: number;
-  idSubsrciption: Subscription;
+  pathwayIdSubsrciption: Subscription;
+  keggTgtSubscription: Subscription;
+  keggCpdSubscription: Subscription;
   prescriptionId: number | string;
   keggPathway: KeggPathway;
   mappingKeggCpds: MappingKeggCpd[] | null;
@@ -49,11 +53,13 @@ export class KeggMapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.idSubsrciption.unsubscribe();
+    this.pathwayIdSubsrciption.unsubscribe();
+    this.keggTgtSubscription.unsubscribe();
+    this.keggCpdSubscription.unsubscribe();
   }
 
   private _getData() {
-    this.idSubsrciption = this.route.queryParamMap.subscribe((params: ParamMap) => {
+    this.pathwayIdSubsrciption = this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.pathwayId = +params.get('pathwayId');
       // fetch pathway information
       this.rest.getData(`keggpathways/${this.pathwayId}/`)
@@ -75,21 +81,21 @@ export class KeggMapComponent implements OnInit, OnDestroy {
             this.mappingKeggCpds.push(mapingKeggCompounds.find(el => el.keggcompound_keggid === this.keggId));
           });
         } else {
-          this._fetchMappingKeggCpds(`compounds/cpd_kegg_map/`, this.body);
           this._fetchMappingKeggTgts(`compounds/tgt_kegg_map/`, this.body);
+          this._fetchMappingKeggCpds(`compounds/cpd_kegg_map/`, this.body);
         }
       } else if (params.has('herbId')) {
         this.displayType = 'herb';
         this.herbId = +params.get('herbId');
         this.body = {herb_id: this.herbId, kegg_pathway_id: this.pathwayId};
-        this._fetchMappingKeggCpds(`herbs/cpd_kegg_map/`, this.body);
         this._fetchMappingKeggTgts(`herbs/tgt_kegg_map/`, this.body);
+        this._fetchMappingKeggCpds(`herbs/cpd_kegg_map/`, this.body);
       } else if (params.has('prescriptionId')) {
         this.displayType = 'prescription';
         this.prescriptionId = +params.get('prescriptionId');
         this.body = {prescription_id: this.prescriptionId, kegg_pathway_id: this.pathwayId};
-        this._fetchMappingKeggCpds(`prescriptions/cpd_kegg_map/`, this.body);
         this._fetchMappingKeggTgts(`prescriptions/tgt_kegg_map/`, this.body);
+        this._fetchMappingKeggCpds(`prescriptions/cpd_kegg_map/`, this.body);
       } else if (params.has('targetId')) {
         this.displayType = 'target';
         this.targetId = +params.get('targetId');
@@ -116,15 +122,33 @@ export class KeggMapComponent implements OnInit, OnDestroy {
 
   // fetch compound mapping information
   private _fetchMappingKeggCpds(url: string, body: object) {
-    this.rest.postData(url, body).subscribe(data => {
+    this.isLoading = true;
+    this.keggCpdSubscription = this.rest.postData(url, body).subscribe(data => {
       this.mappingKeggCpds = data['mapping_kegg_cpds'];
+    },
+    () => {
+      this.isLoadingError = true;
+      this.isLoading = false;
+    },
+      () => {
+      this.isLoading = false;
+      this.isLoadingError = false;
     });
   }
 
   // fetch target mapping information
   private _fetchMappingKeggTgts(url: string, body: object) {
-    this.rest.postData(url, body).subscribe(data => {
+    this.isLoading = true;
+    this.keggTgtSubscription = this.rest.postData(url, body).subscribe(data => {
       this.mappingKeggTgts = data['mapping_kegg_tgts'];
+    },
+      () => {
+        this.isLoadingError = true;
+        this.isLoading = false;
+      },
+      () => {
+      this.isLoading = false;
+      this.isLoadingError = false;
     });
   }
 

@@ -1,5 +1,5 @@
 .home-content {
-  max-width: 980px;
+  max-width: 1040px;
   padding-left: 24px !important;
 }
 .text-center {
@@ -9,3 +9,8 @@
 .card-content {
   padding-top: 10px;
 }
+
+.screen-image {
+  padding-top: 12px;
+}
+

@@ -3,7 +3,6 @@
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
 <mat-table #diseaseTable [dataSource]="dataSource"
-           class="data-table"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Disease Name*</mat-header-cell>

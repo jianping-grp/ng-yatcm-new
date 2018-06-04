@@ -20,7 +20,7 @@ export class HerbHerbNetworkSharedPathwayListComponent implements OnInit {
 
   private _getRestUrl() {
    return this.route.queryParamMap.map((params: ParamMap) => {
-      const first_herb_id = params.get('first_herb');
+      const first_herb_id = +params.get('first_herb');
       const second_herb_id = params.get('second_herb');
       this.herb_herb_id = `${first_herb_id},${second_herb_id}`;
       return `keggpathwaysexclude/herb_herb_tgt_kegg_list/` +

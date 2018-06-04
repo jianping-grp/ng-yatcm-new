@@ -1,3 +1,7 @@
-.mat-button {
+.mdl-data-table {
   white-space: normal;
+}
+
+.th-width {
+  min-width: 150px;
 }

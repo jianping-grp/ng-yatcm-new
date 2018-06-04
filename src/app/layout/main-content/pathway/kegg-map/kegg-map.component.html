@@ -1,4 +1,7 @@
 <div>
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-contain">
+    <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
+  </div>
   <h2>KEGG Pathway mapping</h2>
   <h4>
     <a href="http://www.kegg.jp/kegg-bin/show_pathway?{{keggPathway?.kegg_id}}" target="_blank">

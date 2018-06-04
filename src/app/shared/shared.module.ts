@@ -25,9 +25,7 @@ import { MatToolbarModule,
 import {JsmeModule} from './jsme/jsme.module';
 import {DirectivesModule} from './directives/directives.module';
 import {PipesModule} from './pipe/pipes.module';
-import {NgxEchartsModule} from "ngx-echarts";
-
-
+import {NgxEchartsModule} from 'ngx-echarts';
 
 @NgModule({
   imports: [
