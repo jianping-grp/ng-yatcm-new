@@ -9,8 +9,8 @@
         <h6>Structure search</h6>
         <mat-divider></mat-divider>
       </mat-card-title>
-        <img mat-card-image class="screen-image" src="assets/img/structure-search-2.jpg" alt="structure search">
-      <mat-card-content>
+        <img mat-card-image class="screen-image" src="assets/yatcm-image/structure-search.png" alt="structure search">
+     <mat-card-content>
         <mat-divider></mat-divider>
         <p class="card-content">
           <!--todo add-->
@@ -26,8 +26,8 @@
           <mat-divider></mat-divider>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image class="screen-image" src="assets/img/presciption-search.jpg" alt="schetch">
-      <mat-card-content>
+      <img mat-card-image class="screen-image" src="assets/yatcm-image/prescription-search-1.png" alt="schetch">
+     <mat-card-content>
         <mat-divider></mat-divider>
         <p class="card-content"></p>
         <!--todo add-->
@@ -54,25 +54,60 @@
             to build SEA models.
           </mat-list-item>
           <mat-list-item>
-            <b>2. what is ...?</b>
+            <b>2. KEGG metabolic pathway mapping</b>
             <br/>
-
+            The concept of metabolite-likeness, which derived from the fact that drugs are more
+            structurally similar to endogenous metabolites than are library compounds, is a useful
+            principle in drug design[51]. Kim et al.[4] reported that the degree of structural
+            similarity between compounds derived from traditional oriental medicine and human metabolites
+            is even higher than that of small molecule drug and human metabolites, and mapping of TCM
+            compounds to human metabolic pathway based on structural similarity may helpful in analyses of
+            mechanisms of actions[4]. Therefore, to make full use of ingredients data in YaTCM, all compounds
+            were mapping to KEGG human metabolic pathway by calculating structural similarity of TCM-metabolite
+            pairs.
+            <img mat-card-image src="assets/yatcm-image/kegg-pathway.png" alt="kegg-pathway image">
           </mat-list-item>
           <mat-list-item>
-            <b>3. what is ...?</b>
+            <b>3. Network building and analysis</b>
             <br/>
-
+            In order to analyze different aspects of YaTCM data, we have developed a visualization interface
+            by ECharts(http://echarts.baidu.com/) and Networkx(http://networkx.github.io/) from which the
+            network can be displayed within webpage.
+            <img mat-card-image src="assets/yatcm-image/network.png" alt="network image">
           </mat-list-item>
           <mat-list-item>
-            <b>4. what is ...?</b>
+            <b>4.What is herb explorer?</b>
             <br/>
-
+            Hu et al[52] apply a simple definition that two targets are related to each other if they
+            share at least five active compounds. In our previous work, PhIN[53] database defined
+            target-target interaction pairs in terms of shared compounds or shared scaffolds. As an
+            analogy of this methodology, in YaTCM, to explorer the mechanism of action of herbs, one
+            of two simple criteria, herb-target-herb criteria or herb-disease-herb, is used to defined
+            an interacting herb pairs. Two herbs are defined as the same effect if they share a certain
+            number of therapeutic targets or diseases. To give the user a global view of herb-*-herb interaction
+            in database and conduct large-scale analysis, we also employ network visualization technology
+            to display the network in herbs’ detail pages where uses can choose the number of shared targets
+            or diseases according the cursor.
           </mat-list-item>
           <mat-list-item>
-            <b>5. Have display problems?</b>
+            <b>5.What is prescription explorer?</b>
+            <br/>
+            TCM is characterized by the wide use of herbal formulae, which are capable of systematically
+            treating diseases determined by interactions among various herbs. However, the molecule mechanism
+            of action remains a mystery due to the lack of appropriate methods. So from a network and pathways
+            prespective, we also build prescription explorer system.
+            <img mat-card-image src="assets/yatcm-image/prescription-explorer.png" alt="prescription explorer image">
+          </mat-list-item>
+          <mat-list-item>
+            <b>6. Have display problems?</b>
             <br/>
             YaTCM was only test on the latest version of browser, so please try the latest
             browser (google chrome , firefox, etc) if you have any display problems.
+          </mat-list-item>
+          <mat-list-item>
+            <b>Have a question?</b>
+            <br/>
+            jianpinglin@nankia.edu.cn
           </mat-list-item>
         </p>
       </mat-card-content>

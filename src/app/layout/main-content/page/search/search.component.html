@@ -9,6 +9,7 @@
                     [width]="'450px'"
                     [height]="'420px'"
                     [showDemo]="true"
+                    [option]=""
           >loading JSME widget
           </app-jsme>
         </div>
@@ -29,10 +30,11 @@
                       #similaritySlider>
           </mat-slider>
           <br>
-          <button mat-raised-button color="primary"
-                  [disabled]="applet.smiles === ''"
-                  (click)="onSubmit(applet.smiles)">
-            Search
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="applet.smiles === ''"
+            (click)="onSubmit()">Search
           </button>
         </div>
       </div>
