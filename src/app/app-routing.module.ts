@@ -60,7 +60,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: true})], // todo delete
+  imports: [RouterModule.forRoot(routes)], // todo delete
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

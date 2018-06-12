@@ -6,8 +6,10 @@
 ></div>
 <table class="mdl-data-table">
   <tr>
-    <th *ngIf="idType==='herb' || idType === 'compound'">Target Type</th>
+    <th *ngIf="idType === 'herb' || idType === 'compound'">Target Type</th>
     <th>Nodes name</th>
+    <th *ngIf="idType === 'prescription-herb-target'">View data table</th>
+    <th *ngIf="idType === 'prescription-herb-disease'">View data table</th>
   </tr>
   <tr>
     <td *ngIf="idType==='herb' || idType === 'compound'">
@@ -21,5 +23,12 @@
         [(ngModel)]="showLabel"
         (change)="showNodeLabel()"
       ></mat-slide-toggle>
+    </td>
+    <td *ngIf="idType === 'prescription-herb-target'">
+      <button mat-button color="primary" (click)="gotoTargetList()">View</button>
+    </td>
+    <td *ngIf="idType === 'prescription-herb-disease'">
+      <button mat-button color="primary" (click)="gotoDiseaseList()">View</button>
+    </td>
   </tr>
 </table>

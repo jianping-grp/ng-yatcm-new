@@ -1,4 +1,7 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {Router} from '@angular/router';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -17,7 +20,7 @@ import {DiseaseListParamsType} from '../../../yatcm/enum/disease-list-param-type
   styleUrls: ['./target-table.component.css']
 })
 
-export class TargetTableComponent implements OnInit, AfterViewInit {
+export class TargetTableComponent implements OnInit, AfterViewInit, OnChanges {
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
@@ -33,7 +36,7 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   allColumns = ['chembl_id' , 'target_name', 'ttd_target_id', 'ttd_target_name', 'ttd_target_type', 'uniprot_name', 'gene_name',
-    'tcmid_link', 'compounds', 'diseases', 'detail'];
+    'tcmid_link', 'detail'];
   constructor(private rest: RestService,
               private router: Router,
               private globalService: GlobalService) {
@@ -46,6 +49,15 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.getData();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log(changes);
+    this.getData();
+  }
+
+  getData() {
     this.restUrl$.subscribe(data => this.restUrl = data);
     this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
     merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
@@ -78,14 +90,13 @@ export class TargetTableComponent implements OnInit, AfterViewInit {
       });
   }
 
-
-  gotoCompoundList(targetId: number | string) {
+  gotoCompoundList(targetId: number) {
     this.globalService.gotoCompoundList(CompoundListParamsType.target_id, {
       targetId: targetId
     });
   }
 
-  gotoDiseaseList(targetId: number | string) {
+  gotoDiseaseList(targetId: number) {
     this.globalService.gotoDiseaseList(DiseaseListParamsType.target_id, {
       targetId: targetId
     });

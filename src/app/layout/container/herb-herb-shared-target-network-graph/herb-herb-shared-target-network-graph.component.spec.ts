@@ -1,20 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HerbHerbNetworkGraphComponent } from './herb-herb-shared-target-network-graph.component';
+import {HerbHerbSharedTargetNetworkGraphComponent} from './herb-herb-shared-target-network-graph.component';
 
-describe('HerbHerbNetworkGraphComponent', () => {
-  let component: HerbHerbNetworkGraphComponent;
-  let fixture: ComponentFixture<HerbHerbNetworkGraphComponent>;
+describe('HerbHerbSharedTargetNetworkGraphComponent', () => {
+  let component: HerbHerbSharedTargetNetworkGraphComponent;
+  let fixture: ComponentFixture<HerbHerbSharedTargetNetworkGraphComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HerbHerbNetworkGraphComponent ]
+      declarations: [ HerbHerbSharedTargetNetworkGraphComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HerbHerbNetworkGraphComponent);
+    fixture = TestBed.createComponent(HerbHerbSharedTargetNetworkGraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -53,9 +53,9 @@ export class KeggMapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.pathwayIdSubsrciption.unsubscribe();
-    this.keggTgtSubscription.unsubscribe();
-    this.keggCpdSubscription.unsubscribe();
+    // this.pathwayIdSubsrciption.unsubscribe();
+    // this.keggTgtSubscription.unsubscribe();
+    // this.keggCpdSubscription.unsubscribe();
   }
 
   private _getData() {
@@ -158,6 +158,9 @@ export class KeggMapComponent implements OnInit, OnDestroy {
       width: '680px',
       data: dialogData
     });
+    this.pathwayIdSubsrciption.unsubscribe();
+    this.keggTgtSubscription.unsubscribe();
+    this.keggCpdSubscription.unsubscribe();
   }
 
   openTargetDialog(keggId: string) {
@@ -166,6 +169,9 @@ export class KeggMapComponent implements OnInit, OnDestroy {
       width: '600px',
       data: dialogData,
     });
+    this.pathwayIdSubsrciption.unsubscribe();
+    this.keggTgtSubscription.unsubscribe();
+    this.keggCpdSubscription.unsubscribe();
   }
 
 }

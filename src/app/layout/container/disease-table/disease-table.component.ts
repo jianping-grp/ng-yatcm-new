@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {PageMeta} from '../../../yatcm/models/page-meta';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
@@ -14,7 +14,7 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: './disease-table.component.html',
   styleUrls: ['./disease-table.component.css']
 })
-export class DiseaseTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DiseaseTableComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
@@ -40,7 +40,19 @@ export class DiseaseTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.pageMeta.per_page = this.pageSize;
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.getData();
+  }
+
   ngAfterViewInit() {
+    this.getData();
+  }
+
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
+  }
+
+  getData() {
     this.restUrl$.subscribe(data => this.restUrl = data);
     this.sort.sortChange.subscribe(() => this.pageMeta.page = 0);
     this.dataSubscription = merge(this.sort.sortChange, this.paginator.page, this.restUrl$)
@@ -71,9 +83,5 @@ export class DiseaseTableComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(data => {
         this.dataSource.data = data;
       });
-  }
-
-  ngOnDestroy() {
-    this.dataSubscription.unsubscribe();
   }
 }

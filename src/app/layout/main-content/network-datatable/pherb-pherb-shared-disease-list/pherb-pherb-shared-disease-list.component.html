@@ -1,0 +1,20 @@
+<h5>The common disease of optional herbs</h5>
+<mat-form-field>
+  <mat-select multiple [(ngModel)]="selectedHerb" placeholder="Selected herbs">
+    <mat-option *ngFor="let herb of herbList" [value]="herb?.id">
+      {{herb?.Chinese_name}}-{{herb?.English_name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button
+  mat-raised-button
+  color="primary"
+  [disabled]="selectedHerb?.length < 2"
+  (click)="getRestUrl$()"
+>Submit</button>
+
+<app-disease-table
+  *ngIf="selectedHerb?.length"
+  [restUrl$]="restUrl$"
+  [pageSize]=10
+></app-disease-table>

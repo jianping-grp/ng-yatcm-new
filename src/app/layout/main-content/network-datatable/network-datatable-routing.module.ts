@@ -9,6 +9,8 @@ import {
 import {
   HerbHerbNetworkSharedPathwayListComponent
 } from './herb-herb-network-shared-pathway-list/herb-herb-network-shared-pathway-list.component';
+import {PherbPherbSharedTargetListComponent} from './pherb-pherb-shared-target-list/pherb-pherb-shared-target-list.component';
+import {PherbPherbSharedDiseaseListComponent} from "./pherb-pherb-shared-disease-list/pherb-pherb-shared-disease-list.component";
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
   {
     path: 'pathway-list',
     component: HerbHerbNetworkSharedPathwayListComponent
+  },
+  {
+    path: 'target-list',
+    component: PherbPherbSharedTargetListComponent
+  },
+  {
+    path: 'disease-list',
+    component: PherbPherbSharedDiseaseListComponent
   }
 ];
 

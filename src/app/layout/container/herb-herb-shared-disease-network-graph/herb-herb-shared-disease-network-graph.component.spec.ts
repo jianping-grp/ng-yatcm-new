@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import { HerbHerbSharedDiseaseNetworkGraphComponent } from './herb-herb-shared-disease-network-graph.component';
 

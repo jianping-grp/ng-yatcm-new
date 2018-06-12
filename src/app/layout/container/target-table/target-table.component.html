@@ -73,7 +73,7 @@
     <mat-header-cell *matHeaderCellDef>Diseases</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <button mat-button color="primary" (click)="gotoDiseaseList(row.id)">
-        {{row.disease_set.length}}
+        {{row.ttddisease_set.length}}
       </button>
     </mat-cell>
   </ng-container>
@@ -98,7 +98,6 @@
       <mat-paginator [length]="pageMeta?.total_results"
                      [pageSize]="pageMeta?.per_page"
                      [pageSizeOptions]="pageSizeOptions"
-                     (page)="pageChange($event)"
       >
       </mat-paginator>
     </div>

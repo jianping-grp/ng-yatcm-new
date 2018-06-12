@@ -276,4 +276,20 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       data: data
     });
   }
+
+  gotoTargetList() {
+    this.router.navigate(['network-datatable/target-list'], {
+      queryParams: {
+        prescriptionId: this.id
+      }
+    });
+  }
+
+  gotoDiseaseList() {
+    this.router.navigate(['network-datatable/disease-list'], {
+      queryParams: {
+        prescriptionId: this.id
+      }
+    });
+  }
 }
