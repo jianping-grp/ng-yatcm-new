@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {GlobalService} from './services/global/global.service';
 import {HerbListParamsType} from './yatcm/enum/herb-list-param-type.enum';
 import {Observable} from 'rxjs/Observable';
