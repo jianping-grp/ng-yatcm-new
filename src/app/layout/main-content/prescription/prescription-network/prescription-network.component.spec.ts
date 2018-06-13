@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PrescriptionNetworkComponent} from "./prescription-network.component";
+import {PrescriptionNetworkComponent} from './prescription-network.component';
 
 describe('PrescriptionNetworkComponent', () => {
   let component: PrescriptionNetworkComponent;

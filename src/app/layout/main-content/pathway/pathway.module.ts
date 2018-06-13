@@ -6,7 +6,7 @@ import {PathwayCompoundDetailComponent} from './pathway-compound-detail/pathway-
 import {ContainerModule} from '../../container/container.module';
 import {KeggMapComponent} from './kegg-map/kegg-map.component';
 import {CardModule} from '../../../shared/card/card.module';
-import {PathwayProteinDetailComponent} from "./pathway-protein-detail/pathway-protein-detail.component";
+import {PathwayProteinDetailComponent} from './pathway-protein-detail/pathway-protein-detail.component';
 
 
 @NgModule({

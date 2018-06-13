@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {SpliceNetworkComponent} from "./splice-network.component";
+import {SpliceNetworkComponent} from './splice-network.component';
 
 describe('SpliceNetworkComponent', () => {
   let component: SpliceNetworkComponent;

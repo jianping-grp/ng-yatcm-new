@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ChemblRelatedTargetCardComponent} from "./chembl-related-target-card.component";
+import {ChemblRelatedTargetCardComponent} from './chembl-related-target-card.component';
 
 describe('ChemblRelatedTargetCardComponent', () => {
   let component: ChemblRelatedTargetCardComponent;

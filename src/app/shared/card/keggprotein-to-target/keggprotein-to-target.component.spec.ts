@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {KeggproteinToTargetComponent} from "./keggprotein-to-target.component";
+import {KeggproteinToTargetComponent} from './keggprotein-to-target.component';
 
 describe('KeggproteinToTargetComponent', () => {
   let component: KeggproteinToTargetComponent;

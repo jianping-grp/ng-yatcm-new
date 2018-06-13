@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {HerbDiseaseTableComponent} from "./herb-disease-table.component";
+import {HerbDiseaseTableComponent} from './herb-disease-table.component';
 
 describe('HerbDiseaseTableComponent', () => {
   let component: HerbDiseaseTableComponent;

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {CompoundStructureSearchComponent} from "./compound-structure-search.component";
+import {CompoundStructureSearchComponent} from './compound-structure-search.component';
 
 describe('CompoundStructureSearchComponent', () => {
   let component: CompoundStructureSearchComponent;

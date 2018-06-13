@@ -4,7 +4,6 @@ import {HelpComponent} from './layout/main-content/page/help/help.component';
 import {ContactComponent} from './layout/main-content/page/contact/contact.component';
 import {SearchComponent} from './layout/main-content/page/search/search.component';
 import {NgModule} from '@angular/core';
-import {SpliceNetworkComponent} from './layout/main-content/prescription/splice-network/splice-network.component';
 
 const routes: Routes = [
   {

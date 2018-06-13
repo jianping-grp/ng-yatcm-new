@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {RelateChemblMoleculeComponent} from "./relate-chembl-molecule.component";
+import {RelateChemblMoleculeComponent} from './relate-chembl-molecule.component';
 
 describe('RelateChemblMoleculeComponent', () => {
   let component: RelateChemblMoleculeComponent;

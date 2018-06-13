@@ -1,6 +1,6 @@
-import {Pipe, PipeTransform} from "@angular/core";
-import {RestService} from "../../services/rest/rest.service";
-import {Observable} from "rxjs/Observable";
+import {Pipe, PipeTransform} from '@angular/core';
+import {RestService} from '../../services/rest/rest.service';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {empty} from 'rxjs/observable/empty';
 import 'rxjs/add/operator/catch';

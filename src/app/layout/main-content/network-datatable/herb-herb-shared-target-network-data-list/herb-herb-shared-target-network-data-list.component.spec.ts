@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {HerbHerbSharedTargetNetworkDataListComponent} from "./herb-herb-shared-target-network-data-list.component";
+import {HerbHerbSharedTargetNetworkDataListComponent} from './herb-herb-shared-target-network-data-list.component';
 
 describe('HerbHerbSharedTargetNetworkDataListComponent', () => {
   let component: HerbHerbSharedTargetNetworkDataListComponent;

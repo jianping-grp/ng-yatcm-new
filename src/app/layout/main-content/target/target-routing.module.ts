@@ -1,13 +1,13 @@
 import {RouterModule, Routes} from '@angular/router';
 import {TargetListComponent} from './target-list/target-list.component';
 import {NgModule} from '@angular/core';
-import {TargetDetailComponent} from "./target-detail/target-detail.component";
-import {TargetCompoundTableComponent} from "./target-compound-table/target-compound-table.component";
-import {TargetDiseaseTableComponent} from "./target-disease-table/target-disease-table.component";
-import {TargetPathwayTableComponent} from "./target-pathway-table/target-pathway-table.component";
-import {TargetHerbTableComponent} from "./target-herb-table/target-herb-table.component";
-import {TargetPrescriptionTableComponent} from "./target-prescription-table/target-prescription-table.component";
-import {TargetNetworkComponent} from "./target-network/target-network.component";
+import {TargetDetailComponent} from './target-detail/target-detail.component';
+import {TargetCompoundTableComponent} from './target-compound-table/target-compound-table.component';
+import {TargetDiseaseTableComponent} from './target-disease-table/target-disease-table.component';
+import {TargetPathwayTableComponent} from './target-pathway-table/target-pathway-table.component';
+import {TargetHerbTableComponent} from './target-herb-table/target-herb-table.component';
+import {TargetPrescriptionTableComponent} from './target-prescription-table/target-prescription-table.component';
+import {TargetNetworkComponent} from './target-network/target-network.component';
 
 const routes: Routes = [
   {

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PrescriptionNetworkGraphComponent} from "./prescription-network-graph.component";
+import {PrescriptionNetworkGraphComponent} from './prescription-network-graph.component';
 
 describe('PrescriptionNetworkGraphComponent', () => {
   let component: PrescriptionNetworkGraphComponent;

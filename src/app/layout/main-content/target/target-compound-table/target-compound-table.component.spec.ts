@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {TargetCompoundTableComponent} from "./target-compound-table.component";
+import {TargetCompoundTableComponent} from './target-compound-table.component';
 
 describe('TargetCompoundTableComponent', () => {
   let component: TargetCompoundTableComponent;

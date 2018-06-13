@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {TargetPathwayTableComponent} from "./target-pathway-table.component";
+import {TargetPathwayTableComponent} from './target-pathway-table.component';
 
 describe('TargetPathwayTableComponent', () => {
   let component: TargetPathwayTableComponent;

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PrescriptionTargetTableComponent} from "./prescription-target-table.component";
+import {PrescriptionTargetTableComponent} from './prescription-target-table.component';
 
 describe('PrescriptionTargetTableComponent', () => {
   let component: PrescriptionTargetTableComponent;

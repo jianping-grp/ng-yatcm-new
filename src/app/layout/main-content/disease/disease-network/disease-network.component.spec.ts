@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {DiseaseNetworkComponent} from "./disease-network.component";
+import {DiseaseNetworkComponent} from './disease-network.component';
 
 describe('DiseaseNetworkComponent', () => {
   let component: DiseaseNetworkComponent;

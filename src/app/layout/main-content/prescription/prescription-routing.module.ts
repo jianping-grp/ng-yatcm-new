@@ -9,7 +9,7 @@ import {PrescriptionTargetTableComponent} from './prescription-target-table/pres
 import {PrescriptionPathwayTableComponent} from './prescription-pathway-table/prescription-pathway-table.component';
 import {PrescriptionDiseaseTableComponent} from './prescription-disease-table/prescription-disease-table.component';
 import {SpliceNetworkComponent} from './splice-network/splice-network.component';
-import {PrescriptionNetworkGraphComponent} from "./prescription-network-graph/prescription-network-graph.component";
+import {PrescriptionNetworkGraphComponent} from './prescription-network-graph/prescription-network-graph.component';
 
 const routes: Routes = [
   {

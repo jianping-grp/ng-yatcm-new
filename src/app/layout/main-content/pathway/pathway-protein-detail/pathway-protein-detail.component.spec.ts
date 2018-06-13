@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PathwayProteinDetailComponent} from "./pathway-protein-detail.component";
+import {PathwayProteinDetailComponent} from './pathway-protein-detail.component';
 
 describe('PathwayProteinDetailComponent', () => {
   let component: PathwayProteinDetailComponent;

@@ -1,9 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {GlobalService} from '../../../services/global/global.service';
 import {Router} from '@angular/router';
 import {TargetListParamsType} from '../../../yatcm/enum/target-list-param-type.enum';
-import {PathwayListParamsType} from '../../../yatcm/enum/pathway-list-param-type.enum';
 
 @Component({
   selector: 'app-select-target-or-pathway-list',

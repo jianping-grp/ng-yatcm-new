@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {JsmeComponent} from "./jsme.component";
+import {JsmeComponent} from './jsme.component';
 
 describe('JsmeComponent', () => {
   let component: JsmeComponent;

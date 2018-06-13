@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {YatcmSimilarityKeggCompoundCardComponent} from "./yatcm-similarity-kegg-compound-card.component";
+import {YatcmSimilarityKeggCompoundCardComponent} from './yatcm-similarity-kegg-compound-card.component';
 
 describe('YatcmSimilarityKeggCompoundCardComponent', () => {
   let component: YatcmSimilarityKeggCompoundCardComponent;

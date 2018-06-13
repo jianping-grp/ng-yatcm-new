@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {RestService} from '../../../services/rest/rest.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Compound} from '../../../yatcm/models/compound';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-compound-card',

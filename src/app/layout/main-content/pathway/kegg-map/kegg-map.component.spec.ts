@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {KeggMapComponent} from "./kegg-map.component";
+import {KeggMapComponent} from './kegg-map.component';
 
 describe('KeggMapComponent', () => {
   let component: KeggMapComponent;

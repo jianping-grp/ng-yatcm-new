@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PrescriptionPathwayTableComponent} from "./prescription-pathway-table.component";
+import {PrescriptionPathwayTableComponent} from './prescription-pathway-table.component';
 
 describe('PrescriptionPathwayTableComponent', () => {
   let component: PrescriptionPathwayTableComponent;

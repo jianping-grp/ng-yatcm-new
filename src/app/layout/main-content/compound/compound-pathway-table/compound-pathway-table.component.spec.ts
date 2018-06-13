@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {CompoundPathwayTableComponent} from "./compound-pathway-table.component";
+import {CompoundPathwayTableComponent} from './compound-pathway-table.component';
 
 describe('CompoundPathwayTableComponent', () => {
   let component: CompoundPathwayTableComponent;
