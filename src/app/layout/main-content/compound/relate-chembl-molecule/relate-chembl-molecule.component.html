@@ -1,8 +1,9 @@
 <div class="table-section-container">
-  <div *ngIf="isLoading || isLoadingError">
+  <div *ngIf="isLoading || isLoadingError"  class="table-loading-shade">
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
 <mat-table #chemblTable [dataSource]="dataSource"
+           class="data-table"
            matSort matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="chembl_id">
     <mat-header-cell *matHeaderCellDef mat-sort-header>ChEMBL ID*</mat-header-cell>
@@ -62,9 +63,7 @@
     <mat-paginator [length]="pageMeta?.total_results"
                    [pageSize]="pageMeta?.per_page"
                    [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageChange($event)"
-    >
-    </mat-paginator>
+    ></mat-paginator>
   </div>
 </div>
 </div>
