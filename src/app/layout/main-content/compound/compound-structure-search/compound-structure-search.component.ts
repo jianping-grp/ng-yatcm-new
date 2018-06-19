@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {of as observableOf} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-compound-search',
@@ -17,7 +18,7 @@ export class CompoundStructureSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.restUrl$ = this.route.queryParamMap.map((params: ParamMap) => {
+   this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.smiles = params.get('smiles');
       this.structureType = params.get('structureType');
       if (this.structureType === 'structure') {
@@ -34,7 +35,7 @@ export class CompoundStructureSearchComponent implements OnInit {
           substructure_search: 1
         };
       }
-      return `compoundsearch/search/?`;
+     this.restUrl$ = observableOf(`compoundsearch/search/?`);
     });
   }
 }

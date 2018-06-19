@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 export class CompoundCardComponent implements OnInit {
   compound: Compound;
   prescriptionId: number;
+  diseaseId: number;
   constructor(private rest: RestService,
               public dialogRef: MatDialogRef<CompoundCardComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -20,8 +21,12 @@ export class CompoundCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.prescriptionId = this.data.prescriptionId;
-    this.rest.getDataList(`compounds/?filter{id}=${this.data.compoundId}`, 0, 999)
+    if (this.data.prescriptionId) {
+      this.prescriptionId = this.data.prescriptionId;
+    } else if (this.data.diseaseId) {
+      this.diseaseId = this.data.diseaseId;
+    }
+   this.rest.getDataList(`compounds/?filter{id}=${this.data.compoundId}`, 0, 999)
       .subscribe(data => {
         this.compound = data['compounds'][0];
       });
@@ -32,7 +37,7 @@ export class CompoundCardComponent implements OnInit {
   }
 
   gotoCompoundNetwork() {
-    this.router.navigate(['prescription/network'], {queryParams: {
+    this.router.navigate(['network-datatable/network'], {queryParams: {
       compoundId: this.data.compoundId
     }});
   }

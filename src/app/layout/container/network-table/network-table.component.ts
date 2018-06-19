@@ -142,6 +142,8 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
         return ['Herb', 'Target'];
       } else if (this.idType === 'prescription-herb-disease') {
         return ['Herb', 'Disease'];
+      } else if (this.idType === 'disease') {
+        return ['Compound', 'Target', 'Pathway', 'Disease'];
       } else {
         return ['Prescription', 'Herb', 'Compound', 'Pathway', 'Target', 'Disease'];
       }
@@ -270,6 +272,8 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     const data = {compoundId: compoundId};
     if (this.idType === 'prescription') {
       Object.assign(data, {prescriptionId: this.id});
+    } else if (this.idType === 'disease') {
+      Object.assign(data, {diseaseId: this.id});
     }
     this.dialog.open(CompoundCardComponent, {
       width: '400px',

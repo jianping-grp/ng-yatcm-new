@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {of as observableOf} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-herb-herb-network-shared-pathway-list',
@@ -15,17 +16,17 @@ export class HerbHerbNetworkSharedPathwayListComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.restUrl$ = this._getRestUrl();
+    this._getRestUrl();
   }
 
   private _getRestUrl() {
-   return this.route.queryParamMap.map((params: ParamMap) => {
+    this.route.queryParamMap.subscribe((params: ParamMap) => {
       const first_herb_id = +params.get('first_herb');
       const second_herb_id = params.get('second_herb');
       this.herb_herb_id = `${first_herb_id},${second_herb_id}`;
-      return `keggpathwaysexclude/herb_herb_tgt_kegg_list/` +
-          `?first_herb_id=${+(first_herb_id)}&second_herb_id=${+(second_herb_id)}` +
-        `${this.includeParams}`;
+      this.restUrl$ = observableOf(`keggpathwaysexclude/herb_herb_tgt_kegg_list/` +
+        `?first_herb_id=${+(first_herb_id)}&second_herb_id=${+(second_herb_id)}` +
+        `${this.includeParams}`);
     });
   }
 

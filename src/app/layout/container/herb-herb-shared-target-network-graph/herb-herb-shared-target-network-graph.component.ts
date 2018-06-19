@@ -5,10 +5,9 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Herb} from '../../../yatcm/models/herb';
 import {GlobalService} from '../../../services/global/global.service';
-import {TargetListParamsType} from '../../../yatcm/enum/target-list-param-type.enum';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
-import {SelectTargetOrPathwayListComponent} from "../../../shared/card/select-target-or-pathway-list/select-target-or-pathway-list.component";
+import {SelectTargetOrPathwayListComponent} from '../../../shared/card/select-target-or-pathway-list/select-target-or-pathway-list.component';
 
 @Component({
   selector: 'app-herb-herb-shared-target-network-graph',

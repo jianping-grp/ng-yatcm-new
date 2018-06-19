@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {of as observableOf} from "rxjs/observable/of";
 
 @Component({
   selector: 'app-prescription-pathway-table',
@@ -16,10 +17,10 @@ export class PrescriptionPathwayTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
+    this.route.parent.paramMap.subscribe((params: ParamMap) => {
       this.prescriptionId = +params.get('id');
       this.body = {prescription_id: this.prescriptionId};
-      return `keggpathwaysexclude/prescription_map_kegg_list/?include[]=category.*`;
+      this.restUrl$ = observableOf(`keggpathwaysexclude/prescription_map_kegg_list/?include[]=category.*`);
     });
   }
 

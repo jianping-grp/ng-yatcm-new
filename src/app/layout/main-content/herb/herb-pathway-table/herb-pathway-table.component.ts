@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {of as observableOf} from "rxjs/observable/of";
 
 @Component({
   selector: 'app-herb-pathway-table',
@@ -17,10 +18,15 @@ export class HerbPathwayTableComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
+    //  this.restUrl$ = this.route.parent.paramMap.map((params: ParamMap) => {
+    //   this.herbId = +params.get('id');
+    //   this.body = {herb_id: this.herbId};
+    //   return `keggpathwaysexclude/herb_map_kegg_list/?include[]=category.*`;
+    // });
+    this.route.parent.paramMap.subscribe((params: ParamMap) => {
       this.herbId = +params.get('id');
       this.body = {herb_id: this.herbId};
-      return `keggpathwaysexclude/herb_map_kegg_list/?include[]=category.*`;
+      this.restUrl$ = observableOf(`keggpathwaysexclude/herb_map_kegg_list/?include[]=category.*`);
     });
   }
 

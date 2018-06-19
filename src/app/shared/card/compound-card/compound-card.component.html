@@ -14,7 +14,7 @@
       ></app-jsme>
     </td>
   </tr>
-  <tr *ngIf="prescriptionId">
+  <tr *ngIf="prescriptionId || diseaseId">
     <th>Network</th>
     <td class="mdl-data-table__cell--non-numeric">
       <button mat-button color="primary" (click)="kclose(); gotoCompoundNetwork()">view</button>
