@@ -2,6 +2,10 @@
   <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
     <mat-progress-bar mode="query" color="primary" *ngIf="isLoading"></mat-progress-bar>
   </div>
+  <div *ngIf="isLoading" class="text-center">
+    <br/>
+    <p class="font-color">Note: This load takes 3 minutes, please waiting...</p>
+  </div>
 <mat-table #pathwayTable [dataSource]="dataSource"
            class="data-table"
            matSort matSortDisableClear matSortDirection="asc">
