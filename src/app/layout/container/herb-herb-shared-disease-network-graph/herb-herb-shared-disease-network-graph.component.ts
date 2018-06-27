@@ -138,7 +138,8 @@ export class HerbHerbSharedDiseaseNetworkGraphComponent implements OnInit, OnDes
                 `Chinese name: ${el.data.Chinese_name}</br>` +
                 `English name: ${el.data.English_name}</br>`;
             case 'edge':
-              return `shared disease number: ${el.value}`;
+              return `shared disease number: ${el.value}<br/>` +
+                `Double click to view more`;
           }
         }
       },

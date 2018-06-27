@@ -134,7 +134,8 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
                 `Chinese name: ${el.data.Chinese_name}</br>` +
                 `English name: ${el.data.English_name}</br>`;
             case 'edge':
-              return `shared targets number: ${el.value}`;
+              return `shared targets number: ${el.value}<br/>` +
+                `Double click to view more`;
           }
         }
       },

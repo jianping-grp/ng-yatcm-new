@@ -4,14 +4,15 @@
      (chartInit)="onChartInit($event)"
      (chartDblClick)="onDbClick($event)"
 ></div>
-<table class="mdl-data-table">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <tr>
-    <th>Shared targets threshold({{lengthThreshold}})</th>
-    <th>Nodes name</th>
-    <th>View data table</th>
+    <th class="mdl-data-table__cell--non-numeric">Shared targets threshold({{lengthThreshold}})</th>
+    <th class="mdl-data-table__cell--non-numeric">Nodes name</th>
+    <th class="mdl-data-table__cell--non-numeric">View data table</th>
+    <th class="mdl-data-table__cell--non-numeric">View more data</th>
   </tr>
   <tr>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <mat-slider
         [min]="1"
         [max]="200"
@@ -21,14 +22,18 @@
         (change)="updateNetworkData()"
       ></mat-slider>
     </td>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <mat-slide-toggle
         [(ngModel)]="showLabel"
         (change)="showNodeLabel()"
       ></mat-slide-toggle>
     </td>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <button mat-button color="primary" (click)="gotoNetworkTable()">View</button>
     </td>
+  <td class="mdl-data-table__cell--non-numeric">
+    <img class="img-style" src="assets/image-yatcm/shared-target.png" alt="sample picture">
+  </td>
   </tr>
+
 </table>
