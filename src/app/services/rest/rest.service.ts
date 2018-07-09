@@ -33,6 +33,7 @@ export class RestService {
     }
     return this.http.get(`${this.restHost}/${url}${extraParam}&page=${page}&per_page=${perPage}${sortParam}`)
       .finally(() => this.globalService.setLoading(false));
+
   }
 
   public postData(url: string, body: Object): Observable<any> {
