@@ -4,7 +4,7 @@
   </div>
   <mat-table #herbTable [dataSource]="dataSource"
              class="data-table"
-             matSort matSortDisableClear matSortDirection="asc">
+             matSort matSortActive="indication"  matSortDisableClear matSortDirection="asc">
     <ng-container matColumnDef="image">
       <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
       <mat-cell *matCellDef="let row">
@@ -60,7 +60,7 @@
 
     <ng-container matColumnDef="effect">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Effect*</mat-header-cell>
-      <mat-cell *matCellDef="let row">
+      <mat-cell *matCellDef="let row" class="scroll-content">
         <ng-container *ngIf="row.effect">{{row.effect}}</ng-container>
         <ng-container *ngIf="!row.effect">
           <span>

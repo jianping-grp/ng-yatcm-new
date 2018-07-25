@@ -7,7 +7,9 @@ import {Herb} from '../../../yatcm/models/herb';
 import {GlobalService} from '../../../services/global/global.service';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
-import {SelectTargetOrPathwayListComponent} from '../../../shared/card/select-target-or-pathway-list/select-target-or-pathway-list.component';
+import {
+  SelectTargetOrPathwayListComponent
+} from '../../../shared/card/select-target-or-pathway-list/select-target-or-pathway-list.component';
 
 @Component({
   selector: 'app-herb-herb-shared-target-network-graph',
