@@ -8,7 +8,7 @@
   </div>
 <mat-table #pathwayTable [dataSource]="dataSource"
            class="data-table"
-           matSort matSortDisableClear matSortDirection="asc">
+           matSort matSortActive="kegg_id" matSortDisableClear matSortDirection="asc">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Pathway Name*</mat-header-cell>
     <mat-cell *matCellDef="let row">
