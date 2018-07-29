@@ -148,6 +148,14 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
         orient: 'vertical',
         data: ['Herb']
       }],
+      toolbox: {
+        show: true,
+        feature: {
+          dataView: {show: true, readOnly: true},
+          restore: {show: true},
+          saveAsImage: {show: true}
+        }
+      },
       animationDuration: 3000,
       animationEasingUpdate: 'quinticInOut',
       series: [this.series],
@@ -191,8 +199,11 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
         nodeSet.add(linkEl.second_herb.toString());
         this.series['links'].push(
           {
-            source: linkEl.first_herb.toString(),
-            target: linkEl.second_herb.toString(),
+            // source and target used for data view;
+            source: 'herb_id:' + linkEl.first_herb.toString() + '-*-'
+            + this.herbList.find(el => el.id === linkEl.first_herb).English_name,
+            target: 'herb_id:' + linkEl.second_herb.toString() + '-*-'
+            + this.herbList.find(el => el.id === linkEl.second_herb).English_name,
             value: linkEl.targets.length,
             lineStyle: {
               normal: {
@@ -210,7 +221,9 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
           Chinese_name: herbEl.Chinese_name,
           English_name: herbEl.English_name,
           herb_id: herbEl.id,
-          name: herbEl.id.toString(),
+          // name 用于和 link中的source 和 target 匹配
+          name: 'herb_id:' + herbEl.id.toString() + '-*-' + herbEl.English_name,
+          value: 2,
           category: 'Herb',
           draggable: true
         };

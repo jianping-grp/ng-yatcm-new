@@ -21,15 +21,15 @@ export class SearchComponent implements OnInit {
   structureType = this.structureTypeList[0];
   similarity = 0.9;
   prescriptionSearchTypeList = [
-    {inputType: 'Chinese name', value: '玉屏风散'},
     {inputType: 'English name', value: 'yupingfeng powder'},
+    {inputType: 'Chinese name', value: '玉屏风散'},
     {inputType: 'Phonetic name', value: 'yu ping feng san'}
   ];
   prescriptionSelectedType = this.prescriptionSearchTypeList[0].inputType;
   prescriptionKeyword = this.prescriptionSearchTypeList[0].value;
   herbSearchTypeList = [
-    {inputType: 'Chinese name', value: '甘草'},
     {inputType: 'English name', value: 'Glycyrrhiza Uralensis'},
+    {inputType: 'Chinese name', value: '甘草'},
     {inputType: 'Phonetic name', value: 'GAN CAO'}
   ];
   herbSelectedType = this.herbSearchTypeList[0].inputType;
