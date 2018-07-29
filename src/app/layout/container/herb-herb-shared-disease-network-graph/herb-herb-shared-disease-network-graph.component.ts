@@ -225,7 +225,7 @@ export class HerbHerbSharedDiseaseNetworkGraphComponent implements OnInit, OnDes
           herb_id: herbEl.id,
           // name 用于和 link中的source 和 target 匹配
           name: 'herb_id:' + herbEl.id.toString() + '-*-' + herbEl.English_name,
-          value: 5,
+          value: 2,
           category: 'Herb',
           itemStyle: {
             color: '#56cc9d',
