@@ -199,11 +199,8 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
         nodeSet.add(linkEl.second_herb.toString());
         this.series['links'].push(
           {
-            // source and target used for data view;
-            source: 'herb_id:' + linkEl.first_herb.toString() + '-*-'
-            + this.herbList.find(el => el.id === linkEl.first_herb).English_name,
-            target: 'herb_id:' + linkEl.second_herb.toString() + '-*-'
-            + this.herbList.find(el => el.id === linkEl.second_herb).English_name,
+            source: linkEl.first_herb.toString(),
+            target: linkEl.second_herb.toString(),
             value: linkEl.targets.length,
             lineStyle: {
               normal: {
@@ -221,8 +218,7 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
           Chinese_name: herbEl.Chinese_name,
           English_name: herbEl.English_name,
           herb_id: herbEl.id,
-          // name 用于和 link中的source 和 target 匹配
-          name: 'herb_id:' + herbEl.id.toString() + '-*-' + herbEl.English_name,
+          name: herbEl.id.toString(),
           value: 2,
           category: 'Herb',
           draggable: true

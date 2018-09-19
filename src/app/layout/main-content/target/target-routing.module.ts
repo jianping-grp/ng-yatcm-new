@@ -8,6 +8,7 @@ import {TargetPathwayTableComponent} from './target-pathway-table/target-pathway
 import {TargetHerbTableComponent} from './target-herb-table/target-herb-table.component';
 import {TargetPrescriptionTableComponent} from './target-prescription-table/target-prescription-table.component';
 import {TargetNetworkComponent} from './target-network/target-network.component';
+import {TargetEnrichPathwayComponent} from "./target-enrich-pathway/target-enrich-pathway.component";
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'target-pathway',
         component: TargetPathwayTableComponent
+      },
+      {
+        path: 'target-enrich-pathway',
+        component: TargetEnrichPathwayComponent
       },
       {
         path: 'target-herb',

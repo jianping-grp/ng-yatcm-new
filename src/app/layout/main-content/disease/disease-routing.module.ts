@@ -8,6 +8,7 @@ import {DiseaseCompoundTableComponent} from './disease-compound-table/disease-co
 import {DiseaseTargetTableComponent} from './disease-target-table/disease-target-table.component';
 import {DiseasePathwayTableComponent} from './disease-pathway-table/disease-pathway-table.component';
 import {DiseaseNetworkComponent} from './disease-network/disease-network.component';
+import {DiseaseEnrichPathwayComponent} from "./disease-enrich-pathway/disease-enrich-pathway.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'disease-pathway',
         component: DiseasePathwayTableComponent
+      },
+      {
+        path: 'disease-enrich-pathway',
+        component: DiseaseEnrichPathwayComponent
       },
       {
         path: 'disease-network',

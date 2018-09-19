@@ -19,7 +19,6 @@ import {Subscription} from 'rxjs/Subscription';
 
 export class KeggMapComponent implements OnInit, OnDestroy {
   tooltipWords = 'Click to view more';
-  displayType: string;
   pathwayId: number | string;
   compoundId: number | string;
   herbId: number | string;
@@ -69,7 +68,6 @@ export class KeggMapComponent implements OnInit, OnDestroy {
 
       // 根据不同的参数， 获取map信息
       if (params.has('compoundId')) {
-        this.displayType = 'compound';
         this.compoundId = +params.get('compoundId');
         this.body = {cpd_id: this.compoundId, kegg_pathway_id: this.pathwayId};
         if (params.has('keggId')) {
@@ -85,29 +83,24 @@ export class KeggMapComponent implements OnInit, OnDestroy {
           this._fetchMappingKeggCpds(`compounds/cpd_kegg_map/`, this.body);
         }
       } else if (params.has('herbId')) {
-        this.displayType = 'herb';
         this.herbId = +params.get('herbId');
         this.body = {herb_id: this.herbId, kegg_pathway_id: this.pathwayId};
         this._fetchMappingKeggTgts(`herbs/tgt_kegg_map/`, this.body);
         this._fetchMappingKeggCpds(`herbs/cpd_kegg_map/`, this.body);
       } else if (params.has('prescriptionId')) {
-        this.displayType = 'prescription';
         this.prescriptionId = +params.get('prescriptionId');
         this.body = {prescription_id: this.prescriptionId, kegg_pathway_id: this.pathwayId};
         this._fetchMappingKeggTgts(`prescriptions/tgt_kegg_map/`, this.body);
         this._fetchMappingKeggCpds(`prescriptions/cpd_kegg_map/`, this.body);
       } else if (params.has('targetId')) {
-        this.displayType = 'target';
         this.targetId = +params.get('targetId');
         this.body = {target_id: this.targetId, kegg_pathway_id: this.pathwayId};
         this._fetchMappingKeggTgts(`targets/tgt_kegg_map/`, this.body);
       } else if (params.has('diseaseId')) {
-        this.displayType = 'disease';
         this.diseaseId = +params.get('diseaseId');
         this.body = {disease_id: this.diseaseId, kegg_pathway_id: this.pathwayId};
         this._fetchMappingKeggTgts(`ttddisease/tgt_kegg_map/`, this.body);
       } else if (params.has('firstHerbId')) {
-        this.displayType = 'herb_herb';
         this.firstHerbId = +params.get('firstHerbId');
         this.secondHerbId = +params.get('secondHerbId');
         this.body = {

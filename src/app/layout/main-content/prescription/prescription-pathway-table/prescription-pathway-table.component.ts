@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {of as observableOf} from "rxjs/observable/of";
+import {of as observableOf} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-prescription-pathway-table',

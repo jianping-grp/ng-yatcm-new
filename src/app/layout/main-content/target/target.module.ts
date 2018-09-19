@@ -11,6 +11,7 @@ import {TargetDiseaseTableComponent} from './target-disease-table/target-disease
 import {TargetHerbTableComponent} from './target-herb-table/target-herb-table.component';
 import {TargetPrescriptionTableComponent} from './target-prescription-table/target-prescription-table.component';
 import {TargetNetworkComponent} from './target-network/target-network.component';
+import { TargetEnrichPathwayComponent } from './target-enrich-pathway/target-enrich-pathway.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {TargetNetworkComponent} from './target-network/target-network.component'
     TargetDiseaseTableComponent,
     TargetHerbTableComponent,
     TargetPrescriptionTableComponent,
-    TargetNetworkComponent
+    TargetNetworkComponent,
+    TargetEnrichPathwayComponent
   ]
 })
 export class TargetModule { }

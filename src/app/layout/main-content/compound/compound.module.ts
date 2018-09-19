@@ -13,6 +13,7 @@ import {CompoundPrescriptionTableComponent} from './compound-prescription-table/
 import {CompoundHerbTableComponent} from './compound-herb-table/compound-herb-table.component';
 import {CompoundNetworkComponent} from './compound-network/compound-network.component';
 import {CompoundStructureSearchComponent} from './compound-structure-search/compound-structure-search.component';
+import { CompoundEnrichPathwayComponent } from './compound-enrich-pathway/compound-enrich-pathway.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {CompoundStructureSearchComponent} from './compound-structure-search/comp
     CompoundSeaTargetComponent,
     CompoundDiseaseTableComponent,
     RelateChemblMoleculeComponent,
-    CompoundStructureSearchComponent
+    CompoundStructureSearchComponent,
+    CompoundEnrichPathwayComponent
   ]
 })
 export class CompoundModule { }

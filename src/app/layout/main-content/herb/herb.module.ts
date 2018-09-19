@@ -11,6 +11,7 @@ import {HerbTargetTableComponent} from './herb-target-table/herb-target-table.co
 import {HerbPathwayTableComponent} from './herb-pathway-table/herb-pathway-table.component';
 import {HerbDiseaseTableComponent} from './herb-disease-table/herb-disease-table.component';
 import {HerbNetworkGraphComponent} from './herb-network-graph/herb-network-graph.component';
+import { HerbEnrichPathwayComponent } from './herb-enrich-pathway/herb-enrich-pathway.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {HerbNetworkGraphComponent} from './herb-network-graph/herb-network-graph
     HerbTargetTableComponent,
     HerbPathwayTableComponent,
     HerbDiseaseTableComponent,
-    HerbNetworkGraphComponent
+    HerbNetworkGraphComponent,
+    HerbEnrichPathwayComponent
   ],
 })
 export class HerbModule { }

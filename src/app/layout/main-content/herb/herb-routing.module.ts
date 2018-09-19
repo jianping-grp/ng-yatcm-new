@@ -9,6 +9,7 @@ import {HerbTargetTableComponent} from './herb-target-table/herb-target-table.co
 import {HerbPathwayTableComponent} from './herb-pathway-table/herb-pathway-table.component';
 import {HerbDiseaseTableComponent} from './herb-disease-table/herb-disease-table.component';
 import {HerbNetworkGraphComponent} from './herb-network-graph/herb-network-graph.component';
+import {HerbEnrichPathwayComponent} from "./herb-enrich-pathway/herb-enrich-pathway.component";
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'herb-disease',
         component: HerbDiseaseTableComponent
+      },
+      {
+        path: 'herb-enrich-pathway',
+        component: HerbEnrichPathwayComponent
       }
     ]
   }

@@ -9,6 +9,7 @@ import {PrescriptionTargetTableComponent} from './prescription-target-table/pres
 import {PrescriptionPathwayTableComponent} from './prescription-pathway-table/prescription-pathway-table.component';
 import {PrescriptionDiseaseTableComponent} from './prescription-disease-table/prescription-disease-table.component';
 import {PrescriptionNetworkGraphComponent} from './prescription-network-graph/prescription-network-graph.component';
+import {PrescriptionEnrichPathwayTableComponent} from './prescription-enrich-pathway-table/prescription-enrich-pathway-table.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
         component: PrescriptionPathwayTableComponent
       },
       {
+        path: 'prescription-enrich-pathway',
+        component: PrescriptionPathwayTableComponent
+      },
+      {
         path: 'prescription-disease',
         component: PrescriptionDiseaseTableComponent
       },
@@ -52,6 +57,10 @@ const routes: Routes = [
         path: 'prescription-graph',
         component: PrescriptionNetworkGraphComponent
       },
+      {
+        path: 'prescription-enrich-pathway',
+        component: PrescriptionEnrichPathwayTableComponent
+      }
     ]
   }
 ];

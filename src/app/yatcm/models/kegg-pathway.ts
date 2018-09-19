@@ -6,4 +6,5 @@ export interface KeggPathway {
   kgml?: string;
   image?: string;
   category?: number;
+  id?: number;
 }

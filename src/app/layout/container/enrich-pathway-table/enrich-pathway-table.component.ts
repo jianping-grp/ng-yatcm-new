@@ -3,25 +3,28 @@ import {PageMeta} from '../../../yatcm/models/page-meta';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
 import {RestService} from '../../../services/rest/rest.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
-import {KeggPathwayCategory} from '../../../yatcm/models/kegg-pathway-category';
 import {Subscription} from 'rxjs/Subscription';
-
+import {EnrichPathway} from '../../../yatcm/models/enrich-pathway/enrich-pathway';
+import {KeggPathway} from '../../../yatcm/models/kegg-pathway';
+import {KeggPathwayCategory} from '../../../yatcm/models/kegg-pathway-category';
 @Component({
-  selector: 'app-pathway-table',
-  templateUrl: './pathway-table.component.html',
-  styleUrls: ['./pathway-table.component.css']
+  selector: 'app-enrich-pathway-table',
+  templateUrl: './enrich-pathway-table.component.html',
+  styleUrls: ['./enrich-pathway-table.component.css']
 })
-export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class EnrichPathwayTableComponent implements OnInit, OnDestroy, AfterViewInit {
   pageMeta = new PageMeta();
   dataSource = new MatTableDataSource();
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
   dataSubscription: Subscription;
+  enrichPathways: EnrichPathway[];
+  keggPathway: KeggPathway[];
   keggPathwayCategory: KeggPathwayCategory[];
   @Input() body: object;
   @Input() idType: string;
@@ -31,28 +34,21 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];
   @Input() displayedColumns = [];
+  @Input() allColumns = [];
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  allColumns = ['name', 'category', 'kegg_id', 'detail'];
   constructor(private rest: RestService,
-              private router: Router) {
-
-  }
+              private router: Router) { }
 
   ngOnInit() {
     console.log('pathway table init');
     this.pageMeta.per_page = this.pageSize;
-    if (this.idType === 'herb' || this.idType === 'prescription' || this.idType === 'compound') {
-      this.displayedColumns = ['name', 'category', 'kegg_id', 'compound_detail', 'protein_detail'];
-    } else
-    if (this.idType === 'target' || this.idType === 'disease' || this.idType === 'herb_herb') {
-      this.displayedColumns = ['name', 'category', 'kegg_id', 'protein_detail'];
-    }  else {
-      this.displayedColumns = ['name', 'category', 'other_kegg_id', 'compound_detail', 'protein_detail'];
-    }
   }
 
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
+  }
 
   ngAfterViewInit() {
     this.restUrl$.subscribe(data => this.restUrl = data);
@@ -63,8 +59,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
         switchMap(() => {
           this.isLoading = true;
           // 判断数据类型
-        if (this.idType === 'compound' || this.idType === 'herb' || this.idType === 'prescription') {
-            return this.rest.postDataList(
+          return this.rest.postDataList(
               this.restUrl,
               this.body,
               this.paginator.pageIndex,
@@ -72,22 +67,26 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
               this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
               this.includeParams
             );
-          } else {
-            return this.rest.getDataList(
-              this.restUrl,
-              this.paginator.pageIndex,
-              this.paginator.pageSize,
-              this.sort.direction === 'desc' ? `-${this.sort.active}` : this.sort.active,
-              this.includeParams
-            );
-          }
         }),
         map(data => {
           this.isLoading = false;
           this.isLoadingError = false;
           this.pageMeta = data['meta'];
+          this.keggPathway = data['kegg_pathways'];
           this.keggPathwayCategory = data['kegg_pathway_second_categories'];
-          return data['kegg_pathways'];
+          console.log(this.keggPathway);
+          switch (this.idType) {
+            case 'prescription':
+              return data['prescription_enrich_pathways'];
+            case 'herb':
+              return data['herb_enrich_pathways'];
+            case 'compound':
+              return data['compound_enrich_pathways'];
+            case 'target':
+              return data['target_enrich_pathways'];
+            case 'ttdDisease':
+              return data['ttd_disease_enrich_pathways'];
+          }
         }),
         catchError(() => {
           this.isLoadingError = true;
@@ -97,19 +96,19 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
       )
       .subscribe(data => {
         this.dataSource.data = data;
-      });
-  }
 
-  ngOnDestroy() {
-    this.dataSubscription.unsubscribe();
+      });
   }
 
   getKeggPathwayCategory(category: number) {
     return this.keggPathwayCategory.find(el => el.id === category);
   }
 
+  getKeggPathway(pathwayId: number) {
+    return this.keggPathway.find(teml => teml.id === pathwayId);
+  }
 
-  getQueryParams(pathwayId: number) {
+  gotoKeggMapDetail(pathwayId: number | string) {
     const queryParams = {pathwayId: pathwayId};
     switch (this.idType) {
       case 'prescription':
@@ -122,24 +121,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
         Object.assign(queryParams, {targetId: this.id}); break;
       case 'disease':
         Object.assign(queryParams, {diseaseId: this.id}); break;
-      case 'herb_herb': {
-        const idArray = this.id.split(',');
-        const first_herb_id = idArray[0];
-        const second_herb_id = idArray[1];
-        Object.assign(queryParams, {
-          firstHerbId: first_herb_id,
-          secondHerbId: second_herb_id,
-        });
-        break;
-      }
-       default:
-         Object.assign(queryParams, {});
     }
-    return queryParams;
-  }
-
-  gotoKeggMapDetail(pathwayId: number) {
-    const queryParams = this.getQueryParams(pathwayId);
     this.router.navigate(['pathway/kegg-map'], {queryParams: queryParams});
   }
 
@@ -159,9 +141,20 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(['pathway/compound-detail'], {queryParams: queryParams});
   }
 
-  gotoPathwayProteinDetail(pathwayId: number, type?: string) {
-    const queryParams = this.getQueryParams(pathwayId);
+  gotoPathwayProteinDetail(pathwayId: number) {
+    const queryParams = {pathwayId: pathwayId};
+    switch (this.idType) {
+      case 'prescription':
+        Object.assign(queryParams, {prescriptionId: this.id}); break;
+      case 'herb':
+        Object.assign(queryParams, {herbId: this.id}); break;
+      case 'compound':
+        Object.assign(queryParams, {compoundId: this.id}); break;
+      case 'target':
+        Object.assign(queryParams, {targetId: this.id}); break;
+      case 'disease':
+        Object.assign(queryParams, {diseaseId: this.id}); break;
+    }
     this.router.navigate(['pathway/protein-detail'], {queryParams: queryParams});
   }
-
 }

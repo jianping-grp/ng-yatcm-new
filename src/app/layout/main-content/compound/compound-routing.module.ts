@@ -11,6 +11,7 @@ import {CompoundDiseaseTableComponent} from './compound-disease-table/compound-d
 import {RelateChemblMoleculeComponent} from './relate-chembl-molecule/relate-chembl-molecule.component';
 import {CompoundNetworkComponent} from './compound-network/compound-network.component';
 import {CompoundStructureSearchComponent} from './compound-structure-search/compound-structure-search.component';
+import {CompoundEnrichPathwayComponent} from "./compound-enrich-pathway/compound-enrich-pathway.component";
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: 'compound-pathway',
         component: CompoundPathwayTableComponent
+      },
+      {
+        path: 'compound-enrich-pathway',
+        component: CompoundEnrichPathwayComponent
       },
       {
         path: 'compound-disease',
