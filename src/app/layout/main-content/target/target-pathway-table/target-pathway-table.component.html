@@ -1,5 +1,18 @@
+<app-enrich-pathway-table
+  [idType]="'target'"
+  [displayedColumns]="displayedColumns"
+  [allColumns]="allColumns"
+  [id]="diseaseId"
+  [pageSize]="5"
+  [restUrl$]="enrichPathwayRestUrl$"
+  [body]="body"
+></app-enrich-pathway-table>
+<br/>
 <app-pathway-table
-[restUrl$]="restUrl$"
+[restUrl$]="onlyMapPathwayRestUrl$"
 [pageSize]=5
 [idType]="'target'"
+[body]="body"
 [id]="targetId"></app-pathway-table>
+
+

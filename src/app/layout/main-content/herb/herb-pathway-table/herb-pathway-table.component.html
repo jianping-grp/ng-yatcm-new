@@ -1,6 +1,18 @@
+<app-enrich-pathway-table
+  [idType]="'herb'"
+  [displayedColumns]="displayedColumns"
+  [allColumns]="allColumns"
+  [id]="herbId"
+  [pageSize]="5"
+  [restUrl$]="enrichPathwayRestUrl$"
+  [body]="body"
+></app-enrich-pathway-table>
+<br/>
 <app-pathway-table
-[restUrl$]="restUrl$"
+[restUrl$]="onlyMapPathwayRestUrl$"
 [pageSize]=5
 [idType]="'herb'"
 [id]="herbId"
 [body]="body"></app-pathway-table>
+
+

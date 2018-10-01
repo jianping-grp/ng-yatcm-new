@@ -1,6 +1,18 @@
+<app-enrich-pathway-table
+  [idType]="'compound'"
+  [displayedColumns]="displayedColumns"
+  [allColumns]="allColumns"
+  [id]="compoundId"
+  [pageSize]="5"
+  [restUrl$]="enrichPathwayRestUrl$"
+  [body]="body"
+></app-enrich-pathway-table>
+<br/>
 <app-pathway-table
-[restUrl$]="restUrl$"
+[restUrl$]="onlyMapPathwayRestUrl$"
 [pageSize]=5
 [idType]="'compound'"
 [id]="compoundId"
 [body]="body"></app-pathway-table>
+
+

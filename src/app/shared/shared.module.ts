@@ -26,6 +26,7 @@ import {JsmeModule} from './jsme/jsme.module';
 import {DirectivesModule} from './directives/directives.module';
 import {PipesModule} from './pipe/pipes.module';
 import {NgxEchartsModule} from 'ngx-echarts';
+import {CytoscapeModule} from 'ngx-cytoscape';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import {NgxEchartsModule} from 'ngx-echarts';
     DirectivesModule,
     PipesModule,
     NgxEchartsModule,
+    CytoscapeModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
@@ -64,6 +66,7 @@ import {NgxEchartsModule} from 'ngx-echarts';
     DirectivesModule,
     PipesModule,
     NgxEchartsModule,
+    CytoscapeModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,

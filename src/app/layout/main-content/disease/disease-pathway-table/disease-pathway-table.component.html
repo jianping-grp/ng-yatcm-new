@@ -1,5 +1,24 @@
+<!--<app-pathway-table-->
+  <!--[restUrl$]="restUrl$"-->
+<!--[pageSize]=5-->
+<!--[idType]="'disease'"-->
+<!--[id]="diseaseId"></app-pathway-table>-->
+<app-enrich-pathway-table
+  [idType]="'disease'"
+  [displayedColumns]="displayedColumns"
+  [allColumns]="allColumns"
+  [id]="diseaseId"
+  [pageSize]="5"
+  [restUrl$]="enrichPathwayRestUrl$"
+  [body]="body"
+></app-enrich-pathway-table>
+<br/>
 <app-pathway-table
-  [restUrl$]="restUrl$"
-[pageSize]=5
-[idType]="'disease'"
-[id]="diseaseId"></app-pathway-table>
+  [restUrl$]="onlyMapPathwayRestUrl$"
+  [pageSize]=5
+  [idType]="'disease'"
+  [id]="diseaseId"
+  [body]="body"
+></app-pathway-table>
+
+

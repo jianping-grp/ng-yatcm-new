@@ -14,6 +14,7 @@ import { HerbHerbSharedTargetNetworkGraphComponent } from './herb-herb-shared-ta
 import { HerbHerbSharedDiseaseNetworkGraphComponent } from './herb-herb-shared-disease-network-graph/herb-herb-shared-disease-network-graph.component';
 import { HerbHerbSharedDiseaseNetworkDataTableComponent } from './herb-herb-shared-disease-network-data-table/herb-herb-shared-disease-network-data-table.component';
 import { EnrichPathwayTableComponent } from './enrich-pathway-table/enrich-pathway-table.component';
+import { MapPathwayTableComponent } from './map-pathway-table/map-pathway-table.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { EnrichPathwayTableComponent } from './enrich-pathway-table/enrich-pathw
     HerbHerbSharedDiseaseNetworkGraphComponent,
     HerbHerbSharedDiseaseNetworkDataTableComponent,
     EnrichPathwayTableComponent,
+    MapPathwayTableComponent,
 
   ],
   exports: [

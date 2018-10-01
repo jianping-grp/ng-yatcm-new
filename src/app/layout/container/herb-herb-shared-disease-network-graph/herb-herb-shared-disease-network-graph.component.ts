@@ -158,7 +158,7 @@ export class HerbHerbSharedDiseaseNetworkGraphComponent implements OnInit, OnDes
           saveAsImage: {show: true}
         }
       },
-      animationDuration: 3000,
+      animationDuration: 1000,
       animationEasingUpdate: 'quinticInOut',
       series: [this.series],
     };

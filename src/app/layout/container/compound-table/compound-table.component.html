@@ -53,7 +53,7 @@
 
   <ng-container matColumnDef="psa">
     <mat-header-cell *matHeaderCellDef mat-sort-header>PSA*</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row.psa}}</mat-cell>
+    <mat-cell *matCellDef="let row">{{row.PSA}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="hba">
@@ -69,6 +69,358 @@
   <ng-container matColumnDef="alogp">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Alogp*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.alogp}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="FISA">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.FISA}}"
+    >FISA*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.FISA}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="FOSA">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.FOSA}}"
+    >FOSA*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.FOSA}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ACxDN_05_SA">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.ACxDN}}"
+    >ACxDN_05_SA*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.ACxDN_05_SA}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="RuleOfThree">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.RuleOfThree}}"
+    >RuleOfThree*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.RuleOfThree}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="amine">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.amine}}"
+    >Amine*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.amine}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="QPlogHERG">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogHERG}}"
+    >QPlogHERG*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogHERG}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="QPlogKhsa">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogKhsa}}"
+    >QPlogKhsa*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogKhsa}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="QPlogKp">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogKp}}"
+    >QPlogKp*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogKp}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="QPPMDCK">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPPMDCK}}"
+                     >QPPMDCK*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPPMDCK}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="donorHB">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.donorHB}}"
+    >DonorHB*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.donorHB}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="SASA">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.SASA}}"
+    >SASA*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.SASA}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="stars">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.stars}}"
+    >Stars*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.stars}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dip_2_v">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.dip}}"
+    >dip_2_v*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.dip_2_v}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="QPlogPoct">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogPoct}}"
+    >QPlogPoct*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogPoct}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acceptHB">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.acceptHB}}"
+    >AcceptHB*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.acceptHB}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="RuleOfFive">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.RuleOfFive}}"
+    >RuleOfFive*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.RuleOfFive}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Safluorine">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.SAfluorine}}"
+    >Safluorine*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.Safluorine}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="CIQPlogS">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.CIQPlogS}}"
+    >CIQPlogS*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.CIQPlogS}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="volume">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.volume}}"
+    >Volume*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.volume}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="in34">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.in34}}"
+    >In34*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.in34}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="amide">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.amide}}"
+    >Amide*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.amide}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="QPplrz">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPpolrz}}"
+    >QPplrz*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPplrz}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="SAamideO">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.SAamideO}}"
+    >SAamideO*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.SAamideO}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="EA_ev">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.EAeV}}"
+    >EA_ev*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.EA_ev}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="QPlogS">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogS}}"
+    >QPlogS*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogS}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="QPlogPC16">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogPC}}"
+    >QPlogPC16*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogPC16}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="DL">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>DL*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.DL}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="QPlogPo_w">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogPow}}"
+    >QPlogPo_w*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogPo_w}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="amidine">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.amidine}}"
+    >Amidine*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.amidine}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="acid">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.acid}}"
+    >Acid*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.acid}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="CNS">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.CNS}}"
+    >CNS*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.CNS}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="rtvFG">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.rtvFG}}"
+    >RtvFG*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.rtvFG}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="rotor">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.rotor}}"
+    >Rotor*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.rotor}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="HumanOralAbsorption">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.HumanOralAbsorption}}"
+    >HumanOralAbsorption*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.HumanOralAbsorption}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dipole">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.dipole}}"
+    >Dipole*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.dipole}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ringatoms">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.ringatoms}}"
+    >Ringatoms*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.ringatoms}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="QPlogPw">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogPw}}"
+    >QPlogPw*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogPw}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="QPlogBB">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPlogBB}}"
+    >QPlogBB*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPlogBB}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="WPSA">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.WPSA}}"
+    >WPSA*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.WPSA}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="noncon">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.noncon}}"
+    >Noncon*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.noncon}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="glob">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.glob}}"
+    >Glob*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.glob}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="IP_eV">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.IPeV}}"
+    >IP_eV*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.IP_eV}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="PrecentHumanOralAbsorption">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.PercentHumanOralAbsorption}}"
+    >PrecentHumanOralAbsorption*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.PrecentHumanOralAbsorption}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="QPPCaco">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.QPPCaco}}"
+    >QPPCaco*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.QPPCaco}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="metab">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.metab}}"
+    >Metab*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.metab}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="in56">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.in56}}"
+    >In56*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.in56}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nonHatm">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.nonHatm}}"
+    >NonHatm*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.nonHatm}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="PISA">
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.PISA}}"
+    >PISA*</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.PISA}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="detail">

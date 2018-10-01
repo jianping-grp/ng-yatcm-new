@@ -25,7 +25,7 @@ export class DiseaseEnrichPathwayComponent implements OnInit {
       this.diseaseId = +params.get('id');
       this.body = {disease_id: this.diseaseId};
       this.restUrl$ = observableOf(
-        `TTDiseaseEnrichPathway/ttd_map_enrich_kegg_list/?include[]=pathway.*&include[]=pathway.category.*`);
+        `TTDDiseaseEnrichPathway/ttd_map_enrich_kegg_list/?include[]=pathway.*&include[]=pathway.category.*`);
     });
   }
 }

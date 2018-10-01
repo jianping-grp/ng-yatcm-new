@@ -74,7 +74,6 @@ export class EnrichPathwayTableComponent implements OnInit, OnDestroy, AfterView
           this.pageMeta = data['meta'];
           this.keggPathway = data['kegg_pathways'];
           this.keggPathwayCategory = data['kegg_pathway_second_categories'];
-          console.log(this.keggPathway);
           switch (this.idType) {
             case 'prescription':
               return data['prescription_enrich_pathways'];
@@ -84,7 +83,7 @@ export class EnrichPathwayTableComponent implements OnInit, OnDestroy, AfterView
               return data['compound_enrich_pathways'];
             case 'target':
               return data['target_enrich_pathways'];
-            case 'ttdDisease':
+            case 'disease':
               return data['ttd_disease_enrich_pathways'];
           }
         }),
@@ -119,7 +118,7 @@ export class EnrichPathwayTableComponent implements OnInit, OnDestroy, AfterView
         Object.assign(queryParams, {compoundId: this.id}); break;
       case 'target':
         Object.assign(queryParams, {targetId: this.id}); break;
-      case 'disease':
+      case 'ttdDisease':
         Object.assign(queryParams, {diseaseId: this.id}); break;
     }
     this.router.navigate(['pathway/kegg-map'], {queryParams: queryParams});
@@ -152,7 +151,7 @@ export class EnrichPathwayTableComponent implements OnInit, OnDestroy, AfterView
         Object.assign(queryParams, {compoundId: this.id}); break;
       case 'target':
         Object.assign(queryParams, {targetId: this.id}); break;
-      case 'disease':
+      case 'ttdDisease':
         Object.assign(queryParams, {diseaseId: this.id}); break;
     }
     this.router.navigate(['pathway/protein-detail'], {queryParams: queryParams});

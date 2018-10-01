@@ -128,7 +128,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
           saveAsImage: {show: true}
         }
       },
-      animationDuration: 3000,
+      animationDuration: 1000,
       animationEasingUpdate: 'quinticInOut',
       series: [this.series]
     };

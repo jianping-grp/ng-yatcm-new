@@ -1,4 +1,10 @@
-
+ngx-cytoscape {
+  height: 100vh;
+  float: left;
+  position: relative;
+  border: solid #21c0c0;
+  width: 100%;
+}
 .toolbar-color {
   color: #fff;
   background: -webkit-linear-gradient(right, #56cc9d, rgba(86,204,157,0)); /* Safari 5.1 - 6 */

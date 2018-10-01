@@ -23,6 +23,8 @@
   class="global-progress-bar"
 ></mat-progress-bar>
 
+<ngx-cytoscape [elements]="graphData" (event)="onclick($event)"></ngx-cytoscape>
+
 <div [style.min-height]="screenHeight">
   <router-outlet></router-outlet>
 </div>

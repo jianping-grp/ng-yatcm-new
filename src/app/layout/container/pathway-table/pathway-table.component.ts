@@ -62,8 +62,9 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
         startWith({}),
         switchMap(() => {
           this.isLoading = true;
-          // 判断数据类型
-        if (this.idType === 'compound' || this.idType === 'herb' || this.idType === 'prescription') {
+          // 判断数据类型 原来是判断idType是不是等于compound，herb，prescription(全部是只有映射通路，现在是只有映射通路）
+        if (this.idType === 'compound' || this.idType === 'herb' || this.idType === 'prescription'
+         || this.idType === 'target' || this.idType === 'disease') {
             return this.rest.postDataList(
               this.restUrl,
               this.body,

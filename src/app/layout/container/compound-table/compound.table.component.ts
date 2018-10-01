@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {merge} from 'rxjs/observable/merge';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs/observable/of';
+import {CompoundParamInterpretation} from "../../../yatcm/enum/compound-param-interpretation.enum";
 @Component({
   selector: 'app-compound-table',
   templateUrl: './compound-table.component.html',
@@ -18,6 +19,7 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
   isLoading = false;
   isLoadingError = false;
   restUrl: string;
+  compoundTooltip = CompoundParamInterpretation;
   @Input() body: object;
   @Input() type: string;
   @Input() tableTitle = '';
@@ -30,9 +32,14 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
   @Input() restUrl$: Observable<string>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
- allColumns = ['molecule', 'english_name', 'chinese_name', 'formula', 'mol_weight', 'alogp',
+  allColumns = ['molecule', 'english_name', 'chinese_name', 'formula', 'mol_weight', 'alogp', 'psa', 'hba', 'hbd', 'rtb',
+   'FISA', 'FOSA', 'ACxDN_05_SA', 'RuleOfThree', 'amine', 'QPlogHERG', 'QPlogKhsa', 'QPlogKp', 'QPPMDCK', 'donorHB',
+    'SASA', 'stars', 'dip_2_v', 'QPlogPoct', 'acceptHB', 'RuleOfFive', 'Safluorine', 'CIQPlogS', 'volume', 'in34',
+    'amide', 'QPplrz', 'SAamideO', 'EA_ev', 'QPlogS', 'QPlogPC16', 'DL', 'QPlogPo_w', 'amidine', 'acid', 'CNS', 'rtvFG',
+    'rotor', 'HumanOralAbsorption', 'dipole', 'ringatoms', 'QPlogPw', 'QPlogBB', 'WPSA', 'noncon', 'glob', 'IP_eV',
+    'PrecentHumanOralAbsorption', 'QPPCaco', 'metab', 'int56', 'nonHatm'
     // 'cid', 'cas',
-   'psa', 'hba', 'hbd', 'rtb'];
+  ];
   constructor(private router: Router,
               private rest: RestService) {
   }

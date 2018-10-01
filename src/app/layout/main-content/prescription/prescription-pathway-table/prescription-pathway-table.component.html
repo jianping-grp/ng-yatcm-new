@@ -1,6 +1,20 @@
+<app-enrich-pathway-table
+  [idType]="'prescription'"
+  [displayedColumns]="displayedColumns"
+  [allColumns]="allColumns"
+  [id]="prescriptionId"
+  [pageSize]="5"
+  [restUrl$]="enrichPathwayRestUrl$"
+  [body]="body"
+></app-enrich-pathway-table>
+<br/>
 <app-pathway-table
-[restUrl$]="restUrl$"
+[restUrl$]="onlyMapPathwayRestUrl$"
 [pageSize]=5
 [idType]="'prescription'"
 [id]="prescriptionId"
 [body]="body"></app-pathway-table>
+
+
+
+
