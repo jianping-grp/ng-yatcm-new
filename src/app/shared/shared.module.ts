@@ -27,6 +27,7 @@ import {DirectivesModule} from './directives/directives.module';
 import {PipesModule} from './pipe/pipes.module';
 import {NgxEchartsModule} from 'ngx-echarts';
 import {CytoscapeModule} from 'ngx-cytoscape';
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import {CytoscapeModule} from 'ngx-cytoscape';
     PipesModule,
     NgxEchartsModule,
     CytoscapeModule,
+    FileUploadModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
@@ -67,6 +69,7 @@ import {CytoscapeModule} from 'ngx-cytoscape';
     PipesModule,
     NgxEchartsModule,
     CytoscapeModule,
+    FileUploadModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,

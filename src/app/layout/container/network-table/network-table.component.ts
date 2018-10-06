@@ -180,6 +180,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       .subscribe(data => {
           this.nodes = data['nodes'];
           this.links = data['links'];
+          console.log(this.nodes, this.links); // todo delete
           if (this.idType === 'prescription-herb-target') {
             if (this.nodes.length > 0) {
               this.title = `Common  TTD targets between two specific herbs in this prescription`;

@@ -5,6 +5,7 @@ import {HelpComponent} from './help/help.component';
 import {ContactComponent} from './contact/contact.component';
 import {SearchComponent} from './search/search.component';
 import {SharedModule} from '../../../shared/shared.module';
+import { SeaComponent } from './sea/sea.component';
 
 @NgModule({
   imports: [
@@ -15,13 +16,15 @@ import {SharedModule} from '../../../shared/shared.module';
     HomeComponent,
     HelpComponent,
     ContactComponent,
-    SearchComponent
+    SearchComponent,
+    SeaComponent
   ],
   exports: [
     HomeComponent,
     HelpComponent,
     ContactComponent,
-    SearchComponent
+    SearchComponent,
+    SeaComponent
   ]
 })
 export class PageModule { }

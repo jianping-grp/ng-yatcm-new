@@ -4,6 +4,7 @@ import {HelpComponent} from './layout/main-content/page/help/help.component';
 import {ContactComponent} from './layout/main-content/page/contact/contact.component';
 import {SearchComponent} from './layout/main-content/page/search/search.component';
 import {NgModule} from '@angular/core';
+import {SeaComponent} from "./layout/main-content/page/sea/sea.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent,
+  },
+  {
+    path: 'sea',
+    component: SeaComponent,
   },
   {
     path: 'search',
