@@ -1,0 +1,7 @@
+ngx-cytoscape {
+  height: 100vh;
+  float: left;
+  position: relative;
+  border: solid #21c0c0;
+  width: 100%;
+}
