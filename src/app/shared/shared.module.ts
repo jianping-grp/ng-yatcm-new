@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatToolbarModule,
   MatSidenavModule,
   MatSelectModule,
@@ -33,6 +33,7 @@ import {FileUploadModule} from "ng2-file-upload";
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     JsmeModule,
     DirectivesModule,
     PipesModule,
@@ -64,6 +65,7 @@ import {FileUploadModule} from "ng2-file-upload";
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     JsmeModule,
     DirectivesModule,
     PipesModule,

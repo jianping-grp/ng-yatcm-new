@@ -172,6 +172,7 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
       .subscribe(data => {
         this.herbList = data['herbs'];
         this.herbNetworkList = data['herb_networks'];
+        console.log(this.herbList, this.herbNetworkList); // todo
         if (this.herbList === undefined) {
           this.echartNetwork.hideLoading();
           this._setTitle('No network data available for this herb.');
