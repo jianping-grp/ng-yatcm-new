@@ -14,10 +14,10 @@ export class DiseasePathwayTableComponent implements OnInit {
   enrichPathwayRestUrl$: Observable<string>;
   diseaseId: number;
   body: object;
-  displayedColumns = ['name', 'category', 'count', 'p_value', 'gene_ratio', 'q_value',
-    'p_adjust', 'bg_ratio', 'gene_id', 'kegg_id', 'protein_detail'];
-  allColumns = ['name', 'category', 'count', 'p_value', 'gene_ratio', 'q_value',
-    'p_adjust', 'bg_ratio', 'gene_id', 'kegg_id', 'protein_detail'];
+  displayedColumns = ['name', 'category',  'kegg_id', 'count', 'p_value', 'gene_ratio', 'q_value',
+    'p_adjust', 'bg_ratio', 'gene_id', 'protein_detail'];
+  allColumns = ['name', 'category',  'kegg_id', 'count', 'p_value', 'gene_ratio', 'q_value',
+    'p_adjust', 'bg_ratio', 'gene_id','protein_detail'];
 
   constructor(private route: ActivatedRoute) {
 

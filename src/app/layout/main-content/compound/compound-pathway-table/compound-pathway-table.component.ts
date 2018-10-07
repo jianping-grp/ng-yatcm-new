@@ -14,10 +14,10 @@ export class CompoundPathwayTableComponent implements OnInit {
   body: object;
   enrichPathwayRestUrl$: Observable<string>;
   restUrl$: Observable<string>;
-  displayedColumns = ['name', 'category', 'count', 'p_value', 'gene_ratio', 'q_value',
-    'p_adjust', 'bg_ratio', 'gene_id', 'kegg_id', 'compound_detail', 'protein_detail'];
-  allColumns = ['name', 'category', 'count', 'p_value', 'gene_ratio', 'q_value',
-    'p_adjust', 'bg_ratio', 'gene_id', 'kegg_id', 'compound_detail', 'protein_detail'];
+  displayedColumns = ['name', 'category', 'kegg_id', 'count', 'p_value', 'gene_ratio', 'q_value',
+    'p_adjust', 'bg_ratio', 'gene_id', 'compound_detail', 'protein_detail'];
+  allColumns = ['name', 'category', 'kegg_id','count', 'p_value', 'gene_ratio', 'q_value',
+    'p_adjust', 'bg_ratio', 'gene_id',  'compound_detail', 'protein_detail'];
 
   constructor(private route: ActivatedRoute) {
 

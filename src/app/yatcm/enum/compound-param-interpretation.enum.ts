@@ -1,4 +1,5 @@
 export enum CompoundParamInterpretation {
+  DL = 'drug-likeness',
   stars = ' Number of property or descriptor values that fall outside the 95% range of similar values for known drugs.',
   amine = 'Number of non-conjugated amine groups.',
   amidine = 'Number of non-conjugated amine groups.',

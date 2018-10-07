@@ -26,7 +26,7 @@ export class PathwayTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() body: object;
   @Input() idType: string;
   @Input() id: string;
-  @Input() tableTitle = '';
+  @Input() tableTitle = 'Pathways with mapped compounds and/or targets. ';
   @Input() includeParams = '';
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 50, 100];

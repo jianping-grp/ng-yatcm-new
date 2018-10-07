@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {CompoundCardComponent} from '../../../shared/card/compound-card/compound-card.component';
 import {Subscription} from 'rxjs/Subscription';
+import {CompoundParamInterpretation} from "../../../yatcm/enum/compound-param-interpretation.enum";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-network-table',
@@ -13,10 +15,11 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./network-table.component.css']
 })
 export class NetworkTableComponent implements OnInit, OnDestroy {
-  targetType = 'ttd_target';
+  targetType = 'True';
   networkDataSubscription: Subscription;
   showLabel = false;
   series: any;
+  matTooltip = CompoundParamInterpretation;
   @Input() restUrl: string;
   @Input() body: object;
   @Input() idType: string;
@@ -26,6 +29,16 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
   nodes: Node[];
   links: Link[];
   title: string;
+  dl = 0.18;
+  starsMin = 0;
+  starsMax = 5
+  qpbbMin = -3;
+  qpbbMax = 1.2;
+  rofMin = 0;
+  rofMax = 4;
+  phoaMin = 0;
+  phoaMax = 100;
+  paramsForm: FormGroup;
 
   constructor(private rest: RestService,
               private router: Router,
@@ -33,9 +46,18 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
 
   }
 
+
+
   ngOnInit() {
     console.log('network table init');
+    this.creatForm();
     this.inintNetworkOptions();
+  }
+
+  creatForm() {
+    this.paramsForm = new FormGroup({
+      stars: new FormControl('', [Validators.min(0), Validators.max(5)]),
+    });
   }
 
   inintNetworkOptions() {
@@ -43,11 +65,11 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       name: '',
       type: 'graph',
       layout: 'force',
-      force: {
-        repulsion: 100,
-        gravity: 0.1,
-        edgeLength: [20, 50]
-      },
+      // force: {
+      //   repulsion: 100,
+      //   gravity: 0.1,
+      //   edgeLength: [20, 50]
+      // },
       categories: [
         {'name': 'Herb'},
         {'name': 'Prescription'},
@@ -65,9 +87,10 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       label: {
         normal: {
           show: this.showLabel,
-          formatter: (el) => {
+          formatter:
+            (el) => {
             // fetch name
-            const nameId = el.data['name'].split('-*-');
+            const nameId = el.data['id'].split('-*-'); // todo id  > name
             return nameId[1];
           },
           position: 'top',
@@ -95,7 +118,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
         formatter: (el) => {
           switch (el.dataType) {
             case 'node': {
-              const nameId = el.data['name'].split('-*-');
+              const nameId = el.data['id'].split('-*-');
               if (el.data['category'] === 'Pathway') {
                 return `${nameId[0]}</br>` +
                   `english_name: ${nameId[1]}</br>` +
@@ -164,10 +187,18 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     if (this.echart !== undefined) {
       this.echart.showLoading();
     }
-    if (this.idType === 'compound' && this.targetType === 'all_target') {
-      this.body = {cpd_id: this.id, only_ttd_target: 'False'};
-    } else if (this.idType === 'herb' && this.targetType === 'all_target') {
-      this.body = {herb_id: this.id, only_ttd_target: 'False'};
+    this.body['DL'] = this.dl;
+    this.body['stars'] = `${this.starsMin}~${this.starsMax}`;
+    this.body['QPlogBB'] = `${this.qpbbMin}~${this.qpbbMax}}`;
+    this.body['RuleOfFive'] = `${this.rofMin}~${this.rofMax}`;
+    this.body['PrecnetHumanOralAbsorption'] = `${this.phoaMin}~${this.phoaMax}`;
+    // if (this.idType === 'compound' && this.targetType === 'all_target') {
+    //   this.body = {cpd_id: this.id, only_ttd_target: 'False'};
+    // } else if (this.idType === 'herb' && this.targetType === 'all_target') {
+    //   this.body = {herb_id: this.id, only_ttd_target: 'False'};
+    // }
+    if (this.idType === 'compound' || this.idType === 'herb') {
+      this.body['only_ttd_target'] = this.targetType;
     }
     this.getNetworkData();
   }
@@ -219,7 +250,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
   onDbClick(event) {
     // console.log('dbclickevent', event);
     if (event.dataType === 'node') {
-      const name = event.data['name'];
+      const name = event.data['id'];
       const endSlice = name.indexOf('*') - 1;
       switch (event.data['category']) {
         case 'Prescription': {

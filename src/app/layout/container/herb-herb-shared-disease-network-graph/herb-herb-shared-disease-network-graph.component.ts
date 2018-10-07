@@ -86,12 +86,12 @@ export class HerbHerbSharedDiseaseNetworkGraphComponent implements OnInit, OnDes
     this.series = {
       name: '',
       type: 'graph',
-      layout: 'force',
-      force: {
-        repulsion: 350,
-        gravity: 0.1,
-        edgeLength: [50, 100]
-      },
+      layout: 'none',
+      // force: {
+      //   repulsion: 350,
+      //   gravity: 0.1,
+      //   edgeLength: [50, 100]
+      // },
       categories: [
         {
           name: 'Herb',

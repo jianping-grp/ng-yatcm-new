@@ -268,7 +268,10 @@
     <mat-cell *matCellDef="let row">{{row.QPlogPC16}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="DL">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>DL*</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef
+                     mat-sort-header
+                     matTooltip="{{compoundTooltip.DL}}"
+    >DL*</mat-header-cell>
     <mat-cell *matCellDef="let row">{{row.DL}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="QPlogPo_w">

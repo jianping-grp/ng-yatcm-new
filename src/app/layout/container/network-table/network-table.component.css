@@ -6,3 +6,13 @@
 .mdl-data-table {
   margin: auto;
 }
+
+.form-width {
+  width: 80px;
+}
+
+.td-width {
+  max-width: 80px;
+  /*justify-content: center;*/
+  /*justify-items: center*/
+}

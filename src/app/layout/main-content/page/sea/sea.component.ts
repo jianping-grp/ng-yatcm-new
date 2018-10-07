@@ -32,7 +32,7 @@ export class SeaComponent implements OnInit {
 
   createForm() {
     this.chemicalScreeningForm = new FormGroup({
-      queryFile: new FormControl('',),
+      queryFile: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       // target: new FormControl('All', Validators.required)
     });
