@@ -37,7 +37,7 @@ export class CompoundTableComponent implements OnInit, AfterViewInit {
     'SASA', 'stars', 'dip_2_v', 'QPlogPoct', 'acceptHB', 'RuleOfFive', 'Safluorine', 'CIQPlogS', 'volume', 'in34',
     'amide', 'QPplrz', 'SAamideO', 'EA_ev', 'QPlogS', 'QPlogPC16', 'DL', 'QPlogPo_w', 'amidine', 'acid', 'CNS', 'rtvFG',
     'rotor', 'HumanOralAbsorption', 'dipole', 'ringatoms', 'QPlogPw', 'QPlogBB', 'WPSA', 'noncon', 'glob', 'IP_eV',
-    'PrecentHumanOralAbsorption', 'QPPCaco', 'metab', 'int56', 'nonHatm'
+    'PercentHumanOralAbsorption', 'QPPCaco', 'metab', 'int56', 'nonHatm'
     // 'cid', 'cas',
   ];
   constructor(private router: Router,

@@ -7,7 +7,6 @@ import {MatDialog} from '@angular/material';
 import {CompoundCardComponent} from '../../../shared/card/compound-card/compound-card.component';
 import {Subscription} from 'rxjs/Subscription';
 import {CompoundParamInterpretation} from "../../../yatcm/enum/compound-param-interpretation.enum";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-network-table',
@@ -29,16 +28,16 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
   nodes: Node[];
   links: Link[];
   title: string;
-  dl = 0.18;
+  dl = 0.3;
   starsMin = 0;
-  starsMax = 5
+  starsMax = 5;
   qpbbMin = -3;
   qpbbMax = 1.2;
   rofMin = 0;
   rofMax = 4;
   phoaMin = 0;
   phoaMax = 100;
-  paramsForm: FormGroup;
+  displayFilterParams: boolean;
 
   constructor(private rest: RestService,
               private router: Router,
@@ -50,21 +49,17 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('network table init');
-    this.creatForm();
+    this.displayFilterParams = !(this.idType === 'prescription-herb-target' || this.idType === 'prescription-herb-disease');
     this.inintNetworkOptions();
   }
 
-  creatForm() {
-    this.paramsForm = new FormGroup({
-      stars: new FormControl('', [Validators.min(0), Validators.max(5)]),
-    });
-  }
 
   inintNetworkOptions() {
     this.series = {
       name: '',
       type: 'graph',
-      layout: 'force',
+      layout: 'circular',
+      // layout: 'force',
       // force: {
       //   repulsion: 100,
       //   gravity: 0.1,
@@ -90,7 +85,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
           formatter:
             (el) => {
             // fetch name
-            const nameId = el.data['id'].split('-*-'); // todo id  > name
+            const nameId = el.data['id'].split('-*-');
             return nameId[1];
           },
           position: 'top',
@@ -187,12 +182,14 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     if (this.echart !== undefined) {
       this.echart.showLoading();
     }
-    this.body['DL'] = this.dl;
-    this.body['stars'] = `${this.starsMin}~${this.starsMax}`;
-    this.body['QPlogBB'] = `${this.qpbbMin}~${this.qpbbMax}}`;
-    this.body['RuleOfFive'] = `${this.rofMin}~${this.rofMax}`;
-    this.body['PrecnetHumanOralAbsorption'] = `${this.phoaMin}~${this.phoaMax}`;
-    // if (this.idType === 'compound' && this.targetType === 'all_target') {
+    if (this.displayFilterParams) {
+      this.body['DL'] = this.dl;
+      this.body['stars'] = `${this.starsMin}~${this.starsMax}`;
+      this.body['QPlogBB'] = `${this.qpbbMin}~${this.qpbbMax}`;
+      this.body['RuleOfFive'] = `${this.rofMin}~${this.rofMax}`;
+      this.body['PercentHumanOralAbsorption'] = `${this.phoaMin}~${this.phoaMax}`;
+    }
+   // if (this.idType === 'compound' && this.targetType === 'all_target') {
     //   this.body = {cpd_id: this.id, only_ttd_target: 'False'};
     // } else if (this.idType === 'herb' && this.targetType === 'all_target') {
     //   this.body = {herb_id: this.id, only_ttd_target: 'False'};
@@ -200,6 +197,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     if (this.idType === 'compound' || this.idType === 'herb') {
       this.body['only_ttd_target'] = this.targetType;
     }
+    console.log(this.body);
     this.getNetworkData();
   }
 
@@ -211,7 +209,6 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
       .subscribe(data => {
           this.nodes = data['nodes'];
           this.links = data['links'];
-          console.log(this.nodes, this.links); // todo delete
           if (this.idType === 'prescription-herb-target') {
             if (this.nodes.length > 0) {
               this.title = `Common  TTD targets between two specific herbs in this prescription`;

@@ -16,7 +16,7 @@ export class TargetNetworkComponent implements OnInit {
 
   ngOnInit() {
     console.log('target network init');
-    this.restUrl = 'targets/target_network/';
+    this.restUrl = 'targets/target_network_filter/';
     this.route.parent.paramMap.subscribe((params: ParamMap) => {
       this.targetId = +params.get('id');
       this.body = {tgt_id: this.targetId};

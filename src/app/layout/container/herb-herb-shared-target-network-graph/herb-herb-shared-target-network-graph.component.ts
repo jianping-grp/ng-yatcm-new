@@ -89,12 +89,13 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
     this.series = {
       name: '',
       type: 'graph',
-      layout: 'force',
-      force: {
-        repulsion: 350,
-        gravity: 0.1,
-        edgeLength: [50, 100]
-      },
+      layout: 'circular',
+      // layout: 'force',
+      // force: {
+      //   repulsion: 350,
+      //   gravity: 0.1,
+      //   edgeLength: [50, 100]
+      // },
       categories: [
         {'name': 'Herb'}
       ],
@@ -172,7 +173,6 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
       .subscribe(data => {
         this.herbList = data['herbs'];
         this.herbNetworkList = data['herb_networks'];
-        console.log(this.herbList, this.herbNetworkList); // todo
         if (this.herbList === undefined) {
           this.echartNetwork.hideLoading();
           this._setTitle('No network data available for this herb.');
@@ -201,10 +201,8 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
         this.series['links'].push(
           {
             // source and target used for data view;
-            source: 'herb_id:' + linkEl.first_herb.toString() + '-*-'
-            + this.herbList.find(el => el.id === linkEl.first_herb).English_name,
-            target: 'herb_id:' + linkEl.second_herb.toString() + '-*-'
-            + this.herbList.find(el => el.id === linkEl.second_herb).English_name,
+            source: linkEl.first_herb.toString(),
+            target: linkEl.second_herb.toString(),
             value: linkEl.targets.length,
             lineStyle: {
               normal: {
@@ -222,8 +220,7 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
           Chinese_name: herbEl.Chinese_name,
           English_name: herbEl.English_name,
           herb_id: herbEl.id,
-          // name 用于和 link中的source 和 target 匹配
-          name: 'herb_id:' + herbEl.id.toString() + '-*-' + herbEl.English_name,
+          name: herbEl.id.toString(),
           value: 2,
           category: 'Herb',
           draggable: true

@@ -25,6 +25,27 @@
   </div>
   <div class="mdl-cell mdl-cell--12-col">
     <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h6>Chemical Screening</h6>
+          <mat-divider></mat-divider>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <br/>
+        Users can upload a file with multiple molecules (at most 1000) stored in sdf or
+        SMILES formats via “Chemical Screening” sub-menus and provide a valid e-mail address
+        for receiving calculation results.  Users can click the “Submit”
+        button to deliver the query molecules to  YaTCM Server. After retrieving the users’
+        job successfully, the calculation starts on the backend server of YaTCM. A typical
+        run containing a molecule takes 2 ~ 3 min, while the run time will depend on the
+        number of molecules.
+      </mat-card-content>
+      <img mat-card-image class="screen-image" src="assets/image-yatcm/chemical-screening.png" alt="schetch">
+    </mat-card>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <mat-card>
       <mat-card-title>
         <h6>FAQ</h6>
         <mat-divider></mat-divider>
@@ -92,7 +113,7 @@
            <img mat-card-image src="assets/image-yatcm/prescription-explorer.png" alt="prescription explorer image">
           </mat-list-item>
           <mat-list-item>
-            <b>5. Have display problems?</b>
+            <b>5.Have display problems?</b>
             <br/>
             YaTCM was only test on the latest version of browser, so please try the latest
             browser (google chrome , firefox, etc) if you have any display problems.

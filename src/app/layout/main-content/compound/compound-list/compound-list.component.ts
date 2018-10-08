@@ -15,7 +15,7 @@ export class CompoundListComponent implements OnInit {
 
   displayedColumns = ['molecule', 'english_name', 'formula', 'mol_weight', 'alogp',
     // 'cid', 'cas',
-    'psa', 'hba', 'hbd', 'rtb'];
+    'psa', 'hba', 'hbd', 'rtb', 'DL'];
   constructor(private route: ActivatedRoute) {
   }
   ngOnInit() {
