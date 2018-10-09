@@ -154,7 +154,7 @@ export class HerbHerbSharedDiseaseNetworkGraphComponent implements OnInit, OnDes
       toolbox: {
         show: true,
         feature: {
-          dataView: {show: true, readOnly: true},
+          dataView: {show: false, readOnly: true},
           restore: {show: true},
           saveAsImage: {show: true}
         }
