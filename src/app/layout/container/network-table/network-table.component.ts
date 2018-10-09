@@ -197,7 +197,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
     if (this.idType === 'compound' || this.idType === 'herb') {
       this.body['only_ttd_target'] = this.targetType;
     }
-    console.log(this.body);
+    // console.log(this.body); // todo delete
     this.getNetworkData();
   }
 
