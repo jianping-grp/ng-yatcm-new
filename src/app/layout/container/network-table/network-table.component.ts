@@ -17,6 +17,7 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
   targetType = 'True';
   networkDataSubscription: Subscription;
   showLabel = false;
+  showDynamicNetwork = false;
   series: any;
   matTooltip = CompoundParamInterpretation;
   @Input() restUrl: string;
@@ -241,6 +242,21 @@ export class NetworkTableComponent implements OnInit, OnDestroy {
 
   showNodeLabel() {
     this.series.label.normal.show = this.showLabel;
+    this.echart.setOption(this.echartOptions);
+  }
+
+  networkTransform() {
+    if (this.showDynamicNetwork === true) {
+      this.series.layout = 'force';
+      this.series.force =  {
+        repulsion: 350,
+        gravity: 0.1,
+        edgeLength: [50, 100]
+      };
+    } else {
+      this.series.layout = 'circular';
+    }
+    this.echartOptions['series'] = [this.series];
     this.echart.setOption(this.echartOptions);
   }
 

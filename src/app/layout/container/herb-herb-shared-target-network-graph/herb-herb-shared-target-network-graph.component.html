@@ -6,12 +6,19 @@
 ></div>
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <tr>
+    <th class="mdl-data-table__cell--non-numeric">Dynamic Network</th>
     <th class="mdl-data-table__cell--non-numeric">Shared targets threshold({{lengthThreshold}})</th>
     <th class="mdl-data-table__cell--non-numeric">Nodes name</th>
     <th class="mdl-data-table__cell--non-numeric">View data table</th>
     <th class="mdl-data-table__cell--non-numeric">View more data</th>
   </tr>
   <tr>
+    <td class="mdl-data-table__cell--non-numeric">
+      <mat-slide-toggle
+        [(ngModel)]="showDynamicNetwork"
+        (change)="networkTransform()"
+      ></mat-slide-toggle>
+    </td>
     <td class="mdl-data-table__cell--non-numeric">
       <mat-slider
         [min]="1"

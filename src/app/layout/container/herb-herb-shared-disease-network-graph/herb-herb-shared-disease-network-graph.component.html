@@ -6,12 +6,19 @@
 ></div>
 <table class="mdl-data-table">
   <tr>
-    <th>Shared disease threshold({{lengthThreshold}})</th>
-    <th>Nodes name</th>
-    <th>View data table</th>
+    <th class="mdl-data-table__cell--non-numeric">Dynamic Network</th>
+    <th class="mdl-data-table__cell--non-numeric">Shared disease threshold({{lengthThreshold}})</th>
+    <th class="mdl-data-table__cell--non-numeric">Nodes name</th>
+    <th class="mdl-data-table__cell--non-numeric">View data table</th>
   </tr>
   <tr>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
+      <mat-slide-toggle
+        [(ngModel)]="showDynamicNetwork"
+        (change)="networkTransform()"
+      ></mat-slide-toggle>
+    </td>
+    <td class="mdl-data-table__cell--non-numeric">
       <mat-slider
         [min]="1"
         [max]="200"
@@ -21,13 +28,13 @@
         (change)="updateNetworkData()"
       ></mat-slider>
     </td>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <mat-slide-toggle
         [(ngModel)]="showLabel"
         (change)="showNodeLabel()"
       ></mat-slide-toggle>
     </td>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <button mat-button color="primary" (click)="gotoHerbHerbSharedTargetTable()">View</button>
     </td>
   </tr>

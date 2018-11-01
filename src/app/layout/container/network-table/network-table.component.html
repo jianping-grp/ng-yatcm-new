@@ -6,6 +6,7 @@
 ></div>
 <table class="mdl-data-table">
   <tr>
+    <th class="mdl-data-table__cell--non-numeric">Dynamic Network</th>
     <th class="mdl-data-table__cell--non-numeric">Nodes name</th>
     <th class="mdl-data-table__cell--non-numeric" *ngIf="idType === 'prescription-herb-target'">View data table</th>
     <th class="mdl-data-table__cell--non-numeric" *ngIf="idType === 'prescription-herb-disease'">View data table</th>
@@ -24,6 +25,12 @@
     >Submit</th>
   </tr>
   <tr>
+    <td class="mdl-data-table__cell--non-numeric">
+      <mat-slide-toggle
+        [(ngModel)]="showDynamicNetwork"
+        (change)="networkTransform()"
+      ></mat-slide-toggle>
+    </td>
     <td class="mdl-data-table__cell--non-numeric">
       <mat-slide-toggle
         [(ngModel)]="showLabel"

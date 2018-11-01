@@ -22,6 +22,7 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
   echartOptions: any;
   data: any;
   showLabel = false;
+  showDynamicNetwork = false;
   restUrl: string;
   @Input() restUrl$: Observable<string>;
   @Input() id: number;
@@ -237,6 +238,21 @@ export class HerbHerbSharedTargetNetworkGraphComponent implements OnInit, OnDest
 
   showNodeLabel() {
     this.series.label.normal.show = this.showLabel;
+    this.echartOptions['series'] = [this.series];
+    this.echartNetwork.setOption(this.echartOptions);
+  }
+
+  networkTransform() {
+    if (this.showDynamicNetwork === true) {
+      this.series.layout = 'force';
+      this.series.force =  {
+        repulsion: 350,
+          gravity: 0.1,
+          edgeLength: [50, 100]
+      };
+    } else {
+      this.series.layout = 'circular';
+    }
     this.echartOptions['series'] = [this.series];
     this.echartNetwork.setOption(this.echartOptions);
   }
