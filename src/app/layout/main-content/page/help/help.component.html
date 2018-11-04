@@ -20,7 +20,7 @@
           <mat-divider></mat-divider>
         </mat-card-title>
       </mat-card-header>
-     <img mat-card-image class="screen-image" src="assets/image-yatcm/prescription_help.png" alt="schetch">
+     <img mat-card-image class="screen-image" src="assets/image-yatcm/prescription_help2.png" alt="schetch">
     </mat-card>
   </div>
   <div class="mdl-cell mdl-cell--12-col">
@@ -55,62 +55,107 @@
           <mat-list-item>
             <b>1. What is SEA?</b>
             <br/>
-            In silicon target prediction is critical method in drug development, on which there is
-            a substantial body of research (Peón A, Dang CC, Ballester PJ (2016) doi: 10.3389/fchem.2016.00015).
-            Among these method, SEA (Chemical similarity ensemble approach) has been approved as a promising
-            tool and successfully applied in drug repositioning(Keiser MJ, Setola V, Irwin JJ, et al (2010)
-            doi: 10.1038/nature08506.Predicting; Keiser MJ, Roth BL, Armbruster BN, et al (2007)
-            doi: 10.1038/nbt1284; Cameron RT, Coleman RG, Day JP, et al (2013) doi: 10.1016/j.bcp.2013.02.026)
-            and natural products target prediction (Sá MS, de Menezes MN, Krettli AU, et al (2011)
-            doi: 10.1021/np200260f). In our previous work, we proposed a multi-voting SEA model for small
-            molecule target prediction (Wang Z, Liang L, Yin Z, Lin J (2016) doi: 10.1186/s13321-016-0130-x).
-            Zhonghua by utilizing the multi-voting SEA model, all compounds in YaTCM can be systematically
-            predicted and mapped to single protein targets from ChEMBL database. Four different molecular
-            fingerprints (MACCS, Morgan, Topological and Atom pair) were used to build SEA models.
+            <!--In silicon target prediction is critical method in drug development, on which there is-->
+            <!--a substantial body of research (Peón A, Dang CC, Ballester PJ (2016) doi: 10.3389/fchem.2016.00015).-->
+            <!--Among these method, SEA (Chemical similarity ensemble approach) has been approved as a promising-->
+            <!--tool and successfully applied in drug repositioning(Keiser MJ, Setola V, Irwin JJ, et al (2010)-->
+            <!--doi: 10.1038/nature08506.Predicting; Keiser MJ, Roth BL, Armbruster BN, et al (2007)-->
+            <!--doi: 10.1038/nbt1284; Cameron RT, Coleman RG, Day JP, et al (2013) doi: 10.1016/j.bcp.2013.02.026)-->
+            <!--and natural products target prediction (Sá MS, de Menezes MN, Krettli AU, et al (2011)-->
+            <!--doi: 10.1021/np200260f). In our previous work, we proposed a multi-voting SEA model for small-->
+            <!--molecule target prediction (Wang Z, Liang L, Yin Z, Lin J (2016) doi: 10.1186/s13321-016-0130-x).-->
+            <!--Zhonghua by utilizing the multi-voting SEA model, all compounds in YaTCM can be systematically-->
+            <!--predicted and mapped to single protein targets from ChEMBL database. Four different molecular-->
+            <!--fingerprints (MACCS, Morgan, Topological and Atom pair) were used to build SEA models.-->
+            In silico target prediction is critical for drug discovery and development, on which there is a
+            substantial body of research (Ballester PJ, Frontiers in Chemistry, 4, 2016, 1-10). One such
+            method—SEA—has proved to be a promising tool and has been successfully applied in drug repositioning
+            (Keiser MJ, Nature, 462, 2009, 175-181; Keiser MJ, Nature Biotechnology, 25, 2007, 197-206; Cameron R.T.
+            et al. Biochemical Pharmacology 85, 2013, 1297–1305) and natural products target prediction (Sá MS, Journal
+            of Natural Products, 74, 2011, 2269-2272). In our previous work, we proposed a multi-voting SEA model
+            for small molecule target prediction (Wang Z, Journal of Cheminformatics, 8, 2016, 20). By utilizing
+            the multi-voting SEA model, all compounds in YaTCM can be systematically predicted and mapped to single
+            protein targets from the ChEMBL database. Four different molecular fingerprints (MACCS, Morgan, Topological
+            and Atom pair) were used to build SEA models.
           </mat-list-item>
           <mat-list-item>
             <b>2. What is KEGG metabolic pathway mapping?</b>
             <br/>
-            The concept of metabolite-likeness, which derived from the fact that drugs are more
-            structurally similar to endogenous metabolites than are library compounds, is a useful
-            principle in drug design(Dobson PD, Patel Y, Kell DB (2009), doi: 10.1016/j.drudis.2008.10.011).
-            Kim et al.( Kim HU, Ryu JY, Lee JO, Lee SY (2015) doi: 10.1038/nbt.3167) reported that the degree
-            of structural similarity between compounds derived from traditional oriental medicine and human
-            metabolites is even higher than that of small molecule drug and human metabolites, and mapping
-            of TCM compounds to human metabolic pathway based on structural similarity may helpful in analyses
-            of mechanisms of actions(Kim HU, Ryu JY, Lee JO, Lee SY (2015) doi: 10.1038/nbt.3167). Therefore,
-            to make full use of ingredients data in YaTCM, all compounds were mapping to KEGG human metabolic
-            pathway by calculating structural similarity of TCM-metabolite pairs. In addition, we further mapped
-            therapeutic targets to KEGG human signal transduction pathways. So for one specific herb or prescription,
-            we can build the pathway analysis system by this methodology. Fig 2 showed the pathway mapping result in
-            prescription Yu Ping Feng. In Fig 2, corresponding compound and protein are highlighted in red point
-            and blue rectangle respectively where we can click to acquire the corresponding relationship between
-            YaTCM and KEGG.
+            <!--The concept of metabolite-likeness, which derived from the fact that drugs are more-->
+            <!--structurally similar to endogenous metabolites than are library compounds, is a useful-->
+            <!--principle in drug design(Dobson PD, Patel Y, Kell DB (2009), doi: 10.1016/j.drudis.2008.10.011).-->
+            <!--Kim et al.( Kim HU, Ryu JY, Lee JO, Lee SY (2015) doi: 10.1038/nbt.3167) reported that the degree-->
+            <!--of structural similarity between compounds derived from traditional oriental medicine and human-->
+            <!--metabolites is even higher than that of small molecule drug and human metabolites, and mapping-->
+            <!--of TCM compounds to human metabolic pathway based on structural similarity may helpful in analyses-->
+            <!--of mechanisms of actions(Kim HU, Ryu JY, Lee JO, Lee SY (2015) doi: 10.1038/nbt.3167). Therefore,-->
+            <!--to make full use of ingredients data in YaTCM, all compounds were mapping to KEGG human metabolic-->
+            <!--pathway by calculating structural similarity of TCM-metabolite pairs. In addition, we further mapped-->
+            <!--therapeutic targets to KEGG human signal transduction pathways. So for one specific herb or prescription,-->
+            <!--we can build the pathway analysis system by this methodology. Fig 2 showed the pathway mapping result in-->
+            <!--prescription Yu Ping Feng. In Fig 2, corresponding compound and protein are highlighted in red point-->
+            <!--and blue rectangle respectively where we can click to acquire the corresponding relationship between-->
+            <!--YaTCM and KEGG.-->
+            The concept of metabolite-likeness, which is derived from the fact that drugs are more structurally
+            similar to endogenous metabolites than library compounds, is a useful principle in drug design
+            (Drug Discovery Today, Volume 14, Numbers 1/2, January 2009). Kim et al. (Kim HU, Nature Biotechnology,
+            33, 2015, 264-268) reported that the degree of structural similarity between compounds derived from
+            traditional oriental medicine and human metabolites is even higher than that between small drug molecules
+            and human metabolites. They argue that mapping of TCM compounds to human metabolic pathway based on
+            structural similarity may be useful in analyses of mechanisms of action. Therefore, in YaTCM, all compounds
+            were mapped to KEGG human metabolic pathway by calculating structural similarity of TCM-metabolite pairs.
+            In addition, we further mapped therapeutic targets to KEGG human signal transduction pathways. To
+            quantitatively elucidate the importance of these pathways, we further applied commonly used gene-ontology
+            enrichment analysis (Nucleic Acids Research, 2009, Vol. 37, No. 1 1–13) to rank the score of these pathways.
+            Figure 2 shows the pathway mapping result in prescription Yu Ping Feng. The corresponding compound and
+            protein are outlined by a red circle and a blue rectangle, respectively. It is possible to click on these
+            objects to acquire the corresponding relationship between YaTCM and KEGG.
             <img mat-card-image src="assets/image-yatcm/kegg-pathway.png" alt="kegg-pathway image">
           </mat-list-item>
           <mat-list-item>
             <b>3.what are Network building and analysis?</b>
             <br/>
-            In order to analyze different aspects of YaTCM data, we have developed a visualization interface
-            by ECharts(http://echarts.baidu.com/) and Networkx(http://networkx.github.io/) from which the
-            network can be displayed within webpage.
-            <img mat-card-image src="assets/image-yatcm/network.png" alt="network image">
+            <!--In order to analyze different aspects of YaTCM data, we have developed a visualization interface-->
+            <!--by ECharts(http://echarts.baidu.com/) and Networkx(http://networkx.github.io/) from which the-->
+            <!--network can be displayed within webpage.-->
+            To visualize and graphically analyze the relationship of the different aspects of YaTCM data,
+            we developed a visualization interface using <a href="http://echarts.baidu.com/" target="_blank">ECharts</a>
+            and <a href="http://networkx.github.io/" target="_blank">NetworkX</a>,
+            allowing the information of the interactive network to be displayed
+            within a webpage. The network button on the result page can be used to render a ‘Force’ dynamic
+            network graph or ‘Circle’ static network graph. Users can filter superabundant no-drug molecular
+            nodes and links through setting four vital ADMET parameters and Tao’s drug-likeness parameter
+            (W. Tao et al. Journal of Ethnopharmacology, 145, 2013, 1–10). The four ADMET parameters, include
+            stars (default value is 0~4), QPlogBB (default is -3.0~1.2), RuleOfFive (default is 0~4),
+            PercentHumanOralAbsorption (default is 0.0~100.0) (see Table S3 in Supporting information). The
+            default value of drug-likeness parameter is > 0.18. Networks can be exported in Portable Network
+            Graphic (PNG) format.
+            <img mat-card-image src="assets/image-yatcm/network2.png" alt="network image">
           </mat-list-item>
           <mat-list-item>
             <b>4.What is prescription explorer?</b>
             <br/>
-            TCM is characterized by the wide use of herbal formulae, which are capable of systematically
-            treating diseases determined by interactions among various herbs. However, the molecule
-            mechanism of action remains a mystery due to the lack of appropriate methods. So from a
-            network and pathways perspective, we also build prescription explorer system for one specific
-            prescription. Firstly, using herb explorer method above, we acquired the common therapeutic
-            targets (Fig.3-1) and diseases (Fig3-3) among any two herb shares, which were rendered as
-            interactive network graph. Secondly, the herb-herb relationship were build by it shared a
-            certain number of therapeutic targets located in some KEGG pathways or not (Fig.3-4) or
-            herb-herb relationship by it shared a certain number of diseases (Fig 3-2). From number 4 in Fig3,
-            we can get a list of common KEGG pathways, a list of shared therapeutic targets and a list of
-            therapeutic targets that were appeared only in common KEGG pathways.
-           <img mat-card-image src="assets/image-yatcm/prescription-explorer.png" alt="prescription explorer image">
+            <!--TCM is characterized by the wide use of herbal formulae, which are capable of systematically-->
+            <!--treating diseases determined by interactions among various herbs. However, the molecule-->
+            <!--mechanism of action remains a mystery due to the lack of appropriate methods. So from a-->
+            <!--network and pathways perspective, we also build prescription explorer system for one specific-->
+            <!--prescription. Firstly, using herb explorer method above, we acquired the common therapeutic-->
+            <!--targets (Fig.3-1) and diseases (Fig3-3) among any two herb shares, which were rendered as-->
+            <!--interactive network graph. Secondly, the herb-herb relationship were build by it shared a-->
+            <!--certain number of therapeutic targets located in some KEGG pathways or not (Fig.3-4) or-->
+            <!--herb-herb relationship by it shared a certain number of diseases (Fig 3-2). From number 4 in Fig3,-->
+            <!--we can get a list of common KEGG pathways, a list of shared therapeutic targets and a list of-->
+            <!--therapeutic targets that were appeared only in common KEGG pathways.-->
+            When treating diseases using TCM, a prescription or herbal formula containing various herbs is usually
+            applied. To better understand the molecular mechanism of action of TCM prescription or herbal formulas,
+            YaTCM can explore a TCM prescription or herbal formulas from a network and pathways perspective. Firstly,
+            the common therapeutic targets (Figure A) and diseases (Figure C) between any two herbs are identified and
+            rendered as an interactive network graph. Secondly, the herb-herb interacting pairs were constructed based
+            on a certain number of common therapeutic targets, which are ether involved in the same KEGG pathway
+            (Figure D) or share a certain number of diseases (Figure B). Clicking the edge between two nodes reveals
+            three links, a list of common KEGG pathways (Figure D,2), a list of shared therapeutic targets (Figure D,1)
+            and a list of therapeutic targets that appeared only in the common KEGG pathway (Figure D,3).
+           <img mat-card-image src="assets/image-yatcm/prescription-explorer2.png" alt="prescription explorer image">
           </mat-list-item>
           <mat-list-item>
             <b>5.Have display problems?</b>
